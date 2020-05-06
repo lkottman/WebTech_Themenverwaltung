@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrierung</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="register.js" type="text/javascript"></script>
+</head>
+<body>
+<br>
+<img src="hsos-logo-neu.png" class="logo" alt="hslogo">
+<br> <br>
+    <form class="box" method="post">
+        <div class="box1">
+            <p>Den Token erhalten Sie von Ihrem Dozenten</p>
+            <input type="text" name="" placeholder="Token" id="token" required>
+            <input type="text" name="" placeholder="Vorname" id="name" required>
+            <input type="text" name="" placeholder="Nachname" id="surname" required>
+            <input type="text" name="" placeholder="E-Mail" id="email" required>
+            <input type="password" name="" placeholder="Passwort" id="password" onkeyup="checkPasswordRequirements()" required>
+            <progress max="100" value="0" id="strengh" onmouseover=""></progress>
+            <input type="password" name="" placeholder="Passwort bestätigen" id ="password1" onkeyup="checkPasswords()" required>
+            <br>
+            <input type="checkbox" name="tutorium" value="tutorium" id="checkAgb" required>
+            AGBs gelesen und akzeptiert
+            <input type="submit" onclick="register()" name="" value="Registrieren">
+            <br>
+        </div>
+    </form>
+
+<div class="footer">
+    <p>
+        <a href="impressum.html"> Impressum</a>
+        // Kontakt: Mo-Fr 12-16 Uhr unter 01741972105
+    </p>
+</div>
+
+
+</body>
+</html>
