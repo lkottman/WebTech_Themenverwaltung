@@ -1,5 +1,10 @@
 const express = require("express");
+const session = require("express-session");
+const bodyParser = require("body-parser");
 const app = express();
+
+// https://youtu.be/OH6Z0dJ_Huk?t=1466
+
 let http = require("http");
 let url = require("url");
 let mysql = require("mysql");
@@ -13,12 +18,61 @@ let connection = mysql.createConnection(
     }
 );
 
+const lifeTime = 1000 * 60 * 60 // 1 hour
+
+const {
+    PORT = 3000,
+    sessionLifetime = lifeTime,
+    sessionName = "sid",
+    secretSession = "testt"
+} = process.env
+
 app.use(express.static('public'));
 app.use(express.static('images'));
 app.use(express.json({limit: "1mb"}));
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
+app.use(session({
+name: sessionName,
+    resave: false,
+    saveUninitialized: false,
+    secret: secretSession,
+    cookie: {
+        maxAge: sessionLifetime,
+        sameSite: true,
+        secure: false //in development
+    }
+}))
 
+const redirectLogin = (request, response, next) => {
+    if (!request.session.userId){
+        response.redirect("/")
+    } else {
+        next()
+    }
+}
 
-app.post("/login", (request, response) => {
+const redirectHome = (request, response, next) => {
+    if (request.session.userId){
+        response.redirect("/home")
+    } else {
+        next()
+    }
+}
+
+app.get("/home", redirectLogin, (request, response)=>{
+    console.log(request.session);
+
+    response.sendFile('//privat//home.html', {root: __dirname })
+})
+
+app.get("/register", (request, response)=>{
+    console.log(request.session);
+    response.sendFile('//public//register.html', {root: __dirname })
+})
+
+app.post("/login", redirectHome, (request, response) => {
 
     connection.query("SELECT email, password from user where "
         + 'email = "' + request.body.email + '"'
@@ -27,7 +81,6 @@ app.post("/login", (request, response) => {
             if (err)
                 throw err;
             else {
-
                 if (result.length == 0) {
                     response.json({
                         status: "false"
@@ -42,7 +95,7 @@ app.post("/login", (request, response) => {
         });
 });
 
-app.post("/register", (request, response) => {
+app.post("/register",redirectHome, (request, response) => {
     var responsetext = false;
 
     let servertime = new Date();
@@ -111,4 +164,12 @@ app.post("/token", (request, response) => {
     response.end();
 });
 
-app.listen(3000, () => console.log("listening at 3000"));
+app.post("/logout"), redirectLogin, (request, respond) =>{
+
+};
+
+
+app.listen(PORT, () => console.log(
+    "listening on: " +
+    `http://localhost:${PORT}`
+));
