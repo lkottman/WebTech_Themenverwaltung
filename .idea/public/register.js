@@ -24,7 +24,10 @@ function register(){
         false
     );
 
-    if (checkPasswords()==true && document.getElementById("checkAgb").checked == true)
+//TODO Serverseitig abprüfen
+    if (validateEmail(document.getElementById("email").value)==true
+        && checkPasswords()==true
+        && document.getElementById("checkAgb").checked == true)
     {
         const options = {
             method: "POST",
@@ -102,3 +105,7 @@ function checkPasswords() {
     }
 }
 
+
+function validateEmail(email){
+    return /^\"?[\w-_\.]*\"?@hs-osnabrueck\.de$/.test(email);
+}
