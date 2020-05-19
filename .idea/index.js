@@ -33,6 +33,7 @@ app.use(express.json({limit: "1mb"}));
 app.use(bodyParser.urlencoded({
     extended: true
 }))
+
 app.use(session({
 name: sessionName,
     resave: false,
@@ -41,40 +42,65 @@ name: sessionName,
     cookie: {
         maxAge: sessionLifetime,
         sameSite: true,
-        secure: false //in development
+        secure: false //in development in production :true
     }
 }))
 
 const redirectLogin = (request, response, next) => {
+    console.log(request.session.userId + " redirectLogin");
     if (!request.session.userId){
-        response.redirect("/")
+        response.redirect("/login")
     } else {
-        next()
+        next();
     }
 }
 
 const redirectHome = (request, response, next) => {
+    console.log(request.session.userId + " redirectHome");
     if (request.session.userId){
+        console.log(request.session.userId + "test");
         response.redirect("/home")
     } else {
         next()
     }
 }
+app.use((request, respond, next) => {
+    const {userId} = request.session;
+    if(userId) {
+        respond.locals.user = request.session.userId;
+        console.log(respond.locals.user + " app.use");
+    }
+    next();
+})
 
 app.get("/home", redirectLogin, (request, response)=>{
-    console.log(request.session);
 
     response.sendFile('//privat//home.html', {root: __dirname })
 })
 
 app.get("/register", (request, response)=>{
-    console.log(request.session);
     response.sendFile('//public//register.html', {root: __dirname })
+})
+
+app.get("/login", (request, response)=>{
+    response.sendFile('//public//index.html', {root: __dirname })
+})
+
+app.get("/", (request, response)=>{
+    response.sendFile('//public//index.html', {root: __dirname })
+})
+
+app.post("/index.html", redirectLogin, (request, response)=>{
+    if (request.session.userId){
+        response.redirect("/home")
+    } else {
+        response.redirect("/login")
+    }
 })
 
 app.post("/login", redirectHome, (request, response) => {
 
-    connection.query("SELECT email, password from user where "
+    connection.query("SELECT id, name,verified, token, email, password from user where "
         + 'email = "' + request.body.email + '"'
         + ' AND password = "' + request.body.password + '"',
         function (err, result) {
@@ -82,20 +108,32 @@ app.post("/login", redirectHome, (request, response) => {
                 throw err;
             else {
                 if (result.length == 0) {
-                    response.json({
-                        status: "false"
-                    });
+                    console.log("login fehlgeschlafen (Falsche Daten oder nicht registriert)");
+                    // response.json({
+                    //     status: "false"
+                    // });
                 } else {
-                    response.json({
-                        status: "true"
-                    });
+                    if(result[0].verified == false){
+                        console.log("login fehlgeschlafen (nicht verifiziert)");
+                        // response.json({
+                        //     status: "false"
+                        // });
+                    } else {
+                        console.log("login erfolgreich");
+                        request.session.userId = result[0].id;
+                        request.session.userName = result[0].name;
+                        // response.json({
+                        //     status: "true"
+                        // });
+                    }
                 }
             }
-            response.end();
+            response.redirect("/home");
+            // response.end();
         });
 });
 
-app.post("/register",redirectHome, (request, response) => {
+app.post("/register", redirectHome, (request, response) => {
     var responsetext = false;
 
     let servertime = new Date();
@@ -165,9 +203,14 @@ app.post("/token", (request, response) => {
 });
 
 app.post("/logout"), redirectLogin, (request, respond) =>{
-
+    request.session.destroy(err =>{
+        if(err){
+            return respond.redirect("/home");
+        }
+        respond.clearCookie(sessionName);
+        res.redirect("/login");
+    })
 };
-
 
 app.listen(PORT, () => console.log(
     "listening on: " +

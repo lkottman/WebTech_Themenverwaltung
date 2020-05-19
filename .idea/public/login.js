@@ -11,7 +11,7 @@ function login(){
     user = new LoginUser(
         document.getElementById("email").value,
         document.getElementById("password").value)
-
+    window.location.replace("http://www.w3schools.com");
     const options = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -19,6 +19,8 @@ function login(){
     }
 
     fetch("/login", options).then(response => {
-        
+
     });
+
+
 }
