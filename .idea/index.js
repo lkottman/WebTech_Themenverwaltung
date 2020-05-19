@@ -58,7 +58,6 @@ const redirectLogin = (request, response, next) => {
 const redirectHome = (request, response, next) => {
     console.log(request.session.userId + " redirectHome");
     if (request.session.userId){
-        console.log(request.session.userId + "test");
         response.redirect("/home")
     } else {
         next()
@@ -70,32 +69,49 @@ app.use((request, respond, next) => {
         respond.locals.user = request.session.userId;
         console.log(respond.locals.user + " app.use");
     }
+
     next();
 })
 
 app.get("/home", redirectLogin, (request, response)=>{
-
+    console.log("home");
     response.sendFile('//privat//home.html', {root: __dirname })
 })
 
 app.get("/register", (request, response)=>{
-    response.sendFile('//public//register.html', {root: __dirname })
+    if (request.session.userId){
+        response.redirect("/home")
+    } else {
+        response.sendFile('//public//register.html', {root: __dirname })
+    }
+})
+
+app.get("/token", (request, response)=>{
+    if (request.session.userId){
+        response.sendFile('//privat//token.html', {root: __dirname })
+    } else {
+        response.redirect("/login")
+    }
 })
 
 app.get("/login", (request, response)=>{
-    response.sendFile('//public//index.html', {root: __dirname })
+    if (request.session.userId){
+        response.redirect("/home")
+    } else {
+        response.sendFile('//public//index.html', {root: __dirname })
+    }
 })
 
 app.get("/", (request, response)=>{
     response.sendFile('//public//index.html', {root: __dirname })
 })
 
-app.post("/index.html", redirectLogin, (request, response)=>{
+app.post("/index.html", redirectLogin, (request, response, next)=>{
     if (request.session.userId){
+        console.log("index ")
         response.redirect("/home")
-    } else {
-        response.redirect("/login")
     }
+    next()
 })
 
 app.post("/login", redirectHome, (request, response) => {
@@ -128,6 +144,7 @@ app.post("/login", redirectHome, (request, response) => {
                     }
                 }
             }
+            // response.redirect("/home");
             response.redirect("/home");
             // response.end();
         });
@@ -143,10 +160,13 @@ app.post("/register", redirectHome, (request, response) => {
             if (err)
                 throw err
             else {
-                let startTime = result[0].start;
-                let endTime = result[0].end;
-                let token = result[0].gentoken;
-                let clientToken = request.body.token;
+                if(result.length == 0){
+                    console.log(result);
+                } else {
+                    let startTime = result[0].start;
+                    let endTime = result[0].end;
+                    let token = result[0].gentoken;
+                    let clientToken = request.body.token;
 
                 if (token == clientToken
                     && servertime >= startTime
@@ -176,18 +196,22 @@ app.post("/register", redirectHome, (request, response) => {
                                     console.log("User already exists");
                                     responsetext = false;
                                 }
+
                             }
                         })
+
                 } else {
                     console.log("Token is expired");
                     responsetext = false;
                 }
+                }
             }
         })
-    response.end();
+    response.redirect("/login");
+    // response.end();
 });
 
-app.post("/token", (request, response) => {
+app.post("/token", redirectLogin, (request, response) => {
     console.log(request.body);
     connection.query("INSERT INTO TOKEN(START,TIME,END,GENTOKEN) VALUES("
         + '"' + request.body.start + '",'
@@ -202,15 +226,17 @@ app.post("/token", (request, response) => {
     response.end();
 });
 
-app.post("/logout"), redirectLogin, (request, respond) =>{
+app.post("/logout", redirectLogin, (request, respond) =>{
+
     request.session.destroy(err =>{
         if(err){
             return respond.redirect("/home");
         }
         respond.clearCookie(sessionName);
-        res.redirect("/login");
+        console.log("cookies deleted!")
+        respond.redirect("/login");
     })
-};
+});
 
 app.listen(PORT, () => console.log(
     "listening on: " +
