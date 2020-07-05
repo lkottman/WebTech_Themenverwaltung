@@ -1,0 +1,2 @@
+1. Registrierung: Zeiten definieren (automatisch), Token auf Website & manuelle Freigabe (A),
+Registrierung & Nutzer entfernen (A/N)
