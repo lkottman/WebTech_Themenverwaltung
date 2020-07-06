@@ -1,13 +1,15 @@
+
+class Token {
+    constructor(start, end, token, time) {
+        this.start = start;
+        this.time = time;
+        this.end = end;
+        this.token = token;
+    }
+}
+
 function createToken() {
 
-    class Token {
-        constructor(start, end, token, time) {
-            this.start = start;
-            this.time = time;
-            this.end = end;
-            this.token = token;
-        }
-    }
 
     let start = new Date();
     let end = new Date();
@@ -32,7 +34,7 @@ function createToken() {
         body: JSON.stringify(token)
     }
 
-    fetch("/token", options).then(response =>{
+    fetch("/createToken", options).then(response =>{
         const data = response.json();
         console.log(data);
     });
@@ -40,7 +42,9 @@ function createToken() {
 
 function deleteToken(){
 
-    let token = document.getElementById("tokenDelete").innerHTML;
+    let tokenDelete = document.getElementById("deleteToken").value;
+
+    token = new Token(0, 0, tokenDelete,0);
 
     const options = {
         method: "POST",
@@ -48,10 +52,15 @@ function deleteToken(){
         body: JSON.stringify(token)
     }
 
-    fetch("/token", options).then(response =>{
-        const data = response.json();
-        console.log(data);
-    });
+    fetch('/deleteToken', options)
+        .then(response => response.json())
+        .then(data => {
+
+            console.log(data.token)
+            alert(data.token)
+
+        })
+        .catch(error => console.error(error))
 }
 
 function validate(evt) {

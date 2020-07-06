@@ -35,13 +35,14 @@ function register(){
             body: JSON.stringify(person)
         }
 
-        fetch("/register", options).then(response =>{
-            const data = response.json();
-            alert(response.body);
+        fetch("/register", options)
+            .then(response => response.json())
+            .then(data => {
+            alert(data.register);
         });
     }
     else {
-        alert()
+        alert("Nur E-Mail Adressen mit der Endung '@hs-osnabrueck.de' sind zugelassen.")
     }
 }
 

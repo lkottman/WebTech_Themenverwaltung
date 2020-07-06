@@ -19,11 +19,15 @@ function login(){
         body: JSON.stringify(user)
     }
 
-    fetch("/login", options).then(response => {
-        const data = response.json();
-        alert(response.body);
-response.redirect("home");
-    });
+    fetch('/login', options)
+        .then(response => response.json())
+        .then(data => {
 
+            console.log(data.login)
+            alert(data.login)
+            // document.getElementById("info").innerHTML = data.login;
+
+        })
+        .catch(error => console.error(error))
 
 }

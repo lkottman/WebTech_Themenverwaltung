@@ -26,7 +26,7 @@ const {
     PORT = 3000,
     sessionLifetime = lifeTime,
     sessionName = "sid",
-    secretSession = "testt"
+    secretSession = "test"
 } = process.env
 
 app.use(express.static('public'));
@@ -51,7 +51,7 @@ name: sessionName,
 const redirectLogin = (request, response, next) => {
 
     if (!request.session.userId){
-        console.log(request.session.userId + " redirectLogin");
+        console.log(request.session.userId + " redirectLogin Test");
         response.redirect("/login")
     } else {
         next();
@@ -127,7 +127,7 @@ app.get("/successfullregistration", (request, response)=>{
     response.sendFile('//public//successRegister.html', {root: __dirname });
 })
 
-app.post("/login", redirectHome, (request, response) => {
+app.post("/login", redirectHome,  (request, response) => {
 
     connection.query("SELECT id, name,verified, token, email, password from user where "
         + 'email = "' + request.body.email + '"'
@@ -138,7 +138,7 @@ app.post("/login", redirectHome, (request, response) => {
             else {
                 if (result.length == 0) {
                     console.log("login fehlgeschlafen (Falsche Daten oder nicht registriert)")
-                    response.json({login: "Fehlgeschlagen: Falsche Informationen oder nicht registriert"});
+                    response.send({login: "Fehlgeschlagen: Falsche Informationen oder nicht registriert"});
 
                 } else {
                     if(result[0].verified == false){
@@ -158,6 +158,7 @@ app.post("/login", redirectHome, (request, response) => {
 app.post("/register", redirectHome, (request, response) => {
 
     let servertime = new Date();
+
     connection.query("SELECT start, end, gentoken FROM TOKEN WHERE " +
         'gentoken = "' + request.body.token + '"',
         function (err, result, fields) {
@@ -195,25 +196,23 @@ app.post("/register", redirectHome, (request, response) => {
                                                 throw err;
                                         }
                                     console.log("User created");
-                                    responsetext = true;
+                                    response.redirect("/successfullregistration");
                                 } else {
                                     console.log("User already exists");
-                                    responsetext = false;
+                                    response.json({register: "Fehlgeschlagen: Benutzer existiert bereits"});
                                 }
-
                             }
                         })
-
                 } else {
                     console.log("Token is expired");
+                    response.json({register: "Fehlgeschlagen: Freischaltcode ist abgelaufen."});
                 }
                 }
             }
         })
-    response.redirect("/successfullregistration");
 });
 
-app.post("/token", redirectLogin, (request, response) => {
+app.post("/createToken", redirectLogin, (request, response) => {
     console.log(request.body);
     connection.query("INSERT INTO TOKEN(START,TIME,END,GENTOKEN) VALUES("
         + '"' + request.body.start + '",'
@@ -226,6 +225,34 @@ app.post("/token", redirectLogin, (request, response) => {
             console.log("Inserted TOKEN")
         }
     response.end();
+});
+
+app.post("/deleteToken", redirectLogin, (request, response) => {
+
+    console.log(request.body.token);
+
+    connection.query("SELECT gentoken from token WHERE GENTOKEN = " + '"' + request.body.token + '";',
+        function (err, result) {
+            if (err)
+                throw err;
+            else{
+                console.log(result.length)
+
+                if (result.length > 0){
+                    connection.query("DELETE FROM token WHERE GENTOKEN = " + '"' + request.body.token + '";'),
+                        function (err, result) {
+                            if (err)
+                                throw err;
+                        }
+                    console.log("token deleted")
+                    response.json({token: "Token gelöscht!"});
+                }
+                else{
+                    response.json({token: "Token nicht gefunden"});
+                    console.log("token not found")
+                }
+            }
+        })
 });
 
 app.post("/logout", redirectLogin, (request, respond) =>{
