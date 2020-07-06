@@ -9,6 +9,7 @@ body{
   background-size: 1920px 1050px;
   background-repeat: no-repeat;
 }
+
 .box1{
   border:0;
   background: #ffffff;
@@ -21,8 +22,8 @@ body{
   color: #757575;
   border-radius: 0px;
   transition: 0.25s;
-
 }
+
 .logo {
   display: block;
   margin-left: auto;
@@ -60,7 +61,6 @@ body{
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-
 }
 
 .box input[type = "text"],.box input[type = "password"]{
@@ -71,7 +71,7 @@ body{
   text-align: center;
   border: 0px solid #fffcfc;
   padding: 14px 10px;
-  width: 200px;
+  width: 300px;
   outline: none;
   color: #000000;
   font-size: 15px;

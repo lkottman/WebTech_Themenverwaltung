@@ -19,6 +19,8 @@ let connection = mysql.createConnection(
 );
 
 const lifeTime = 1000 * 60 * 60 // 1 hour
+const lifeTimeRemember = 1000 * 60 * 60 * 24 * 365 // 1 year
+const query = 0;
 
 const {
     PORT = 3000,
@@ -42,13 +44,14 @@ name: sessionName,
     cookie: {
         maxAge: sessionLifetime,
         sameSite: true,
-        secure: false //in development in production :true
+        secure: false    //in development in production :true
     }
 }))
 
 const redirectLogin = (request, response, next) => {
-    console.log(request.session.userId + " redirectLogin");
+
     if (!request.session.userId){
+        console.log(request.session.userId + " redirectLogin");
         response.redirect("/login")
     } else {
         next();
@@ -56,9 +59,10 @@ const redirectLogin = (request, response, next) => {
 }
 
 const redirectHome = (request, response, next) => {
-    console.log(request.session.userId + " redirectHome");
+
     if (request.session.userId){
-        response.redirect("/home")
+        console.log(request.session.userId + " redirectHome");
+        response.redirect("/home");
     } else {
         next()
     }
@@ -66,52 +70,61 @@ const redirectHome = (request, response, next) => {
 app.use((request, respond, next) => {
     const {userId} = request.session;
     if(userId) {
-        respond.locals.user = request.session.userId;
-        console.log(respond.locals.user + " app.use");
-    }
+        respond.locals.userId = request.session.userId;
+        respond.locals.userName = request.session.userName;
+        console.log("app.use " + respond.locals.userId + " " + respond.locals.userName);
 
+    }
     next();
 })
 
 app.get("/home", redirectLogin, (request, response)=>{
     console.log("home");
-    response.sendFile('//privat//home.html', {root: __dirname })
+    response.sendFile('//privat//home.html', {root: __dirname });
 })
 
 app.get("/register", (request, response)=>{
     if (request.session.userId){
-        response.redirect("/home")
+        response.redirect("/home");
     } else {
-        response.sendFile('//public//register.html', {root: __dirname })
+        response.sendFile('//public//register.html', {root: __dirname });
     }
 })
 
 app.get("/token", (request, response)=>{
     if (request.session.userId){
-        response.sendFile('//privat//token.html', {root: __dirname })
+        response.sendFile('//privat//token.html', {root: __dirname });
     } else {
-        response.redirect("/login")
+        response.redirect("/login");
     }
 })
 
 app.get("/login", (request, response)=>{
     if (request.session.userId){
-        response.redirect("/home")
+        response.redirect("/home");
     } else {
-        response.sendFile('//public//index.html', {root: __dirname })
+        response.sendFile('//public//login.html', {root: __dirname });
     }
 })
 
 app.get("/", (request, response)=>{
-    response.sendFile('//public//index.html', {root: __dirname })
+    response.sendFile('//public//index.html', {root: __dirname });
 })
 
 app.post("/index.html", redirectLogin, (request, response, next)=>{
     if (request.session.userId){
-        console.log("index ")
-        response.redirect("/home")
+        response.redirect("/home");
     }
-    next()
+    next();
+    console.log("index");
+})
+
+app.get("/agb", (request, response)=>{
+    response.sendFile('//public//agb.html', {root: __dirname });
+})
+
+app.get("/successfullregistration", (request, response)=>{
+    response.sendFile('//public//successRegister.html', {root: __dirname });
 })
 
 app.post("/login", redirectHome, (request, response) => {
@@ -124,34 +137,25 @@ app.post("/login", redirectHome, (request, response) => {
                 throw err;
             else {
                 if (result.length == 0) {
-                    console.log("login fehlgeschlafen (Falsche Daten oder nicht registriert)");
-                    // response.json({
-                    //     status: "false"
-                    // });
+                    console.log("login fehlgeschlafen (Falsche Daten oder nicht registriert)")
+                    response.json({login: "Fehlgeschlagen: Falsche Informationen oder nicht registriert"});
+
                 } else {
                     if(result[0].verified == false){
                         console.log("login fehlgeschlafen (nicht verifiziert)");
-                        // response.json({
-                        //     status: "false"
-                        // });
+                        response.json({login: "Fehlgeschlagen: Nicht Verifiziert"});
                     } else {
                         console.log("login erfolgreich");
                         request.session.userId = result[0].id;
                         request.session.userName = result[0].name;
-                        // response.json({
-                        //     status: "true"
-                        // });
+                        response.redirect("/home");
                     }
                 }
             }
-            // response.redirect("/home");
-            response.redirect("/home");
-            // response.end();
         });
 });
 
 app.post("/register", redirectHome, (request, response) => {
-    var responsetext = false;
 
     let servertime = new Date();
     connection.query("SELECT start, end, gentoken FROM TOKEN WHERE " +
@@ -202,13 +206,11 @@ app.post("/register", redirectHome, (request, response) => {
 
                 } else {
                     console.log("Token is expired");
-                    responsetext = false;
                 }
                 }
             }
         })
-    response.redirect("/login");
-    // response.end();
+    response.redirect("/successfullregistration");
 });
 
 app.post("/token", redirectLogin, (request, response) => {

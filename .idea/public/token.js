@@ -38,6 +38,22 @@ function createToken() {
     });
 }
 
+function deleteToken(){
+
+    let token = document.getElementById("tokenDelete").innerHTML;
+
+    const options = {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(token)
+    }
+
+    fetch("/token", options).then(response =>{
+        const data = response.json();
+        console.log(data);
+    });
+}
+
 function validate(evt) {
     var theEvent = evt || window.event;
 

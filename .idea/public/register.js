@@ -36,8 +36,8 @@ function register(){
         }
 
         fetch("/register", options).then(response =>{
-            // const data = response.json();
-            // alert(response.body);
+            const data = response.json();
+            alert(response.body);
         });
     }
     else {
@@ -96,7 +96,7 @@ function checkPasswords() {
 
     passwordBackground = document.getElementById("password1");
 
-    if (password != password1) {
+    if (password != password1 || password.length > 255) {
         passwordBackground.style.background = "red";
         return false;
     } else {

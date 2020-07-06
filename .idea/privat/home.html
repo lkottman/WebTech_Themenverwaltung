@@ -5,16 +5,23 @@
     <title>Title</title>
 </head>
 <body>
+<button onclick="redirect()">Log</button>
 
 <form method="post" action="/logout">
     <button>Logout</button>
 </form>
 <ul>
-    <li>Hallo ${user.name} </li>
+    <li>Hallo <%= locals.userId %> </li>
 </ul>
 
 <ul>
     <li>Email:</li>
 </ul>
 </body>
+<script>
+    function redirect(){
+        window.location.replace("http://www.w3schools.com");
+    }
+
+</script>
 </html>
