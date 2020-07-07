@@ -127,7 +127,7 @@ app.get("/successfullregistration", (request, response) => {
 
 app.get("/cookie", (request, response) => {
     console.log(request.session);
-    response.send(request.session);
+    response.json(request.session);
 })
 
 // Post Methods
