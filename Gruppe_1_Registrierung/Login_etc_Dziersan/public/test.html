@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input id="email" name="" placeholder="Email" type="text">
+<input id="password" name="" placeholder="Passwort" type="password">
+<input name="" onclick="login()" type="submit" value="Login">
+
+<script>
+
+    function login() {
+
+        class LoginUser {
+
+            constructor(email, password) {
+                this.email = email;
+                this.password = password;
+            }
+        }
+
+        user = new LoginUser(
+            document.getElementById("email").value,
+            document.getElementById("password").value)
+
+        const options = {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(user)
+        }
+
+        fetch("/login", options).then(response => {
+        });
+    }
+
+</script>
+</body>
+</html>
