@@ -1,6 +1,16 @@
 function showName() {
-    var cookie = document.cookie;
+    alert("hello")
+}
 
 
-    document.getElementById("name").innerHTML = cookie;
+function showCookie() {
+    fetch('/cookie')
+        .then(response => response.json())
+        .then(data => {
+
+            console.log(data.login)
+            alert(data.login)
+
+        })
+        .catch(error => console.error(error))
 }

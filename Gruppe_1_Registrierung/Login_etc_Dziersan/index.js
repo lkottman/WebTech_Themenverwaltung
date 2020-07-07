@@ -29,6 +29,7 @@ const {
     secretSession = "test"
 } = process.env
 
+//imports
 app.use(express.static('public'));
 app.use(express.static('images'));
 app.use(express.json({limit: "1mb"}));
@@ -36,6 +37,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 
+//Configuration Cookies
 app.use(session({
     name: sessionName,
     resave: false,
@@ -48,6 +50,7 @@ app.use(session({
     }
 }))
 
+// Redirect to Login if there are no cookies. No Access to the private sites
 const redirectLogin = (request, response, next) => {
 
     if (!request.session.userId) {
@@ -58,6 +61,8 @@ const redirectLogin = (request, response, next) => {
     }
 }
 
+// Redirect to Home if User is logged in. There is no need to go to the login/registration Site if
+// logged in
 const redirectHome = (request, response, next) => {
 
     if (request.session.userId) {
@@ -67,17 +72,18 @@ const redirectHome = (request, response, next) => {
         next()
     }
 }
+
 app.use((request, respond, next) => {
     const {userId} = request.session;
     if (userId) {
         respond.locals.userId = request.session.userId;
         respond.locals.userName = request.session.userName;
         console.log("app.use " + respond.locals.userId + " " + respond.locals.userName);
-
     }
     next();
 })
 
+// Get Methods
 app.get("/home", redirectLogin, (request, response) => {
     console.log("home");
     response.sendFile('//privat//home.html', {root: __dirname});
@@ -111,20 +117,26 @@ app.get("/", (request, response) => {
     response.sendFile('//public//index.html', {root: __dirname});
 })
 
-app.post("/index.html", redirectLogin, (request, response, next) => {
-    if (request.session.userId) {
-        response.redirect("/home");
-    }
-    next();
-    console.log("index");
-})
-
 app.get("/agb", (request, response) => {
     response.sendFile('//public//agb.html', {root: __dirname});
 })
 
 app.get("/successfullregistration", (request, response) => {
     response.sendFile('//public//successRegister.html', {root: __dirname});
+})
+
+app.get("/cookie", (request, response) => {
+    console.log(request.session);
+    response.send(request.session);
+})
+
+// Post Methods
+app.post("/index.html", redirectLogin, (request, response, next) => {
+    if (request.session.userId) {
+        response.redirect("/home");
+    }
+    next();
+    console.log("index");
 })
 
 app.post("/login", redirectHome, (request, response) => {
@@ -265,6 +277,7 @@ app.post("/logout", redirectLogin, (request, respond) => {
         respond.redirect("/login");
     })
 });
+
 
 app.listen(PORT, () => console.log(
     "listening on: " +
