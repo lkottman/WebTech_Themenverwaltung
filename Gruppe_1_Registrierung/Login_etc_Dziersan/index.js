@@ -54,7 +54,7 @@ app.use(session({
 const redirectLogin = (request, response, next) => {
 
     if (!request.session.userId) {
-        console.log(request.session.userId + " redirectLogin Test");
+        console.log(request.session.userId + " redirectLogin");
         response.redirect("/login")
     } else {
         next();
@@ -73,7 +73,7 @@ const redirectHome = (request, response, next) => {
     }
 };
 
-
+//Every connection with Server this will be executed
 app.use((request, respond, next) => {
     const {userId} = request.session;
     if (userId) {
@@ -132,6 +132,7 @@ app.get("/successfullregistration", (request, response) => {
 
 //Get without HTML
 app.get("/cookie", (request, response) => {
+    console.log(request.session)
     response.json(request.session);
 });
 
@@ -252,7 +253,7 @@ app.post("/createToken", redirectLogin, (request, response) => {
             + '"' + request.body.end + '",'
             + '"' + request.body.token + '",'
             + '"' + request.session.userId + '")'),
-            function (err, result) {
+            function (err) {
                 if (err)
                     throw err;
                 console.log("Inserted TOKEN")
