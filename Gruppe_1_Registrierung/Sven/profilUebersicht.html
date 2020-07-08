@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ProfilÜbersicht</title>
+    <link rel="stylesheet" href="../Login_etc_Dziersan/privat/style.css">
+    <script language="javascript" type="text/javascript" src="NodeJS/profilÜbersicht.js"></script>
+</head>
+<body>
+
+
+
+<form class="box" action="">
+    <div class="box1">
+    <label for="Vorname"> Vorname: </label>
+    <input type="text" value="Vorname" id="vorname" readonly>
+
+
+    <label for="nachname"> Nachname: </label>
+    <input type="text" value="Nachname" id="nachname" readonly>
+
+    <label for="geburtsdatum"> Geburtsdatum:</label>
+    <input type="text" value="Geburtsdatum" id="geburtsdatum" readonly>
+
+    <label for="password">Password:</label>
+    <input type="Password" value="Password" id="password" readonly>
+
+    <label for="e-Mail">E-Mail:</label>
+    <input type="text"  value="E-Mail" id="e-Mail" readonly>
+        <input type="button" onclick="changeReadonly()" value="bearbeiten">
+        <input type="button" onclick="addReadonly()" value="bestätigen">
+    </div>
+</form>
+</body>
+</html>
