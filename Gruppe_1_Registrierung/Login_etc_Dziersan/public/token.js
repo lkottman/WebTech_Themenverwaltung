@@ -33,10 +33,15 @@ function createToken() {
         body: JSON.stringify(token)
     }
 
-    fetch("/createToken", options).then(response => {
-        const data = response.json();
-        console.log(data);
-    });
+    fetch('/createToken', options)
+        .then(response => response.json())
+        .then(data => {
+
+            console.log(data.token)
+            alert(data.token)
+
+        })
+        .catch(error => console.error(error))
 }
 
 function deleteToken() {
