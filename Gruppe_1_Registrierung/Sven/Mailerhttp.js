@@ -39,8 +39,8 @@ http.createServer(function (req, res)
             auth:
                 {
                 type: 'OAuth2',
-                user: 'teotestmailer@gmail.com',
-                pass: 'tiDmer-qutwob-sarpu8',
+                user: '',
+                pass: '',
                 client_id: '95451542909-higumrard1ne5epseuj27uulgk87u0v6.apps.googleusercontent.com',
                 clientSecret: 'IgLv_cMMoD2chlEEIS8AlEut',
                 refresh_token: '1//04nm8mOHFn3HACgYIARAAGAQSNwF-L9IrFo1mhczQlKkYle2J0RBZ-iw3YTRxKtvk9_zHipdKZ4-ODd-tfDLMUSvmcW_2ODyx3wY',

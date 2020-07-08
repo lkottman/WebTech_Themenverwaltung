@@ -9,8 +9,8 @@ let transporter = nodemailer.createTransport({
     secure: true,
    auth: {
        type: "OAuth2",
-       user: 'sven.petersen911@gmail.com',
-       pass:'SILoToRY',
+       user: '',
+       pass:'',
        client_id: '875095101053-laa1f3ampourvaoce4u50enlq8ki8q3i.apps.googleusercontent.com',
        clientSecret: 'DCKJrP-6J5prpS1dZPur7wnB',
        refresh_token:'1//04zvJrRcXVYAECgYIARAAGAQSNwF-L9Irx44nr61eMlpz-bRlPew7vHG18uEkJQOlgBJ0D9cwrPi_ObXPy_DI37qtVodJAMTxAgM',
