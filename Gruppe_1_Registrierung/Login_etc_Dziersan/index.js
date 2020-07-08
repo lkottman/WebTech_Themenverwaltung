@@ -73,12 +73,15 @@ const redirectHome = (request, response, next) => {
     }
 };
 
+
 app.use((request, respond, next) => {
     const {userId} = request.session;
     if (userId) {
         respond.locals.userId = request.session.userId;
         respond.locals.userName = request.session.userName;
-        console.log("app.use " + respond.locals.userId + " " + respond.locals.userName);
+        respond.locals.userAuthorization = request.session.userAuthorization;
+        console.log("app.use " + respond.locals.userId + " " + respond.locals.userName + " "
+            + respond.locals.userAuthorization);
     }
     next();
 });
@@ -98,7 +101,8 @@ app.get("/register", (request, response) => {
 });
 
 app.get("/token", (request, response) => {
-    if (request.session.userId) {
+    if (request.session.userAuthorization === "lecturer"
+        || request.session.userAuthorization === "admin") {
         response.sendFile('//privat//token.html', {root: __dirname});
     } else {
         response.redirect("/login");
@@ -128,7 +132,6 @@ app.get("/successfullregistration", (request, response) => {
 
 //Get without HTML
 app.get("/cookie", (request, response) => {
-    console.log(request.session);
     response.json(request.session);
 });
 
@@ -144,7 +147,7 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
 //Takes E-Mail and passord from User and check if these matches if database
 app.post("/login", redirectHome, (request, response) => {
 
-    connection.query("SELECT id, name,verified, token, email, password from user where "
+    connection.query("SELECT id, name,verified, token, email, password, authorization from user where "
         + 'email = "' + request.body.email + '"'
         + ' AND password = "' + request.body.password + '"',
         function (err, result) {
@@ -165,6 +168,7 @@ app.post("/login", redirectHome, (request, response) => {
                         console.log("login erfolgreich");
                         request.session.userId = result[0].id;
                         request.session.userName = result[0].name;
+                        request.session.userAuthorization = result[0].authorization;
                         response.redirect("/home");
                     }
                 }
@@ -258,8 +262,6 @@ app.post("/createToken", redirectLogin, (request, response) => {
     } else {
         response.json({token: "Fehler: Die Dauer vom Freischaltcode ist zu lang gewählt."})
     }
-
-
 });
 
 //Deletes token from Database
