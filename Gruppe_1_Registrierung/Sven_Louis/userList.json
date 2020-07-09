@@ -1,0 +1,37 @@
+{
+
+  "benutzer":[
+    {
+      "Nname":"Sven",
+      "Vorname":"Pete",
+      "EMail":"Z350",
+      "Bild":"Verfügbar",
+      "Studiengang":"Theaterpädagoge",
+      "Rechte": "Dozent"
+    },
+    {
+      "Nname":"Dominik",
+      "Vorname":"D",
+      "EMail":"Z350",
+      "Bild":"Verfügbar",
+      "Studiengang":"BWL",
+      "Rechte": "Admin"
+    },
+    {
+      "Nname":"Louis",
+      "Vorname":"King",
+      "EMail":"Z350",
+      "Bild":"Verfügbar",
+      "Studiengang":"Maschbau",
+      "Rechte": "Student"
+    },
+    {
+      "Nname":"Ralf",
+      "Vorname":"Buschi",
+      "EMail":"Z350",
+      "Bild":"Verfügbar",
+      "Studiengang":"Informatik",
+      "Rechte": "Student"
+    }
+  ]
+}
