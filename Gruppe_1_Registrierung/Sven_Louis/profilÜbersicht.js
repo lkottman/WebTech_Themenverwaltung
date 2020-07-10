@@ -15,8 +15,4 @@ function addReadonly() {
     document.getElementById("password").setAttribute("readOnly", 'true');
     document.getElementById('password').type = 'password';
     document.getElementById("Mail").setAttribute("readOnly", 'true');
-
-
-
-
 }

@@ -43,8 +43,88 @@ function renderHTML(data) {
     }
 }
 
+window.addEventListener('load', function () {
+    var table = document.getElementById('userlist');
+    for(var i = 1; i < table.rows.length; i++) {
+
+        table.rows[i].addEventListener('click', function() {
+            var msg = '';
+            for(var j = 0; j < this.cells.length; j++) {
+                msg += this.cells[j].innerHTML + ' ';
+                console.log(msg)
+                switch (j) {
+                    case 0:
+                        document.getElementById("vorname").value = this.cells[j].innerHTML;
+                    case 1:
+                        document.getElementById("nachname").value = this.cells[j].innerHTML;
+                    case 2:
+                        document.getElementById("e-Mail").value = this.cells[j].innerHTML;
+                    case 3:
+                        document.getElementById("studiengang").value = this.cells[j].innerHTML;
+                    case 4:
+                        document.getElementById("Rolle").value = this.cells[j].innerHTML;
+                }
+            }
+            console.log(msg)
+        });
+    }
+})
 
 
+function sortTable(n) {
+    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    table = document.getElementById("userlist");
+    switching = true;
+    dir = "asc";
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            console.log(x.innerHTML)
+            if (dir == "asc") {
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+            } else if (dir == "desc") {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+        }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount ++;
+        } else {
+            if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+            }
+        }
+    }
+}
+
+function changeReadonly() {
+    document.getElementById('vorname').setAttribute('readonly', 'true');
+    document.getElementById('nachname').removeAttribute('readonly');
+    document.getElementById('studiengang').removeAttribute('readonly');
+    document.getElementById('rolle').removeAttribute('readonly');
+    document.getElementById('e-Mail').removeAttribute('readonly');
+
+}
+
+function addReadonly() {
+    document.getElementById("vorname").setAttribute("readOnly", 'true');
+    document.getElementById("nachname").setAttribute("readOnly", 'true');
+    document.getElementById("studiengang").setAttribute("readOnly", 'true');
+    document.getElementById("rolle").setAttribute("readOnly", 'true');
+    document.getElementById("Mail").setAttribute("readOnly", 'true');
+}
 
 
 
