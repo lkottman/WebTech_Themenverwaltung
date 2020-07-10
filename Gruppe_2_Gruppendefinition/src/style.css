@@ -1,0 +1,254 @@
+body{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: #ffffff;
+}
+#example1{
+  background-image: url("background-balance-business-commerce-583846.jpg");
+  background-size: 1920px 1050px;
+  background-repeat: no-repeat;
+}
+section{
+  padding: 1em 0 5px 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+}
+
+li{
+  display: flow;
+  margin: 10px 20px 20px 20px;
+}
+
+.box1{
+  border:0;
+  background: #ffffff;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 0 solid #3498db;
+  width: 300px;
+  outline: none;
+  color: #757575;
+  border-radius: 5px;
+  transition: 0.25s;
+
+}
+.logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+}
+.h1{
+  text-align: center;
+}
+
+.footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #e8f0fe;
+  color: #000000;
+  text-align: center;
+}
+.box h1{
+  color: #000000;
+  text-transform: uppercase;
+  display: block;
+  font-weight: 200;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.box a{
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.box input[type = "text"],.box input[type = "password"]{
+  outline: #324aff solid 10px;
+  background: #E8F0FE;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 0 solid #fffcfc;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: #000000;
+  font-size: 15px;
+  border-radius: 5px;
+  transition: 0.25s;
+}
+.box input[type = "text"]:focus,.box input[type = "password"]:focus{
+  font-size: 20px;
+  width: 230px;
+  border-color: #e5e5e5;
+}
+.box input[type = "submit"]{
+  border:0;
+  background: #1c9dd9;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  padding: 14px 40px;
+  outline: none;
+  color: #fffcfc;
+  border-radius: 5px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+.box input[type = "submit"]:hover{
+  background: #2ecc71;
+}
+
+
+/*Grid layout*/
+.grid {
+  display: grid;
+  grid-template-columns: 15% auto 15%;
+  grid-template-rows: repeat(1, minmax(600px , max-content));
+  grid-gap: 1em;
+  padding: 0;
+}
+
+.grid h1 {
+  color: black;
+}
+
+.sidebar-left {
+  border-bottom: 2px solid lightgray;
+  /*padding: 1px 5px 5px 20px;*/
+  background-color: whitesmoke;
+  grid-row: 1;
+  grid-column: 1/2;
+}
+.sidebar-left h1 {
+  padding: 1px 5px 5px 20px;
+}
+
+article {
+  padding: 0 20px 5px 20px;
+  background-color: whitesmoke;
+  grid-row: 1;
+  grid-column: 2/3;
+}
+
+article table{
+  border-collapse: collapse;
+  width: 100%;
+}
+
+article th {
+  font-weight: bold;
+  /*text-align: left;*/
+  padding: 10px;
+  color: black;
+  border-bottom: 2px solid darkgray;
+}
+
+article td {
+  /*text-align: left;*/
+  padding: 10px;
+  font-weight: bold;
+  color: #1c9dd9;
+  border-bottom: 1px solid whitesmoke;
+}
+
+.sidebar-right{
+  padding: 0 5px 5px 20px;
+  background-color: whitesmoke;
+  grid-row: 1;
+  grid-column: 3 /4;
+}
+
+/*Grid layout in group*/
+.grid-modul{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: repeat(2, 250px);
+  grid-gap: 1em;
+  padding: 15px;
+  background-color: whitesmoke;
+}
+
+.grid-modul > div {
+  overflow: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  text-align: left;
+  border-style: groove;
+  padding: 0 2px 0 2px;
+}
+
+/*Hide Scrollbar*/
+.grid-modul > div::-webkit-scrollbar {
+  display: none;
+}
+
+/* Add a black background color to navigation bar */
+.topnav {
+  background-color: whitesmoke;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: lightgray;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #1c9dd9;
+  color: white;
+}
+
+/* SideNav*/
+.Sidenav {
+  background-color: whitesmoke;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.Sidenav a {
+  display: block;
+  width: auto;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.Sidenav a:hover {
+  background-color: lightgray;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.Sidenav a.active {
+  background-color: #1c9dd9;
+  color: white;}

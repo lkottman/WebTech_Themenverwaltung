@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+
+body
+{
+    font-family: "Montserrat", sans-serif;
+    color: #555555;
+}
+
+textarea
+{
+    overflow: auto;
+    width: 100%;
+    height: 100px;
+}
+
+.vorschau {
+    height: 150px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+}
+
+output
+{
+    display: block;
+}
+
+button
+{
+    color: #555555;
+    font-family: Montserrat, sans-serif;
+    padding: 9px 25px;
+    background-color: lightskyblue;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+button:hover
+{
+    background-color: rgba(0,136,169,0.8);
+}
+
+
