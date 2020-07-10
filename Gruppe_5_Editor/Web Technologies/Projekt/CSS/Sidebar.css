@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+
+.Sidebar
+{
+    list-style: none;
+    right: 0;
+    position: absolute;
+    width: 280px;
+    height: 90%;
+    text-align: center;
+    background: #063156;
+    transition: all .6s ease;
+    font-family: "Montserrat", sans-serif;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.Sidebar header
+{
+    font-size: 25px;
+    color: white;
+    line-height: 100px;
+    background: #063156;
+    user-select: none;
+    width: 100%;
+}
+
+.Sidebar ul a
+{
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 65px;
+    font-size: 17px;
+    color: white;
+    padding-left: 20px;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255,255,255,.1);
+    border-bottom: 1px solid black;
+    background: #042341;
+    transition: .6s;
+}
+
+.Sidebar li:hover a
+{
+    background: lightskyblue;
+    font-size: 22px;
+}
+
+#check
+{
+    display: none;
+}
+
+label #btn, label #cancel
+{
+    position: absolute;
+    cursor: pointer;
+    background: #042341;
+    color: white;
+    border-radius: 3px;
+}
+
+label #btn
+{
+    right: 2%;
+    top: 8%;
+    font-size: 30px;
+    color: white;
+    padding: 6px 12px;
+    transition: all .55s ease;
+}
+
+label #cancel
+{
+    right: 2%;
+    opacity: 0;
+    z-index: 1111;
+    top: 8%;
+    font-size: 25px;
+    color: #0a5275;
+    padding: 4px 9px;
+    transition: all .5s ease;
+    pointer-events: none;
+}
+
+#check:checked ~ .Sidebar
+{
+    right: 0px;
+    opacity: 100;
+    pointer-events: all;
+}
+
+#check:checked ~ label #btn
+{
+    right: 280px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#check:checked ~ label #cancel
+{
+    opacity: 100;
+    pointer-events: all;
+}
+
+@media (max-width: 800px)
+{
+    .Sidebar
+    {
+        width: 30%;
+        transition: all .7s;
+    }
+
+    #check:checked ~ label #cancel
+    {
+        right: 0px;
+        top: 110px;
+    }
+}

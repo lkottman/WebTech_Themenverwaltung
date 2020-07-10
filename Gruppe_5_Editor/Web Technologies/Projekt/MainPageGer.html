@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anforderungseditor</title>
+
+    <link rel="stylesheet" href="CSS/Toolbar.css">
+    <link rel="stylesheet" href="CSS/Sidebar.css">
+    <link rel="stylesheet" href="CSS/Reqs.css">
+
+    <script src="JS/AddAttribute.js" type="text/javascript"></script>
+    <script src="JS/Toolbar.js" type="text/javascript"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script src="JS/newReqs.js" type="text/javascript"></script>
+</head>
+<body>
+
+<div class="navbar" id="myNavbar">
+    <a style="overflow: hidden">
+        <img alt="logo" class="logo" onclick="openOsca()" src="osca3-active.png"></a>
+    <a href="#projects">Projekte</a>
+    <a href="RequirementsGer.html"
+       onclick="window.open('RequirementsGer.html', 'newwindow', 'width=600, height=300');
+        return false;">Anforderungen</a>
+
+    <a href="MembersGer.html"
+       onclick="window.open('MembersGer.html', 'newwindow', 'width=600, height=300');
+        return false;">Gruppenmitglieder</a>
+
+    <div class="dropdown">
+        <button class="dropbtn" onclick="dropdownTheButton()">Sprachen
+            <i class="fa fa-caret-down" style="background-color: #e5e5e5 "></i>
+        </button>
+        <div id="drops" class="dropdown-content">
+            <a target="_self" href="MainPageGer.html">Deutsch</a>
+            <a target="_self" href="MainPageEng.html">Englisch</a>
+        </div>
+    </div>
+    <a href="#contact" onclick="openMail()">Kontakt</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+
+<div>
+<input type="checkbox" id="check">
+<label for="check">
+    <i class="fas fa-bars" id="btn"></i>
+    <i class="fas fa-times" id="cancel"></i>
+</label>
+<div class="Sidebar">
+    <header>Sidebar</header>
+    <ul>
+        <li><a href="#">Stift</a></li>
+        <li><a href="#">uhh Stift</a></li>
+        <li><a href="#">Markieren</a></li>
+        <li><a href="#">Priorität erhöhen</a></li>
+        <li><a href="#">Priorität verringern</a></li>
+    </ul>
+</div>
+</div>
+
+<div class="reqdiv">
+    <div class="subreqdiv">
+    <fieldset>
+        <legend>Anlegen einer Anforderung</legend>
+        Priorität:
+        <select id="idpre" class="selectprio">
+            <option value="">--Select--</option>
+            <option value="M">Muss-Anforderung</option>
+            <option value="S">Soll-Anforderung</option>
+            <option value="K">Kann-Anforderung</option>
+        </select>
+        ID:
+        <input type="text" name="ID" id="id">
+        Name:
+        <input type="text" name="Name" id="name">
+        <br>
+        Kurzbeschreibung:
+        <textarea id="shortdesc" class="shortdesc" style="width: 40%"></textarea>
+
+        <button style="float: right" onclick="checkInput()">anlegen</button>
+    </fieldset>
+    </div>
+    <p></p>
+    <div class="subreqdiv">
+        <fieldset>
+            <legend>Suchen einer Anforderung</legend>
+            Gesuchte Anforderung (ID / Name):
+            <input type="text" name="searchid" id="searchfield" onkeyup="searchID()"
+                   placeholder="Nach ID suchen..">
+            <input type="text" name="searchname" id="searchfieldname" onkeyup="searchName()"
+                   placeholder="Nach Namen suchen..">
+            <button style="float: right" onclick="miniAll()">Alle einklappen</button>
+            <button style="float: right; margin-right: 1%" onclick="maxAll()">Alle
+                ausklappen</button>
+        </fieldset>
+    </div>
+    <p></p>
+    <div class="subreqdiv">
+        <fieldset>
+            <legend>Anforderungen</legend>
+            <table id="reqtable" class="reqtable">
+                <thead>
+                    <th style="width: 10%; cursor:pointer">ID</th>
+                    <th style="pointer-events: none">Name</th>
+                    <th colspan="3" style="pointer-events: none">Kurzbeschreibung</th>
+                </thead>
+                <tbody id="mbody">
+                <tr style="visibility:collapse">
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                </tbody>
+                <tbody id="sbody">
+                </tbody>
+                <tbody id="kbody">
+                </tbody>
+            </table>
+        </fieldset>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script>
+    function myFunction() {
+        var x = document.getElementById("myNavbar");
+        if (x.className === "navbar") {
+            x.className += " responsive";
+        } else {
+            x.className = "navbar";
+        }
+    }
+</script>
+<script src="JS/sortshit.js"></script>
+</body>
+</html>
