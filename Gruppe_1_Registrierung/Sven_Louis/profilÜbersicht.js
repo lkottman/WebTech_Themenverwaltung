@@ -1,5 +1,5 @@
 function changeReadonly() {
-    document.getElementById('vorname').setAttribute('readonly', 'true');
+    document.getElementById('vorname').removeAttribute('readonly');
     document.getElementById('nachname').removeAttribute('readonly');
     document.getElementById('geburtsdatum').removeAttribute('readonly');
     document.getElementById('password').removeAttribute('readonly');

@@ -129,6 +129,13 @@ app.get("/successfullregistration", (request, response) => {
     response.sendFile('//public//successRegister.html', {root: __dirname});
 });
 
+app.get("/successfullregistration", (request, response) => {
+    response.sendFile('//public//successRegister.html', {root: __dirname});
+});
+
+app.get("/testmailer", (request, response) => {
+    response.sendFile('//public//testmailer.html', {root: __dirname});
+});
 
 //Get without HTML
 app.get("/cookie", (request, response) => {

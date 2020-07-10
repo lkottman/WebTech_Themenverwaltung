@@ -1,0 +1,7 @@
+{
+  "name": "WebTech_Themenverwaltung",
+  "version": "1.0.0",
+  "dependencies": {
+    "nodemailer": "latest"
+  }
+}
