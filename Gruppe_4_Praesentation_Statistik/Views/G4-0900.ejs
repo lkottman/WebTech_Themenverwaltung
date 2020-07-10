@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anfrage an Dozenten für Hilfe und/oder Terminvereinbarung</title>
+    <link rel="stylesheet" href="/stylesheets/G4-0900.css">
+    <script src="/javascripts/G4-0900js.js"></script>
+</head>
+<body>
+
+<!-- Menüleiste -->
+<div id="Menueleiste">
+    <img src="/images/HS-OS-Logo-Standard-rgb.jpg" alt="Logo der Hochschule">
+    <p style="position: absolute;right: 0px;top: -20px"><%= benutzername %></p>
+</div>
+
+<!--Kontaktformular -->
+<form action="http://127.0.0.1:8080/sendMessage" method="post" id="sendMessage">
+
+
+    <!-- Gruppennummer -->
+    <h1 style="text-align: center">Anfrage an Dozenten</h1>
+    <h2> Anfrage für die Gruppe-Nr <%= Gruppennummer %></h2>
+
+    <p id="headline">
+        <b>Wollen Sie einen Termin ändern oder eine Frage stellen?</b>
+    </p>
+    <!-- Abfrage ob Termin änderung/ Fragestellung -->
+    <p>
+        <label for="dateRequest">Termin ändern</label>
+        <input type="radio" id="dateRequest" name="dateRequestQuestion" value="Termin änderung"
+               onclick="hideMessage();">
+    </p>
+    <p>
+        <label for="question">Frage stellen</label>
+        <input type="radio" id="question" name="dateRequestQuestion" value="Fragestellung"
+               onclick="showMessage();">
+    </p>
+    <!-- Nachricht -->
+    <div class="message">
+        <p>Nachricht:</p>
+        <textarea id="message" name="message" maxlength="500" cols="50" rows="4" style="position: relative; left: 10%;"
+                  placeholder="Hier Ihre Nachricht eingeben(max.500 Zeichen)"></textarea>
+        <br>
+        <br></div>
+
+
+    <!-- Eingabe Datum -->
+    <label for="date">Datum:</label>
+    <input type="date" id="date" name="date">
+    <p>
+        <button type="button" style="text-align: center"
+                onclick="noDateEntry()">
+            Absenden
+        </button>
+    </p>
+
+
+</form>
+
+</body>
+</html>
