@@ -16,7 +16,7 @@ function sendMail(){
 
         auth: {
             user: config.user,
-            pass: config.e_mail,
+            pass: config.password,
 
         }
     });
