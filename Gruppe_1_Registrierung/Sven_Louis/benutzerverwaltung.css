@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,300&display=swap');
+
 html {
     height: 100%;
     font-family: Roboto;
@@ -8,7 +10,10 @@ html {
 }
 table {
     border-collapse: collapse;
+    overflow: scroll;
+    overflow: auto;
 }
+
 
 th {
     text-align: left;
@@ -40,6 +45,15 @@ tr:hover {
     padding: 1em;
            }
 
+.userProfilBoxes{
+    display: grid;
+
+
+}
+.userProfilBoxes:nth-child {
+color: #eee;
+}
+
 #UserMenu_All_Header{
     font-size: 17px;
     letter-spacing: .6px !important;
@@ -52,4 +66,20 @@ tr:hover {
     margin-bottom: 52px;
     }
 
+.header_button{
+    height: 52px;
+    border: none;
+    background-color: #e5e5e5;
+}
 
+button:hover {
+    background-color: rgba(0,136,169,0.8);
+}
+
+input{
+    float: left;
+}
+
+label{
+    float: left;
+}
