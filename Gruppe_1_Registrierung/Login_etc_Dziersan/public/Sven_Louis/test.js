@@ -91,7 +91,7 @@ app.get("/register", (request, response) => {
 
 app.get("/token", (request, response) => {
     if (request.session.userId) {
-        response.sendFile('//privat//token.html', {root: __dirname});
+        response.sendFile('//privat//tokenReset.html', {root: __dirname});
     } else {
         response.redirect("/login");
     }

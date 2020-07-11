@@ -1495,7 +1495,7 @@ const urllib = require('url');
 const zlib = require('zlib');
 const PassThrough = require('stream').PassThrough;
 const Cookies = require('./cookies');
-const packageData = require('../../../../../package.json');
+const packageData = require('../../../../../../package.json');
 
 const MAX_REDIRECTS = 5;
 
@@ -1770,7 +1770,7 @@ function fetch(url, options) {
 (function (setImmediate){
 'use strict';
 
-const packageData = require('../../../../../package.json');
+const packageData = require('../../../../../../package.json');
 const shared = require('../shared');
 
 /**
@@ -2416,7 +2416,7 @@ const DKIM = require('../dkim');
 const httpProxyClient = require('../smtp-connection/http-proxy-client');
 const util = require('util');
 const urllib = require('url');
-const packageData = require('../../../../../package.json');
+const packageData = require('../../../../../../package.json');
 const MailMessage = require('./mail-message');
 const net = require('net');
 const dns = require('dns');
@@ -7189,7 +7189,7 @@ module.exports = LastNewline;
 (function (process,Buffer,setImmediate){
 'use strict';
 
-const Mailer = require('./mailer');
+const Mailer = require('./Mailer');
 const shared = require('./shared');
 const SMTPPool = require('./smtp-pool');
 const SMTPTransport = require('./smtp-transport');
@@ -7564,7 +7564,7 @@ module.exports = {
 'use strict';
 
 const spawn = require('child_process').spawn;
-const packageData = require('../../../../../package.json');
+const packageData = require('../../../../../../package.json');
 const LeWindows = require('./le-windows');
 const LeUnix = require('./le-unix');
 const shared = require('../shared');
@@ -7876,7 +7876,7 @@ module.exports = LeWindows;
 'use strict';
 
 const EventEmitter = require('events');
-const packageData = require('../../../../../package.json');
+const packageData = require('../../../../../../package.json');
 const shared = require('../shared');
 const LeWindows = require('../sendmail-transport/le-windows');
 
@@ -8952,7 +8952,7 @@ module.exports = httpProxyClient;
 (function (Buffer,setImmediate){
 'use strict';
 
-const packageInfo = require('../../../../../package.json');
+const packageInfo = require('../../../../../../package.json');
 const EventEmitter = require('events').EventEmitter;
 const net = require('net');
 const tls = require('tls');
@@ -10718,7 +10718,7 @@ const PoolResource = require('./pool-resource');
 const SMTPConnection = require('../smtp-connection');
 const wellKnown = require('../well-known');
 const shared = require('../shared');
-const packageData = require('../../../../../package.json');
+const packageData = require('../../../../../../package.json');
 
 /**
  * Creates a SMTP pool transport object for Nodemailer
@@ -11620,7 +11620,7 @@ const SMTPConnection = require('../smtp-connection');
 const wellKnown = require('../well-known');
 const shared = require('../shared');
 const XOAuth2 = require('../xoauth2');
-const packageData = require('../../../../../package.json');
+const packageData = require('../../../../../../package.json');
 
 /**
  * Creates a SMTP transport object for Nodemailer
@@ -12027,7 +12027,7 @@ module.exports = SMTPTransport;
 (function (Buffer,setImmediate){
 'use strict';
 
-const packageData = require('../../../../../package.json');
+const packageData = require('../../../../../../package.json');
 const shared = require('../shared');
 const LeWindows = require('../sendmail-transport/le-windows');
 const LeUnix = require('../sendmail-transport/le-unix');

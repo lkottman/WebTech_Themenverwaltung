@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        function confirmMail() {
+            //get url wiht all parameters
+           let queryString = window.location.search;
+           console.log(queryString);
+
+           // to split up each parameter
+           let urlParameter = new URLSearchParams(queryString);
+           let e_mail = urlParameter.get('email');
+           console.log(e_mail);
+           let confirmToken = urlParameter.get('opt');
+           console.log(confirmToken)
+
+            let sql = "UPDATE Student SET verified = 1 WHERE secret_token = " + confirmToken + ";" +
+            "AND";
+           console.log(sql);
+        }
+
+
+    </script>
+</head>
+<body onload="confirmMail()">
+
+</body>
+</html>

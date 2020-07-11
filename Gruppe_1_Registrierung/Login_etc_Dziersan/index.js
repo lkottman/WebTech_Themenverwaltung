@@ -11,7 +11,7 @@ let mysql = require("mysql");
 
 let connection = mysql.createConnection(
     {
-        host: ,
+        host: "localhost",
         user: "root",
         password: "petersen",
         database: "webtech"
@@ -31,6 +31,7 @@ const {
 
 //imports
 app.use(express.static('public'));
+app.use(express.static('Sven_Louis'));
 app.use(express.static('images'));
 app.use(express.json({limit: "1mb"}));
 app.use(bodyParser.urlencoded({
@@ -103,7 +104,7 @@ app.get("/register", (request, response) => {
 app.get("/token", (request, response) => {
     if (request.session.userAuthorization === "lecturer"
         || request.session.userAuthorization === "admin") {
-        response.sendFile('//privat//token.html', {root: __dirname});
+        response.sendFile('//privat//tokenReset.html', {root: __dirname});
     } else {
         response.redirect("/login");
     }
@@ -129,13 +130,20 @@ app.get("/successfullregistration", (request, response) => {
     response.sendFile('//public//successRegister.html', {root: __dirname});
 });
 
-app.get("/successfullregistration", (request, response) => {
-    response.sendFile('//public//successRegister.html', {root: __dirname});
-});
 
 app.get("/testmailer", (request, response) => {
     response.sendFile('//public//testmailer.html', {root: __dirname});
 });
+
+app.get("/resetpassword", (request, response) => {
+    response.sendFile('//public//Sven_Louis//tokenReset.html', {root: __dirname});
+});
+
+app.get("/confirmation", (request, response) => {
+
+    response.sendFile('//public//Sven_Louis//confirmEmail.html', {root: __dirname});
+});
+
 
 //Get without HTML
 app.get("/cookie", (request, response) => {
@@ -311,6 +319,7 @@ app.post("/logout", redirectLogin, (request, respond) => {
         respond.redirect("/login");
     })
 });
+
 
 
 app.listen(PORT, () => console.log(

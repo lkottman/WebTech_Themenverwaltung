@@ -1,11 +1,15 @@
 var mysql = require('mysql');
 
-var connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "petersen",
-    database: "webtech",
-});
+function getConnection() {
+    let connection = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "petersen",
+        database: "webtech",
+    });
+    return connection;
+}
+
 
 /**
  *
@@ -14,7 +18,7 @@ var connection = mysql.createConnection({
  * @param entryChange new information
  */
 function updateEntry(id, columnName ,entryChange){
-
+    let con = getConnection();
     con.connect(function(err) {
         if (err) throw err;
         var sqlStatment = "UPDATE Student SET " + columnName  + " = " + entryChange +" WHERE = " + id +";";
@@ -23,4 +27,7 @@ function updateEntry(id, columnName ,entryChange){
             console.log(result.affectedRows + " record(s) updated");
         });
     });
+}
+function getStudentEntries() {
+
 }
