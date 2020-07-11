@@ -161,11 +161,35 @@ app.get("/confirmation", (request, response) => {
             if (result){
                 console.log("Erfolgreich");
             }
-        })
+        });
         response.redirect("/login");
     }
 });
 
+app.post("/pwforgo.html", (request, response) => {
+    let email = request.body.email;
+    console.log(email);
+
+    // error message ausgeben
+    if(email === null || email === undefined)
+    {
+        response.redirect("/login");
+    } else {
+
+        let checkEntry = "SELECT EXISTS(SELECT * FROM StUDENT WHERE e_mail = '" + email +  "');";
+        console.log(sql);
+
+        connection.query(checkEntry, function (err, result, fields) {
+            if(err) throw err;
+            console.log(result);
+
+        })
+
+    }
+
+
+
+});
 
 
 //Get without HTML|| email
@@ -178,6 +202,7 @@ app.get("/cookie", (request, response) => {
 app.post("/index.html", redirectLogin, (request, response, next) => {
     if (request.session.userId) {
         response.redirect("/home");
+
     }
     next();
     console.log("index");
