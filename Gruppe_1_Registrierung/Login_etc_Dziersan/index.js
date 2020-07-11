@@ -11,9 +11,9 @@ let mysql = require("mysql");
 
 let connection = mysql.createConnection(
     {
-        host: "localhost",
+        host: ,
         user: "root",
-        password: "maria",
+        password: "petersen",
         database: "webtech"
     }
 );

@@ -8,8 +8,7 @@ function checkInputForSQLInject(input)
         escapeCharacterDoubleQuote: "\"",
         escapeCharacterDoubleQuote: "\\",
         escapeCharacterHashtag: "#",
-        escapeCharacterComment: "-",
-        escapeCharacterAtSign: "@",
+        escapeCharacterComment: "-"
     };
 
     for (let i = 0; i < inputToCheck.length; i++) {

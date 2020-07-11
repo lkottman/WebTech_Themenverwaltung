@@ -8,6 +8,7 @@ function register() {
             this.email = email;
             this.password = password;
             this.verified = verified;
+            this.secretToken = generateRandomString();  // stores a random generate String for E-mail verification
         }
 
         toString() {
@@ -106,4 +107,11 @@ function checkPasswords() {
 
 function validateEmail(email) {
     return /^\"?[\w-_\.]*\"?@hs-osnabrueck\.de$/.test(email);
+}
+
+// generate a random String for e-mail verification
+function generateRandomString() {
+    let randomString = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    console.log( randomString);
+    return randomString;
 }
