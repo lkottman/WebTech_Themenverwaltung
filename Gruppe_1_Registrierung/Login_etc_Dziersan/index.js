@@ -139,7 +139,7 @@ app.get("/resetpassword", (request, response) => {
     response.sendFile('//public//Sven_Louis//tokenReset.html', {root: __dirname});
 });
 
-
+//change to user db later and ADD USER token
 app.get("/confirmation", (request, response) => {
     response.sendFile('//public//Sven_Louis//confirmEmail.html', {root: __dirname});
 

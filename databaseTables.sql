@@ -100,3 +100,12 @@ VALUES (
         'ABC',
         1
        );
+
+CREATE TABLE pw_forgot_token(
+    id integer auto_increment not null ,
+    e_mail VARCHAR(255),
+    start datetime,
+    end datetime,
+    token VARCHAR(255),
+    PRIMARY KEY (id)
+)
