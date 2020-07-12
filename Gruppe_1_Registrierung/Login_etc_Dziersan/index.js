@@ -29,7 +29,7 @@ const {
     sessionLifetime = lifeTime,
     sessionName = "sid",
     secretSession = "test"
-} = process.env
+} = process.env;
 
 //imports
 app.use(express.static('public'));
