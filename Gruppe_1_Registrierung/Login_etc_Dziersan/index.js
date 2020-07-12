@@ -1,8 +1,8 @@
-const express = require("express");
-const session = require("express-session");
-const bodyParser = require("body-parser");
+const express = require('express');
+const session = require('express-session');
+const bodyParser = require('body-parser');
 const fs = require('fs');
-const config = JSON.parse(fs.readFileSync("public/datenbankConfig.json"));
+const config = JSON.parse(fs.readFileSync('public/datenbankConfig.json'));
 const app = express();
 
 // https://youtu.be/OH6Z0dJ_Huk?t=1466
@@ -38,7 +38,7 @@ app.use(express.static('images'));
 app.use(express.json({limit: "1mb"}));
 app.use(bodyParser.urlencoded({
     extended: true
-}))
+}));
 
 //Configuration Cookies
 app.use(session({
@@ -51,7 +51,7 @@ app.use(session({
         sameSite: true,
         secure: false    //in development in production :true
     }
-}))
+}));
 
 // Redirect to Login if there are no cookies. No Access to the private sites
 const redirectLogin = (request, response, next) => {
@@ -221,7 +221,6 @@ app.post("/pwforgo.html", (request, response) => {
             } else
                 {
                 console.log("Error");
-                response.json({register: "Fehlgeschlagen: Benutzer existiert bereits"});
 
             }
 
