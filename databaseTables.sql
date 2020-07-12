@@ -1,98 +1,78 @@
-DROP SCHEMA IF EXISTS webtech;
-CREATE SCHEMA webtech;
-USE webtech; -- for server deployment this need to set as Webtech
+DROP SCHEMA IF EXISTS Webtech;
+CREATE SCHEMA Webtech;
+USE Webtech;
 
-Drop Table IF EXISTS Student;
-CREATE TABLE Student(
- id INTEGER auto_increment not null,
- e_mail VARCHAR(255),
- passwort VARCHAR(255),
- vorname VARCHAR(255),
- nachname VARCHAR(255),
- geburtsdatum date,
- matrikel_nr varchar(6),
- secret_token VARCHAR(255),
- verified boolean,
- PRIMARY KEY(id)
-);
 
-DROP TABLE IF EXISTS Dozent;
-CREATE TABLE Dozent(
-id integer auto_increment not null,
-e_mail VARCHAR(255),
-passwort VARCHAR(255),
-vorname VARCHAR(255),
-nachname VARCHAR(255),
-geburtsdatum date,
-rolle int,
-PRIMARY KEY(id)
-);
-
-DROP TABLE IF EXISTS Modul;
-CREATE TABLE Modul(
-modul_id int,
+DROP TABLE IF EXISTS MODUL;
+CREATE TABLE MODUL(
+modul_id INT,
 beschreibung VARCHAR (255),
-teilnehmer_anzahl int,
+teilnehmer_anzahl INT,
 PRIMARY KEY (modul_id)
 );
 
 
 -- forgein-keys need to be added
-DROP TABLE IF EXISTS Student_Modul;
-CREATE TABLE Student_Modul(
+DROP TABLE IF EXISTS STUDENT_MODUL;
+CREATE TABLE STUDENT_MODUL(
 matrikel_nr varchar(6),
 modul_id int
 );
 
-
-INSERT INTO Student(e_mail,passwort, vorname, nachname, geburtsdatum, matrikel_nr, secret_token, verified )VALUES(
-'sven.petersen@hs-osnabrueck.de',
-'test',
-'Sven',
-'Petersen',
-'1998-11-24',
-'867632',
-'1',
-false
+DROP TABLE IF EXISTS PW_FORGOT_TOKEN;
+CREATE TABLE PW_FORGOT_TOKEN(
+                                id INTEGER AUTO_INCREMENT ,
+                                e_mail VARCHAR(255),
+                                start DATETIME,
+                                end DATETIME,
+                                token VARCHAR(255),
+                                PRIMARY KEY (id)
 );
 
-drop table if exists USER;
-create table USER(
-                     ID integer auto_increment,
-                     TOKEN varchar(255),
-                     NAME varchar(255),
-                     SURNAME varchar(255),
-                     EMAIL varchar(255),
-                     PASSWORD varchar(255),
-                     VERIFIED boolean,
-                     AUTHORIZATION varchar(255),
+DROP TABLE IF EXISTS TOKEN;
+CREATE TABLE TOKEN(
+                      id INTEGER AUTO_INCREMENT,
+                      start DATETIME,
+                      time INT,
+                      end DATETIME,
+                      gentoken VARCHAR(255),
+                      user INT,
+                      primary key (ID)
+);
+
+DROP TABLE IF EXISTS USER;
+CREATE TABLE USER(
+                     id INTEGER AUTO_INCREMENT,
+                     token VARCHAR(255),
+                     name VARCHAR(255),
+                     surname VARCHAR(255),
+                     e_mail VARCHAR(255),
+                     password VARCHAR(255),
+                     verified BOOLEAN,
+                     authorization VARCHAR(255),
+                     confirm_token VARCHAR(255),
+                     matrikel_nr VARCHAR(10),
                      primary key (id)
 );
 
-INSERT INTO USER( TOKEN, NAME, SURNAME, EMAIL, PASSWORD, VERIFIED, AUTHORIZATION)
+
+
+INSERT INTO USER( token, name, surname, e_mail, password, verified, authorization, confirm_token, matrikel_nr)
 VALUES (
     'ABC',
     'Petersen',
     'Sven',
         'sven.petersen@hs-osnabrueck.de',
         'petersen',
-        true,
-        'student'
-
+        false,
+        'student',
+        'test',
+        '867632'
 );
 
-drop table if exists token;
-create table token(
-                      ID integer auto_increment,
-                      START datetime,
-                      TIME int,
-                      END datetime,
-                      GENTOKEN varchar(255),
-                      USER int,
-                      primary key (ID)
-);
 
-INSERT INTO token (START, TIME, END, GENTOKEN, USER)
+
+INSERT INTO TOKEN (start, time, end, gentoken, user)
 VALUES (
         '2020-07-11',
         99999999,
@@ -101,11 +81,3 @@ VALUES (
         1
        );
 
-CREATE TABLE pw_forgot_token(
-    id integer auto_increment not null ,
-    e_mail VARCHAR(255),
-    start datetime,
-    end datetime,
-    token VARCHAR(255),
-    PRIMARY KEY (id)
-)

@@ -1,6 +1,8 @@
 const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
+const fs = require('fs');
+const config = JSON.parse(fs.readFileSync("public/datenbankConfig.json"));
 const app = express();
 
 // https://youtu.be/OH6Z0dJ_Huk?t=1466
@@ -11,10 +13,10 @@ let mysql = require("mysql");
 
 let connection = mysql.createConnection(
     {
-        host: "localhost",
-        user: "root",
-        password: "petersen",
-        database: "webtech"
+        host: config.host,
+        user: config.user,
+        password: config.password,
+        database: config.database
     }
 );
 
@@ -153,7 +155,7 @@ app.get("/confirmation", (request, response) => {
         console.log("Error");
         response.redirect("/login");
     }   else {
-        let sql = "UPDATE Student SET verified = 1 WHERE secret_token = '" + tokenReset  +
+        let sql = "UPDATE USER SET verified = 1 WHERE confirm_token = '" + tokenReset  +
             "' AND e_mail = '" + email + "';";
 
         connection.query(sql, function (err, result) {
@@ -176,12 +178,52 @@ app.post("/pwforgo.html", (request, response) => {
         response.redirect("/login");
     } else {
 
-        let checkEntry = "SELECT EXISTS(SELECT * FROM StUDENT WHERE e_mail = '" + email +  "');";
-        console.log(sql);
+        let checkEntry = "SELECT EXISTS(SELECT * FROM Student WHERE e_mail = '" + email +  "') AS test" + ";";
+        console.log(checkEntry);
 
         connection.query(checkEntry, function (err, result, fields) {
             if(err) throw err;
-            console.log(result);
+
+            // checks if entry exists
+            let check = result[0].test;
+            console.log(check);
+            if (check === 1){
+
+
+                let startDate = new Date();
+                console.log(startDate);
+
+
+                //generate endDate and add 1 hour for limited reset
+                let endDate = new Date();
+                endDate.setHours(endDate.getHours() + 1);
+                console.log(endDate);
+
+                let resetToken = Math.random().toString(36).substr(2, 6);
+                console.log(resetToken);
+
+                // cuts off unnecessary information
+                startDate = startDate.toISOString().slice(0, 19).replace('T', ' ');
+                endDate = endDate.toISOString().slice(0, 19).replace('T', ' ');
+
+                // use of gravis for easier insertString
+                let insertToken = `INSERT INTO pw_forgot_token(e_mail, start, end, token) VALUES ('${email}', 
+                    '${startDate}','${endDate}', '${resetToken}' )`;
+                    console.log(insertToken);
+
+
+                    connection.query(insertToken, function (err, result) {
+                        if(err) throw err;
+                        console.log("1 record inserted");
+                    })
+                // hier muss nodemailer noch eingebunden werden
+                response.redirect("/login");
+            } else
+                {
+                console.log("Error");
+                response.json({register: "Fehlgeschlagen: Benutzer existiert bereits"});
+
+            }
 
         })
 
@@ -211,8 +253,8 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
 //Takes E-Mail and passord from User and check if these matches if database
 app.post("/login", redirectHome, (request, response) => {
 
-    connection.query("SELECT id, name,verified, token, email, password, authorization from user where "
-        + 'email = "' + request.body.email + '"'
+    connection.query("SELECT id, name,verified, token, e_mail, password, authorization from user where "
+        + 'e_mail = "' + request.body.email + '"'
         + ' AND password = "' + request.body.password + '"',
         function (err, result) {
             if (err)
@@ -244,6 +286,7 @@ app.post("/login", redirectHome, (request, response) => {
 app.post("/register", redirectHome, (request, response) => {
 
     let servertime = new Date();
+    let randomtoken = Math.random().toString(36).substr(2, 6);
 
     //Check if used token is valid
     connection.query("SELECT start, end, gentoken FROM TOKEN WHERE " +
@@ -263,20 +306,21 @@ app.post("/register", redirectHome, (request, response) => {
                     if (token == clientToken
                         && servertime >= startTime
                         && servertime <= endTime) {
-                        connection.query("SELECT * FROM USER WHERE " + 'email = "'
+                        connection.query("SELECT * FROM USER WHERE " + 'e_mail = "'
                             + request.body.email + '"',
                             function (err, result) {
                                 if (err) {
                                     throw err
                                 } else {
                                     if (result.length == 0) {
-                                        connection.query("INSERT INTO USER(TOKEN,NAME,SURNAME,"
-                                            + "EMAIL,PASSWORD,VERIFIED) VALUES("
+                                        connection.query("INSERT INTO USER(token,name,surname,"
+                                            + "e_mail,password,confirm_token ,verified) VALUES("
                                             + '"' + request.body.token + '",'
                                             + '"' + request.body.name + '",'
                                             + '"' + request.body.surname + '",'
                                             + '"' + request.body.email + '",'
                                             + '"' + request.body.password + '",'
+                                            + '"' + randomtoken + '",'
                                             + request.body.verified + ')',
                                             function (err) {
                                                 if (err)
