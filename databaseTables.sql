@@ -26,6 +26,7 @@ CREATE TABLE PW_FORGOT_TOKEN(
                                 start DATETIME,
                                 end DATETIME,
                                 token VARCHAR(255),
+                                used boolean,
                                 PRIMARY KEY (id)
 );
 

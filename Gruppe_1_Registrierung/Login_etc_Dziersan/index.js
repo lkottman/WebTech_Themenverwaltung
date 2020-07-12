@@ -20,8 +20,8 @@ let connection = mysql.createConnection(
     }
 );
 
-const lifeTime = 1000 * 60 * 60 // 1 hour
-const tokenLifeTime = 60 * 24 * 365 * 10 // 10 year
+const lifeTime = 1000 * 60 * 60;// 1 hour
+const tokenLifeTime = 60 * 24 * 365 * 10;// 10 year
 const fieldsQueryResult = 0;
 
 const {
@@ -29,7 +29,7 @@ const {
     sessionLifetime = lifeTime,
     sessionName = "sid",
     secretSession = "test"
-} = process.env
+} = process.env;
 
 //imports
 app.use(express.static('public'));
@@ -141,6 +141,10 @@ app.get("/resetpassword", (request, response) => {
     response.sendFile('//public//Sven_Louis//tokenReset.html', {root: __dirname});
 });
 
+app.get("/changepassword", (request, response) => {
+    response.sendFile('//public//Sven_Louis//changePassword.html', {root: __dirname});
+});
+
 //change to user db later and ADD USER token
 app.get("/confirmation", (request, response) => {
     response.sendFile('//public//Sven_Louis//confirmEmail.html', {root: __dirname});
@@ -168,17 +172,27 @@ app.get("/confirmation", (request, response) => {
     }
 });
 
+
+//Get without HTML|| email
+app.get("/cookie", (request, response) => {
+    console.log(request.session)
+    response.json(request.session);
+});
+
+/*+
+    checks for given entry in user with given e-mail  and creates entry in PASSWORT_RESET TOKEN
+ */
 app.post("/pwforgo.html", (request, response) => {
     let email = request.body.email;
     console.log(email);
 
     // error message ausgeben
-    if(email === null || email === undefined)
+    if(email === null || email === undefined )
     {
         response.redirect("/login");
     } else {
 
-        let checkEntry = "SELECT EXISTS(SELECT * FROM Student WHERE e_mail = '" + email +  "') AS test" + ";";
+        let checkEntry = "SELECT EXISTS(SELECT * FROM USER WHERE e_mail = '" + email +  "') AS test" + ";";
         console.log(checkEntry);
 
         connection.query(checkEntry, function (err, result, fields) {
@@ -191,12 +205,12 @@ app.post("/pwforgo.html", (request, response) => {
 
 
                 let startDate = new Date();
+                startDate.setHours(startDate.getHours() + 2);
                 console.log(startDate);
-
 
                 //generate endDate and add 1 hour for limited reset
                 let endDate = new Date();
-                endDate.setHours(endDate.getHours() + 1);
+                endDate.setHours(startDate.getHours() + 3);
                 console.log(endDate);
 
                 let resetToken = Math.random().toString(36).substr(2, 6);
@@ -207,37 +221,79 @@ app.post("/pwforgo.html", (request, response) => {
                 endDate = endDate.toISOString().slice(0, 19).replace('T', ' ');
 
                 // use of gravis for easier insertString
-                let insertToken = `INSERT INTO pw_forgot_token(e_mail, start, end, token) VALUES ('${email}', 
-                    '${startDate}','${endDate}', '${resetToken}' )`;
-                    console.log(insertToken);
+                let insertToken = `INSERT INTO pw_forgot_token(e_mail, start, end, token, used) VALUES ('${email}', 
+                    '${startDate}','${endDate}', '${resetToken}', false )`;
+                console.log(insertToken);
 
 
-                    connection.query(insertToken, function (err, result) {
-                        if(err) throw err;
-                        console.log("1 record inserted");
-                    })
+                connection.query(insertToken, function (err, result) {
+                    if(err) throw err;
+                    console.log("1 record inserted");
+                })
                 // hier muss nodemailer noch eingebunden werden
                 response.redirect("/login");
             } else
-                {
+            {
                 console.log("Error");
-                response.json({register: "Fehlgeschlagen: Benutzer existiert bereits"});
-
+                //response.json({register: "Fehlgeschlagen: Benutzer existiert bereits"});
             }
-
         })
-
     }
+});
 
+app.post("/changePassword", redirectLogin, (request, response) =>{
+    let email = "sven.petersen@hs-osnabrueck.de";
+    let newpassword = request.body.password;
 
+    let sql = `UPDATE USER SET password = '${newpassword}' WHERE e_mail = '${email}'; `;
+    connection.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log(result);
+    })
 
 });
 
+app.post("/checkResetToken", (request, response) =>{
 
-//Get without HTML|| email
-app.get("/cookie", (request, response) => {
-    console.log(request.session)
-    response.json(request.session);
+
+    let resetToken = request.body.resetToken;
+
+
+    if(resetToken == "")
+    {
+            console.log("test");
+        response.redirect("/login");
+    }
+    else
+    {
+
+        let sql =  `SELECT e_mail, used FROM PW_FORGOT_TOKEN 
+                     WHERE current_timestamp < end
+                     AND current_timestamp > start AND token ='${resetToken}';`;
+
+
+        connection.query(sql, function (err, result) {
+            if(err)
+                throw err;
+
+            if (result.length != 0){
+                let email = result[0].e_mail;
+                let used = result[0].used;
+
+                if (used == 0) {
+                    let changeUsed = `UPDATE PW_FORGOT_TOKEN SET used = true WHERE e_mail = '${email}';`;
+                    console.log(changeUsed);
+                    connection.query(changeUsed, function (err, result) {
+                        if (err) throw err;
+
+                        if (result.length != 0){
+                            response.redirect("/passwort")
+                        }
+                    });
+                }
+            }
+        });
+    }
 });
 
 // Post Methods
@@ -382,7 +438,7 @@ app.post("/deleteToken", redirectLogin, (request, response) => {
             if (err)
                 throw err;
             else {
-                console.log(result.length)
+                console.log(result.length);
 
                 if (result.length > 0) {
                     connection.query("DELETE FROM token WHERE GENTOKEN = " + '"' + request.body.token + '";'),

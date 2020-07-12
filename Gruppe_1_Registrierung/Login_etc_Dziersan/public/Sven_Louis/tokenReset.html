@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Hausarbeitsthemenverwaltung - Token</title>
+    <script src="login.js" type="text/javascript" language="JavaScript"></script>
     <link href="../../../../css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -13,10 +14,10 @@
 <br>
 
 
-<form action="../index.html" class="box" method="post">
+<form action="../checkResetToken" class="box" method="post">
     <div class="box1">
         Bitte geben Sie hier den Token ein, den Sie erhalten haben.
-        <input name="" placeholder="Token" type="text">
+        <input name="resetToken" placeholder="Token" type="text" onkeyup="">
 
 
         <input name="" type="submit" value="Abschicken">
