@@ -2,7 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const fs = require('fs');
-const config = JSON.parse(fs.readFileSync('public/datenbankConfig.json'));
+
 const app = express();
 
 // https://youtu.be/OH6Z0dJ_Huk?t=1466
@@ -13,15 +13,15 @@ let mysql = require("mysql");
 
 let connection = mysql.createConnection(
     {
-        host: config.host,
-        user: config.user,
-        password: config.password,
-        database: config.database
+        host: "127.0.0.1",
+        user: "webtech",
+        password: "webtech",
+        database: "Webtech"
     }
 );
 
-const lifeTime = 1000 * 60 * 60 // 1 hour
-const tokenLifeTime = 60 * 24 * 365 * 10 // 10 year
+const lifeTime = 1000 * 60 * 60;// 1 hour
+const tokenLifeTime = 60 * 24 * 365 * 10;// 10 year
 const fieldsQueryResult = 0;
 
 const {
