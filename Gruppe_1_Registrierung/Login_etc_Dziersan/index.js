@@ -20,11 +20,12 @@ let connection = mysql.createConnection(
     }
 );
 
-const lifeTime = 1000 * 60 * 60;// 1 hour
-const tokenLifeTime = 60 * 24 * 365 * 10;// 10 year
+var lifeTime = 1000 * 60 * 60 * 24;// 24 hour
+var lifeTimeLong = 1000 * 60 * 60 * 24 * 365 * 10;  //1 Year
+const tokenLifeTime = 60 * 24 * 365;// 10 year
 const fieldsQueryResult = 0;
 
-const {
+var {
     PORT = 3000,
     sessionLifetime = lifeTime,
     sessionName = "sid",
@@ -119,7 +120,6 @@ app.get("/login", (request, response) => {
         response.sendFile('//public//login.html', {root: __dirname});
     }
 });
-
 app.get("/", (request, response) => {
     response.sendFile('//public//index.html', {root: __dirname});
 });
@@ -131,7 +131,6 @@ app.get("/agb", (request, response) => {
 app.get("/successfullregistration", (request, response) => {
     response.sendFile('//public//successRegister.html', {root: __dirname});
 });
-
 
 app.get("/testmailer", (request, response) => {
     response.sendFile('//public//testmailer.html', {root: __dirname});
@@ -175,7 +174,7 @@ app.get("/confirmation", (request, response) => {
 
 //Get without HTML|| email
 app.get("/cookie", (request, response) => {
-    console.log(request.session)
+    console.log(request.session);
     response.json(request.session);
 });
 
@@ -306,8 +305,10 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
     console.log("index");
 });
 
-//Takes E-Mail and passord from User and check if these matches if database
+//Takes E-Mail and password from User and check if these matches if database
 app.post("/login", redirectHome, (request, response) => {
+
+    console.log(request.body.checkbox);
 
     connection.query("SELECT id, name,verified, token, e_mail, password, authorization from user where "
         + 'e_mail = "' + request.body.email + '"'
@@ -328,6 +329,11 @@ app.post("/login", redirectHome, (request, response) => {
                         response.json({login: "Fehlgeschlagen: Nicht Verifiziert"});
                     } else {
                         console.log("login erfolgreich");
+
+                        if(request.body.checkboxLogin == true){
+                            request.session.cookie.maxAge = lifeTimeLong;
+                        }
+
                         request.session.userId = result[0].id;
                         request.session.userName = result[0].name;
                         request.session.userAuthorization = result[0].authorization;
@@ -347,12 +353,13 @@ app.post("/register", redirectHome, (request, response) => {
     //Check if used token is valid
     connection.query("SELECT start, end, gentoken FROM TOKEN WHERE " +
         'gentoken = "' + request.body.token + '"',
-        function (err, result, fields) {
+        function (err, result) {
             if (err)
                 throw err
             else {
                 if (result.length == 0) {
                     console.log(result);
+                    // response.json({register: "Token existiert nicht"});
                 } else {
                     let startTime = result[0].start;
                     let endTime = result[0].end;
@@ -383,7 +390,6 @@ app.post("/register", redirectHome, (request, response) => {
                                                     throw err;
                                                 else {
                                                     console.log("User created");
-
                                                 }
                                             })
                                     } else {
@@ -467,8 +473,6 @@ app.post("/logout", redirectLogin, (request, respond) => {
         respond.redirect("/login");
     })
 });
-
-
 
 app.listen(PORT, () => console.log(
     "listening on: " +
