@@ -336,7 +336,7 @@ app.post("/login", redirectHome, (request, response) => {
 
     console.log(request.body.checkbox);
 
-    connection.query("SELECT id, name,verified, token, e_mail, password, authorization from user where "
+    connection.query("SELECT id, name,verified, token, e_mail, password, authorization from USER where "
         + 'e_mail = "' + request.body.email + '"'
         + ' AND password = "' + request.body.password + '"',
         function (err, result) {
@@ -417,9 +417,9 @@ app.post("/register", redirectHome, (request, response) => {
                                                     throw err;
                                                 else {
                                                     console.log("User created");
-                                                    let url = `http://webtech-01.lin.hs-osnabrueck.de/confirmation?opt=${randomtoken}&email=${request.body.token}`;
+                                                    let url = `http://webtech-01.lin.hs-osnabrueck.de/confirmation?opt=${randomtoken}&email=${request.body.email}`;
                                                     let bodyText = `Guten Tag Herr ${request.body.name}, Um Ihr E-Mail zu bestaetigen`+
-                                                      `klicken Sie bitte auf folgenden Link. <a href=url></a>"\n ` +
+                                                      `klicken Sie bitte auf folgenden Link."\n ` +
                                                         `${url} \n Mit freundlichen Grüßen \ Ihre Hausarbeitsthemenverwaltung`;
 
 
