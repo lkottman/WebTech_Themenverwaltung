@@ -309,7 +309,7 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
 //Takes E-Mail and passord from User and check if these matches if database
 app.post("/login", redirectHome, (request, response) => {
 
-    connection.query("SELECT id, name,verified, token, e_mail, password, authorization from user where "
+    connection.query("SELECT id, name,verified, token, e_mail, password, authorization from USER where "
         + 'e_mail = "' + request.body.email + '"'
         + ' AND password = "' + request.body.password + '"',
         function (err, result) {

@@ -4,7 +4,7 @@
  * mailOptions = content of e-mail
  */
 
-function sendMail(){
+
     const fs = require('fs');
     const config = JSON.parse(fs.readFileSync("config.json"));
 
@@ -45,4 +45,4 @@ function sendMail(){
             console.log(data);
         }
     });
-}
+
