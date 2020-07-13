@@ -28,9 +28,6 @@ let transporter = nodemailer.createTransport({
 });
 
 
-
-
-
 let connection = mysql.createConnection(
     {
         host: config.host,
@@ -39,6 +36,7 @@ let connection = mysql.createConnection(
         database: config.database
     }
 );
+
 
 var lifeTime = 1000 * 60 * 60 * 24;// 24 hour
 var lifeTimeLong = 1000 * 60 * 60 * 24 * 365 * 10;  //1 Year
@@ -375,6 +373,8 @@ app.post("/login", redirectHome, (request, response) => {
 //Takes information from form and creates user
 app.post("/register", redirectHome, (request, response) => {
 
+
+
     let servertime = new Date();
     let randomtoken = Math.random().toString(36).substr(2, 6);
 
@@ -417,7 +417,31 @@ app.post("/register", redirectHome, (request, response) => {
                                                     throw err;
                                                 else {
                                                     console.log("User created");
+                                                    let url = `http://webtech-01.lin.hs-osnabrueck.de/confirmation?opt=${randomtoken}&email=${request.body.token}`;
+                                                    let bodyText = `Guten Tag Herr ${request.body.name}, Um Ihr E-Mail zu bestaetigen`+
+                                                      `klicken Sie bitte auf folgenden Link. <a href=url></a>"\n ` +
+                                                        `${url} \n Mit freundlichen Grüßen \ Ihre Hausarbeitsthemenverwaltung`;
 
+
+
+                                                         console.log(bodyText);
+
+                                                    let mailOptions = {
+                                                        from: config.e_mail,
+                                                        to: request.body.email,
+                                                        subject: 'E-Mail',
+                                                        text: bodyText
+                                                    };
+
+                                                    transporter.sendMail(mailOptions, function (err, data) {
+                                                        if(err) {
+                                                            console.log('Error Occurs', err);
+                                                        }
+                                                        else {
+                                                            console.log('Email sent!!');
+                                                            console.log(data);
+                                                        }
+                                                    });
                                                 }
                                             })
                                     } else {
