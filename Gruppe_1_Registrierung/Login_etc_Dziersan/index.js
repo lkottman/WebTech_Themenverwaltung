@@ -2,7 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const fs = require('fs');
-const config = JSON.parse(fs.readFileSync("public/datenbankConfig.json"));
+const config = JSON.parse(fs.readFileSync("public/Sven_Louis/datenbankConfig.json"));
 const app = express();
 
 // https://youtu.be/OH6Z0dJ_Huk?t=1466
@@ -10,6 +10,23 @@ const app = express();
 let http = require("http");
 let url = require("url");
 let mysql = require("mysql");
+
+
+const configData = JSON.parse(fs.readFileSync("public/Sven_Louis/config.json"));
+
+const nodemailer = require('nodemailer');
+
+let transporter = nodemailer.createTransport({
+    host: configData.host,
+    port: configData.port,
+
+    auth: {
+        user: configData.user,
+        pass: configData.password,
+
+    }
+});
+
 
 let connection = mysql.createConnection(
     {
@@ -20,11 +37,13 @@ let connection = mysql.createConnection(
     }
 );
 
-const lifeTime = 1000 * 60 * 60;// 1 hour
-const tokenLifeTime = 60 * 24 * 365 * 10;// 10 year
+
+var lifeTime = 1000 * 60 * 60 * 24;// 24 hour
+var lifeTimeLong = 1000 * 60 * 60 * 24 * 365 * 10;  //1 Year
+const tokenLifeTime = 60 * 24 * 365;// 10 year
 const fieldsQueryResult = 0;
 
-const {
+var {
     PORT = 3000,
     sessionLifetime = lifeTime,
     sessionName = "sid",
@@ -296,6 +315,12 @@ app.post("/checkResetToken", (request, response) =>{
     }
 });
 
+app.post("/sendToken", (request, response) => {
+
+
+
+});
+
 // Post Methods
 app.post("/index.html", redirectLogin, (request, response, next) => {
     if (request.session.userId) {
@@ -306,8 +331,10 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
     console.log("index");
 });
 
-//Takes E-Mail and passord from User and check if these matches if database
+//Takes E-Mail and password from User and check if these matches if database
 app.post("/login", redirectHome, (request, response) => {
+
+    console.log(request.body.checkbox);
 
     connection.query("SELECT id, name,verified, token, e_mail, password, authorization from USER where "
         + 'e_mail = "' + request.body.email + '"'
@@ -328,6 +355,11 @@ app.post("/login", redirectHome, (request, response) => {
                         response.json({login: "Fehlgeschlagen: Nicht Verifiziert"});
                     } else {
                         console.log("login erfolgreich");
+
+                        if(request.body.checkboxLogin == true){
+                            request.session.cookie.maxAge = lifeTimeLong;
+                        }
+
                         request.session.userId = result[0].id;
                         request.session.userName = result[0].name;
                         request.session.userAuthorization = result[0].authorization;
@@ -340,6 +372,8 @@ app.post("/login", redirectHome, (request, response) => {
 
 //Takes information from form and creates user
 app.post("/register", redirectHome, (request, response) => {
+
+
 
     let servertime = new Date();
     let randomtoken = Math.random().toString(36).substr(2, 6);
@@ -383,7 +417,31 @@ app.post("/register", redirectHome, (request, response) => {
                                                     throw err;
                                                 else {
                                                     console.log("User created");
+                                                    let url = `http://webtech-01.lin.hs-osnabrueck.de/confirmation?opt=${randomtoken}&email=${request.body.email}`;
+                                                    let bodyText = `Guten Tag Herr ${request.body.name}, Um Ihr E-Mail zu bestaetigen`+
+                                                      `klicken Sie bitte auf folgenden Link."\n ` +
+                                                        `${url} \n Mit freundlichen Grüßen \ Ihre Hausarbeitsthemenverwaltung`;
 
+
+
+                                                         console.log(bodyText);
+
+                                                    let mailOptions = {
+                                                        from: config.e_mail,
+                                                        to: request.body.email,
+                                                        subject: 'E-Mail',
+                                                        text: bodyText
+                                                    };
+
+                                                    transporter.sendMail(mailOptions, function (err, data) {
+                                                        if(err) {
+                                                            console.log('Error Occurs', err);
+                                                        }
+                                                        else {
+                                                            console.log('Email sent!!');
+                                                            console.log(data);
+                                                        }
+                                                    });
                                                 }
                                             })
                                     } else {
