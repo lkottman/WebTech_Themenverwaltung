@@ -2,7 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const fs = require('fs');
-const config = JSON.parse(fs.readFileSync("public/datenbankConfig.json"));
+const config = JSON.parse(fs.readFileSync("public/Sven_Louis/datenbankConfig.json"));
 const app = express();
 
 // https://youtu.be/OH6Z0dJ_Huk?t=1466
