@@ -120,6 +120,7 @@ app.get("/login", (request, response) => {
         response.sendFile('//public//login.html', {root: __dirname});
     }
 });
+
 app.get("/", (request, response) => {
     response.sendFile('//public//index.html', {root: __dirname});
 });
@@ -131,6 +132,7 @@ app.get("/agb", (request, response) => {
 app.get("/successfullregistration", (request, response) => {
     response.sendFile('//public//successRegister.html', {root: __dirname});
 });
+
 
 app.get("/testmailer", (request, response) => {
     response.sendFile('//public//testmailer.html', {root: __dirname});
@@ -174,7 +176,7 @@ app.get("/confirmation", (request, response) => {
 
 //Get without HTML|| email
 app.get("/cookie", (request, response) => {
-    console.log(request.session);
+    console.log(request.session)
     response.json(request.session);
 });
 
@@ -353,13 +355,12 @@ app.post("/register", redirectHome, (request, response) => {
     //Check if used token is valid
     connection.query("SELECT start, end, gentoken FROM TOKEN WHERE " +
         'gentoken = "' + request.body.token + '"',
-        function (err, result) {
+        function (err, result, fields) {
             if (err)
                 throw err
             else {
                 if (result.length == 0) {
                     console.log(result);
-                    // response.json({register: "Token existiert nicht"});
                 } else {
                     let startTime = result[0].start;
                     let endTime = result[0].end;
@@ -390,6 +391,7 @@ app.post("/register", redirectHome, (request, response) => {
                                                     throw err;
                                                 else {
                                                     console.log("User created");
+
                                                 }
                                             })
                                     } else {
@@ -473,6 +475,8 @@ app.post("/logout", redirectLogin, (request, respond) => {
         respond.redirect("/login");
     })
 });
+
+
 
 app.listen(PORT, () => console.log(
     "listening on: " +
