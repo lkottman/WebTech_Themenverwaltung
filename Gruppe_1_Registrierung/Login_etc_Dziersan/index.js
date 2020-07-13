@@ -11,6 +11,26 @@ let http = require("http");
 let url = require("url");
 let mysql = require("mysql");
 
+
+const configData = JSON.parse(fs.readFileSync("public/Sven_Louis/config.json"));
+
+const nodemailer = require('nodemailer');
+
+let transporter = nodemailer.createTransport({
+    host: configData.host,
+    port: configData.port,
+
+    auth: {
+        user: configData.user,
+        pass: configData.password,
+
+    }
+});
+
+
+
+
+
 let connection = mysql.createConnection(
     {
         host: config.host,
@@ -294,6 +314,12 @@ app.post("/checkResetToken", (request, response) =>{
             }
         });
     }
+});
+
+app.post("/sendToken", (request, response) => {
+
+
+
 });
 
 // Post Methods

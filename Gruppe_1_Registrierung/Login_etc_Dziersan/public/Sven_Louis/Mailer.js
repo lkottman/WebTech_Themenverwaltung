@@ -1,25 +1,6 @@
 
 
-/**
- * mailOptions = content of e-mail
- */
 
-
-    const fs = require('fs');
-    const config = JSON.parse(fs.readFileSync("config.json"));
-
-    const nodemailer = require('nodemailer');
-
-    let transporter = nodemailer.createTransport({
-        host: config.host,
-        port: config.port,
-
-        auth: {
-            user: config.user,
-            pass: config.password,
-
-        }
-    });
 
 // settings for passwort reset
     let mailOptions = {
