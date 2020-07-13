@@ -40,11 +40,12 @@ let connection = mysql.createConnection(
     }
 );
 
-const lifeTime = 1000 * 60 * 60;// 1 hour
-const tokenLifeTime = 60 * 24 * 365 * 10;// 10 year
+var lifeTime = 1000 * 60 * 60 * 24;// 24 hour
+var lifeTimeLong = 1000 * 60 * 60 * 24 * 365 * 10;  //1 Year
+const tokenLifeTime = 60 * 24 * 365;// 10 year
 const fieldsQueryResult = 0;
 
-const {
+var {
     PORT = 3000,
     sessionLifetime = lifeTime,
     sessionName = "sid",
@@ -332,10 +333,12 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
     console.log("index");
 });
 
-//Takes E-Mail and passord from User and check if these matches if database
+//Takes E-Mail and password from User and check if these matches if database
 app.post("/login", redirectHome, (request, response) => {
 
-    connection.query("SELECT id, name,verified, token, e_mail, password, authorization from USER where "
+    console.log(request.body.checkbox);
+
+    connection.query("SELECT id, name,verified, token, e_mail, password, authorization from user where "
         + 'e_mail = "' + request.body.email + '"'
         + ' AND password = "' + request.body.password + '"',
         function (err, result) {
@@ -354,6 +357,11 @@ app.post("/login", redirectHome, (request, response) => {
                         response.json({login: "Fehlgeschlagen: Nicht Verifiziert"});
                     } else {
                         console.log("login erfolgreich");
+
+                        if(request.body.checkboxLogin == true){
+                            request.session.cookie.maxAge = lifeTimeLong;
+                        }
+
                         request.session.userId = result[0].id;
                         request.session.userName = result[0].name;
                         request.session.userAuthorization = result[0].authorization;
