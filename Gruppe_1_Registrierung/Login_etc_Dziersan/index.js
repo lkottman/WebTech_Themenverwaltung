@@ -2,7 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const fs = require('fs');
-const config = JSON.parse(fs.readFileSync("public/datenbankConfig.json"));
+const config = JSON.parse(fs.readFileSync("public/Sven_Louis/datenbankConfig.json"));
 const app = express();
 
 // https://youtu.be/OH6Z0dJ_Huk?t=1466
@@ -27,10 +27,6 @@ let transporter = nodemailer.createTransport({
     }
 });
 
-
-
-
-
 let connection = mysql.createConnection(
     {
         host: config.host,
@@ -42,7 +38,7 @@ let connection = mysql.createConnection(
 
 var lifeTime = 1000 * 60 * 60 * 24;// 24 hour
 var lifeTimeLong = 1000 * 60 * 60 * 24 * 365 * 10;  //1 Year
-const tokenLifeTime = 60 * 24 * 365;// 10 year
+const tokenLifeTime = 60 * 24 * 366;// 10 + 1 day year
 const fieldsQueryResult = 0;
 
 var {
@@ -127,7 +123,7 @@ app.get("/register", (request, response) => {
 app.get("/token", (request, response) => {
     if (request.session.userAuthorization === "lecturer"
         || request.session.userAuthorization === "admin") {
-        response.sendFile('//privat//tokenReset.html', {root: __dirname});
+        response.sendFile('//privat//token.html', {root: __dirname});
     } else {
         response.redirect("/login");
     }
@@ -348,7 +344,7 @@ app.post("/login", redirectHome, (request, response) => {
                 if (result.length == 0) {
                     //If there is no match login failed
                     console.log("login fehlgeschlafen (Falsche Daten oder nicht registriert)");
-                    response.send({login: "Fehlgeschlagen: Falsche Informationen oder nicht registriert"});
+                    response.json({login: "Fehlgeschlagen: Falsche Informationen oder nicht registriert"});
 
                 } else {
                     //Check if User is verified
@@ -361,7 +357,6 @@ app.post("/login", redirectHome, (request, response) => {
                         if(request.body.checkboxLogin == true){
                             request.session.cookie.maxAge = lifeTimeLong;
                         }
-
                         request.session.userId = result[0].id;
                         request.session.userName = result[0].name;
                         request.session.userAuthorization = result[0].authorization;
@@ -375,65 +370,85 @@ app.post("/login", redirectHome, (request, response) => {
 //Takes information from form and creates user
 app.post("/register", redirectHome, (request, response) => {
 
+    if(request.method == "OPTIONS"){
+        response.set('Access-Control-Allow-Origin', '*');
+        response.set('Access-Control-Allow-Headers', 'Content-Type');
+        response.status(204).send('');
+    }
+
+    console.log("Test " + request.body.token);
+
     let servertime = new Date();
     let randomtoken = Math.random().toString(36).substr(2, 6);
+    let errorMessage = "";
 
     //Check if used token is valid
-    connection.query("SELECT start, end, gentoken FROM TOKEN WHERE " +
+    connection.query("SELECT * FROM TOKEN WHERE " +
         'gentoken = "' + request.body.token + '"',
         function (err, result, fields) {
             if (err)
-                throw err
+                throw err;
             else {
-                if (result.length == 0) {
-                    console.log(result);
-                } else {
+                console.log(result);
+                console.log(result.length);
+
+                if (result.length !== 0) {
+                    console.log("Token gefunden");
                     let startTime = result[0].start;
                     let endTime = result[0].end;
                     let token = result[0].gentoken;
                     let clientToken = request.body.token;
 
-                    if (token == clientToken
+                    if (token === clientToken
                         && servertime >= startTime
                         && servertime <= endTime) {
                         connection.query("SELECT * FROM USER WHERE " + 'e_mail = "'
                             + request.body.email + '"',
                             function (err, result) {
                                 if (err) {
-                                    throw err
+                                    throw err;
                                 } else {
-                                    if (result.length == 0) {
+                                    if (result.length === 0) {
                                         connection.query("INSERT INTO USER(token,name,surname,"
-                                            + "e_mail,password,confirm_token ,verified) VALUES("
+                                            + "e_mail,password,confirm_token ,verified, authorization) VALUES("
                                             + '"' + request.body.token + '",'
                                             + '"' + request.body.name + '",'
                                             + '"' + request.body.surname + '",'
                                             + '"' + request.body.email + '",'
                                             + '"' + request.body.password + '",'
                                             + '"' + randomtoken + '",'
-                                            + request.body.verified + ')',
+                                            + '' + "false" + ','
+                                            + '"student"' + ')',
                                             function (err) {
                                                 if (err)
                                                     throw err;
                                                 else {
                                                     console.log("User created");
-
                                                 }
-                                            })
+                                            });
                                     } else {
-                                        console.log("User already exists");
-                                        response.json({register: "Fehlgeschlagen: Benutzer existiert bereits"});
+                                        errorMessage += "Benutzer existiert bereits. ";
+                                        response.json({register: "Fehlgeschlagen: Benutzer existiert bereits."});
                                     }
                                 }
-                            })
+                            });
                     } else {
-                        console.log("Token is expired");
-                        response.json({register: "Fehlgeschlagen: Freischaltcode ist abgelaufen."});
+                        errorMessage += "Freischaltcode ist abgelaufen. ";
+                        response.json({register: "Freischaltcode ist abgelaufen."});
                     }
+                } else {
+                    errorMessage += "Freischaltcode existiert nicht. ";
+                    response.json({register: "Freischaltcode existiert nicht."});
                 }
             }
-        })
-    response.redirect("/successfullregistration");
+            //
+            // console.log(errorMessage);
+            // if (errorMessage === ""){
+            //     response.redirect("/successfullregistration");
+            // } else {
+            //     response.json({register: `Fehlermeldung: ${errorMessage}`});
+            // }
+        });
 });
 
 

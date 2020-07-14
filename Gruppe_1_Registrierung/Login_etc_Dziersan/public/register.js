@@ -20,26 +20,30 @@ function register() {
         document.getElementById("name").value,
         document.getElementById("surname").value,
         document.getElementById("email").value,
-        document.getElementById("password").value,
-        false
+        document.getElementById("password").value
     );
 
 //TODO Serverseitig abprüfen
-    if (validateEmail(document.getElementById("email").value) == true
-        && checkPasswords() == true
-        && document.getElementById("checkAgb").checked == true) {
+    if (validateEmail(document.getElementById("email").value) === true
+        && checkPasswords() === true
+        && document.getElementById("checkAgb").checked === true) {
+
         const options = {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(person)
-        }
+        };
 
         fetch("/register", options)
             .then(response => response.json())
             .then(data => {
 
-                alert(data.register);
-
+                if (data.register === ""){
+                    fetch("/successfullregistration");
+                } else {
+                    alert(data.register);
+                    location.reload();
+                }
             });
     } else {
         alert("Nur E-Mail Adressen mit der Endung '@hs-osnabrueck.de' sind zugelassen.")
@@ -52,7 +56,7 @@ function checkPasswordRequirements() {
     let password = document.getElementById("password").value;
     let password1 = document.getElementById("password1").value;
 
-    if (password.match(/[!§@§%&()=?`²³{[]}\<>|]/)) ;
+    if (password.match(/[!§@§%&()=?`²³{[]}\<>|]/))
     {
         strengh += 1;
     }
@@ -66,7 +70,7 @@ function checkPasswordRequirements() {
         strengh += 1;
     }
     if (password.length >= 8) {
-        strengh += 1;
+        strengh += 2;
     }
     switch (strengh) {
         case 0:
