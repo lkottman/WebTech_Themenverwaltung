@@ -31,19 +31,20 @@ const {
   secretSession = "test"
 } = process.env;
 
-app.use(express.static('CSS'));
-app.use(express.static('JS'));
+app.use(express.static(__dirname + '/projekt'));
+app.use(express.static(__dirname + '/css'))
+app.use(express.static('/js'));
 app.use(express.json({limit: "1mb"}));
 app.use(bodyParser.urlencoded({
   extended: true
 }))
 
 app.get("/req", (require, response) => {
-  response.sendFile('//MainPageGer.html', {root: __dirname})
+  response.sendFile('//Projekt//MainPageGer.html', {root: __dirname})
 });
 
 app.get("/", (request, response) => {
-  response.sendFile('//MainPageGer.html', {root: __dirname});
+  response.sendFile('//Projekt//MainPageGer.html', {root: __dirname});
 });
 
 app.listen(PORT, () => console.log(
