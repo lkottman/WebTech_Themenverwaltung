@@ -86,6 +86,20 @@ function clearfields() {
  * @param tableID
  */
 function addRow(tableID) {
+
+    class Requirements{
+
+        constructor(ID, Name, ShortDesc) {
+            this.id = ID;
+            this.name = Name;
+            this.shortdesc = ShortDesc;
+        }
+
+        toString() {
+            return this.id + " " + this.name + " " + this.shortdesc;
+        }
+    }
+
     let idfield = document.getElementById("id").value;
     let namefield = document.getElementById("name").value;
     let shortdescfield = document.getElementById("shortdesc").value;
@@ -130,14 +144,8 @@ function addRow(tableID) {
     newrewButton.innerHTML = "bearbeiten";
     newrewButton.onclick = function openupAdd() {
 
-        window.open("http://localhost:63342/Web%20Technologies/Projekt/EditRequirementGer.html?_ijt=krfjkfipbo23u62ib0jfmgq6jk",
+        window.open("/EditReqGer",
             "Anforderung erstellen", "height=500, width=600");
-        let row = newrewButton.parentNode.parentNode;
-        localStorage[input1] = row.getElementsByTagName("td")[0].innerText;
-        let input2 = row.getElementsByTagName("td")[1].innerText;
-
-        document.getElementById("addID").value = localStorage[input1];
-        /*document.getElementById("addName").value = localStorage[input2];*/
     }
 
     let newdelButton = document.createElement("button");
@@ -147,6 +155,40 @@ function addRow(tableID) {
         let row = newdelButton.parentNode.parentNode;
         row.parentNode.removeChild(row);
     };
+
+    requirement = new Requirements(
+        newText1,
+        newText2,
+        newTextarea
+    )
+
+    const options = {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(requirement)
+    };
+
+    // fetch('/saveReqData', options)
+    // .then(response => response.json())
+    // .then(data => {
+    //
+    //     console.log(data.login);
+    //     alert(data.login)
+    //
+    // })
+    // .catch(error => console.error(error))
+
+    fetch("/saveReqData", options)
+    .then(response => response.json())
+    .then(data => {
+
+        if (data.register === ""){
+            fetch("/successfullregistration");
+        } else {
+            alert(data.register);
+            location.reload();
+        }
+    });
 
     newCell1.appendChild(newText11);
     newCell1.appendChild(newText1);

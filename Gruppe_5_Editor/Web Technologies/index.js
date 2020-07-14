@@ -39,13 +39,69 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 
-app.get("/req", (require, response) => {
+app.get("/RequirementsEditGer", (require, response) => {
   response.sendFile('//Projekt//MainPageGer.html', {root: __dirname})
+});
+
+app.get("/RequirementsEditEng", (require, response) => {
+  response.sendFile('//Projekt//MainPageEng.html', {root: __dirname})
+});
+
+app.get("/EditReqGer", (require, response) => {
+  response.sendFile('//Projekt//EditRequirementGer.html', {root: __dirname})
+});
+
+app.get("/EditReqEng", (require, response) => {
+  response.sendFile('//Projekt//EditRequirementEng.html', {root: __dirname})
 });
 
 app.get("/", (request, response) => {
   response.sendFile('//Projekt//MainPageGer.html', {root: __dirname});
 });
+
+app.post("/saveReqData", (request, response) => {
+
+  if(request.method === "OPTIONS"){
+    response.set('Access-Control-Allow-Origin', '*');
+    response.set('Access-Control-Allow-Headers', 'Content-Type');
+    response.status(204).send('');
+  }
+
+  connection.query("INSERT INTO Anforderungen(id,name,shortdesc) VALUES("
+      + '"' + request.body.id + '",'
+      + '"' + request.body.name + '",'
+      + '"' + request.body.shortdesc + '")',
+      function (err) {
+        if (err)
+          throw err;
+        else {
+          console.log("Requirement created");
+        }
+      });
+
+});
+
+// connection.connect
+// (function(error) {
+//   if(!!error)
+//   {
+//     console.log('Error');
+//   } else
+//   {
+//     console.log('connect');
+//   }
+// });
+//
+// connection.query("SELECT *" + " FROM user", function(error, rows){
+//   if(!!error)
+//   {
+//     console.log('Error in the query');
+//   } else
+//   {
+//     console.log('Successful query');
+//     console.log(rows);
+//   }
+// });
 
 app.listen(PORT, () => console.log(
     "listening on: " +
