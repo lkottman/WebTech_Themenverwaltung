@@ -385,7 +385,6 @@ app.post("/register", redirectHome, (request, response) => {
 
     let servertime = new Date();
     let randomtoken = Math.random().toString(36).substr(2, 6);
-    let errorMessage = "";
 
     //Check if used token is valid
     connection.query("SELECT * FROM TOKEN WHERE " +
@@ -432,27 +431,17 @@ app.post("/register", redirectHome, (request, response) => {
                                                 }
                                             });
                                     } else {
-                                        errorMessage += "Benutzer existiert bereits. ";
                                         response.json({register: "Fehlgeschlagen: Benutzer existiert bereits."});
                                     }
                                 }
                             });
                     } else {
-                        errorMessage += "Freischaltcode ist abgelaufen. ";
                         response.json({register: "Freischaltcode ist abgelaufen."});
                     }
                 } else {
-                    errorMessage += "Freischaltcode existiert nicht. ";
                     response.json({register: "Freischaltcode existiert nicht."});
                 }
             }
-            //
-            // console.log(errorMessage);
-            // if (errorMessage === ""){
-            //     response.redirect("/successfullregistration");
-            // } else {
-            //     response.json({register: `Fehlermeldung: ${errorMessage}`});
-            // }
         });
 });
 
