@@ -2,7 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const fs = require('fs');
-const config = JSON.parse(fs.readFileSync("public/Sven_Louis/datenbankConfig.json"));
+const config = JSON.parse(fs.readFileSync("public/datenbankConfig.json"));
 const app = express();
 
 // https://youtu.be/OH6Z0dJ_Huk?t=1466
@@ -26,6 +26,10 @@ let transporter = nodemailer.createTransport({
 
     }
 });
+
+
+
+
 
 let connection = mysql.createConnection(
     {
@@ -357,6 +361,7 @@ app.post("/login", redirectHome, (request, response) => {
                         if(request.body.checkboxLogin == true){
                             request.session.cookie.maxAge = lifeTimeLong;
                         }
+
                         request.session.userId = result[0].id;
                         request.session.userName = result[0].name;
                         request.session.userAuthorization = result[0].authorization;
