@@ -155,6 +155,14 @@ function addRow(tableID) {
     newdelButton.onclick = function deleteRow() {
         let row = newdelButton.parentNode.parentNode;
         row.parentNode.removeChild(row);
+
+        const options2 = {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(requirement)
+        };
+
+        fetch("/delReqData", options2)
     };
 
     requirement = new Requirements(

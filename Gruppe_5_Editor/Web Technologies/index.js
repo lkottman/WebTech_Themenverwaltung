@@ -56,7 +56,28 @@ app.get("/EditReqEng", (require, response) => {
 });
 
 app.get("/", (request, response) => {
-  response.sendFile('//Projekt//MainPageGer.html', {root: __dirname});
+  response.sendFile('//Projekt//Test.html', {root: __dirname});
+});
+
+app.post("/createTable", (require, response) => {
+
+  if(request.method === "OPTIONS"){
+    response.set('Access-Control-Allow-Origin', '*');
+    response.set('Access-Control-Allow-Headers', 'Content-Type');
+    response.status(204).send('');
+  }
+
+  connection.query("CREATE TABLE " + require.body.tablename +
+      " (ID VARCHAR(50), "
+      + "Name VARCHAR(50), "
+      + "Shortdesc LONGTEXT)",
+      function (err) {
+        if (err)
+          throw err;
+        else {
+          console.log("Requirement created");
+        }
+      });
 });
 
 app.post("/saveReqData", (request, response) => {
@@ -78,7 +99,26 @@ app.post("/saveReqData", (request, response) => {
           console.log("Requirement created");
         }
       });
+  response.end();
+});
 
+app.post("/delReqData", (request, response) => {
+  if(request.method === "OPTIONS2"){
+    response.set('Access-Control-Allow-Origin', '*');
+    response.set('Access-Control-Allow-Headers', 'Content-Type');
+    response.status(204).send('');
+  }
+
+  connection.query("DELETE" + " FROM " + "Anforderungen " + "WHERE("
+      + 'id="' + request.body.id + '")',
+      function (err) {
+        if (err)
+          throw err;
+        else {
+          console.log("Requirement deleted");
+        }
+      });
+  response.end();
 });
 
 // connection.connect
