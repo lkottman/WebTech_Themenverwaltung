@@ -103,7 +103,7 @@ app.post("/saveReqData", (request, response) => {
 });
 
 app.post("/delReqData", (request, response) => {
-  if(request.method === "OPTIONS2"){
+  if(request.method === "OPTIONS"){
     response.set('Access-Control-Allow-Origin', '*');
     response.set('Access-Control-Allow-Headers', 'Content-Type');
     response.status(204).send('');
