@@ -459,29 +459,29 @@ app.post("/register", redirectHome, (request, response) => {
                                                 else {
                                                     console.log("User created");
 
-                                                    let link = `http://webtech-01.lin.hs-osnabrueck.de/changePassword`;
-                                                    link = `Guten Tag, \n ` +
-                                                        `Um Ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule Osnabrück zurückzusetzen`+
-                                                        ` benötigen Sie den folgenden Token: \n` +
-                                                        `${resetToken} \n` +
-                                                        ` Bite klicken Sie auf diesen Link um ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule` +
-                                                        `zurückzusetzen. \n ${link}`;
+                                                    let url = `http://webtech-01.lin.hs-osnabrueck.de/confirmation?opt=${randomtoken}&email=${request.body.email}`;
+                                                    let bodyText = `Guten Tag Herr ${request.body.name}, Um Ihr E-Mail zu bestaetigen`+
+                                                        `klicken Sie bitte auf folgenden Link."\n ` +
+                                                        `${url} \n Mit freundlichen Grüßen \n Ihre Hausarbeitsthemenverwaltung`;
+
+                                                    console.log(bodyText);
 
                                                     let mailOptions = {
-                                                        to: email,
                                                         from: config.e_mail,
-                                                        subject: 'Passwort zurücksetzen',
-                                                        text: link
-
+                                                        to: request.body.email,
+                                                        subject: 'E-Mail',
+                                                        text: bodyText
                                                     };
 
                                                     transporter.sendMail(mailOptions, function (err, data) {
-                                                        if (err) {
+                                                        if(err) {
                                                             console.log('Error Occurs', err);
-                                                        } else {
-                                                            console.log('Email sent!!')
                                                         }
-                                                    });
+                                                        else {
+                                                            console.log('Email sent!!');
+                                                            console.log(data);
+                                                        }
+                                                    })
                                                 }
                                             });
                                     } else {
