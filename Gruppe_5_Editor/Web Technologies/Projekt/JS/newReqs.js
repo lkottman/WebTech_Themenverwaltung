@@ -104,6 +104,7 @@ function addRow(tableID) {
     let namefield = document.getElementById("name").value;
     let shortdescfield = document.getElementById("shortdesc").value;
     let idprefield = document.getElementById("idpre").value;
+    let id = idprefield+idfield;
 
     if (idprefield === "M") {
         var tableRef = document.getElementById(tableID);
@@ -157,9 +158,9 @@ function addRow(tableID) {
     };
 
     requirement = new Requirements(
-        newText1,
-        newText2,
-        newTextarea
+        id,
+        namefield,
+        newTextarea.value
     )
 
     const options = {
@@ -167,16 +168,6 @@ function addRow(tableID) {
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(requirement)
     };
-
-    // fetch('/saveReqData', options)
-    // .then(response => response.json())
-    // .then(data => {
-    //
-    //     console.log(data.login);
-    //     alert(data.login)
-    //
-    // })
-    // .catch(error => console.error(error))
 
     fetch("/saveReqData", options)
     .then(response => response.json())
