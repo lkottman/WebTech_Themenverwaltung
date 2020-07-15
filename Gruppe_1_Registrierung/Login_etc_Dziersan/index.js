@@ -243,12 +243,36 @@ app.post("/pwforgo.html", (request, response) => {
                 console.log(insertToken);
 
 
+
+
                 connection.query(insertToken, function (err, result) {
                     if(err) throw err;
-                    console.log("1 record inserted");
-                })
-                // hier muss nodemailer noch eingebunden werden
+
+                    let link = `http://webtech-01.lin.hs-osnabrueck.de/changePassword`;
+
+                    let mailOptions = {
+                        from: config.e_mail,
+                        to: request.params.mail,
+                        subject: 'Passwort zurücksetzen',
+                        text: `Guten Tag, \n ` +
+                    `Um Ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule Osnabrück zurückzusetzen`+
+                    ` benötigen Sie den folgenden Token: \n` +
+                    `${resetToken} \n` +
+                   ` Bite klicken Sie auf diesen Link um ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule` +
+                    `zurückzusetzen. \n ${link}`
+                };
+
+                    transporter.sendMail(mailOptions, function (err, data) {
+                        if (err) {
+                            console.log('Error Occurs', err);
+                        } else {
+                            console.log('Email sent!!')
+                        }
+                    });
+
+                });
                 response.redirect("/login");
+
             } else
             {
                 console.log("Error");
@@ -315,6 +339,16 @@ app.post("/checkResetToken", (request, response) =>{
 
 app.post("/sendToken", (request, response) => {
 
+
+
+    // Step 3
+    transporter.sendMail(mailOptions, function (err, data) {
+        if (err) {
+            console.log('Error Occurs', err);
+        } else {
+            console.log('Email sent!!')
+        }
+    })
 
 
 });
