@@ -156,13 +156,7 @@ function addRow(tableID) {
         let row = newdelButton.parentNode.parentNode;
         row.parentNode.removeChild(row);
 
-        const options2 = {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(requirement)
-        };
-
-        fetch("/delReqData", options2)
+        fetch("/delReqData", options)
     };
 
     requirement = new Requirements(
@@ -182,7 +176,7 @@ function addRow(tableID) {
     .then(data => {
 
         if (data.register === ""){
-            fetch("/successfullregistration");
+
         } else {
             alert(data.register);
             location.reload();
