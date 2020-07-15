@@ -238,17 +238,42 @@ app.post("/pwforgo.html", (request, response) => {
                 endDate = endDate.toISOString().slice(0, 19).replace('T', ' ');
 
                 // use of gravis for easier insertString
-                let insertToken = `INSERT INTO pw_forgot_token(e_mail, start, end, token, used) VALUES ('${email}', 
+                let insertToken = `INSERT INTO PW_FORGOT_TOKEN(e_mail, start, end, token, used) VALUES ('${email}', 
                     '${startDate}','${endDate}', '${resetToken}', false )`;
                 console.log(insertToken);
 
 
+
+
                 connection.query(insertToken, function (err, result) {
                     if(err) throw err;
-                    console.log("1 record inserted");
-                })
-                // hier muss nodemailer noch eingebunden werden
+
+                    let link = `http://webtech-01.lin.hs-osnabrueck.de/changePassword`;
+                    link = `Guten Tag, \n ` +
+                        `Um Ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule Osnabrück zurückzusetzen`+
+                        ` benötigen Sie den folgenden Token: \n` +
+                        `${resetToken} \n` +
+                        ` Bite klicken Sie auf diesen Link um ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule` +
+                        `zurückzusetzen. \n ${link}`;
+                    let mailOptions = {
+                        to: email,
+                        from: config.e_mail,
+                        subject: 'Passwort zurücksetzen',
+                        text: link
+
+                };
+
+                    transporter.sendMail(mailOptions, function (err, data) {
+                        if (err) {
+                            console.log('Error Occurs', err);
+                        } else {
+                            console.log('Email sent!!')
+                        }
+                    });
+
+                });
                 response.redirect("/login");
+
             } else
             {
                 console.log("Error");
@@ -315,6 +340,16 @@ app.post("/checkResetToken", (request, response) =>{
 
 app.post("/sendToken", (request, response) => {
 
+
+
+    // Step 3
+    transporter.sendMail(mailOptions, function (err, data) {
+        if (err) {
+            console.log('Error Occurs', err);
+        } else {
+            console.log('Email sent!!')
+        }
+    })
 
 
 });
@@ -423,6 +458,30 @@ app.post("/register", redirectHome, (request, response) => {
                                                     throw err;
                                                 else {
                                                     console.log("User created");
+
+                                                    let link = `http://webtech-01.lin.hs-osnabrueck.de/changePassword`;
+                                                    link = `Guten Tag, \n ` +
+                                                        `Um Ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule Osnabrück zurückzusetzen`+
+                                                        ` benötigen Sie den folgenden Token: \n` +
+                                                        `${resetToken} \n` +
+                                                        ` Bite klicken Sie auf diesen Link um ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule` +
+                                                        `zurückzusetzen. \n ${link}`;
+
+                                                    let mailOptions = {
+                                                        to: email,
+                                                        from: config.e_mail,
+                                                        subject: 'Passwort zurücksetzen',
+                                                        text: link
+
+                                                    };
+
+                                                    transporter.sendMail(mailOptions, function (err, data) {
+                                                        if (err) {
+                                                            console.log('Error Occurs', err);
+                                                        } else {
+                                                            console.log('Email sent!!')
+                                                        }
+                                                    });
                                                 }
                                             });
                                     } else {

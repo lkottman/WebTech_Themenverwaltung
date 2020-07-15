@@ -32,14 +32,15 @@ const {
 } = process.env;
 
 app.use(express.static(__dirname + '/projekt'));
-app.use(express.static(__dirname + '/css'));
+app.use(express.static(__dirname + '/css'))
 app.use(express.static('/js'));
 app.use(express.json({limit: "1mb"}));
-app.use(bodyParser.urlencoded({extended: true}));
-
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
 
 app.get("/RequirementsEditGer", (require, response) => {
-    response.sendFile('//Projekt//MainPageGer.html', {root: __dirname})
+  response.sendFile('//Projekt//MainPageGer.html', {root: __dirname})
 });
 
 app.get("/RequirementsEditEng", (require, response) => {
@@ -55,19 +56,39 @@ app.get("/EditReqEng", (require, response) => {
 });
 
 app.get("/", (request, response) => {
-  response.sendFile('//Projekt//MainPageGer.html', {root: __dirname});
+  response.sendFile('//Projekt//Test.html', {root: __dirname});
 });
 
+app.post("/createTable", (require, response) => {
 
-app.post("/saveReqData", (request, response) =>
-{
   if(request.method === "OPTIONS"){
     response.set('Access-Control-Allow-Origin', '*');
     response.set('Access-Control-Allow-Headers', 'Content-Type');
     response.status(204).send('');
   }
 
-connection.query("INSERT" + " INTO " + "Anforderungen(id,name,shortdesc) " + "VALUES("
+  connection.query("CREATE TABLE " + require.body.tablename +
+      " (ID VARCHAR(50), "
+      + "Name VARCHAR(50), "
+      + "Shortdesc LONGTEXT)",
+      function (err) {
+        if (err)
+          throw err;
+        else {
+          console.log("Requirement created");
+        }
+      });
+});
+
+app.post("/saveReqData", (request, response) => {
+
+  if(request.method === "OPTIONS"){
+    response.set('Access-Control-Allow-Origin', '*');
+    response.set('Access-Control-Allow-Headers', 'Content-Type');
+    response.status(204).send('');
+  }
+
+  connection.query("INSERT INTO Anforderungen(id,name,shortdesc) VALUES("
       + '"' + request.body.id + '",'
       + '"' + request.body.name + '",'
       + '"' + request.body.shortdesc + '")',
@@ -78,28 +99,49 @@ connection.query("INSERT" + " INTO " + "Anforderungen(id,name,shortdesc) " + "VA
           console.log("Requirement created");
         }
       });
+  response.end();
 });
 
-app.post("/delReqData", (request, response) =>
-{
-    if(request.method === "OPTIONS2"){
-        response.set('Access-Control-Allow-Origin', '*');
-        response.set('Access-Control-Allow-Headers', 'Content-Type');
-        response.status(204).send('');
-    }
+app.post("/delReqData", (request, response) => {
+  if(request.method === "OPTIONS2"){
+    response.set('Access-Control-Allow-Origin', '*');
+    response.set('Access-Control-Allow-Headers', 'Content-Type');
+    response.status(204).send('');
+  }
 
-    connection.query("DELETE" + " FROM " + "Anforderungen " + "WHERE("
-        + 'id="' + request.body.id + '" AND '
-        + 'name="' + request.body.name + '" AND '
-        + 'shortdesc="' + request.body.shortdesc + '")',
-        function (err) {
-            if (err)
-                throw err;
-            else {
-                console.log("Requirement deleted");
-            }
-        });
+  connection.query("DELETE" + " FROM " + "Anforderungen " + "WHERE("
+      + 'id="' + request.body.id + '")',
+      function (err) {
+        if (err)
+          throw err;
+        else {
+          console.log("Requirement deleted");
+        }
+      });
+  response.end();
 });
+
+// connection.connect
+// (function(error) {
+//   if(!!error)
+//   {
+//     console.log('Error');
+//   } else
+//   {
+//     console.log('connect');
+//   }
+// });
+//
+// connection.query("SELECT *" + " FROM user", function(error, rows){
+//   if(!!error)
+//   {
+//     console.log('Error in the query');
+//   } else
+//   {
+//     console.log('Successful query');
+//     console.log(rows);
+//   }
+// });
 
 app.listen(PORT, () => console.log(
     "listening on: " +
