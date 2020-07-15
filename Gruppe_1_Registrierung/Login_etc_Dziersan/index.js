@@ -256,13 +256,10 @@ app.post("/pwforgo.html", (request, response) => {
                         ` Bite klicken Sie auf diesen Link um ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule` +
                         `zurückzusetzen. \n ${link}`;
                     let mailOptions = {
-                        to: "R.Kaldemeyer@hs-osnabrueck.de",
+                        to: email,
                         from: config.e_mail,
                         subject: 'Passwort zurücksetzen',
-                        text: "Guten Tag Herr Kaldemeyer, \n " +
-                            "Dies ist eine Email aus dem NodeJS-Script, welches ich verwende. \n " +
-                            " Die E-Mail von heute Nachmittag habe ich über die Konsole von Server verschickt. \n " +
-                            "Freundliche Grüße \n Sven Petersen";
+                        text: link
 
                 };
 
@@ -461,6 +458,30 @@ app.post("/register", redirectHome, (request, response) => {
                                                     throw err;
                                                 else {
                                                     console.log("User created");
+
+                                                    let link = `http://webtech-01.lin.hs-osnabrueck.de/changePassword`;
+                                                    link = `Guten Tag, \n ` +
+                                                        `Um Ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule Osnabrück zurückzusetzen`+
+                                                        ` benötigen Sie den folgenden Token: \n` +
+                                                        `${resetToken} \n` +
+                                                        ` Bite klicken Sie auf diesen Link um ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule` +
+                                                        `zurückzusetzen. \n ${link}`;
+
+                                                    let mailOptions = {
+                                                        to: email,
+                                                        from: config.e_mail,
+                                                        subject: 'Passwort zurücksetzen',
+                                                        text: link
+
+                                                    };
+
+                                                    transporter.sendMail(mailOptions, function (err, data) {
+                                                        if (err) {
+                                                            console.log('Error Occurs', err);
+                                                        } else {
+                                                            console.log('Email sent!!')
+                                                        }
+                                                    });
                                                 }
                                             });
                                     } else {
