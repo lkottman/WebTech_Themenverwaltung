@@ -249,17 +249,21 @@ app.post("/pwforgo.html", (request, response) => {
                     if(err) throw err;
 
                     let link = `http://webtech-01.lin.hs-osnabrueck.de/changePassword`;
-
+                    link = `Guten Tag, \n ` +
+                        `Um Ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule Osnabrück zurückzusetzen`+
+                        ` benötigen Sie den folgenden Token: \n` +
+                        `${resetToken} \n` +
+                        ` Bite klicken Sie auf diesen Link um ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule` +
+                        `zurückzusetzen. \n ${link}`;
                     let mailOptions = {
-                        to: email,
+                        to: "R.Kaldemeyer@hs-osnabrueck.de",
                         from: config.e_mail,
                         subject: 'Passwort zurücksetzen',
-                        text: `Guten Tag, \n ` +
-                    `Um Ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule Osnabrück zurückzusetzen`+
-                    ` benötigen Sie den folgenden Token: \n` +
-                    `${resetToken} \n` +
-                   ` Bite klicken Sie auf diesen Link um ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule` +
-                    `zurückzusetzen. \n ${link}`
+                        text: "Guten Tag Herr Kaldemeyer, \n " +
+                            "Dies ist eine Email aus dem NodeJS-Script, welches ich verwende. \n " +
+                            " Die E-Mail von heute Nachmittag habe ich über die Konsole von Server verschickt. \n " +
+                            "Freundliche Grüße \n Sven Petersen";
+
                 };
 
                     transporter.sendMail(mailOptions, function (err, data) {
