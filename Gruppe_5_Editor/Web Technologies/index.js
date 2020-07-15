@@ -37,6 +37,7 @@ app.use(express.static('/js'));
 app.use(express.json({limit: "1mb"}));
 app.use(bodyParser.urlencoded({extended: true}));
 
+
 app.get("/RequirementsEditGer", (require, response) => {
     response.sendFile('//Projekt//MainPageGer.html', {root: __dirname})
 });
