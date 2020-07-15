@@ -147,27 +147,39 @@ function addRow(tableID) {
 
         window.open("/EditReqGer",
             "Anforderung erstellen", "height=500, width=600");
-    }
+    };
 
     let newdelButton = document.createElement("button");
     newdelButton.className = "delbutton";
     newdelButton.innerHTML = "löschen";
+
     newdelButton.onclick = function deleteRow() {
         let row = newdelButton.parentNode.parentNode;
         row.parentNode.removeChild(row);
+
+        const options2 = {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(requirement)
+        };
+
+        fetch("/delReqData", options2)
+            .then(response => response.json())
     };
 
     requirement = new Requirements(
         id,
         namefield,
         newTextarea.value
-    )
+    );
 
     const options = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(requirement)
     };
+
+    console.log(requirement);
 
     fetch("/saveReqData", options)
     .then(response => response.json())
@@ -185,7 +197,7 @@ function addRow(tableID) {
     newCell1.appendChild(newText1);
     newCell2.appendChild(newText2);
     newCell3.appendChild(newTextarea);
-    newCell4.appendChild(newrewButton)
+    newCell4.appendChild(newrewButton);
     newCell5.appendChild(newdelButton);
 
     clearfields();
