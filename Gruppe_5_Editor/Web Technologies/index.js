@@ -59,7 +59,7 @@ app.get("/", (request, response) => {
   response.sendFile('//Projekt//Test.html', {root: __dirname});
 });
 
-app.post("/createTable", (require, response) => {
+app.post("/createTable", (request, response) => {
 
   if(request.method === "OPTIONS"){
     response.set('Access-Control-Allow-Origin', '*');
@@ -67,17 +67,18 @@ app.post("/createTable", (require, response) => {
     response.status(204).send('');
   }
 
-  connection.query("CREATE TABLE " + require.body.tablename +
-      " (ID VARCHAR(50), "
+  connection.query("CREATE TABLE IF NOT EXISTS "+ request.body.tablename +"requirement "
+      + "(ID VARCHAR(50), "
       + "Name VARCHAR(50), "
       + "Shortdesc LONGTEXT)",
       function (err) {
         if (err)
           throw err;
         else {
-          console.log("Requirement created");
+          console.log("Table created");
         }
       });
+  response.end();
 });
 
 app.post("/saveReqData", (request, response) => {
@@ -120,28 +121,6 @@ app.post("/delReqData", (request, response) => {
       });
   response.end();
 });
-
-// connection.connect
-// (function(error) {
-//   if(!!error)
-//   {
-//     console.log('Error');
-//   } else
-//   {
-//     console.log('connect');
-//   }
-// });
-//
-// connection.query("SELECT *" + " FROM user", function(error, rows){
-//   if(!!error)
-//   {
-//     console.log('Error in the query');
-//   } else
-//   {
-//     console.log('Successful query');
-//     console.log(rows);
-//   }
-// });
 
 app.listen(PORT, () => console.log(
     "listening on: " +
