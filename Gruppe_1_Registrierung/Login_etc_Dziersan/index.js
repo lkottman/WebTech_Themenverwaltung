@@ -238,7 +238,7 @@ app.post("/pwforgo.html", (request, response) => {
                 endDate = endDate.toISOString().slice(0, 19).replace('T', ' ');
 
                 // use of gravis for easier insertString
-                let insertToken = `INSERT INTO pw_forgot_token(e_mail, start, end, token, used) VALUES ('${email}', 
+                let insertToken = `INSERT INTO PW_FORGOT_TOKEN(e_mail, start, end, token, used) VALUES ('${email}', 
                     '${startDate}','${endDate}', '${resetToken}', false )`;
                 console.log(insertToken);
 
@@ -251,8 +251,8 @@ app.post("/pwforgo.html", (request, response) => {
                     let link = `http://webtech-01.lin.hs-osnabrueck.de/changePassword`;
 
                     let mailOptions = {
+                        to: email,
                         from: config.e_mail,
-                        to: request.params.mail,
                         subject: 'Passwort zurücksetzen',
                         text: `Guten Tag, \n ` +
                     `Um Ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule Osnabrück zurückzusetzen`+
