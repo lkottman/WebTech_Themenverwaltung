@@ -1,7 +1,10 @@
-function createTable(o) {
+function getLiData() {
+
+}
+
+function createTable(tablename) {
 
   class Table {
-
     constructor(Tablename) {
       this.tablename = Tablename;
     }
@@ -11,9 +14,11 @@ function createTable(o) {
     }
   }
 
-  tablename = new Table(
-    grName
-  )
+  table = new Table(
+      tablename
+  );
+
+  console.log(table);
 
   const options = {
     method: "POST",
@@ -21,16 +26,9 @@ function createTable(o) {
     body: JSON.stringify(table)
   };
 
-  fetch("/createTable", options)
-  .then(response => response.json())
-  .then(data => {
+  fetch("/createTable", options);
+}
 
-    if (data.register === ""){
-
-    } else {
-      alert(data.register);
-      location.reload();
-    }
-  });
+function loadTable() {
 
 }
