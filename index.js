@@ -111,10 +111,7 @@ app.use((request, respond, next) => {
     next();
 });
 
-// Get Methods
-var path = require('path');
-
-router = require(path.resolve("./public/routes/routesGET.js"));
+router = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/routes/routesGET.js");
 
 app.get("/", router);
 app.get("/login", router);
