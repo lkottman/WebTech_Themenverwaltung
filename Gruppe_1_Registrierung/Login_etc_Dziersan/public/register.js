@@ -8,7 +8,7 @@ function register() {
             this.email = email;
             this.password = password;
             this.verified = verified;
-            this.secretToken = generateRandomString();  // stores a random generate String for E-mail verification
+
         }
 
         toString() {
@@ -37,13 +37,16 @@ function register() {
         fetch("/register", options)
             .then(response => response.json())
             .then(data => {
-
-                if (data.register === ""){
-                    fetch("/successfullregistration");
-                } else {
+                //
+                // if (data.register === ""){
+                //     fetch("/successfullregistration");
+                // } else {
+                //     alert(data.register);
+                //     location.reload();
+                // }
                     alert(data.register);
                     location.reload();
-                }
+
             });
     } else {
         alert("Nur E-Mail Adressen mit der Endung '@hs-osnabrueck.de' sind zugelassen.")
@@ -115,9 +118,7 @@ function validateEmail(email) {
     return /^\"?[\w-_\.]*\"?@hs-osnabrueck\.de$/.test(email);
 }
 
-// generate a random String for e-mail verification
-function generateRandomString() {
-    let randomString = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-    console.log( randomString);
-    return randomString;
-}
+module.exports = {
+    validateEmail: validateEmail,
+    generateRandomString : generateRandomString(),
+};
