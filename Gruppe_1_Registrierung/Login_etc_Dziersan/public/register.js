@@ -37,13 +37,16 @@ function register() {
         fetch("/register", options)
             .then(response => response.json())
             .then(data => {
-
-                if (data.register === ""){
-                    fetch("/successfullregistration");
-                } else {
+                //
+                // if (data.register === ""){
+                //     fetch("/successfullregistration");
+                // } else {
+                //     alert(data.register);
+                //     location.reload();
+                // }
                     alert(data.register);
                     location.reload();
-                }
+
             });
     } else {
         alert("Nur E-Mail Adressen mit der Endung '@hs-osnabrueck.de' sind zugelassen.")
@@ -121,3 +124,8 @@ function generateRandomString() {
     console.log( randomString);
     return randomString;
 }
+
+module.exports = {
+    validateEmail: validateEmail,
+    generateRandomString : generateRandomString(),
+};

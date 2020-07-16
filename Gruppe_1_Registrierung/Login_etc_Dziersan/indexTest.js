@@ -2,36 +2,24 @@ const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const fs = require('fs');
-const config = JSON.parse(fs.readFileSync("public/Sven_Louis/datenbankConfig.json"));
 const app = express();
-const configData = JSON.parse(fs.readFileSync("public/Sven_Louis/config.json"));
 const nodemailer = require('nodemailer');
 
 // https://youtu.be/OH6Z0dJ_Huk?t=1466
+
 
 let http = require("http");
 let url = require("url");
 let mysql = require("mysql");
 
 
-
-let transporter = nodemailer.createTransport({
-    host: configData.host,
-    port: configData.port,
-
-    auth: {
-        user: configData.user,
-        pass: configData.password,
-
-    }
-});
-
 let connection = mysql.createConnection(
     {
-        host: config.host,
-        user: config.user,
-        password: config.password,
-        database: config.database
+        host: "localhost",
+        user: 3306,
+        user: "root",
+        password: "maria",
+        database: "Webtech"
     }
 );
 
@@ -41,7 +29,7 @@ const tokenLifeTime = 60 * 24 * 366;// 10 + 1 day year
 const fieldsQueryResult = 0;
 
 var {
-    PORT = 3000,
+    PORT = 3001,
     sessionLifetime = lifeTime,
     sessionName = "sid",
     secretSession = "test"
@@ -49,7 +37,8 @@ var {
 
 //imports
 app.use(express.static('public'));
-app.use(express.static('Sven_Louis'));
+app.use(express.static('private'));
+app.use(express.static('Gruppe_1_Registrierung'));
 app.use(express.static('images'));
 app.use(express.json({limit: "1mb"}));
 app.use(bodyParser.urlencoded({
@@ -108,7 +97,7 @@ app.use((request, respond, next) => {
 // Get Methods
 app.get("/home", redirectLogin, (request, response) => {
     console.log("home");
-    response.sendFile('//privat//home.html', {root: __dirname});
+    response.status(200).sendFile('//privat//home.html', {root: __dirname});
 });
 
 app.get("/register", (request, response) => {
@@ -122,7 +111,7 @@ app.get("/register", (request, response) => {
 app.get("/token", (request, response) => {
     if (request.session.userAuthorization === "lecturer"
         || request.session.userAuthorization === "admin") {
-        response.sendFile('//privat//token.html', {root: __dirname});
+        response.status(200).sendFile('//privat//token.html', {root: __dirname});
     } else {
         response.redirect("/login");
     }
@@ -132,33 +121,33 @@ app.get("/login", (request, response) => {
     if (request.session.userId) {
         response.redirect("/home");
     } else {
-        response.sendFile('//public//login.html', {root: __dirname});
+        response.status(200).sendFile('//public//login.html', {root: __dirname});
     }
 });
 
 app.get("/", (request, response) => {
-    response.sendFile('//public//index.html', {root: __dirname});
+    response.status(200).sendFile('//public//index.html', {root: __dirname});
 });
 
 app.get("/agb", (request, response) => {
-    response.sendFile('//public//agb.html', {root: __dirname});
+    response.status(200).sendFile('//public//agb.html', {root: __dirname});
 });
 
 app.get("/successfullregistration", (request, response) => {
-    response.sendFile('//public//successRegister.html', {root: __dirname});
+    response.status(200).sendFile('//public//successRegister.html', {root: __dirname});
 });
 
 
 app.get("/testmailer", (request, response) => {
-    response.sendFile('//public//testmailer.html', {root: __dirname});
+    response.status(200).sendFile('//public//testmailer.html', {root: __dirname});
 });
 
 app.get("/resetpassword", (request, response) => {
-    response.sendFile('//public//Sven_Louis//tokenReset.html', {root: __dirname});
+    response.status(200).sendFile('//public//Sven_Louis//tokenReset.html', {root: __dirname});
 });
 
 app.get("/changepassword", (request, response) => {
-    response.sendFile('//public//Sven_Louis//changePassword.html', {root: __dirname});
+    response.status(200).sendFile('//public//Sven_Louis//changePassword.html', {root: __dirname});
 });
 
 //change to user db later and ADD USER token
@@ -278,7 +267,7 @@ app.post("/checkResetToken", (request, response) =>{
 
     if(resetToken == "")
     {
-            console.log("test");
+        console.log("test");
         response.redirect("/login");
     }
     else
@@ -330,7 +319,6 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
 //Takes E-Mail and password from User and check if these matches if database
 app.post("/login", redirectHome, (request, response) => {
 
-    console.log(request);
 
     connection.query("SELECT id, name,verified, token, e_mail, password, authorization from user where "
         + 'e_mail = "' + request.body.email + '"'
@@ -375,8 +363,6 @@ function validateEmail(email) {
 
 //Takes information from form and creates user
 app.post("/register", redirectHome, (request, response) => {
-
-    console.log(request);
 
     if(request.method == "OPTIONS"){
         response.set('Access-Control-Allow-Origin', '*');
@@ -519,12 +505,12 @@ app.post("/logout", redirectLogin, (request, respond) => {
 
 
 
-var server = app.listen(PORT, () => console.log(
+const server = app.listen(PORT, () => console.log(
     "listening on: " +
     `http://localhost:${PORT}`
 ));
 
 module.exports = {
-  validateEmail: validateEmail,
-  server: server
+    validateEmail: validateEmail,
+    server: server
 };

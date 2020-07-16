@@ -39,5 +39,3 @@ function login() {
         })
         .catch(error => console.error(error))
 }
-
-console.log(document.getElementById("saveLogin").value);
