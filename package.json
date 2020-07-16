@@ -9,12 +9,11 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "fs": "0.0.1-security",
+    "jasmine": "^3.5.0",
     "mysql": "^2.18.1",
     "nodemailer": "latest",
     "request": "^2.88.2",
     "session": "^0.1.0"
   },
-  "devDependencies": {
-    "jasmine": "^3.5.0"
-  }
+  "devDependencies": {}
 }

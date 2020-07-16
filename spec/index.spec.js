@@ -61,10 +61,6 @@ describe("Index Tests: ", function() {
         });
 
 
-        it("Body Login", () =>{
-
-        });
-
     });
 
     describe("POST /login", () =>{
@@ -85,6 +81,22 @@ describe("Index Tests: ", function() {
                 done();
             });
         });
+
+        it('Failed to Login because of false Informations', function (done) {
+            Request.post("http://localhost:3001/login", {json: true, body: jsonLoginBodyEmpty}, function (error, response) {
+                expect(response.body).toEqual(Object({ login: 'Fehlgeschlagen: Falsche Informationen oder nicht registriert' }));
+                done();
+            });
+        });
+
+        jsonLoginBodyUser = { email: 'dominik.dziersan@hs-osnabrueck.de', password: 'Test123E', checkboxLogin: true };
+        it('Failed to Login because of false Informations', function (done) {
+            Request.post("http://localhost:3001/login", {json: true, body: jsonLoginBodyUser}, function (error, request, response) {
+                // cookie = request.session
+                // expect(request.session.maxAge).toEqual(54000);
+                done();
+            });
+        });
     });
 
 
@@ -102,36 +114,100 @@ describe("Index Tests: ", function() {
             expect(data.status).toBe(200);
         });
     });
-    "http://localhost:3001/register"
+
     describe("POST /register", () =>{
-        jsonRegisterBodyEmpty = { email: '', password: '', checkboxLogin: false };
 
-        //TODO Register
-
-        jsonRegisterBodyUser = {
-                token: 'Code',
-                name: 'Dominik',
-                surname: 'Dziersan',
-                email: 'Dominik.Dziersan@hs-osnabrueck.de',
-                password: 'Test123E',
-                secretToken: '7iekkack0reykg2ppeily'
+        var token = "";
+        var email = "";
+        var jsonRegisterBodyUser = {
+            token: `${token}`,
+            name: "Dominik",
+            surname: "Dziersan",
+            email: `${email}`,
+            password: "Test123E",
+            secretToken: "secretToken"
         };
 
         it('Status 200', function (done) {
-            Request.post("http://localhost:3001/register", {json: true, body: jsonRegisterBodyEmpty}, function (error, response) {
+            Request.post("http://localhost:3001/register", {json: true, body: jsonRegisterBodyUser}, function (error, response) {
                 expect(response.statusCode).toEqual(200);
                 done();
             });
         });
 
-        it('Failed to Login because of false Informations', function (done) {
-            Request.post("http://localhost:3001/login", {json: true, body: jsonLoginBodyEmpty}, function (error, response) {
-                expect(response.body).toEqual(Object({ login: 'Fehlgeschlagen: Falsche Informationen oder nicht registriert' }));
+        it('Failed to Login because Token doesnt exists', function (done) {
+            token = "FalscherToken";
+            email = "Email.Test@hs-osnabrueck.de";
+
+            var jsonRegisterBodyUser = {
+                token: `${token}`,
+                name: "Dominik",
+                surname: "Dziersan",
+                email: `${email}`,
+                password: "Test123E",
+                secretToken: "secretToken"
+            };
+
+
+            Request.post("http://localhost:3001/register", {json: true, body: jsonRegisterBodyUser}, function (error, response) {
+                expect(response.body).toEqual(Object({ register: "Freischaltcode existiert nicht." }));
                 done();
             });
         });
-    });
 
+        it('Failed to Login because User already exists', function (done) {
+            token = "9bllcx";
+            email = "dominik.dziersan@hs-osnabrueck.de";
+            var jsonRegisterBodyUser = {
+                token: `${token}`,
+                name: "Dominik",
+                surname: "Dziersan",
+                email: `${email}`,
+                password: "Test123E",
+                secretToken: "secretToken"
+            };
+            Request.post("http://localhost:3001/register", {json: true, body: jsonRegisterBodyUser}, function (error, response) {
+                expect(response.body).toEqual(Object({ register: "Fehlgeschlagen: Benutzer existiert bereits." }));
+                done();
+            });
+        });
+
+        it('Failed to Login because Token is expired', function (done) {
+            token = "c3ehla";
+            email = "Email.Test@hs-osnabrueck.de";
+            var jsonRegisterBodyUser = {
+                token: `${token}`,
+                name: "Dominik",
+                surname: "Dziersan",
+                email: `${email}`,
+                password: "Test123E",
+                secretToken: "secretToken"
+            };
+            Request.post("http://localhost:3001/register", {json: true, body: jsonRegisterBodyUser}, function (error, response) {
+                expect(response.body).toEqual(Object({ register: "Freischaltcode ist abgelaufen." }));
+                done();
+            });
+        });
+
+        it('Failed to Login because Token is expired', function (done) {
+            token = "9bllcx";
+            email = "Email.Test@web.de";
+            var jsonRegisterBodyUser = {
+                token: `${token}`,
+                name: "Dominik",
+                surname: "Dziersan",
+                email: `${email}`,
+                password: "Test123E",
+                secretToken: "secretToken"
+            };
+
+            Request.post("http://localhost:3001/register", {json: true, body: jsonRegisterBodyUser}, function (error, response) {
+                expect(response.body).toEqual(Object({ register: 'Fehlgeschlagen: Benutzer existiert bereits.' }));
+                done();
+            });
+        });
+
+    });
 
     describe("GET /successfullregistration", () =>{
         var data = {};

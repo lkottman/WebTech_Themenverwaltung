@@ -374,8 +374,6 @@ app.post("/register", redirectHome, (request, response) => {
         response.json({register: "Nur E-Mail Adressen mit der Endung '@hs-osnabrueck.de' sind zugelassen."});
     }
 
-    console.log("Test " + request.body.token);
-
     let servertime = new Date();
     let randomtoken = Math.random().toString(36).substr(2, 6);
 
@@ -386,9 +384,6 @@ app.post("/register", redirectHome, (request, response) => {
             if (err)
                 throw err;
             else {
-                console.log(result);
-                console.log(result.length);
-
                 if (result.length !== 0) {
                     let startTime = result[0].start;
                     let endTime = result[0].end;
@@ -440,9 +435,6 @@ app.post("/register", redirectHome, (request, response) => {
 
 app.post("/createToken", redirectLogin, (request, response) => {
 
-    console.log(request.body.time);
-    console.log(tokenLifeTime);
-
     if (request.body.time < tokenLifeTime) {
 
         connection.query("INSERT INTO TOKEN(START,TIME,END,GENTOKEN, USER) VALUES("
@@ -472,8 +464,6 @@ app.post("/deleteToken", redirectLogin, (request, response) => {
                 if (err)
                     throw err;
                 else {
-                    console.log(result.length);
-
                     if (result.length > 0) {
                         connection.query("DELETE FROM token WHERE GENTOKEN = " + '"' + request.body.token + '";'),
                             function (err, result) {
