@@ -122,6 +122,17 @@ app.post("/delReqData", (request, response) => {
   response.end();
 });
 
+app.post("/loadtable", (request, response) => {
+
+  connection.query("SELECT * FROM ANFORDERUNGEN", function (err, result, fields) {
+    if (err)
+      throw err;
+    else {
+      console.log(result);
+    }
+  })
+});
+
 app.listen(PORT, () => console.log(
     "listening on: " +
     `http://localhost:${PORT}`

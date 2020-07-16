@@ -28,3 +28,7 @@ function createTable(tablename) {
 
   fetch("/createTable", options);
 }
+
+function loadTable() {
+
+}
