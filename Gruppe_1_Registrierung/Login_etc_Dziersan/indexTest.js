@@ -2,24 +2,37 @@ const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const fs = require('fs');
+const config = JSON.parse(fs.readFileSync("public/Sven_Louis/datenbankConfig.json"));
 const app = express();
-const nodemailer = require('nodemailer');
 
 // https://youtu.be/OH6Z0dJ_Huk?t=1466
-
 
 let http = require("http");
 let url = require("url");
 let mysql = require("mysql");
 
 
+const configData = JSON.parse(fs.readFileSync("public/Sven_Louis/config.json"));
+
+const nodemailer = require('nodemailer');
+
+let transporter = nodemailer.createTransport({
+    host: configData.host,
+    port: configData.port,
+
+    auth: {
+        user: configData.user,
+        pass: configData.password,
+
+    }
+});
+
 let connection = mysql.createConnection(
     {
-        host: "localhost",
-        user: 3306,
-        user: "root",
-        password: "maria",
-        database: "Webtech"
+        host: config.host,
+        user: config.user,
+        password: config.password,
+        database: config.database
     }
 );
 
@@ -29,7 +42,7 @@ const tokenLifeTime = 60 * 24 * 366;// 10 + 1 day year
 const fieldsQueryResult = 0;
 
 var {
-    PORT = 3001,
+    PORT = 3000,
     sessionLifetime = lifeTime,
     sessionName = "sid",
     secretSession = "test"
@@ -37,8 +50,7 @@ var {
 
 //imports
 app.use(express.static('public'));
-app.use(express.static('private'));
-app.use(express.static('Gruppe_1_Registrierung'));
+app.use(express.static('Sven_Louis'));
 app.use(express.static('images'));
 app.use(express.json({limit: "1mb"}));
 app.use(bodyParser.urlencoded({
@@ -97,7 +109,7 @@ app.use((request, respond, next) => {
 // Get Methods
 app.get("/home", redirectLogin, (request, response) => {
     console.log("home");
-    response.status(200).sendFile('//privat//home.html', {root: __dirname});
+    response.sendFile('//privat//home.html', {root: __dirname});
 });
 
 app.get("/register", (request, response) => {
@@ -111,7 +123,7 @@ app.get("/register", (request, response) => {
 app.get("/token", (request, response) => {
     if (request.session.userAuthorization === "lecturer"
         || request.session.userAuthorization === "admin") {
-        response.status(200).sendFile('//privat//token.html', {root: __dirname});
+        response.sendFile('//privat//token.html', {root: __dirname});
     } else {
         response.redirect("/login");
     }
@@ -121,33 +133,33 @@ app.get("/login", (request, response) => {
     if (request.session.userId) {
         response.redirect("/home");
     } else {
-        response.status(200).sendFile('//public//login.html', {root: __dirname});
+        response.sendFile('//public//login.html', {root: __dirname});
     }
 });
 
 app.get("/", (request, response) => {
-    response.status(200).sendFile('//public//index.html', {root: __dirname});
+    response.sendFile('//public//index.html', {root: __dirname});
 });
 
 app.get("/agb", (request, response) => {
-    response.status(200).sendFile('//public//agb.html', {root: __dirname});
+    response.sendFile('//public//agb.html', {root: __dirname});
 });
 
 app.get("/successfullregistration", (request, response) => {
-    response.status(200).sendFile('//public//successRegister.html', {root: __dirname});
+    response.sendFile('//public//successRegister.html', {root: __dirname});
 });
 
 
 app.get("/testmailer", (request, response) => {
-    response.status(200).sendFile('//public//testmailer.html', {root: __dirname});
+    response.sendFile('//public//testmailer.html', {root: __dirname});
 });
 
 app.get("/resetpassword", (request, response) => {
-    response.status(200).sendFile('//public//Sven_Louis//tokenReset.html', {root: __dirname});
+    response.sendFile('//public//Sven_Louis//tokenReset.html', {root: __dirname});
 });
 
 app.get("/changepassword", (request, response) => {
-    response.status(200).sendFile('//public//Sven_Louis//changePassword.html', {root: __dirname});
+    response.sendFile('//public//Sven_Louis//changePassword.html', {root: __dirname});
 });
 
 //change to user db later and ADD USER token
@@ -181,7 +193,6 @@ app.get("/confirmation", (request, response) => {
 //Get without HTML|| email
 app.get("/cookie", (request, response) => {
     console.log(request.session)
-
     response.json(request.session);
 });
 
@@ -227,17 +238,42 @@ app.post("/pwforgo.html", (request, response) => {
                 endDate = endDate.toISOString().slice(0, 19).replace('T', ' ');
 
                 // use of gravis for easier insertString
-                let insertToken = `INSERT INTO pw_forgot_token(e_mail, start, end, token, used) VALUES ('${email}', 
+                let insertToken = `INSERT INTO PW_FORGOT_TOKEN(e_mail, start, end, token, used) VALUES ('${email}', 
                     '${startDate}','${endDate}', '${resetToken}', false )`;
                 console.log(insertToken);
 
 
+
+
                 connection.query(insertToken, function (err, result) {
                     if(err) throw err;
-                    console.log("1 record inserted");
-                })
-                // hier muss nodemailer noch eingebunden werden
+
+                    let link = `http://webtech-01.lin.hs-osnabrueck.de/changePassword`;
+                    link = `Guten Tag, \n ` +
+                        `Um Ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule Osnabrück zurückzusetzen`+
+                        ` benötigen Sie den folgenden Token: \n` +
+                        `${resetToken} \n` +
+                        ` Bite klicken Sie auf diesen Link um ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule` +
+                        `zurückzusetzen. \n ${link}`;
+                    let mailOptions = {
+                        to: email,
+                        from: config.e_mail,
+                        subject: 'Passwort zurücksetzen',
+                        text: link
+
+                };
+
+                    transporter.sendMail(mailOptions, function (err, data) {
+                        if (err) {
+                            console.log('Error Occurs', err);
+                        } else {
+                            console.log('Email sent!!')
+                        }
+                    });
+
+                });
                 response.redirect("/login");
+
             } else
             {
                 console.log("Error");
@@ -267,7 +303,7 @@ app.post("/checkResetToken", (request, response) =>{
 
     if(resetToken == "")
     {
-        console.log("test");
+            console.log("test");
         response.redirect("/login");
     }
     else
@@ -304,6 +340,18 @@ app.post("/checkResetToken", (request, response) =>{
 
 app.post("/sendToken", (request, response) => {
 
+
+
+    // Step 3
+    transporter.sendMail(mailOptions, function (err, data) {
+        if (err) {
+            console.log('Error Occurs', err);
+        } else {
+            console.log('Email sent!!')
+        }
+    })
+
+
 });
 
 // Post Methods
@@ -319,6 +367,7 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
 //Takes E-Mail and password from User and check if these matches if database
 app.post("/login", redirectHome, (request, response) => {
 
+    console.log(request.body.checkbox);
 
     connection.query("SELECT id, name,verified, token, e_mail, password, authorization from user where "
         + 'e_mail = "' + request.body.email + '"'
@@ -347,19 +396,12 @@ app.post("/login", redirectHome, (request, response) => {
                         request.session.userId = result[0].id;
                         request.session.userName = result[0].name;
                         request.session.userAuthorization = result[0].authorization;
-
                         response.redirect("/home");
                     }
                 }
             }
         });
 });
-
-function validateEmail(email) {
-    return /^\"?[\w-_\.]*\"?@hs-osnabrueck\.de$/.test(email);
-}
-
-
 
 //Takes information from form and creates user
 app.post("/register", redirectHome, (request, response) => {
@@ -370,9 +412,7 @@ app.post("/register", redirectHome, (request, response) => {
         response.status(204).send('');
     }
 
-    if(validateEmail(request.body.email === false)){
-        response.json({register: "Nur E-Mail Adressen mit der Endung '@hs-osnabrueck.de' sind zugelassen."});
-    }
+    console.log("Test " + request.body.token);
 
     let servertime = new Date();
     let randomtoken = Math.random().toString(36).substr(2, 6);
@@ -384,6 +424,9 @@ app.post("/register", redirectHome, (request, response) => {
             if (err)
                 throw err;
             else {
+                console.log(result);
+                console.log(result.length);
+
                 if (result.length !== 0) {
                     let startTime = result[0].start;
                     let endTime = result[0].end;
@@ -415,6 +458,30 @@ app.post("/register", redirectHome, (request, response) => {
                                                     throw err;
                                                 else {
                                                     console.log("User created");
+
+                                                    let url = `http://webtech-01.lin.hs-osnabrueck.de/confirmation?opt=${randomtoken}&email=${request.body.email}`;
+                                                    let bodyText = `Guten Tag Herr ${request.body.name}, Um Ihr E-Mail zu bestaetigen`+
+                                                        `klicken Sie bitte auf folgenden Link."\n ` +
+                                                        `${url} \n Mit freundlichen Grüßen \n Ihre Hausarbeitsthemenverwaltung`;
+
+                                                    console.log(bodyText);
+
+                                                    let mailOptions = {
+                                                        from: config.e_mail,
+                                                        to: request.body.email,
+                                                        subject: 'E-Mail',
+                                                        text: bodyText
+                                                    };
+
+                                                    transporter.sendMail(mailOptions, function (err, data) {
+                                                        if(err) {
+                                                            console.log('Error Occurs', err);
+                                                        }
+                                                        else {
+                                                            console.log('Email sent!!');
+                                                            console.log(data);
+                                                        }
+                                                    })
                                                 }
                                             });
                                     } else {
@@ -434,6 +501,9 @@ app.post("/register", redirectHome, (request, response) => {
 
 
 app.post("/createToken", redirectLogin, (request, response) => {
+
+    console.log(request.body.time);
+    console.log(tokenLifeTime);
 
     if (request.body.time < tokenLifeTime) {
 
@@ -458,27 +528,29 @@ app.post("/createToken", redirectLogin, (request, response) => {
 //Deletes token from Database
 app.post("/deleteToken", redirectLogin, (request, response) => {
 
-    if (request.session.authorization === "admin"){
-        connection.query("SELECT gentoken from token WHERE GENTOKEN = " + '"' + request.body.token + '";',
-            function (err, result) {
-                if (err)
-                    throw err;
-                else {
-                    if (result.length > 0) {
-                        connection.query("DELETE FROM token WHERE GENTOKEN = " + '"' + request.body.token + '";'),
-                            function (err, result) {
-                                if (err)
-                                    throw err;
-                            }
-                        response.json({token: "Token gelöscht!"});
-                    } else {
-                        response.json({token: "Token nicht gefunden"});
-                    }
+    console.log(request.body.token);
+
+    connection.query("SELECT gentoken from token WHERE GENTOKEN = " + '"' + request.body.token + '";',
+        function (err, result) {
+            if (err)
+                throw err;
+            else {
+                console.log(result.length);
+
+                if (result.length > 0) {
+                    connection.query("DELETE FROM token WHERE GENTOKEN = " + '"' + request.body.token + '";'),
+                        function (err, result) {
+                            if (err)
+                                throw err;
+                        }
+                    console.log("token deleted")
+                    response.json({token: "Token gelöscht!"});
+                } else {
+                    response.json({token: "Token nicht gefunden"});
+                    console.log("token not found")
                 }
-            })
-    } else {
-        response.json({token: "Keine Berechtigung zur Löschung von Freischaltcodes"});
-    }
+            }
+        })
 });
 
 app.post("/logout", redirectLogin, (request, respond) => {
@@ -495,12 +567,7 @@ app.post("/logout", redirectLogin, (request, respond) => {
 
 
 
-const server = app.listen(PORT, () => console.log(
+app.listen(PORT, () => console.log(
     "listening on: " +
     `http://localhost:${PORT}`
 ));
-
-module.exports = {
-    validateEmail: validateEmail,
-    server: server
-};

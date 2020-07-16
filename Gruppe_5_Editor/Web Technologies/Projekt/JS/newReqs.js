@@ -86,10 +86,25 @@ function clearfields() {
  * @param tableID
  */
 function addRow(tableID) {
+
+    class Requirements{
+
+        constructor(ID, Name, ShortDesc) {
+            this.id = ID;
+            this.name = Name;
+            this.shortdesc = ShortDesc;
+        }
+
+        toString() {
+            return this.id + " " + this.name + " " + this.shortdesc;
+        }
+    }
+
     let idfield = document.getElementById("id").value;
     let namefield = document.getElementById("name").value;
     let shortdescfield = document.getElementById("shortdesc").value;
     let idprefield = document.getElementById("idpre").value;
+    let id = idprefield+idfield;
 
     if (idprefield === "M") {
         var tableRef = document.getElementById(tableID);
@@ -130,14 +145,8 @@ function addRow(tableID) {
     newrewButton.innerHTML = "bearbeiten";
     newrewButton.onclick = function openupAdd() {
 
-        window.open("http://localhost:63342/Web%20Technologies/Projekt/EditRequirementGer.html?_ijt=krfjkfipbo23u62ib0jfmgq6jk",
+        window.open("/EditReqGer",
             "Anforderung erstellen", "height=500, width=600");
-        let row = newrewButton.parentNode.parentNode;
-        localStorage[input1] = row.getElementsByTagName("td")[0].innerText;
-        let input2 = row.getElementsByTagName("td")[1].innerText;
-
-        document.getElementById("addID").value = localStorage[input1];
-        /*document.getElementById("addName").value = localStorage[input2];*/
     }
 
     let newdelButton = document.createElement("button");
@@ -146,7 +155,33 @@ function addRow(tableID) {
     newdelButton.onclick = function deleteRow() {
         let row = newdelButton.parentNode.parentNode;
         row.parentNode.removeChild(row);
+
+        fetch("/delReqData", options)
     };
+
+    requirement = new Requirements(
+        id,
+        namefield,
+        newTextarea.value
+    )
+
+    const options = {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(requirement)
+    };
+
+    fetch("/saveReqData", options)
+    .then(response => response.json())
+    .then(data => {
+
+        if (data.register === ""){
+
+        } else {
+            alert(data.register);
+            location.reload();
+        }
+    });
 
     newCell1.appendChild(newText11);
     newCell1.appendChild(newText1);
