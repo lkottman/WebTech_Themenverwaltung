@@ -10,11 +10,11 @@ configDataMailer = require("./Gruppe_1_Registrierung/public/config/config.json")
 const configData = configDataMailer;
 const config = configDatabase;
 
-// https://youtu.be/OH6Z0dJ_Huk?t=1466
-
 let http = require("http");
 let url = require("url");
 let mysql = require("mysql");
+
+// https://youtu.be/OH6Z0dJ_Huk?t=1466
 
 
 let transporter = nodemailer.createTransport({
@@ -55,6 +55,12 @@ let staticOptions = {
 //imports
 app.use('/css',express.static('./Gruppe_1_Registrierung/public/css'));
 app.use('/images',express.static('./Gruppe_1_Registrierung/public/images'));
+app.use('/',express.static('./Gruppe_1_Registrierung/public/html'));
+app.use('/javascript',express.static('./Gruppe_1_Registrierung/public/javascript'));
+app.use('/privat/images',express.static('./Gruppe_1_Registrierung/privat/images'));
+
+
+
 app.use(express.json({limit: "1mb"}));
 app.use(bodyParser.urlencoded({
     extended: true
@@ -119,17 +125,19 @@ app.get("/token", router);
 app.get("/home", router);
 app.get("/admin", router);
 
-routerLogin = require("./Gruppe_1_Registrierung/public/routes/login/routesLogin.js")
+
+routerLogin = require("./Gruppe_1_Registrierung/public/routes/login/routesLogin.js");
 app.use(routerLogin);
 
-routerRegister = require("./Gruppe_1_Registrierung/public/routes/register/routesRegister.js")
+routerRegister = require("./Gruppe_1_Registrierung/public/routes/register/routesRegister.js");
 app.use(routerRegister);
+
 
 
 
 //change to user db later and ADD USER token
 app.get("/confirmation", (request, response) => {
-    response.sendFile('//Gruppe_1_Registrierung//Login_etc_Dziersan//public//Sven_Louis//confirmEmail.html', {root: __dirname});
+    response.sendFile('//Gruppe_1_Registrierung//public//html//confirmEmail.html', {root: __dirname});
 
     let tokenReset = request.query.opt;
     let email = request.query.email;
@@ -164,7 +172,7 @@ app.get("/cookie", (request, response) => {
 /*+
     checks for given entry in user with given e-mail  and creates entry in PASSWORT_RESET TOKEN
  */
-app.post("/pwforgo.html", (request, response) => {
+app.post("/passwordForgot.html", (request, response) => {
     let email = request.body.email;
     console.log(email);
 
