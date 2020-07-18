@@ -4,7 +4,7 @@ const router = express.Router()
 const fs = require('fs');
 const session = require("express-session");
 const bodyParser = require("body-parser");
-const config = JSON.parse(fs.readFileSync("C:\\Users\\Dominik\\IdeaProjects\\WebTech_Themenverwaltung2\\Gruppe_1_Registrierung\\Login_etc_Dziersan\\public\\Sven_Louis\\datenbankConfig.json"));
+const config = JSON.parse(fs.readFileSync("/Users/svenpetersen/IdeaProjects/WebTech_Themenverwaltung_Closly_Finished/config/datenbankConfig.json"));
 
 
 const redirect = require("../routesRedirect");

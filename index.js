@@ -5,7 +5,7 @@ const fs = require('fs');
 const app = express();
 const nodemailer = require('nodemailer');
 
-configDatabase = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/Sven_Louis/datenbankConfig.json");
+configDatabase = require("./config/datenbankConfig.json");
 configDataMailer = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/Sven_Louis/config.json");
 const configData = configDataMailer;
 const config = configDatabase;

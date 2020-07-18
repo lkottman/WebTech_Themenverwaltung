@@ -1,9 +1,9 @@
 const express = require('express');
 const session = require("express-session");
 const mysql = require('mysql');
-const path = require("../../../../../pathConfig.json");
+const path = require("../../../../../config/pathConfig.json");
 const fs = require('fs');
-const config = JSON.parse(fs.readFileSync(path.path + "\\Gruppe_1_Registrierung\\Login_etc_Dziersan\\public\\Sven_Louis\\datenbankConfig.json"));
+const config = JSON.parse(fs.readFileSync(path.path + "/config/datenbankConfig.json"));
 const app = express();
 const redirect = require("../routesRedirect");
 const router = express.Router()
