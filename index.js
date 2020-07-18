@@ -6,15 +6,15 @@ const app = express();
 const nodemailer = require('nodemailer');
 
 configDatabase = require("./config/datenbankConfig.json");
-configDataMailer = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/Sven_Louis/config.json");
+configDataMailer = require("./Gruppe_1_Registrierung/public/config/config.json");
 const configData = configDataMailer;
 const config = configDatabase;
-
-// https://youtu.be/OH6Z0dJ_Huk?t=1466
 
 let http = require("http");
 let url = require("url");
 let mysql = require("mysql");
+
+// https://youtu.be/OH6Z0dJ_Huk?t=1466
 
 
 let transporter = nodemailer.createTransport({
@@ -49,10 +49,18 @@ var {
     secretSession = "test"
 } = process.env;
 
+let staticOptions = {
+
+}
 //imports
-app.use(express.static('public'));
-app.use(express.static('Sven_Louis'));
-app.use(express.static('images'));
+app.use('/css',express.static('./Gruppe_1_Registrierung/public/css'));
+app.use('/images',express.static('./Gruppe_1_Registrierung/public/images'));
+app.use('/',express.static('./Gruppe_1_Registrierung/public/html'));
+app.use('/javascript',express.static('./Gruppe_1_Registrierung/public/javascript'));
+app.use('/privat/images',express.static('./Gruppe_1_Registrierung/privat/images'));
+
+
+
 app.use(express.json({limit: "1mb"}));
 app.use(bodyParser.urlencoded({
     extended: true
@@ -105,7 +113,7 @@ app.use((request, respond, next) => {
     next();
 });
 
-router = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/routes/routesGET.js");
+router = require("./Gruppe_1_Registrierung/public/routes/routesGET.js");
 
 app.get("/", router);
 app.get("/login", router);
@@ -115,18 +123,26 @@ app.get("/testmailer", router);
 app.get("/resetpassword", router);
 app.get("/token", router);
 app.get("/home", router);
+app.get("/admin", router);
+app.get("/register", router);
 
-routerLogin = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/routes/login/routesLogin.js")
+
+
+routerLogin = require('./Gruppe_1_Registrierung/public/routes/login/routesLogin.js');
 app.use(routerLogin);
 
-routerRegister = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/routes/register/routesRegister.js")
-app.use(routerRegister);
+
+routerRegister = require('./Gruppe_1_Registrierung/public/routes/register/routesRegister');
+app.use("/register",routerRegister);
+app.get('/register2', routerRegister);
+
+
 
 
 
 //change to user db later and ADD USER token
 app.get("/confirmation", (request, response) => {
-    response.sendFile('//Gruppe_1_Registrierung//Login_etc_Dziersan//public//Sven_Louis//confirmEmail.html', {root: __dirname});
+    response.sendFile('//Gruppe_1_Registrierung//public//html//confirmEmail.html', {root: __dirname});
 
     let tokenReset = request.query.opt;
     let email = request.query.email;
@@ -161,7 +177,7 @@ app.get("/cookie", (request, response) => {
 /*+
     checks for given entry in user with given e-mail  and creates entry in PASSWORT_RESET TOKEN
  */
-app.post("/pwforgo.html", (request, response) => {
+app.post("/passwordForgot.html", (request, response) => {
     let email = request.body.email;
     console.log(email);
 
@@ -299,9 +315,11 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
     next();
 });
 
-const routerToken = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/routes/token/routesToken");
+const routerToken = require("./Gruppe_1_Registrierung/public/routes/token/routesToken");
 app.use("/createToken", routerToken);
 app.use("/deleteToken", routerToken);
+
+
 
 // app.post("/createToken", redirectLogin, (request, response) => {
 //
