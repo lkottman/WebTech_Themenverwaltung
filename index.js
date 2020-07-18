@@ -124,13 +124,18 @@ app.get("/resetpassword", router);
 app.get("/token", router);
 app.get("/home", router);
 app.get("/admin", router);
+app.get("/register", router);
 
 
-routerLogin = require("./Gruppe_1_Registrierung/public/routes/login/routesLogin.js");
+
+routerLogin = require('./Gruppe_1_Registrierung/public/routes/login/routesLogin.js');
 app.use(routerLogin);
 
-routerRegister = require("./Gruppe_1_Registrierung/public/routes/register/routesRegister.js");
-app.use(routerRegister);
+
+routerRegister = require('./Gruppe_1_Registrierung/public/routes/register/routesRegister');
+app.use("/register",routerRegister);
+app.get('/register2', routerRegister);
+
 
 
 
