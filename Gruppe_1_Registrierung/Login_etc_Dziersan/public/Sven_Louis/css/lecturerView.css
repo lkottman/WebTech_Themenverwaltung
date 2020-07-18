@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,300&display=swap');
+
+html {
+    height: 100%;
+    font-family: Roboto;
+    font-size: 100%;
+    overflow-y: scroll;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    letter-spacing: .6px !important;
+}
+body{
+    font-family: "Roboto Thin";
+    font-size: 16px;
+}
+.content{
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+
+.leftContent{
+    display: grid;
+    grid-template-rows: 50% 50%;
+}
+
+.content > div{
+    padding: 1em;
+}
+
+
+
+.leftContent{
+
+}
+
+.rightContent{
+
+}
+
