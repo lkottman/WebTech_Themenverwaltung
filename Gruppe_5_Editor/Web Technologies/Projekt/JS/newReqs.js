@@ -150,6 +150,7 @@ function addRow(tableID) {
         check.checked = true;
 
         let row = newrewButton.parentNode.parentNode;
+
         let col1 = row.children[0].innerHTML;
         let col2 = row.children[1].innerHTML;
         let col3 = row.children[2].textContent;
