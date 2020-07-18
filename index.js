@@ -53,10 +53,8 @@ let staticOptions = {
 
 }
 //imports
-app.use(express.static(__dirname));
-console.log(__dirname);
-app.use(express.static('Gruppe_1_Registrierung/Login_etc_Dziersan/public/Sven_Louis/routes'));
-app.use(express.static('Gruppe_1_Registrierung/Login_etc_Dziersan/privat'));
+app.use(express.static('./Gruppe_1_Registrierung/public/css'));
+app.use(express.static('./Gruppe_1_Registrierung/public/images'));
 
 app.use(express.static('images'));
 app.use(express.json({limit: "1mb"}));
