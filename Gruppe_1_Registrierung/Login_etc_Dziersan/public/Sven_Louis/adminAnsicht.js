@@ -20,6 +20,10 @@ function changeFieldStatus(input) {
     textarea.readOnly = !textarea.readOnly;
 }
 
+function changeSelectStatus(input) {
+    document.getElementById("rolle").removeAttribute("disabled");
+}
+
 function changeEntries() {
     let sql = "UPDATE USER SET name = '', surname = '', e_mail = '', password ='', course='', authorization='' " +
         "WHERE e_mail = ''";

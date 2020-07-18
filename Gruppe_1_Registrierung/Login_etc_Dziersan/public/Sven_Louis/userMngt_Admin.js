@@ -62,7 +62,7 @@ window.addEventListener('load', function () {
                     case 3:
                         document.getElementById("studiengang").value = this.cells[j].innerHTML;
                     case 4:
-                        document.getElementById("Rolle").value = this.cells[j].innerHTML;
+                        document.getElementById("rolle").value = this.cells[j].innerHTML;
                 }
             }
             console.log(msg)
