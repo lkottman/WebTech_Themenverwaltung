@@ -134,7 +134,7 @@ app.use(routerLogin);
 
 routerRegister = require('./Gruppe_1_Registrierung/public/routes/register/routesRegister');
 app.use("/register",routerRegister);
-app.get('/register', routerRegister);
+app.get('/register2', routerRegister);
 
 
 
