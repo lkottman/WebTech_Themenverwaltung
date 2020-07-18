@@ -1,4 +1,5 @@
 var ourRequest = new XMLHttpRequest();
+
 ourRequest.open('GET', 'userList.json', true);
 ourRequest.onload = function () {
     if (ourRequest.status >= 200 && ourRequest.status < 400) {
@@ -62,7 +63,7 @@ window.addEventListener('load', function () {
                     case 3:
                         document.getElementById("studiengang").value = this.cells[j].innerHTML;
                     case 4:
-                        document.getElementById("Rolle").value = this.cells[j].innerHTML;
+                        document.getElementById("rolle").value = this.cells[j].innerHTML;
                 }
             }
             console.log(msg)
@@ -109,22 +110,7 @@ function sortTable(n) {
     }
 }
 
-function changeReadonly() {
-    document.getElementById('vorname').setAttribute('readonly', 'true');
-    document.getElementById('nachname').removeAttribute('readonly');
-    document.getElementById('studiengang').removeAttribute('readonly');
-    document.getElementById('rolle').removeAttribute('readonly');
-    document.getElementById('e-Mail').removeAttribute('readonly');
 
-}
-
-function addReadonly() {
-    document.getElementById("vorname").setAttribute("readOnly", 'true');
-    document.getElementById("nachname").setAttribute("readOnly", 'true');
-    document.getElementById("studiengang").setAttribute("readOnly", 'true');
-    document.getElementById("rolle").setAttribute("readOnly", 'true');
-    document.getElementById("Mail").setAttribute("readOnly", 'true');
-}
 
 
 

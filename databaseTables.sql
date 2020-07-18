@@ -52,13 +52,12 @@ CREATE TABLE USER(
                      verified BOOLEAN,
                      authorization VARCHAR(255),
                      confirm_token VARCHAR(255),
-                     matrikel_nr VARCHAR(10),
+                     semester VARCHAR(2),
+                     course VARCHAR(255),
                      primary key (id)
 );
 
-
-
-INSERT INTO USER( token, name, surname, e_mail, password, verified, authorization, confirm_token, matrikel_nr)
+INSERT INTO USER( token, name, surname, e_mail, password, verified, authorization, confirm_token, semester, course)
 VALUES (
     'ABC',
     'Petersen',
@@ -68,7 +67,8 @@ VALUES (
         false,
         'student',
         'test',
-        '867632'
+        '4',
+        'Wirtschaftsinformatik'
 );
 
 

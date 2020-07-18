@@ -2,7 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const fs = require('fs');
-const config = JSON.parse(fs.readFileSync("public/Sven_Louis/datenbankConfig.json"));
+const config = JSON.parse(fs.readFileSync("/Users/svenpetersen/IdeaProjects/WebTech_Themenverwaltung_Closly_Finished/config/datenbankConfig.json"));
 const app = express();
 
 // https://youtu.be/OH6Z0dJ_Huk?t=1466
@@ -49,6 +49,7 @@ var {
 } = process.env;
 
 //imports
+
 app.use(express.static('public'));
 app.use(express.static('Sven_Louis'));
 app.use(express.static('images'));
@@ -110,6 +111,11 @@ app.use((request, respond, next) => {
 app.get("/home", redirectLogin, (request, response) => {
     console.log("home");
     response.sendFile('//privat//home.html', {root: __dirname});
+});
+
+app.get("/adminansicht", (request, response) => {
+    console.log("adminansicht");
+    response.sendFile('//public//Sven_Louis//admin_ansicht.html', {root: __dirname});
 });
 
 app.get("/register", (request, response) => {

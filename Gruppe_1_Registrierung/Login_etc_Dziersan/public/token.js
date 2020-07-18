@@ -59,7 +59,8 @@ function deleteToken() {
         .then(response => response.json())
         .then(data => {
 
-            alert(data.token)
+            alert(data.token);
+            
 
         })
         .catch(error => console.error(error))
