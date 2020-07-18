@@ -2,6 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const fs = require('fs');
+const path = require('path');
 const config = JSON.parse(fs.readFileSync("/Users/svenpetersen/IdeaProjects/WebTech_Themenverwaltung_Closly_Finished/config/datenbankConfig.json"));
 const app = express();
 

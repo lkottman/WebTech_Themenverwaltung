@@ -50,8 +50,11 @@ var {
 } = process.env;
 
 //imports
-app.use(express.static('public'));
-app.use(express.static('Sven_Louis'));
+app.use(express.static('Gruppe_1_Registrierung/Login_etc_Dziersan/public'));
+app.use(express.static('Gruppe_1_Registrierung/Login_etc_Dziersan/public/Sven_Louis'));
+app.use(express.static(__dirname));  // css sonst  nicht drin
+app.use(express.static('Gruppe_1_Registrierung/Login_etc_Dziersan/privat'));
+
 app.use(express.static('images'));
 app.use(express.json({limit: "1mb"}));
 app.use(bodyParser.urlencoded({
@@ -115,6 +118,7 @@ app.get("/testmailer", router);
 app.get("/resetpassword", router);
 app.get("/token", router);
 app.get("/home", router);
+app.get("/admin", router);
 
 routerLogin = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/routes/login/routesLogin.js")
 app.use(routerLogin);
@@ -302,6 +306,8 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
 const routerToken = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/routes/token/routesToken");
 app.use("/createToken", routerToken);
 app.use("/deleteToken", routerToken);
+
+
 
 // app.post("/createToken", redirectLogin, (request, response) => {
 //
