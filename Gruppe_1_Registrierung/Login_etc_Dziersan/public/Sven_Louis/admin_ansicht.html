@@ -3,33 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <link type="text/css" href="benutzerverwaltung.css" rel="stylesheet">
-    <link rel="stylesheet" href="../Login_etc_Dziersan/privat/styles.css">
+    <link rel="stylesheet" href="../Login_etc_Dziersan/privat/style.css">
+    <link rel="stylesheet" href="../../../../css/navigationBar.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 
     <title>Benutzerverwaltung</title>
 </head>
 
 <body>
-<div id="Background"></div>
 <div id="header">
 </div>
 
+
 <div id="UserMenu_All_Header">
-    <div id="All_Header_left" style="float: left">
-        <button class="header_button">Meine Gruppe</button>
+
+    <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
+        <a href="https://osca.hs-osnabrueck.de/">
+            <div class="outer-wrapper" style="float:left">
+                <div class="frame" style="height: 52px">
+                    <img  id="oscaImagelogo" class="logo">
+                </div>
+            </div>
+        </a>
+
+        <div class="dropdown" style="margin-left: 5px">
+            <button class="header_button">Meine Gruppe</button>
+            <div class="dropdown-content">
+                <a>Gruppe beitreten</a>
+                <a>Anforderungsdefinition</a>
+            </div>
+        </div>
+
         <button class="header_button">Präsentation</button>
     </div>
 
-    style="vertical-align:middle; border:none; width: 25px;"
+    <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
 
-    <div id="All_Header_right" style="float: right">
-        <button class="header_button">Benutzer</button>
+        <div class="frame" style="float: left;">
+            <a href="https://my.hs-osnabrueck.de/owa/">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="mailIcon" class="far fa-envelope fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="frame" style="float: left;">
+            <a href="https://netcase.hs-osnabrueck.de">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                            <i id="netcaseIcon" class="fas fa-briefcase fa-lg" style="font-size: 25px"></i>
+                        </div>
+                </div>
+            </a>
+        </div>
+        <div class="dropdown">
+            <button class="header_button">Benutzer</button>
+        </div>
+
         <button class="header_button">Logout</button>
     </div>
 </div>
+
+
+
 <div>
     <div class="wrapper">
         <div id="content" style="overflow-x: auto">
@@ -64,33 +104,33 @@
                     <div class="userProfilBoxes">
                         <label for="nachname"> Nachname: </label>
                         <div>
-                        <input type="text" value="Nachname" id="nachname" readonly>
-                        <button id="nachnameBtn" type="button" class="btn btn-default" aria-label="Left Align"
-                                style="float: left; border: none">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                        </button>
+                            <input type="text" value="Nachname" id="nachname" readonly>
+                            <button id="nachnameBtn" type="button" class="btn btn-default" aria-label="Left Align"
+                                    style="float: left; border: none">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </button>
                         </div>
                     </div>
 
                     <div class="userProfilBoxes">
                         <label for="e-Mail">E-Mail:</label>
                         <div>
-                        <input type="text" value="E-Mail" id="e-Mail" readonly>
-                        <button id="emailBtn" type="button" class="btn btn-default" aria-label="Left Align"
-                                style="float: left; border: none">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                        </button>
-                    </div>
+                            <input type="text" value="E-Mail" id="e-Mail" readonly>
+                            <button id="emailBtn" type="button" class="btn btn-default" aria-label="Left Align"
+                                    style="float: left; border: none">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="userProfilBoxes">
                         <label for="studiengang"> Studiengang:</label>
                         <div>
-                        <input type="text" value="Studiengang" id="studiengang" readonly>
-                        <button id="studiengangBtn" type="button" class="btn btn-default" aria-label="Left Align"
-                                style="float: left; border: none">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                        </button>
+                            <input type="text" value="Studiengang" id="studiengang" readonly>
+                            <button id="studiengangBtn" type="button" class="btn btn-default" aria-label="Left Align"
+                                    style="float: left; border: none">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </button>
                         </div>
                     </div>
 
@@ -98,11 +138,11 @@
                     <div class="userProfilBoxes">
                         <label for="rolle">Rolle:</label>
                         <div>
-                        <input type="text" value="Rolle" id="Rolle" readonly>
-                        <button id="rolleBtn" type="button" class="btn btn-default" aria-label="Left Align"
-                                style="float: left; border: none">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                        </button>
+                            <input type="text" value="Rolle" id="Rolle" readonly>
+                            <button id="rolleBtn" type="button" class="btn btn-default" aria-label="Left Align"
+                                    style="float: left; border: none">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </button>
                         </div>
                     </div>
 
@@ -114,16 +154,7 @@
         </div>
     </div>
 
-    <a>
-        <button>
-            <i class="fa fa-exclamation" aria-hidden="true"></i>
-        </button>
 
-    </a>
-    <div class="jumbotron text-center">
-        <h1>My First Bootstrap Page</h1>
-        <p>Resize this responsive page to see the effect!</p>
-    </div>
     <div>
         <svg width="25px" height="25px" viewBox="0 0 16 16" class="bi bi-box-arrow-in-right" fill="currentColor"
              xmlns="http://www.w3.org/2000/svg">
@@ -134,14 +165,13 @@
                   d="M13.5 14.5A1.5 1.5 0 0 0 15 13V3a1.5 1.5 0 0 0-1.5-1.5h-8A1.5 1.5 0 0 0 4 3v1.5a.5.5 0 0 0 1 0V3a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5h-8A.5.5 0 0 1 5 13v-1.5a.5.5 0 0 0-1 0V13a1.5 1.5 0 0 0 1.5 1.5h8z"/>
         </svg>
     </div>
-    <a href="http://wiki.selfhtml.org/wiki/href">
-        <button class="btn">
-            <i class="fa fa-exclamation"></i>
-        </button>
-    </a>
 
+    <button class="header_button">Neuen Benutzer hinzufügen
+        <div class="dropdown-content">
+            <a>Gruppe beitreten</a>
+            <a>Anforderungsdefinition</a>
+        </div>
 
-    <button>Neuen Benutzer hinzufügen
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="glyphicon glyphicon-pencil" fill="currentColor"
              xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"
@@ -150,7 +180,22 @@
         </svg>
     </button>
 
+    <div>
+        <span class="glyphicon glyphicon-envelope"></span>
+        <i class="fa-envelope-o " style="background-color: #e5e5e5"></i>
+        <i class="fas fa-clock"></i>
+        <i class="far fa-envelope fa-2x"></i>
+        <i class="fas fa-cloud"></i>
+    </div>
+
+    <button class="header_button">Meine Gruppe</button>
+    <div class="dropdown-content">
+        <a>Gruppe beitreten</a>
+        <a>Anforderungsdefinition</a>
+    </div>
 </div>
+
+
 <script src="userMngt_Admin.js"></script>
 </body>
 </html>
