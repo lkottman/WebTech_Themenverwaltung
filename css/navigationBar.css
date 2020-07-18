@@ -104,7 +104,7 @@ body{
 
 }
 img{
-    max-height: 100%;
+    max-height: 52px ;
     display: block;
     margin: 0 auto;
     float: left;
@@ -114,8 +114,15 @@ img{
 
 }
 
-.logo{
+.oscaLogo{
     content: url("osca3-white.png");
+    max-height: 52px ;
+    display: block;
+    margin: 0 auto;
+    float: left;
+    vertical-align: bottom;
+    border: none;
+    width: 80px;
 }
 
 
