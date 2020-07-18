@@ -1,26 +1,44 @@
 const bcrypt = require('bcrypt');
 
-let password = "test";
+const saltRounds = 10;
 
-function hashPassword( input){
-    bcrypt.hash(input, 10).then(
-        hash => {
-            console.log('Your hash: ', hash);
-        },
-        err => {
-            console.log(err);
-        });
-}
-
-function comparePasswordWithHash(password, hash)
-{
-    bcrypt.compare(password, hash).then(
-        result => {
-            console.log('Submitted password is correct');
-        },
-        err => {
-            console.log(err);
+/**
+ * This method hashes an given input string and adds an salt for proper security.
+ * @param input to be hashed.
+ */
+function hashPassword(input){
+    bcrypt.genSalt(saltRounds, function (err, salt) {
+        if (err) {
+            throw err
+        } else {
+            bcrypt.hash(input, salt, function(err, hash) {
+                if (err) {
+                    throw err
+                } else {
+                    console.log(hash);
+                    return hash;
+                    //$2a$10$FEBywZh8u9M0Cec/0mWep.1kXrwKeiWDba6tdKvDfEBjyePJnDT7K
+                }
+            })
         }
-    );
-}
+    });
+};
 
+/**
+ *  * This method compares an given input string with an hashed + salt generated password.
+ * @param input string from user to compare with hash
+ * @param hash string from database to check for.
+ */
+function compareHashedPassword(input, hash) {
+    bcrypt.compare(input, hash, function (err, isMatch) {
+        if (err) {
+            throw err
+        } else if (!isMatch) {
+            console.log("Password doesn't match!")
+            return false;
+        } else {
+            console.log("Password matches!");
+            return true;
+        }
+    });
+};
