@@ -16,14 +16,25 @@ function getUsers(){
 
 
 function changeFieldStatus(input) {
-    var textarea = document.getElementById(input);
+    let textarea = document.getElementById(input);
     textarea.readOnly = !textarea.readOnly;
 }
 
 function changeSelectStatus(input) {
-    document.getElementById("rolle").removeAttribute("disabled");
+    let dropDown = document.getElementById(input);
+    dropDown.disabled = !dropDown.disabled;
 }
 
+function changeVisibility(input) {
+    let passwordText = document.getElementById(input);
+    if (passwordText.type === "password"){
+        passwordText.type = "text";
+    } else {
+        passwordText.type = "password";
+    }
+
+
+}
 function changeEntries() {
     let sql = "UPDATE USER SET name = '', surname = '', e_mail = '', password ='', course='', authorization='' " +
         "WHERE e_mail = ''";
