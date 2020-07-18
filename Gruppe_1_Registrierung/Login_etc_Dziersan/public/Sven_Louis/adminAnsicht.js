@@ -1,7 +1,5 @@
 const connection = require('../../../.././getConnectionDatabase.js');
 
-
-
 function getUsers(){
     let sql = "SELECT name, surname, e_mail, password, course, authorization FROM USER;";
     connection.query(sql,
@@ -10,19 +8,10 @@ function getUsers(){
             if (err)
                 throw err;
 
-            console.log("succes");
+            console.log(result);
         });
-}
+};
 
-
-function changeFieldStatus(input) {
-    var textarea = document.getElementById(input);
-    textarea.readOnly = !textarea.readOnly;
-}
-
-function changeSelectStatus(input) {
-    document.getElementById("rolle").removeAttribute("disabled");
-}
 
 function changeEntries() {
     let sql = "UPDATE USER SET name = '', surname = '', e_mail = '', password ='', course='', authorization='' " +
@@ -34,3 +23,28 @@ function changeEntries() {
                 console.log("Erfolgreich")
         })
 }
+
+
+function changeFieldStatus(input) {
+    let textarea = document.getElementById(input);
+    textarea.readOnly = !textarea.readOnly;
+}
+
+function changeSelectStatus(input) {
+    let dropDown = document.getElementById(input);
+    dropDown.disabled = !dropDown.disabled;
+}
+
+function changeVisibility(input) {
+    let passwordText = document.getElementById(input);
+    if (passwordText.type === "password"){
+        passwordText.type = "text";
+    } else {
+        passwordText.type = "password";
+    }
+}
+
+function fetchData(response) {
+    e
+}
+

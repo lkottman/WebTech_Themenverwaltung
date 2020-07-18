@@ -49,6 +49,7 @@ var {
 } = process.env;
 
 //imports
+
 app.use(express.static('public'));
 app.use(express.static('Sven_Louis'));
 app.use(express.static('images'));
@@ -110,6 +111,11 @@ app.use((request, respond, next) => {
 app.get("/home", redirectLogin, (request, response) => {
     console.log("home");
     response.sendFile('//privat//home.html', {root: __dirname});
+});
+
+app.get("/adminansicht", (request, response) => {
+    console.log("adminansicht");
+    response.sendFile('//public//Sven_Louis//admin_ansicht.html', {root: __dirname});
 });
 
 app.get("/register", (request, response) => {

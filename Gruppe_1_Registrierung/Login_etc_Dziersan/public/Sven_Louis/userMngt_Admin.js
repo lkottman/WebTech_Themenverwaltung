@@ -1,4 +1,5 @@
 var ourRequest = new XMLHttpRequest();
+
 ourRequest.open('GET', 'userList.json', true);
 ourRequest.onload = function () {
     if (ourRequest.status >= 200 && ourRequest.status < 400) {
@@ -109,22 +110,7 @@ function sortTable(n) {
     }
 }
 
-function changeReadonly() {
-    document.getElementById('vorname').setAttribute('readonly', 'true');
-    document.getElementById('nachname').removeAttribute('readonly');
-    document.getElementById('studiengang').removeAttribute('readonly');
-    document.getElementById('rolle').removeAttribute('readonly');
-    document.getElementById('e-Mail').removeAttribute('readonly');
 
-}
-
-function addReadonly() {
-    document.getElementById("vorname").setAttribute("readOnly", 'true');
-    document.getElementById("nachname").setAttribute("readOnly", 'true');
-    document.getElementById("studiengang").setAttribute("readOnly", 'true');
-    document.getElementById("rolle").setAttribute("readOnly", 'true');
-    document.getElementById("Mail").setAttribute("readOnly", 'true');
-}
 
 
 
