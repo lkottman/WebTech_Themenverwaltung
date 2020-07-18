@@ -58,34 +58,37 @@
         <br>
         Kurzbeschreibung:<br>
         <textarea id="editshortdesc"></textarea><br>
-        <button onclick="update()">Update</button>
+        <button id="update" onclick="update()">Update</button>
 
     </div>
 </div>
 
 <div class="reqdiv">
-    <div class="subreqdiv">
-    <fieldset>
-        <legend>Anlegen einer Anforderung</legend>
-        Priorität:
-        <select id="idpre" class="selectprio">
-            <option value="">--Select--</option>
-            <option value="M">Muss-Anforderung</option>
-            <option value="S">Soll-Anforderung</option>
-            <option value="K">Kann-Anforderung</option>
-        </select>
-        ID:
-        <input type="text" name="ID" id="id">
-        Name:
-        <input type="text" name="Name" id="name">
-        <br>
-        Kurzbeschreibung:
-        <textarea id="shortdesc" class="shortdesc" style="width: 40%"></textarea>
 
-        <button style="float: right" onclick="checkInput()">anlegen</button>
-    </fieldset>
+    <div class="subreqdiv">
+        <fieldset>
+            <legend>Anlegen einer Anforderung</legend>
+            Priorität:
+            <select id="idpre" class="selectprio">
+                <option value="">--Select--</option>
+                <option value="M">Muss-Anforderung</option>
+                <option value="S">Soll-Anforderung</option>
+                <option value="K">Kann-Anforderung</option>
+            </select>
+            ID:
+            <input type="text" name="ID" id="id">
+            Name:
+            <input type="text" name="Name" id="name">
+            <br>
+            Kurzbeschreibung:
+            <textarea id="shortdesc" class="shortdesc" style="width: 40%"></textarea>
+
+            <button style="float: right" onclick="checkInput()">anlegen</button>
+        </fieldset>
     </div>
+
     <p></p>
+
     <div class="subreqdiv">
         <fieldset>
             <legend>Suchen einer Anforderung</legend>
@@ -96,18 +99,21 @@
                    placeholder="Nach Namen suchen..">
             <button style="float: right" onclick="miniAll()">Alle einklappen</button>
             <button style="float: right; margin-right: 1%" onclick="maxAll()">Alle
-                ausklappen</button>
+                ausklappen
+            </button>
         </fieldset>
     </div>
+
     <p></p>
+
     <div class="subreqdiv">
         <fieldset>
             <legend>Anforderungen</legend>
             <table id="reqtable" class="reqtable">
                 <thead>
-                    <th style="width: 10%; cursor:pointer">ID</th>
-                    <th style="pointer-events: none">Name</th>
-                    <th colspan="3" style="pointer-events: none">Kurzbeschreibung</th>
+                <th style="width: 10%; cursor:pointer">ID</th>
+                <th style="pointer-events: none">Name</th>
+                <th colspan="3" style="pointer-events: none">Kurzbeschreibung</th>
                 </thead>
                 <tbody id="mbody">
                 <tr style="visibility:collapse">

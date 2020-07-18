@@ -122,6 +122,7 @@ function addRow(tableID) {
 
     if (idprefield === "K") {
         var tableRef = document.getElementById(tableID);
+        console.log(tableRef);
         var newRow = tableRef.insertRow(-1);
         newRow.className = "green3";
     }
@@ -151,12 +152,12 @@ function addRow(tableID) {
         let row = newrewButton.parentNode.parentNode;
         let col1 = row.children[0].innerHTML;
         let col2 = row.children[1].innerHTML;
-        let col3 = row.children[2].innerHTML;
+        let col3 = row.children[2].textContent;
 
         document.getElementById("editid").value = col1;
         document.getElementById("editname").value = col2;
         document.getElementById("editshortdesc").value = col3;
-    }
+    };
 
     let newdelButton = document.createElement("button");
     newdelButton.className = "delbutton";
@@ -172,7 +173,7 @@ function addRow(tableID) {
         id,
         namefield,
         newTextarea.value
-    )
+    );
 
     const options = {
         method: "POST",
@@ -196,7 +197,7 @@ function addRow(tableID) {
     newCell1.appendChild(newText1);
     newCell2.appendChild(newText2);
     newCell3.appendChild(newTextarea);
-    newCell4.appendChild(newrewButton)
+    newCell4.appendChild(newrewButton);
     newCell5.appendChild(newdelButton);
 
     clearfields();
@@ -306,10 +307,146 @@ function maxAll() {
     }
 }
 
+
+function addRowupdate(tableID) {
+
+    class Requirements{
+
+        constructor(ID, Name, ShortDesc) {
+            this.id = ID;
+            this.name = Name;
+            this.shortdesc = ShortDesc;
+        }
+
+        toString() {
+            return this.id + " " + this.name + " " + this.shortdesc;
+        }
+    }
+
+    let check = document.getElementById("check");
+
+    let idfield = (document.getElementById("editid").value).trim().substring(1);
+    let newpreID = (document.getElementById("editid").value).trim().substring(0,1);
+    let namefield = document.getElementById("editname").value;
+    let shortdescfield = document.getElementById("editshortdesc").value;
+    let idprefield = document.getElementById("idpre").value;
+    let id = (newpreID + idfield);
+
+    console.log(idfield);
+
+    if (newpreID === "M") {
+        var tableDef = document.getElementById(tableID);
+        var newRow = tableDef.insertRow(-1);
+        newRow.className = "red1";
+    }
+
+    if (newpreID === "S") {
+        var tableDef = document.getElementById(tableID);
+        var newRow = tableDef.insertRow(-1);
+        newRow.className = "yellow2";
+    }
+
+    if (newpreID === "K") {
+        var tableDef = document.getElementById(tableID);
+        var newRow = tableDef.insertRow(-1);
+        newRow.className = "green3";
+    }
+
+
+    let newCell1 = newRow.insertCell(0);
+    let newCell2 = newRow.insertCell(1);
+    let newCell3 = newRow.insertCell(2);
+    let newCell4 = newRow.insertCell(3);
+    newCell4.className = "newcell";
+    let newCell5 = newRow.insertCell(4);
+    newCell5.className = "newcell";
+
+    let newText11 = document.createTextNode(newpreID);
+    let newText1 = document.createTextNode(idfield);
+    let newText2 = document.createTextNode(namefield);
+
+    let newTextarea = document.createElement("textarea");
+    newTextarea.className = "shortdesc";
+    newTextarea.innerHTML = shortdescfield;
+
+    let newrewButton = document.createElement("button");
+    newrewButton.className = "rewbutton";
+    newrewButton.innerHTML = "bearbeiten";
+    newrewButton.onclick = function openupAdd() {
+        check.checked = true;
+
+        let row = newrewButton.parentNode.parentNode;
+        let col1 = row.children[0].innerHTML;
+        let col2 = row.children[1].innerHTML;
+        let col3 = row.children[2].textContent;
+
+        document.getElementById("editid").value = col1;
+        document.getElementById("editname").value = col2;
+        document.getElementById("editshortdesc").value = col3;
+    };
+
+    let newdelButton = document.createElement("button");
+    newdelButton.className = "delbutton";
+    newdelButton.innerHTML = "löschen";
+    newdelButton.onclick = function deleteRow() {
+        let row = newdelButton.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+
+        fetch("/delReqData", options)
+    };
+
+    requirement = new Requirements(
+        id,
+        namefield,
+        newTextarea.value
+    );
+
+    const options = {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(requirement)
+    };
+
+    fetch("/saveReqData", options)
+        .then(response => response.json())
+        .then(data => {
+
+            if (data.register === ""){
+
+            } else {
+                alert(data.register);
+                location.reload();
+            }
+        });
+
+    newCell1.appendChild(newText11);
+    newCell1.appendChild(newText1);
+    newCell2.appendChild(newText2);
+    newCell3.appendChild(newTextarea);
+    newCell4.appendChild(newrewButton);
+    newCell5.appendChild(newdelButton);
+
+    clearfields();
+}
+
+
 function update() {
     document.getElementById("check").checked = false;
+    document.getElementById("editid").value;
+    document.getElementById("editname").value;
+    document.getElementById("editshortdesc").value;
 
-    document.getElementById("editid").value = '';
-    document.getElementById("editname").value = '';
-    document.getElementById("editshortdesc").value = '';
+    let idfield = document.getElementById("editid").value;
+    let idprefield = idfield.charAt(0);
+
+    if (idprefield === "M")
+    {
+        addRowupdate('mbody');
+    } else if (idprefield === "S")
+    {
+        addRowupdate('sbody');
+    } else
+    {
+        addRowupdate('kbody');
+    }
 }
