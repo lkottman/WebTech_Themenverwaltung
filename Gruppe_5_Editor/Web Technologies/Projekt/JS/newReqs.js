@@ -149,11 +149,13 @@ function addRow(tableID) {
         check.checked = true;
 
         let row = newrewButton.parentNode.parentNode;
-        console.log(row.value);
+        let col1 = row.children[0].innerHTML;
+        let col2 = row.children[1].innerHTML;
+        let col3 = row.children[2].innerHTML;
 
-        document.getElementById("editid").value = '';
-        document.getElementById("editname").value = '';
-        document.getElementById("editshortdesc").value = '';
+        document.getElementById("editid").value = col1;
+        document.getElementById("editname").value = col2;
+        document.getElementById("editshortdesc").value = col3;
     }
 
     let newdelButton = document.createElement("button");
@@ -306,4 +308,8 @@ function maxAll() {
 
 function update() {
     document.getElementById("check").checked = false;
+
+    document.getElementById("editid").value = '';
+    document.getElementById("editname").value = '';
+    document.getElementById("editshortdesc").value = '';
 }
