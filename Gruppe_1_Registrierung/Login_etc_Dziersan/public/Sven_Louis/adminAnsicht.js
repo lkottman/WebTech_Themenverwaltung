@@ -2,6 +2,6 @@
 
 
 function changeFieldStatus(input) {
-    document.getElementById(input).
-    document.getElementById('vorname').removeAttribute('readonly');
+    var textarea = document.getElementById(input);
+    textarea.readOnly = !textarea.readOnly;
 }
