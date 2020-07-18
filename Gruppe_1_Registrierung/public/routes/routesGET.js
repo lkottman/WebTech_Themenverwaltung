@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 // const redirect = require("./routesRedirect");
-const redirect = require("../../../../index");
+const redirect = require("../../../index");
 
 const app = express();
-const path = require("../../../../config/pathConfig.json");
+const path = require("../../../config/pathConfig.json");
 
 
 app.use(express.static('../Gruppe_1_Registrierung/Login_etc_Dziersan/public/Sven_Louis/css'));

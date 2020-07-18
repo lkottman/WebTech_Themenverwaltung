@@ -6,7 +6,7 @@ const app = express();
 const nodemailer = require('nodemailer');
 
 configDatabase = require("./config/datenbankConfig.json");
-configDataMailer = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/Sven_Louis/config/config.json");
+configDataMailer = require("./Gruppe_1_Registrierung/public/config/config.json");
 const configData = configDataMailer;
 const config = configDatabase;
 
@@ -111,7 +111,7 @@ app.use((request, respond, next) => {
     next();
 });
 
-router = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/routes/routesGET.js");
+router = require("./Gruppe_1_Registrierung/public/routes/routesGET.js");
 
 app.get("/", router);
 app.get("/login", router);
@@ -123,10 +123,10 @@ app.get("/token", router);
 app.get("/home", router);
 app.get("/admin", router);
 
-routerLogin = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/routes/login/routesLogin.js")
+routerLogin = require("./Gruppe_1_Registrierung/public/routes/login/routesLogin.js")
 app.use(routerLogin);
 
-routerRegister = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/routes/register/routesRegister.js")
+routerRegister = require("./Gruppe_1_Registrierung/public/routes/register/routesRegister.js")
 app.use(routerRegister);
 
 
@@ -306,7 +306,7 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
     next();
 });
 
-const routerToken = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/routes/token/routesToken");
+const routerToken = require("./Gruppe_1_Registrierung/public/routes/token/routesToken");
 app.use("/createToken", routerToken);
 app.use("/deleteToken", routerToken);
 

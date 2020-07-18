@@ -1,14 +1,14 @@
 const express = require('express');
 const session = require("express-session");
 const mysql = require('mysql');
-const path = require("../../../../../config/pathConfig.json");
+const path = require("../../../../config/pathConfig.json");
 const fs = require('fs');
 const config = JSON.parse(fs.readFileSync(path.path + "/config/datenbankConfig.json"));
 const app = express();
 const redirect = require("../routesRedirect");
 const router = express.Router()
 
-const connection = require("../../../../../getConnectionDatabase");
+const connection = require("../../../../getConnectionDatabase");
 
 
 var lifeTime = 1000 * 60 * 60 * 24;// 24 hour

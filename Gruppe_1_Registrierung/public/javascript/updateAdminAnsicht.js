@@ -1,6 +1,6 @@
 r
 
-const connection = require('../../../../../getConnectionDatabase.js');
+const connection = require('../../../getConnectionDatabase.js');
 
 
 connection.query(sql,

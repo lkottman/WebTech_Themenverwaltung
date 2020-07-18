@@ -1,4 +1,4 @@
-const connection = require('../../../../../getConnectionDatabase.js');
+const connection = require('../../../getConnectionDatabase.js');
 
 function getUsers(){
     let sql = "SELECT name, surname, e_mail, password, course, authorization FROM USER;";
