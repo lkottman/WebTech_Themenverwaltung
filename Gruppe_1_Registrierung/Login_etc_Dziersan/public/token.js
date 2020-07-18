@@ -37,7 +37,6 @@ function createToken() {
         .then(response => response.json())
         .then(data => {
 
-            console.log(data.token)
             alert(data.token)
 
         })
@@ -60,7 +59,6 @@ function deleteToken() {
         .then(response => response.json())
         .then(data => {
 
-            console.log(data.token)
             alert(data.token)
 
         })

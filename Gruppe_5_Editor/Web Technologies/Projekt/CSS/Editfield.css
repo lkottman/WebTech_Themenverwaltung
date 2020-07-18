@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+
+.Sidebar
+{
+    right: 40%;
+    border-style: solid;
+    border-color: lightskyblue;
+    border-radius: 25px;
+    list-style: none;
+    position: absolute;
+    width: 25%;
+    height: 75%;
+    text-align: center;
+    transition: all .6s ease;
+    font-family: "Montserrat", sans-serif;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.Sidebar header
+{
+    font-size: 20px;
+    color: white;
+    line-height: 50px;
+    background: lightskyblue;
+    user-select: none;
+    width: 100%;
+}
+
+#editid {
+
+}
+
+#editname {
+
+}
+
+#editshortdesc {
+    width: 90%;
+    height: 25%;
+    resize: none;
+}
+
+#check
+{
+    display: none;
+}
+
+#check:checked ~ .Sidebar
+{
+    right: 40%;
+    opacity: 100;
+    pointer-events: all;
+}

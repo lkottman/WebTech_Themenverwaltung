@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Group</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+    <nav>
+        <br>
+        <a href="Index.html"><img src="../hsos-logo-neu.png" class="logo" alt="hslogo"></a>
+        <br>
+        <nav class="topnav">
+            <a class="active" href="Index.html">Meine Gruppen</a>
+            <a href="newGoup.html">Neue Gruppenarbeit</a>
+        </nav>
+    </nav>
+</header>
+
+<section>
+    <div class="grid">
+        <aside class="sidebar-left">
+            <h1>Meine Gruppen</h1>
+            <nav class="Sidenav">
+
+                <a class="active" href="GroupView.html">WebTech</a>
+                <a href="GroupView.html">PPS</a>
+                <a href="GroupView.html">Rechennetzer und Betriebssysteme</a>
+                <a href="GroupView.html">Finanzierung</a>
+
+            </nav>
+
+        </aside>
+
+        <article>
+            <h1 id="Themenname">Thema</h1>
+            <div class="grid-modul">
+                <div class="item1">
+                    <h1>Beschreibung</h1>
+                    <p id="Beschreibung">Hier steht die Beschreibung der Gruppenarbeit um Unklarheiten zu verhindern</p>
+                </div>
+                <div class="item1">
+                    <h1>Gruppenmitglieder </h1>
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tr>
+                            <td id="Mitglieder">Mitglied 1</td>          <!-- Tabellengröße Abhängig von Mitgliederanzahl???? -->
+                        </tr>
+                        <tr>
+                            <td>Mitglied 2</td>
+                        </tr>
+                        <tr>
+                            <td>Mitglied 3</td>
+                        </tr>
+                        <tr>
+                            <td>Mitglied 4</td>
+                        </tr>
+                        <tr>
+                            <td align="left" width="50%">
+                                <input type="submit" name="enterGroup" value="Gruppe beitreten">
+                            </td>
+                            <td align="right" width="50%">
+                                <input type="submit" name="leaveGroup" value="Gruppe verlassen">
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+                <div class="item1">
+                    <h1>Links</h1>
+                    <table>
+
+                        <tr>
+                            <td id="Links"><a href="https://www.google.de/">Quelle des Wissens</a></td> <!-- Tabellengröße Abhängig von Linkanzahl???? -->
+                        </tr>
+                        <tr>
+                            <td><a href="https://www.wikipedia.org">Quelle aller Quellen</a> </td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://www.youtube.com/watch?v=yR3s0m04R1M">Mockup Tutorial</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="Index.html">Startseite</a></td>
+                        </tr>
+
+                    </table>
+                    <table>
+                        <tr>
+                            <td>Linktitel: <input id="Linktitel" type="text" name="Linktitel" align="right"></td>
+                            <td>Link: <input id="Link" type="text" name="Link"></td>
+                            <td><input type="submit" name="saveLink" value="Link speichern"></td>
+                        </tr>
+
+                    </table>
+                </div>
+                <div class="item1">
+                    <h1>Meilensteine</h1>
+                    <table>
+                        <tr>
+                            <th>Meilenstein</th>
+                            <th>Datum</th>
+                        </tr>
+                        <tr>
+                            <td id="Meilensteine">Layout</td>     <!-- Tabellengröße Abhängig von Meilensteinanzahl???? -->
+                            <td>05.04.2020</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>24.12.2020</td>
+                        </tr>
+                        <tr>
+                            <td>Bescheibung</td>
+                            <td>09.11.2020</td>
+                        </tr>
+                        <tr>
+                            <td>Besprechung</td>
+                            <td>35.06.2020</td>
+                        </tr>
+                    </table>
+                    <br>
+                    <table>
+                        <tr>
+                            <th>Neuer Meilenstein</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td>Name: <input id="milestoneName" type="text" name="milestoneName" align="right"></td>
+                            <td>Datum: <input type="date" name="milestoneDate" id="milestoneDate"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="submit" name="newMilestone" value="Meilenstein anlegen"></td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </article>
+
+        <aside class="sidebar-right">
+            <h1>Bearbeiten</h1>
+
+            <table>
+                <tr align="left">
+                    <th>Neuer Meilenstein</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>Name: <input id="milestoneName" type="text" name="milestoneName" align="right"></td>
+                </tr>
+                <tr>
+                    <td>Datum: <input type="date" name="milestoneDate" id="milestoneDate"></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="newMilestone" value="Meilenstein anlegen"></td>
+                </tr>
+            </table>
+            <br>
+            <br>
+
+            <table>
+                <tr align="left">
+                    <th>Neuer Link</th>
+                </tr>
+                <tr>
+                    <td>Linktitel: <input id="Linktitel" type="text" name="Linktitel" align="right"></td>
+                </tr>
+                <tr>
+                    <td>Link: <input id="Link" type="text" name="Link"></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="saveLink" value="Link speichern"></td>
+                </tr>
+            </table>
+        </aside>
+    </div>
+</section>
+
+</body>
+</html>

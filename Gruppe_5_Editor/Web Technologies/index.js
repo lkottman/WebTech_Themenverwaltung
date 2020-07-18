@@ -133,6 +133,26 @@ app.post("/loadtable", (request, response) => {
   })
 });
 
+app.post("/editReq", (request, response) => {
+
+  if(request.method === "OPTIONS"){
+    response.set('Access-Control-Allow-Origin', '*');
+    response.set('Access-Control-Allow-Headers', 'Content-Type');
+    response.status(204).send('');
+  }
+
+  connection.query("SELECT * FROM ANFORDERUNGEN WHERE("
+      + 'id="' + request.body.editID + '")',
+      function (err) {
+        if (err)
+          throw err;
+        else {
+          console.log("Requirement deleted");
+        }
+      });
+  response.end();
+});
+
 app.listen(PORT, () => console.log(
     "listening on: " +
     `http://localhost:${PORT}`

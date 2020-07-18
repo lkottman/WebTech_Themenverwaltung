@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<form action="[Name der Auswertungsdatei]" method="post"></form>
+<head>
+    <meta charset="UTF-8">
+    <title>Create a new Topic</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+    <nav>
+        <br>
+        <a href="Index.html"><img src="../hsos-logo-neu.png" class="logo" alt="hslogo"></a>
+        <br>
+        <nav class="topnav">
+            <a href="Home.html">Meine Gruppen</a>
+            <a href="CreateNewTopic.html">Neue Gruppenarbeit</a>
+        </nav>
+    </nav>
+</header>
+<section>
+    <div class="grid">
+        <aside class="sidebar-left">
+            <h1>Meine Gruppen</h1>
+            <nav class="Sidenav">
+
+                <a href="GroupOverview.html">WebTech</a>
+                <a href="GroupOverview.html">PPS</a>
+                <a href="GroupOverview.html">Rechennetzer und Betriebssysteme</a>
+                <a href="GroupOverview.html">Finanzierung</a>
+
+            </nav>
+
+        </aside>
+
+        <article>
+            <h1>Neues Thema erstellen</h1>
+
+            <hr>
+            
+            Modul: <br>
+            <select id="Modul" name="dropDownModul">
+                <option value="option1">Modul 1 </option>
+                <option value="option2">Modul 2 mit einem sehr langen Namen, um zu testen, ob das Feld länger wird</option>
+                <option value="option3">Modul 3</option>
+            </select>
+            <br>
+            <br>
+            Titel: <br>
+            <input id="Titel" type="text" name="Titel">
+            <br>
+            <br>
+
+            Beschreibung: <br>
+            <textarea id="Beschreibung" name="Beschreibung" cols="100" rows="10"></textarea> <br><br>
+
+            Maximale Teilnehmeranzahl: <br>
+            <input type="number" id="maxMembers" value="1" name="maxMembers" min="1"><br><br>
+
+            Anfang Anmeldezeitraum: <br>
+            <input type="datetime-local" name="BeginAnmeldung" id="BeginAnmeldung"> <br><br>
+
+            Ende Anmeldezeitraum: <br>
+            <input type="datetime-local" name="EndAnmeldung" id="EndAnmeldung"> <br><br>
+            <br>
+            <br>
+
+
+            <input type="submit" name="submitbutton" value="Neues Thema speichern">
+            <input type="reset" name="resetbutton" value="Abbrechen">
+        </article>
+
+        <aside class="sidebar-right">
+            <h1>Filler</h1>
+        </aside>
+    </div>
+</section>
+
+</body>
+</html>
