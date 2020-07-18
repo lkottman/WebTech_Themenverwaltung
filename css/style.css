@@ -9,6 +9,8 @@ body{
   background-size: 1920px 1050px;
   background-repeat: no-repeat;
 }
+
+
 .box1{
   border:0;
   background: #ffffff;
@@ -23,14 +25,20 @@ body{
   transition: 0.25s;
 
 }
+
 .logo {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 20%;
 }
+
 .h1{
   text-align: center;
+}
+
+.a {
+
 }
 
 .footer{
@@ -42,6 +50,7 @@ body{
   color: #000000;
   text-align: center;
 }
+
 .box h1{
   color: #000000;
   text-transform: uppercase;
@@ -75,11 +84,13 @@ body{
   border-radius: 5px;
   transition: 0.25s;
 }
+
 .box input[type = "text"]:focus,.box input[type = "password"]:focus{
   font-size: 20px;
   width: 230px;
   border-color: #e5e5e5;
 }
+
 .box input[type = "submit"]{
   border:0;
   background: #1c9dd9;
@@ -93,6 +104,7 @@ body{
   transition: 0.25s;
   cursor: pointer;
 }
+
 .box input[type = "submit"]:hover{
   background: #2ecc71;
 }
