@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@localhost" uuid="f8e19a52-31ea-47fd-957f-b2d7b95d7b6d">
+    <data-source source="LOCAL" name="webtech@localhost" uuid="f8e19a52-31ea-47fd-957f-b2d7b95d7b6d">
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://localhost:3306</jdbc-url>
+      <jdbc-url>jdbc:mariadb://localhost:3306/webtech</jdbc-url>
     </data-source>
   </component>
 </project>

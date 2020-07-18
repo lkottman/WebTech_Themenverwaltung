@@ -5,7 +5,7 @@ const fs = require('fs');
 const app = express();
 const nodemailer = require('nodemailer');
 
-configDatabase = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/Sven_Louis/datenbankConfig.json");
+configDatabase = require("./config/datenbankConfig.json");
 configDataMailer = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/Sven_Louis/config.json");
 const configData = configDataMailer;
 const config = configDatabase;
@@ -15,7 +15,6 @@ const config = configDatabase;
 let http = require("http");
 let url = require("url");
 let mysql = require("mysql");
-
 
 
 let transporter = nodemailer.createTransport({
@@ -70,7 +69,7 @@ app.use(session({
         sameSite: true,
         secure: false    //in development in production :true
     }
-}))
+}));
 
 // Redirect to Login if there are no cookies. No Access to the private sites
 const redirectLogin = (request, response, next) => {
@@ -85,9 +84,6 @@ const redirectLogin = (request, response, next) => {
 
 // Redirect to Home if User is logged in. There is no need to go to the login/registration Site if
 // logged in
-
-
-
 const redirectHome = (request, response, next) => {
 
     if (request.session.userId) {
@@ -105,78 +101,28 @@ app.use((request, respond, next) => {
         respond.locals.userId = request.session.userId;
         respond.locals.userName = request.session.userName;
         respond.locals.userAuthorization = request.session.userAuthorization;
-
-
     }
     next();
 });
 
-// Get Methods
-var path = require('path');
-
-router = require(path.resolve("./public/routes/routesGET.js"));
+router = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/routes/routesGET.js");
 
 app.get("/", router);
 app.get("/login", router);
-app.get("/register", router);
+app.get("/agb", router);
+app.get("/successfullregistration", router);
+app.get("/testmailer", router);
+app.get("/resetpassword", router);
+app.get("/token", router);
+app.get("/home", router);
+
+routerLogin = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/routes/login/routesLogin.js")
+app.use(routerLogin);
+
+routerRegister = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/routes/register/routesRegister.js")
+app.use(routerRegister);
 
 
-// app.get("/home", redirectLogin, (request, response) => {
-//     console.log("home");
-//     response.sendFile('//Gruppe_1_Registrierung//Login_etc_Dziersan//privat//home.html', {root: __dirname});
-// });
-//
-// app.get("/register", (request, response) => {
-//     if (request.session.userId) {
-//         response.redirect("/home");
-//     } else {
-//         response.sendFile('//Gruppe_1_Registrierung//Login_etc_Dziersan//public//register.html', {root: __dirname});
-//     }
-// });
-//
-// app.get("/token", (request, response) => {
-//     if (request.session.userAuthorization === "lecturer"
-//         || request.session.userAuthorization === "admin") {
-//         response.sendFile('//Gruppe_1_Registrierung//Login_etc_Dziersan//privat//token.html', {root: __dirname});
-//     } else {
-//         response.redirect("/login");
-//     }
-// });
-//
-// app.get("/login", (request, response) => {
-//     if (request.session.userId) {
-//         response.redirect("/home");
-//     } else {
-//         response.sendFile('//Gruppe_1_Registrierung//Login_etc_Dziersan//public//login.html',
-//             {root: __dirname});
-//     }
-// });
-//
-//
-// app.get("/", (request, response) => {
-//     response.sendFile('//Gruppe_1_Registrierung//Login_etc_Dziersan//public//index.html', {root: __dirname});
-// });
-//
-// app.get("/agb", (request, response) => {
-//     response.sendFile('//Gruppe_1_Registrierung//Login_etc_Dziersan//public//agb.html', {root: __dirname});
-// });
-//
-// app.get("/successfullregistration", (request, response) => {
-//     response.sendFile('//Gruppe_1_Registrierung//Login_etc_Dziersan//public//successRegister.html', {root: __dirname});
-// });
-//
-//
-// app.get("/testmailer", (request, response) => {
-//     response.sendFile('//Gruppe_1_Registrierung//Login_etc_Dziersan//public//testmailer.html', {root: __dirname});
-// });
-//
-// app.get("/resetpassword", (request, response) => {
-//     response.sendFile('//Gruppe_1_Registrierung//Login_etc_Dziersan//public//Sven_Louis//tokenReset.html', {root: __dirname});
-// });
-//
-// app.get("/changepassword", (request, response) => {
-//     response.sendFile('//Gruppe_1_Registrierung//Login_etc_Dziersan//public//Sven_Louis//changePassword.html', {root: __dirname});
-// });
 
 //change to user db later and ADD USER token
 app.get("/confirmation", (request, response) => {
@@ -328,147 +274,18 @@ app.post("/checkResetToken", (request, response) =>{
 });
 
 
-const routerLogin = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/routes/login/routesLogin.js")
-app.use(routerLogin)
-app.use("/logout", routerLogin);
 
+app.post("/logout",  (request, respond) => {
 
-// //Takes E-Mail and password from User and check if these matches if database
-// app.post("/login", redirectHome, (request, response) => {
-//
-//     console.log(request);
-//
-//     connection.query("SELECT id, name,verified, token, e_mail, password, authorization from user where "
-//         + 'e_mail = "' + request.body.email + '"'
-//         + ' AND password = "' + request.body.password + '"',
-//         function (err, result) {
-//             if (err)
-//                 throw err;
-//             else {
-//                 if (result.length == 0) {
-//                     //If there is no match login failed
-//                     console.log("login fehlgeschlafen (Falsche Daten oder nicht registriert)");
-//                     response.json({login: "Fehlgeschlagen: Falsche Informationen oder nicht registriert"});
-//
-//                 } else {
-//                     //Check if User is verified
-//                     if (result[0].verified == false) {
-//                         console.log("login fehlgeschlafen (nicht verifiziert)");
-//                         response.json({login: "Fehlgeschlagen: Nicht Verifiziert"});
-//                     } else {
-//                         console.log("login erfolgreich");
-//
-//                         if(request.body.checkboxLogin == true){
-//                             request.session.cookie.maxAge = lifeTimeLong;
-//                         }
-//
-//                         request.session.userId = result[0].id;
-//                         request.session.userName = result[0].name;
-//                         request.session.userAuthorization = result[0].authorization;
-//
-//                         response.redirect("/home");
-//                     }
-//                 }
-//             }
-//         });
-// });
-
-
-//
-// app.post("/logout", redirectLogin, (request, respond) => {
-//
-//     request.session.destroy(err => {
-//         if (err) {
-//             return respond.redirect("/home");
-//         }
-//         respond.clearCookie(sessionName);
-//         console.log("cookies deleted!")
-//         respond.redirect("/login");
-//     })
-// });
-
-
-const routerRegister = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/routes/register/routesRegister.js")
-app.use(routerRegister)
-
-//Takes information from form and creates user
-// app.post("/register", redirectHome, (request, response) => {
-//
-//     console.log(request);
-//
-//     if(request.method == "OPTIONS"){
-//         response.set('Access-Control-Allow-Origin', '*');
-//         response.set('Access-Control-Allow-Headers', 'Content-Type');
-//         response.status(204).send('');
-//     }
-//
-//     if(validateEmail(request.body.email === false)){
-//         response.json({register: "Nur E-Mail Adressen mit der Endung '@hs-osnabrueck.de' sind zugelassen."});
-//     }
-//
-//     console.log("Test " + request.body.token);
-//
-//     let servertime = new Date();
-//     let randomtoken = Math.random().toString(36).substr(2, 6);
-//
-//     //Check if used token is valid
-//     connection.query("SELECT * FROM TOKEN WHERE " +
-//         'gentoken = "' + request.body.token + '"',
-//         function (err, result, fields) {
-//             if (err)
-//                 throw err;
-//             else {
-//                 console.log(result);
-//                 console.log(result.length);
-//
-//                 if (result.length !== 0) {
-//                     let startTime = result[0].start;
-//                     let endTime = result[0].end;
-//                     let token = result[0].gentoken;
-//                     let clientToken = request.body.token;
-//
-//                     if (token === clientToken
-//                         && servertime >= startTime
-//                         && servertime <= endTime) {
-//                         connection.query("SELECT * FROM USER WHERE " + 'e_mail = "'
-//                             + request.body.email + '"',
-//                             function (err, result) {
-//                                 if (err) {
-//                                     throw err;
-//                                 } else {
-//                                     if (result.length === 0) {
-//                                         connection.query("INSERT INTO USER(token,name,surname,"
-//                                             + "e_mail,password,confirm_token ,verified, authorization) VALUES("
-//                                             + '"' + request.body.token + '",'
-//                                             + '"' + request.body.name + '",'
-//                                             + '"' + request.body.surname + '",'
-//                                             + '"' + request.body.email + '",'
-//                                             + '"' + request.body.password + '",'
-//                                             + '"' + randomtoken + '",'
-//                                             + '' + "false" + ','
-//                                             + '"student"' + ')',
-//                                             function (err) {
-//                                                 if (err)
-//                                                     throw err;
-//                                                 else {
-//                                                     console.log("User created");
-//                                                 }
-//                                             });
-//                                     } else {
-//                                         response.json({register: "Fehlgeschlagen: Benutzer existiert bereits."});
-//                                     }
-//                                 }
-//                             });
-//                     } else {
-//                         response.json({register: "Freischaltcode ist abgelaufen."});
-//                     }
-//                 } else {
-//                     response.json({register: "Freischaltcode existiert nicht."});
-//                 }
-//             }
-//         });
-// });
-
+    request.session.destroy(err => {
+        if (err) {
+            return respond.redirect("/home");
+        }
+        respond.clearCookie(sessionName);
+        console.log("cookies deleted!")
+        respond.redirect("/login");
+    })
+});
 
 app.post("/sendToken", (request, response) => {
 
@@ -482,68 +299,73 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
     next();
 });
 
-app.post("/createToken", redirectLogin, (request, response) => {
+const routerToken = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/routes/token/routesToken");
+app.use("/createToken", routerToken);
+app.use("/deleteToken", routerToken);
 
-    console.log(request.body.time);
-    console.log(tokenLifeTime);
-
-    if (request.body.time < tokenLifeTime) {
-
-        connection.query("INSERT INTO TOKEN(START,TIME,END,GENTOKEN, USER) VALUES("
-            + '"' + request.body.start + '",'
-            + request.body.time + ','
-            + '"' + request.body.end + '",'
-            + '"' + request.body.token + '",'
-            + '"' + request.session.userId + '")'),
-            function (err) {
-                if (err)
-                    throw err;
-                console.log("Inserted TOKEN")
-            }
-
-        response.json({token: "Freischaltcode wurde erstellt."})
-    } else {
-        response.json({token: "Fehler: Die Dauer vom Freischaltcode ist zu lang gewählt."})
-    }
-});
-
-//Deletes token from Database
-app.post("/deleteToken", redirectLogin, (request, response) => {
-
-    if (request.session.authorization === "admin"){
-        connection.query("SELECT gentoken from token WHERE GENTOKEN = " + '"' + request.body.token + '";',
-            function (err, result) {
-                if (err)
-                    throw err;
-                else {
-                    console.log(result.length);
-
-                    if (result.length > 0) {
-                        connection.query("DELETE FROM token WHERE GENTOKEN = " + '"' + request.body.token + '";'),
-                            function (err, result) {
-                                if (err)
-                                    throw err;
-                            }
-                        response.json({token: "Token gelöscht!"});
-                    } else {
-                        response.json({token: "Token nicht gefunden"});
-                    }
-                }
-            })
-    } else {
-        response.json({token: "Keine Berechtigung zur Löschung von Freischaltcodes"});
-    }
-});
+// app.post("/createToken", redirectLogin, (request, response) => {
+//
+//     console.log(request.body.time);
+//     console.log(tokenLifeTime);
+//
+//     if (request.body.time < tokenLifeTime) {
+//
+//         connection.query("INSERT INTO TOKEN(START,TIME,END,GENTOKEN, USER) VALUES("
+//             + '"' + request.body.start + '",'
+//             + request.body.time + ','
+//             + '"' + request.body.end + '",'
+//             + '"' + request.body.token + '",'
+//             + '"' + request.session.userId + '")'),
+//             function (err) {
+//                 if (err)
+//                     throw err;
+//                 console.log("Inserted TOKEN")
+//             }
+//
+//         response.json({token: "Freischaltcode wurde erstellt."})
+//     } else {
+//         response.json({token: "Fehler: Die Dauer vom Freischaltcode ist zu lang gewählt."})
+//     }
+// });
+//
+// //Deletes token from Database
+// app.post("/deleteToken", redirectLogin, (request, response) => {
+//
+//     if (request.session.authorization === "admin"){
+//         connection.query("SELECT gentoken from token WHERE GENTOKEN = " + '"' + request.body.token + '";',
+//             function (err, result) {
+//                 if (err)
+//                     throw err;
+//                 else {
+//                     console.log(result.length);
+//
+//                     if (result.length > 0) {
+//                         connection.query("DELETE FROM token WHERE GENTOKEN = " + '"' + request.body.token + '";'),
+//                             function (err, result) {
+//                                 if (err)
+//                                     throw err;
+//                             }
+//                         response.json({token: "Token gelöscht!"});
+//                     } else {
+//                         response.json({token: "Token nicht gefunden"});
+//                     }
+//                 }
+//             })
+//     } else {
+//         response.json({token: "Keine Berechtigung zur Löschung von Freischaltcodes"});
+//     }
+// });
 //
 
-
-
-var server = app.listen(PORT, () => console.log(
+const server = app.listen(PORT, () => console.log(
     "listening on: " +
     `http://localhost:${PORT}`
 ));
 
 module.exports = {
   server: server,
+    session: session,
+    redirectLogin: redirectLogin,
+    redirectHome: redirectHome,
     session: session
 };

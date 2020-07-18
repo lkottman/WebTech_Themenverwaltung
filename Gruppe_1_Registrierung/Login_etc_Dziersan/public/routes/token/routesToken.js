@@ -1,17 +1,47 @@
-const express = require('express')
-const mysql = require('mysql')
-const router = express.Router()
-const fs = require('fs');
+const express = require('express');
 const session = require("express-session");
-const bodyParser = require("body-parser");
-const config = JSON.parse(fs.readFileSync("C:\\Users\\Dominik\\IdeaProjects\\WebTech_Themenverwaltung2\\Gruppe_1_Registrierung\\Login_etc_Dziersan\\public\\Sven_Louis\\datenbankConfig.json"));
-
+const mysql = require('mysql');
+const path = require("../../../../../config/pathConfig.json");
+const fs = require('fs');
+const config = JSON.parse(fs.readFileSync(path.path + "/config/datenbankConfig.json"));
+const app = express();
 const redirect = require("../routesRedirect");
+const router = express.Router()
 
-router.post("/createToken", redirect.redirectLogin, (request, response) => {
+const connection = require("../../../../../getConnectionDatabase");
+
+var lifeTime = 1000 * 60 * 60 * 24;// 24 hour
+var lifeTimeLong = 1000 * 60 * 60 * 24 * 365 * 10;  //1 Year
+const tokenLifeTime = 60 * 24 * 366;// 10 + 1 day year
+
+var {
+    PORT = 3000,
+    sessionLifetime = lifeTime,
+    sessionName = "sid",
+    secretSession = "test"
+} = process.env;
+
+app.use(session({
+    name: sessionName,
+    resave: false,
+    saveUninitialized: false,
+    secret: secretSession,
+    cookie: {
+        maxAge: sessionLifetime,
+        sameSite: true,
+        secure: false    //in development in production :true
+    }
+}));
+
+// const path = require("../../../../pathConfig.json");
+// const config = JSON.parse(fs.readFileSync(path.path + "\\Gruppe_1_Registrierung\\Login_etc_Dziersan\\public\\Sven_Louis\\datenbankConfig.json"));
+// const redirect = require("../../../../../index");
+// const redirect = require("../routesRedirect");
+
+
+router.post("/createToken",  (request, response) => {
 
     console.log(request.body.time);
-    console.log(tokenLifeTime);
 
     if (request.body.time < tokenLifeTime) {
 
@@ -34,9 +64,10 @@ router.post("/createToken", redirect.redirectLogin, (request, response) => {
 });
 
 //Deletes token from Database
-router.post("/deleteToken", redirect.redirectLogin, (request, response) => {
+router.post("/deleteToken", (request, response) => {
 
-    if (request.session.authorization === "admin"){
+    console.log(request.session);
+    if (request.session.userAuthorization === "admin"){
         connection.query("SELECT gentoken from token WHERE GENTOKEN = " + '"' + request.body.token + '";',
             function (err, result) {
                 if (err)
@@ -52,12 +83,12 @@ router.post("/deleteToken", redirect.redirectLogin, (request, response) => {
                             }
                         response.json({token: "Token gelöscht!"});
                     } else {
-                        response.json({token: "Token nicht gefunden"});
+                        response.json({token: "Token nicht gefunden."});
                     }
                 }
             })
     } else {
-        response.json({token: "Keine Berechtigung zur Löschung von Freischaltcodes"});
+        response.json({token: "Keine Berechtigung zur Löschung von Freischaltcodes."});
     }
 });
 
