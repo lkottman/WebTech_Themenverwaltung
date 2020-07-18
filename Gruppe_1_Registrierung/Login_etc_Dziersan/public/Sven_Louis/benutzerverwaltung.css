@@ -7,6 +7,12 @@ html {
     overflow-y: scroll;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
+    letter-spacing: .6px !important;
+}
+body{
+    font-family: "Roboto Thin";
+    font-size: 16px;
+
 }
 table {
     border-collapse: collapse;
@@ -43,7 +49,7 @@ tr:hover {
 
 .wrapper > div{
     padding: 1em;
-           }
+}
 
 .userProfilBoxes{
     display: grid;
@@ -51,30 +57,9 @@ tr:hover {
 
 }
 .userProfilBoxes:nth-child {
-color: #eee;
+    color: #eee;
 }
 
-#UserMenu_All_Header{
-    font-size: 17px;
-    letter-spacing: .6px !important;
-    color: #666;
-    white-space: nowrap;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    background-color: #e5e5e5;
-    height: 52px;
-    margin-bottom: 52px;
-    }
-
-.header_button{
-    height: 52px;
-    border: none;
-    background-color: #e5e5e5;
-}
-
-button:hover {
-    background-color: rgba(0,136,169,0.8);
-}
 
 input{
     float: left;

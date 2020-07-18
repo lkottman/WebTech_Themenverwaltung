@@ -1,5 +1,0 @@
-
-
-
-
-// settings for passwort reset

@@ -100,6 +100,8 @@ function addRow(tableID) {
         }
     }
 
+    let check = document.getElementById("check");
+
     let idfield = document.getElementById("id").value;
     let namefield = document.getElementById("name").value;
     let shortdescfield = document.getElementById("shortdesc").value;
@@ -144,9 +146,14 @@ function addRow(tableID) {
     newrewButton.className = "rewbutton";
     newrewButton.innerHTML = "bearbeiten";
     newrewButton.onclick = function openupAdd() {
+        check.checked = true;
 
-        window.open("/EditReqGer",
-            "Anforderung erstellen", "height=500, width=600");
+        let row = newrewButton.parentNode.parentNode;
+        console.log(row.value);
+
+        document.getElementById("editid").value = '';
+        document.getElementById("editname").value = '';
+        document.getElementById("editshortdesc").value = '';
     }
 
     let newdelButton = document.createElement("button");
@@ -295,4 +302,8 @@ function maxAll() {
                 tr[i+1].style.visibility = "visible";
             }
     }
+}
+
+function update() {
+    document.getElementById("check").checked = false;
 }
