@@ -8,6 +8,9 @@ const app = express();
 const path = require("../../../../config/pathConfig.json");
 
 
+app.use(express.static('../Gruppe_1_Registrierung/Login_etc_Dziersan/public/Sven_Louis/css'));
+
+
 router.get("/login",  (request, response) => {
     if (request.session.userId) {
         response.redirect("/home");
@@ -30,7 +33,7 @@ router.get("/register", (request, response) => {
 });
 
 router.get("/admin", (request, response) => {
-        response.sendFile(path.path + "Gruppe_1_Registrierung/Login_etc_Dziersan/public/Sven_Louis/adminView.html");
+        response.sendFile(path.path + "Gruppe_1_Registrierung/Login_etc_Dziersan/public/Sven_Louis/html/adminView.html");
 });
 
 router.get("/token", (request, response) => {
