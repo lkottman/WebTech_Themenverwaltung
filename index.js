@@ -53,10 +53,8 @@ let staticOptions = {
 
 }
 //imports
-app.use(express.static('./Gruppe_1_Registrierung/public/css'));
-app.use(express.static('./Gruppe_1_Registrierung/public/images'));
-
-app.use(express.static('images'));
+app.use('/css',express.static('./Gruppe_1_Registrierung/public/css'));
+app.use('/images',express.static('./Gruppe_1_Registrierung/public/images'));
 app.use(express.json({limit: "1mb"}));
 app.use(bodyParser.urlencoded({
     extended: true
