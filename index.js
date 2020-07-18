@@ -6,7 +6,7 @@ const app = express();
 const nodemailer = require('nodemailer');
 
 configDatabase = require("./config/datenbankConfig.json");
-configDataMailer = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/Sven_Louis/config.json");
+configDataMailer = require("./Gruppe_1_Registrierung/Login_etc_Dziersan/public/Sven_Louis/config/config.json");
 const configData = configDataMailer;
 const config = configDatabase;
 
@@ -51,7 +51,8 @@ var {
 
 //imports
 app.use(express.static('Gruppe_1_Registrierung/Login_etc_Dziersan/public'));
-app.use(express.static('Gruppe_1_Registrierung/Login_etc_Dziersan/public/Sven_Louis'));
+app.use(express.static('Gruppe_1_Registrierung/Login_etc_Dziersan/public/Sven_Louis/'));
+app.use(express.static('Gruppe_1_Registrierung/Login_etc_Dziersan/public/Sven_Louis/routes'));
 app.use(express.static(__dirname));  // css sonst  nicht drin
 app.use(express.static('Gruppe_1_Registrierung/Login_etc_Dziersan/privat'));
 

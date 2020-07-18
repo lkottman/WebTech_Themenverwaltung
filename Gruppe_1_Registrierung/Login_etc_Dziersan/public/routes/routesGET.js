@@ -30,7 +30,7 @@ router.get("/register", (request, response) => {
 });
 
 router.get("/admin", (request, response) => {
-        response.sendFile(path.path + "Gruppe_1_Registrierung/Login_etc_Dziersan/public/Sven_Louis/admin_ansicht.html");
+        response.sendFile(path.path + "Gruppe_1_Registrierung/Login_etc_Dziersan/public/Sven_Louis/adminView.html");
 });
 
 router.get("/token", (request, response) => {

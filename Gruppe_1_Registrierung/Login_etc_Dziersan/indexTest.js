@@ -116,7 +116,7 @@ app.get("/home", redirectLogin, (request, response) => {
 
 app.get("/adminansicht", (request, response) => {
     console.log("adminansicht");
-    response.sendFile('//public//Sven_Louis//admin_ansicht.html', {root: __dirname});
+    response.sendFile('//public//Sven_Louis//adminView.html', {root: __dirname});
 });
 
 app.get("/register", (request, response) => {
