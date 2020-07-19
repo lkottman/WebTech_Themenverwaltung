@@ -116,6 +116,11 @@ app.get("/admin", router);
 app.get("/getUser", router);
 app.get("/confirmation", router);
 app.get("/passwordforgot", router);
+app.get("/register", router);
+app.get("/changepassword", router);
+app.get("/userInfo", router);
+app.get("/adminView", router);
+
 
 routerConfirmation = require('./Gruppe_1_Registrierung/public/routes/register/confirmation.js');
 app.use(routerConfirmation);
@@ -291,7 +296,7 @@ const server = app.listen(PORT, () => console.log(
 ));
 
 module.exports = {
-  server: server,
+    server: server,
     session: session,
     redirectLogin: redirectLogin,
     redirectHome: redirectHome,
