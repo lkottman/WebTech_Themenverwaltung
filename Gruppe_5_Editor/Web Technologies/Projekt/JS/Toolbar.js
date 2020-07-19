@@ -57,15 +57,15 @@ function doGerman() {
     document.getElementById("con").innerText = "Kontakt";
     document.getElementById("mhave").innerText = "Muss-Anforderung";
     document.getElementById("shave").innerText = "Soll-Anforderung";
-    document.getElementById("nhave").innerText = "Kann-Anforderung";
-    document.getElementById("nhave").value = "K";
+    document.getElementById("nhave").innerText = "Nett-zu-haben";
+    document.getElementById("nhave").value = "N";
 
     document.getElementById("header").innerText = "Anforderungen bearbeiten"
     document.getElementById("shf").innerText = "Kurzbeschreibung";
     document.getElementById("edm").innerText = "Muss-Anforderung";
     document.getElementById("eds").innerText = "Soll-Anforderung";
-    document.getElementById("edn").innerText = "Kann-Anforderung";
-    document.getElementById("edn").value = "K";
+    document.getElementById("edn").innerText = "Nett-zu-haben";
+    document.getElementById("edn").value = "N";
 
     document.getElementById("addreq").innerText = "Anlegen einer Anforderung";
     document.getElementById("prio").innerText = "Priorität";
