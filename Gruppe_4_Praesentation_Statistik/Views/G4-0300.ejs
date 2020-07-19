@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/stylesheets/G4-0300.css">
+    <script src="/javascripts/G4-0300js.js"></script>
+    <meta charset="UTF-8">
+    <title>Erstellung Gruppenreihenfolge</title>
+</head>
+<body>
+
+<script>
+
+
+
+</script>
+
+<div id="Menueleiste">
+    <img src="/images/HS-OS-Logo-Standard-rgb.jpg" alt="Logo der Hochschule">
+    <p style="position: absolute;right: 0px;top: -20px"><%= benutzername%></p>
+</div>
+
+<!--Formular zur Erstellung des Präsentationstmerins-->
+<form method="post" action="http://127.0.0.1:8080/generatePresentation" id="generateDay">
+    <h2>Erstellung eines Präsentationstermins</h2>
+    <fieldset>
+        <!--Tag-->
+        <label for="enterDate">Datum:</label>
+        <input type="date" name="Date" id="enterDate" class="expand"
+               value="2020-04-20">
+        <!--Start-->
+        <label for="enterDayStart">Start:</label>
+        <input type="time" name="DayStart" id="enterDayStart" class="expand"
+               value="08:15">
+        <!--Ende-->
+        <label for="enterDayEnd">Ende:</label>
+        <input type="time" name="DayEnd" id="enterDayEnd" class="expand"
+               value="11:30">
+        <!--Raum-->
+        <label for="enterRoom">Raum:</label>
+        <input type="text" name="room" id="enterRoom" class="expand"
+               value="KD 301">
+        <!--Anlass-->
+        <label for="Anlass">Anlass:</label>
+        <input type="text" name="anlass" id="enterAnlass" class="expand"
+               placeholder="Abschlusspräsentation">
+        <!--Projekt-ID-->
+        <label for="projekt_id">Auf welches Projekt bezieht sich diese Präsentation?</label>
+        <!--Liste zur Auswahl von Projekten aus Datenbank abfragen und darstellen-->
+        <select name="projekt_id" id="enterProjektId">
+            <% for (var i = 0; i < projekt_id.length; i++) { %>
+            <option value=<%=projekt_id[i] %>></option>
+            <% }%>
+        </select>
+        <!--Button zum Erstellen des Präsentationstermins-->
+        <input type="button"  value="Erstellen" onclick="setPresentationDay()">
+    </fieldset>
+</form>
+    <form method="post" action="http://127.0.0.1:8080/generatePresentation" id="generateDay">
+
+        <h2>Erstellung eines Präsentationstermins</h2>
+
+        <fieldset>
+
+            <label for="enterDate">Datum:</label>
+            <input type="date" name="Date" id="enterDate" class="expand"
+                   placeholder="2020-04-20">
+
+            <label for="enterDayStart">Start:</label>
+            <input type="time" name="DayStart" id="enterDayStart"
+                   class="expand"
+                   placeholder="08:15">
+
+            <label for="enterDayEnd">Ende:</label>
+            <input type="time" name="DayEnd" id="enterDayEnd"
+                   class="expand"
+                   placeholder="11:30">
+
+            <label for="enterRoom">Raum:</label>
+            <input type="text" name="room" id="enterRoom" class="expand" placeholder="KD 301">
+
+            <label for="enterAnlass">Anlass:</label>
+            <input type="text" name="anlass" id="enterAnlass" class="expand" placeholder="Abschlusspräsentation">
+
+
+            <input type="submit"  value="Erstellen" onclick="setPresentationDay()">
+
+        </fieldset>
+        <input type="hidden" name="date" id="date">
+        <input type="hidden" name="start" id="start">
+        <input type="hidden" name="end" id="end">
+        <input type="hidden" name="room" id="room">
+        <input type="hidden" name="anlass" id="anlass">
+
+    </form>
+
+<!--Formular zum Anlegen von Gruppen-->
+<form>
+    <h2>Anlegen der Gruppen</h2>
+    <fieldset>
+        <!--Gruppennummer-->
+        <label for ="enterGroupNumber">Gruppennummer</label>
+        <input type="number" name="Member" id="enterGroupNumber" class="expand"
+               placeholder="1" value="">
+        <!--Thema-->
+        <label for ="enterTheme">Thema:</label>
+        <input type="text" name="Theme" id="enterTheme" class="expand"
+               placeholder="Thema" value="">
+        <!--Mitglieder-->
+        <label for="enterNumber">Anzahl der Mitglieder</label>
+        <input type="number" name="Number" id="enterNumber" class="expand"
+              placeholder="4" value="">
+        <!--Startzeit-->
+        <label for ="enterStartTime">Startzeit:</label>
+        <input type="time" name="StartTime" id="enterStartTime" class="expand"
+               placeholder="8:15" value="">
+        <!--Dauer-->
+        <label for ="enterDuration">Dauer:</label>
+        <input type="time" name="Duration" id="enterDuration" class="expand"
+               placeholder="00:15" value="">
+        <!--Raum-->
+        <%#
+        <label for ="enterRoom">Raum:</label>
+        <input type="text" name="Room" id="enterRoom" class="expand"
+               placeholder="Raum" value="">
+           %>
+        <!--Button zum Anlegen einer Gruppe-->
+        <input type="button" value="Hinzufügen" onclick="addGroup(); getGroups();">
+    </fieldset>
+</form>
+    <form>
+        <h2>Anlegen der Gruppen</h2>
+        <fieldset>
+            <label for ="enterGroupNumber">Gruppennummer</label>
+            <input type="number" name="Member" id="enterGroupNumber" class="expand"
+                   placeholder="1" value="">
+
+            <label for ="enterTheme">Thema:</label>
+            <input type="text" name="Theme" id="enterTheme" class="expand"
+                   placeholder="Thema" value="">
+
+            <label for="enterNumber">Anzahl der Mitglieder</label>
+            <input type="number" name="Number" id="enterNumber" class="expand"
+                  placeholder="4" value="">
+
+            <label for ="enterStartTime">Startzeit:</label>
+            <input type="time" name="StartTime" id="enterStartTime" class="expand"
+                   placeholder="8:15" value="">
+
+            <label for ="enterDuration">Dauer:</label>
+            <input type="time" name="Duration" id="enterDuration" class="expand"
+                   placeholder="00:15" value="">
+
+
+            <input type="button" value="Hinzufügen" onclick="addGroup(); getGroups();">
+
+
+
+        </fieldset>
+    </form>
+
+<h2>Angelegte Gruppen</h2>
+
+<table style="width:100%" id="groupTable">
+    <tr class="bordered">
+        <td class="bordered" style="width:10%">Reihenfolge</td>
+        <td class="bordered" style="width:30%">Gruppennummer</td>
+        <td class="bordered" style="width:30%">Thema</td>
+        <td class="bordered" style="width:20%">Anzahl der Mitglieder</td>
+        <td class="bordered" style="width:10%">Startzeit</td>
+        <td class="bordered" style="width:10%">Dauer</td>
+        <%#  <td class="bordered" style="width:20%">Raum</td> %>
+        <td class="bordered" style="width:20%">Löschen</td>
+    </tr>
+</table>
+
+<!--Formular zum Absenden der erstellten Präsentationstermine-->
+<form method="post" action="http://127.0.0.1:8080/submit">
+    <input type="hidden" name="submitter" id="submitter">
+    <input type="hidden" name="date" id="date">
+    <input type="hidden" name="start" id="start">
+    <input type="hidden" name="end" id="end">
+    <input type="hidden" name="room" id="room">
+    <input type="hidden" name="anlass" id="anlass">
+    <input type="submit" value="Lossenden">
+</form>
+    <form method="post" action="http://127.0.0.1:8080/submit">
+        <input type="hidden" name="submitter" id="submitter">
+        <input type="submit" value="Lossenden">
+    </form>
+
+</body>
+</html>

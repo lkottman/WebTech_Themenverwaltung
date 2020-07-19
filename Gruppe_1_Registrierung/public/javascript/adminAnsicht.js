@@ -1,16 +1,5 @@
-const connection = require('../../../getConnectionDatabase.js');
+//const connection = require('../../../getConnectionDatabase.js');
 
-function getUsers(){
-    let sql = "SELECT name, surname, e_mail, password, course, authorization FROM USER;";
-    connection.query(sql,
-        function (err, result)
-        {
-            if (err)
-                throw err;
-
-            console.log(result);
-        });
-};
 
 
 function changeEntries() {
@@ -23,6 +12,7 @@ function changeEntries() {
                 console.log("Erfolgreich")
         })
 }
+
 
 
 function changeFieldStatus(input) {
@@ -44,9 +34,43 @@ function changeVisibility(input) {
     }
 }
 
-function executeQuery(){
+class UserToUpdate {
+    // id?
+    constructor(name, surname,email, password, authorization, course) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.password = authorization;
+        this.course = course;
+    }
 
+     getSelectedUser(){
+        let surname =  document.getElementById("vorname").value;
+        let name    =  document.getElementById("nachname").value;
+        let e_mail  =  document.getElementById("e-Mail").value;
+        let course   = document.getElementById("studiengang").value;
+        let role     = document.getElementById("rolle").value;
+        let password = document.getElementById("password").value;
+        return new UserToUpdate( name, surname, e_mail, course, role, password);
+    }
 }
 
- fetch()
+function sendData(){
+
+
+    let user = new UserToUpdate().getSelectedUser();
+    console.log(user);
+}
+
+function getUser() {
+    fetch('/getUser').then(response => {
+        return response.json();
+    }).then(responseData => {
+        console.log(responseData);
+    });
+};
+
+
+
 

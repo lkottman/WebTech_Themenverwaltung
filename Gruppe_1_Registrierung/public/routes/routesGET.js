@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const connection = require('../../../getConnectionDatabase.js');
 
 // const redirect = require("./routesRedirect");
 const redirect = require("../../../index");
-
 const app = express();
 const path = require("../../../config/pathConfig.json");
 
@@ -31,9 +31,52 @@ router.get("/register", (request, response) => {
     }
 });
 
-router.get("/admin", (request, response) => {
-        response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/adminView.html");
+
+
+let url = 'https://example.com';
+
+
+/**
+ *  This method provides a json object with all registerd users.
+ */
+router.get("/getUser", (request, response) => {
+
+    let sql = "SELECT id, name, surname, e_mail, password, course, authorization FROM USER;";
+
+    connection.query(sql,(err, result, )  => {
+        if(err) {
+            console.log(err);
+            response.end();
+        }
+        response.contentType('application/json');
+        response.json(result);
+        return result;
+    });
+
 });
+
+/**
+ * This method allows the user and admin to change their personal data.
+ */
+router.get("/updateUser", (request, response) => {
+
+
+    let sql = "SELECT id, name, surname, e_mail, password, course, authorization FROM USER;";
+
+    connection.query(sql,(err, result, )  => {
+        if(err) {
+            console.log(err);
+            response.end();
+        }
+        response.contentType('application/json');
+        response.json(result);
+        return result;
+    });
+
+});
+
+
+
 
 router.get("/token", (request, response) => {
     if (request.session.userAuthorization === "lecturer"
@@ -56,9 +99,6 @@ router.get("/successfullregistration", (request, response) => {
     response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/successRegister.html');
 });
 
-router.get("/testmailer", (request, response) => {
-    response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/testmailer.html');
-});
 
 router.get("/resetpassword", (request, response) => {
     response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/tokenReset.html');
@@ -67,6 +107,27 @@ router.get("/resetpassword", (request, response) => {
 router.get("/changepassword", (request, response) => {
     response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/changePassword.html');
 });
+
+router.get("/confirmation", (request, response) => {
+
+    response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/confirmEmail.html");
+});
+
+
+router.get("/admin", (request, response) => {
+
+    response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/adminView.html");
+
+});
+
+
+router.get("/passwordforgot", (request, response) => {
+
+    response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/passwordForgot.html");
+
+});
+
+
 
 module.exports = router;
 

@@ -5,7 +5,7 @@ const fs = require('fs');
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const config = JSON.parse(fs.readFileSync("/Users/svenpetersen/IdeaProjects/WebTech_Themenverwaltung_Closly_Finished/config/datenbankConfig.json"));
-
+const {sendMail, getTextConfirmationEmail, getMailOptions} = require('../nodeMailer/nodeMailer.js');
 
 const redirect = require("../routesRedirect");
 
@@ -77,6 +77,9 @@ router.post("/register", redirect.redirectHome, (request, response) => {
                                                     throw err;
                                                 else {
                                                     console.log("User created");
+                                                    sendMail(getMailOptions(request.body.email,
+                                                        'E-Mail bestätigen!!',getTextConfirmationEmail(randomtoken,
+                                                            request.body.email, request.body.name)))
                                                 }
                                             });
                                     } else {
