@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <style>
+        * {font-family: sans-serif}
+    </style>
+</head>
+<body>
+
+<script src="meinJavaScript.js"></script>
+
+<script>
+
+    function chiffrieren(){
+        let unverschluesselt = document.formular.eingabe.value;
+        document.formular.ausgabe.value =
+            textVerschieben(textUmdrehen(unverschluesselt), 1)
+    }
+
+    function dechiffrieren(text){
+        let verschluesselt = document.formular.ausgabe.value;
+        document.formular.ausgabe.value =
+            textVerschieben(textUmdrehen(verschluesselt), -1)
+
+    }
+</script>
+
+
+<form name="formular">
+    <fieldset>
+        <legend> Umgedrehtes Cäsar Chiffre</legend>
+
+        <label for="eingabe">Unverschlüsselter Text:<br>
+        <input type="text" name="eingabe" id="eingabe" maxlength="80" size="80">
+        </label>
+
+        <p>
+            <input type="button" value="chiffrieren" onclick="chiffrieren()">
+            <input type="button" value="dechiffrieren" onclick="dechiffrieren()">
+        </p>
+
+        <label for="ausgabe">Verschlüsselter Text:<br>
+            <input type="text" name="ausgabe" id="ausgabe" maxlength="80" size="80">
+        </label>
+    </fieldset>
+</form>
+
+
+</body>
+</html>
