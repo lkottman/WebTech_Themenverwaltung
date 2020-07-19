@@ -6,6 +6,7 @@ const router3 = require('../routes/G4-02000600');
 const router4 = require('../routes/G4-0700');
 const router5 = require('../routes/G4-0800');
 const router6 = require('../routes/G4-0900');
+const router7 = require('../routes/G4-0300');
 
 
 
@@ -16,6 +17,7 @@ app.use(router3);
 app.use(router4);
 app.use(router5);
 app.use(router6);
+app.use(router7);
 
 app.listen(8080, function () {
     console.log('Server running at http://127.0.0.1:8080/G4-0200');
