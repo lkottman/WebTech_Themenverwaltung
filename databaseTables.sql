@@ -72,6 +72,20 @@ VALUES (
 );
 
 
+INSERT INTO USER( token, name, surname, e_mail, password, verified, authorization, confirm_token, semester, course)
+VALUES (
+           'DEF',
+           'Kottmann',
+           'Louis',
+           'louis.king@hs-osnabrueck.de',
+           'kottmann',
+           false,
+           'dozent',
+           'test',
+           '2',
+           'Wirtschaftsinformatik'
+       );
+
 
 INSERT INTO TOKEN (start, time, end, gentoken, user)
 VALUES (

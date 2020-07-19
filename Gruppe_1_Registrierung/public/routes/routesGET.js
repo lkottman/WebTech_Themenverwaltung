@@ -60,7 +60,6 @@ router.get("/getUser", (request, response) => {
  */
 router.get("/updateUser", (request, response) => {
 
-
     let sql = "SELECT id, name, surname, e_mail, password, course, authorization FROM USER;";
 
     connection.query(sql,(err, result, )  => {
