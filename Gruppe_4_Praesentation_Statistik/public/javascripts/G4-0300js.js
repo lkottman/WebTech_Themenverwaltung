@@ -15,7 +15,7 @@ function addGroup() {
     group.number = document.getElementById("enterNumber").value;
     group.startTime = document.getElementById("enterStartTime").value;
     group.duration = document.getElementById("enterDuration").value;
-  //group.room = document.getElementById("enterRoom").value;
+    //group.room = document.getElementById("enterRoom").value;
     groups[groups.length] = group;
 
     let table = document.getElementById("groupTable");
@@ -28,7 +28,7 @@ function addGroup() {
     row.insertCell(3).innerHTML = group.number;
     row.insertCell(4).innerHTML = group.startTime;
     row.insertCell(5).innerHTML = group.duration;
-   // row.insertCell(6).innerHTML = group.room;
+    // row.insertCell(6).innerHTML = group.room;
     //Button zum Löschen
     row.insertCell(6).innerHTML =
         "<input type=\"button\" value=\"löschen\" onclick=\"deleteGroup(" + (n) + ")\">";
@@ -40,8 +40,8 @@ function addGroup() {
     appendHiddenInput(lastElement, "startTime",
         groups[lastElement].startTime);
     appendHiddenInput(lastElement, "duration", groups[lastElement].duration);
- //   appendHiddenInput(lastElement, "room",
-   //     groups[lastElement].room);
+    //   appendHiddenInput(lastElement, "room",
+    //     groups[lastElement].room);
 }
 
 
@@ -101,6 +101,8 @@ function getGroups() {
  */
 function setPresentationDay()
 {
+    document.getElementById("starting").value = document.getElementById("enterStartTime").value;
+    document.getElementById("dateAgenda").value = document.getElementById("enterDate").value;
     document.getElementById("date").value = document.getElementById("enterDate").value;
     document.getElementById("start").value = document.getElementById("enterDayStart").value;
     document.getElementById("end").value = document.getElementById("enterDayEnd").value;
