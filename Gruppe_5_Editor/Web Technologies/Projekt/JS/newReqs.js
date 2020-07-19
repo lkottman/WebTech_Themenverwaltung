@@ -378,6 +378,8 @@ function letsdel(){
     let letsdel = document.getElementById("newButtID");
     let row = letsdel.parentNode.parentNode;
     row.parentNode.removeChild(row);
+
+    //wir deleten das noch in der Zukunft aus der Datenbank
 }
 
 
@@ -399,12 +401,21 @@ function checkdoubleupdate() {
     let a = 0;
     let row;
 
+    let letsnotdel = document.getElementById("newButtID");
+    let row17 = letsnotdel.parentNode.parentNode;
+    let dieserow = row17.querySelector("td:nth-child(1)").innerHTML;
+
     if (idprefield2 === "M") {
 
         for (let i = 0; mtable.rows[i]; i++) {
             row = mtable.rows[i];
-
             let row0 = row.querySelector("td:nth-child(1)").innerHTML;
+
+            if(row0==dieserow){
+                letsdel();
+                addRowupdate('mbody');
+                break;
+            }
 
             if (row0 == insid) {
                 alert("ID " + insid + " existiert bereits!");
@@ -413,8 +424,8 @@ function checkdoubleupdate() {
             }
 
             if ((x === i) && (a === 0)) {
-                addRowupdate('mbody');
                 letsdel();
+                addRowupdate('mbody');
                 break;
             }
         }
@@ -423,9 +434,13 @@ function checkdoubleupdate() {
 
         for (let i = 0; stable.rows[i]; i++) {
             row = stable.rows[i];
-
             let row0 = row.querySelector("td:nth-child(1)").innerHTML;
 
+            if(row0==dieserow){
+                letsdel();
+                addRowupdate('mbody');
+                break;
+            }
 
             if (row0 == insid) {
                 alert("ID " + insid + " existiert bereits!");
@@ -434,8 +449,9 @@ function checkdoubleupdate() {
             }
 
             if ((y === i) && (a === 0)) {
-                addRowupdate('sbody');
                 letsdel();
+
+                addRowupdate('sbody');
                 break;
             }
         }
@@ -447,6 +463,11 @@ function checkdoubleupdate() {
 
             let row0 = row.querySelector("td:nth-child(1)").innerHTML;
 
+            if(row0==dieserow){
+                letsdel();
+                addRowupdate('mbody');
+                break;
+            }
 
             if (row0 == insid) {
                 alert("ID " + insid + " existiert bereits!");
@@ -455,8 +476,9 @@ function checkdoubleupdate() {
             }
 
             if ((z === i) && (a === 0)) {
-                addRowupdate('nbody');
                 letsdel();
+
+                addRowupdate('nbody');
                 break;
             }
         }
