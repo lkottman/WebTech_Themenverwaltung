@@ -78,7 +78,7 @@ router.post("/register", redirect.redirectHome, (request, response) => {
                                                 else {
                                                     console.log("User created");
                                                     sendMail(getMailOptions(request.body.email,
-                                                        'Passwort zurücksetzen!',getTextConfirmationEmail(randomtoken,
+                                                        'E-Mail bestätigen!!',getTextConfirmationEmail(randomtoken,
                                                             request.body.email, request.body.name)))
                                                 }
                                             });

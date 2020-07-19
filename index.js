@@ -106,15 +106,16 @@ app.get("/", router);
 app.get("/login", router);
 app.get("/agb", router);
 app.get("/successfullregistration", router);
-app.get("/testmailer", router);
 app.get("/resetpassword", router);
 app.get("/token", router);
 app.get("/home", router);
 app.get("/admin", router);
 app.get("/getUser", router);
+app.get("/confirmation", router);
+app.get("/passwordforgot", router);
 
 routerConfirmation = require('./Gruppe_1_Registrierung/public/routes/register/confirmation.js');
-app.use("/confirmation",routerConfirmation);
+app.use(routerConfirmation);
 
 routerPassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/passwordForgot.js');
 app.use(routerPassword);
@@ -125,9 +126,6 @@ app.use(routerLogin);
 
 routerRegister = require('./Gruppe_1_Registrierung/public/routes/register/routesRegister.js');
 app.use("/register",routerRegister);
-
-
-
 
 
 
