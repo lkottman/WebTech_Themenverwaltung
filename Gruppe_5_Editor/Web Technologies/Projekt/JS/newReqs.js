@@ -587,6 +587,7 @@ function addRowupdate(tableID) {
     newCell5.appendChild(newdelButton);
 
     clearfields();
+
 }
 
 
