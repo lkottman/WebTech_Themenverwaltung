@@ -14,11 +14,13 @@ app.post("/changePassword", (request, response) =>{
     let email = request.query.email;
 
     if (email === null || email === undefined ||
-        tokenReset === null || tokenReset === undefined){
+        tokenReset === null || tokenReset === undefined)
+    {
         console.log("Error");
         response.redirect("/login");
     }
-    else {
+    else
+        {
     console.log(email);
 
         let sql = "UPDATE USER SET verified = 1 WHERE confirm_token = '" + tokenReset  +
@@ -31,7 +33,7 @@ app.post("/changePassword", (request, response) =>{
             }
         });
         response.redirect("/login");
-    }
+
 });
 
 
