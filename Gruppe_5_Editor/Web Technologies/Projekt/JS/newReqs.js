@@ -11,37 +11,44 @@ function checkInput() {
 
     submitOK = "true";
 
-    if (idprefield.length === 0) {
+    if (idprefield.length === 0)
+    {
         alert("Setzen Sie die Priorität!")
         submitOK = "false";
     }
 
-    if (isNaN(idfield)) {
+    if (isNaN(idfield))
+    {
         alert("Bitte geben Sie eine Nummer für die Anforderung ein!")
         submitOK = "false";
     }
 
-    if (idfield.length === 0) {
+    if (idfield.length === 0)
+    {
         alert("Das ID Feld muss ausgefüllt sein.")
         submitOK = "false";
     }
 
-    if (namefield.length > 20) {
+    if (namefield.length > 20)
+    {
         alert("Der Name der Anforderung ist zu lang!")
         submitOK = "false";
     }
 
-    if (namefield.length === 0) {
+    if (namefield.length === 0)
+    {
         alert("Das Namensfeld muss ausgefüllt werden.")
         submitOK = "false";
     }
 
-    if (shortdescfield.length > 255) {
+    if (shortdescfield.length > 255)
+    {
         alert("Die Kurzbeschreibung ist zu lang!")
         submitOK = "false";
     }
 
-    if (shortdescfield.length === 0) {
+    if (shortdescfield.length === 0)
+    {
         alert("Kurzbeschreibung nicht ausgefüllt.")
         submitOK = "false";
     }
@@ -50,17 +57,17 @@ function checkInput() {
     {
         return false;
     } else
+    {
+        if (idprefield === "M")
         {
-            if (idprefield === "M")
-            {
-                addRow('mbody');
-            } else if (idprefield === "S")
-            {
-                addRow('sbody');
-            } else {
-                    addRow('nbody')
-            }
+            addRow('mbody');
+        } else if (idprefield === "S")
+        {
+            addRow('sbody');
+        } else {
+            addRow('nbody')
         }
+    }
 }
 
 /**
@@ -261,17 +268,17 @@ function miniAll() {
     console.log(tr);
     for (i = 0; i < tr.length -1; i++)
     {
-         td = tr[i+1].getElementsByTagName("td");
-         subs = td[0].innerHTML.substr(1);
-         val = parseFloat(subs);
+        td = tr[i+1].getElementsByTagName("td");
+        subs = td[0].innerHTML.substr(1);
+        val = parseFloat(subs);
 
-            if (Number.isInteger(val) === true)
-            {
+        if (Number.isInteger(val) === true)
+        {
 
-            } else
-                {
-                    tr[i+1].style.visibility = "collapse";
-                }
+        } else
+        {
+            tr[i+1].style.visibility = "collapse";
+        }
 
     }
 }
@@ -298,12 +305,11 @@ function maxAll() {
         {
 
         } else
-            {
-                tr[i+1].style.visibility = "visible";
-            }
+        {
+            tr[i+1].style.visibility = "visible";
+        }
     }
 }
-
 
 function addRowupdate(tableID) {
 
@@ -408,16 +414,16 @@ function addRowupdate(tableID) {
     };
 
     fetch("/saveReqData", options)
-        .then(response => response.json())
-        .then(data => {
+    .then(response => response.json())
+    .then(data => {
 
-            if (data.register === ""){
+        if (data.register === ""){
 
-            } else {
-                alert(data.register);
-                location.reload();
-            }
-        });
+        } else {
+            alert(data.register);
+            location.reload();
+        }
+    });
 
     newCell1.appendChild(newText11);
     newCell1.appendChild(newText1);
