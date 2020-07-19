@@ -1,3 +1,4 @@
+const lengthToBeValid = 50;
 const metaCharactersToCheck = {
     escapeCharacterSingleQuote: "\'",
     escapeCharacterDoubleQuote: "\"",
@@ -6,7 +7,7 @@ const metaCharactersToCheck = {
     escapeCharacterComment: "-"
 };
 
-const lengthToBeValid = 45;
+
 
 
 /**
@@ -16,7 +17,10 @@ const lengthToBeValid = 45;
  */
 function checkInputForSQLInject(input)
 {
-    checkLength(input);
+    let valid = checkLength(input);
+    if (!valid)
+        return false;
+
     let inputToCheck = splitInput(input);
 
     // illegal expression to prevent SQL-Injections
@@ -24,6 +28,7 @@ function checkInputForSQLInject(input)
         for (var prop in metaCharactersToCheck) {
             if (inputToCheck[i].toString() === metaCharactersToCheck[prop].toString() )
                 window.alert("Sie verwenden einen nicht zulässigen Ausdruck! \n Folgende Ausdruck sind nicht zulässig: \' \" \\ - -- @ ");
+            return false;
         }
     }
 }
@@ -51,6 +56,9 @@ function splitInput(input) {
 function checkLength(input) {
     if (input.length > lengthToBeValid )
     {
-        window.alert("Die maximale Zeichenlänge ist begrenzt auf 45 Zeichen")
+        window.alert("Die maximale Zeichenlänge ist begrenzt auf 45 Zeichen");
+        return false;
     }
 }
+
+module.exports = checkInputForSQLInject();

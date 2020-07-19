@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
-
 const saltRounds = 10;
 
 /**
@@ -17,7 +16,6 @@ function hashPassword(input){
                 } else {
                     console.log(hash);
                     return hash;
-                    //$2a$10$FEBywZh8u9M0Cec/0mWep.1kXrwKeiWDba6tdKvDfEBjyePJnDT7K
                 }
             })
         }
@@ -41,4 +39,9 @@ function compareHashedPassword(input, hash) {
             return true;
         }
     });
+};
+
+module.exports = {
+    hashPassword,
+    compareHashedPassword
 };
