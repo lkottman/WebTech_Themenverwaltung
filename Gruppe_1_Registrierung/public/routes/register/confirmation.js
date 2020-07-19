@@ -2,13 +2,11 @@ const express = require('express');
 const connection = require('../../../../getConnectionDatabase.js');
 const redirect = require("../routesRedirect");
 const app = express();
-
 const router = express.Router();
 
 
-//change to user db later and ADD USER token
-router.post("/confirmation", (request, response) => {
-    response.sendFile('//Gruppe_1_Registrierung//public//routes//register//confirmEmail.js', {root: __dirname});
+
+router.post("/verify", (request, response) => {
 
     let tokenReset = request.query.opt;
     let e_mail = request.query.e_mail;
@@ -71,6 +69,6 @@ function checkForValid(token, email) {
             return true;
         }
     });
-}
+};
 
 module.exports = router;

@@ -33,13 +33,6 @@ router.get("/register", (request, response) => {
 
 
 
-router.get("/admin", (request, response) => {
-
-    response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/adminView.html");
-
-});
-
-
 let url = 'https://example.com';
 
 
@@ -106,9 +99,6 @@ router.get("/successfullregistration", (request, response) => {
     response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/successRegister.html');
 });
 
-router.get("/testmailer", (request, response) => {
-    response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/testmailer.html');
-});
 
 router.get("/resetpassword", (request, response) => {
     response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/tokenReset.html');
@@ -117,6 +107,26 @@ router.get("/resetpassword", (request, response) => {
 router.get("/changepassword", (request, response) => {
     response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/changePassword.html');
 });
+
+router.get("/confirmation", (request, response) => {
+
+    response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/confirmEmail.html");
+});
+
+
+router.get("/admin", (request, response) => {
+
+    response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/adminView.html");
+
+});
+
+
+router.get("/passwordforgot", (request, response) => {
+
+    response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/passwordForgot.html");
+
+});
+
 
 
 module.exports = router;

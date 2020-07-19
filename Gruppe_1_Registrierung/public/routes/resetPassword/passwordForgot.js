@@ -13,20 +13,21 @@ router.post("/pwforgot", (request, response) => {
 
     let email = request.body.email;
 
+    // checks if email is set
     if(email === null || email === undefined )
     {
         console.log("Bitte geben Sie eine gültige E-Mail der Hochschule Osnabrueck an ");
         response.end();
-    }
-    else if (!checkInputForSQLInject(email)){
-
-            console.log('Sie verwenden einen nicht zulässigen Ausdruck! \n Folgende Ausdruck sind nicht zulässig: \' \" \\ - -- @ #');
-
+    }   // checks field to avoid sqlinjections
+    else if (!checkInputForSQLInject(email))
+    {
+        console.log('Sie verwenden einen nicht zulässigen Ausdruck! \n Folgende Ausdruck sind nicht zulässig: \' \" \\  -- @ #');
         response.end();
     }
-    else if (!validateEmail(email)){
+    else if (!validateEmail(email))
+    {
 
-            console.log('Bitte geben Sie eine gültige E-Mail der Hochschule Osnabrueck an !');
+        console.log('Bitte geben Sie eine gültige E-Mail der Hochschule Osnabrueck an !');
         response.end();
     }
     else {
@@ -39,14 +40,14 @@ router.post("/pwforgot", (request, response) => {
             // checks if entry exists
             if (result[0].test === 1){
 
+                // add 2 hours to fix timedifferenz
                 let startDate = new Date();
                 startDate.setHours(startDate.getHours() + 2);
-                console.log(startDate);
 
-                //generate endDate and add 1 hour for limited reset
+                //generate endDate and add 3 hour for limited reset
                 let endDate = new Date();
                 endDate.setHours(startDate.getHours() + 3);
-                console.log(endDate);
+
 
                 let resetToken = Math.random().toString(36).substr(2, 6);
                 console.log(resetToken);
@@ -61,15 +62,19 @@ router.post("/pwforgot", (request, response) => {
                 let sqlInsertToken = `INSERT INTO PW_FORGOT_TOKEN(e_mail, start, end, token, used) VALUES ('${email}', 
                     '${startDate}','${endDate}', '${resetToken}', false )`;
 
-                console.log(sqlInsertToken);
 
                 connection.query(sqlInsertToken, function (err, result) {
                     if(err) throw err;
 
-                    sendMail(getMailOptions(email,'Passwort zurücksetzen',getTextC(resetToken,email)));
+                    sendMail(getMailOptions(email,'Passwort zurücksetzen',getTextForgotPassword(resetToken,email)));
                     console.log(getMailOptions(email,'Passwort zurücksetzen',getTextForgotPassword(resetToken,email)))
                 });
+
                 response.redirect("/login");
+            }
+            else {
+                response.redirect("/login");
+                console.log("error");
             }
         })
     }
