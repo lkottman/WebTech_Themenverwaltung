@@ -155,7 +155,7 @@ function addRow(tableID) {
 
         let row = newrewButton.parentNode.parentNode;
 
-        let col1 = row.children[0].innerHTML;
+        let col1 = row.children[0].innerHTML.trim().substring(1);
         let col2 = row.children[1].innerHTML;
         let col3 = row.children[2].textContent;
 
@@ -167,7 +167,7 @@ function addRow(tableID) {
     let newdelButton = document.createElement("button");
     newdelButton.className = "delbutton";
     newdelButton.innerHTML = "<i  style=\"background-color: inherit\" class='fa fa-trash'></i>";
-    newdelButton.id = "delbtn"
+    newdelButton.id = "delbtn";
     newdelButton.onclick = function deleteRow() {
         let row = newdelButton.parentNode.parentNode;
         row.parentNode.removeChild(row);
@@ -331,8 +331,8 @@ function addRowupdate(tableID) {
 
     let check = document.getElementById("check");
 
-    let idfield = (document.getElementById("editid").value).trim().substring(1);
-    let newpreID = (document.getElementById("editid").value).trim().substring(0,1);
+    let idfield = document.getElementById("editid").value;
+    let newpreID = document.getElementById("newidpre").value;
     let namefield = document.getElementById("editname").value;
     let shortdescfield = document.getElementById("editshortdesc").value;
     let id = (newpreID + idfield);
@@ -383,9 +383,11 @@ function addRowupdate(tableID) {
         this.id = "newButtID";
 
         let row = newrewButton.parentNode.parentNode;
-        let col1 = row.children[0].innerHTML;
+        let col1 = row.children[0].innerHTML.trim().substring(1);
         let col2 = row.children[1].innerHTML;
         let col3 = row.children[2].textContent;
+
+        console.log(col1);
 
         document.getElementById("editid").value = col1;
         document.getElementById("editname").value = col2;
