@@ -25,7 +25,7 @@ function checkdouble() {
 
 
             if (row0 == insid) {
-                alert("hab was gefunden Bitch");
+                alert("ID " + insid + " existiert bereits!");
                 a = 1;
                 break;
             }
@@ -45,7 +45,7 @@ function checkdouble() {
 
 
             if (row0 == insid) {
-                alert("hab was gefunden Bitch");
+                alert("ID " + insid + " existiert bereits!");
                 a = 1;
                 break;
             }
@@ -65,7 +65,7 @@ function checkdouble() {
 
 
             if (row0 == insid) {
-                alert("hab was gefunden Bitch");
+                alert("ID " + insid + " existiert bereits!");
                 a = 1;
                 break;
             }
