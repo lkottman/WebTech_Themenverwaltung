@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>G4-0600</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/G4-0200.css">
+    <script src="/javascripts/G4-0600js.js"></script>
+
+
+    <script
+            src="https://code.jquery.com/jquery-3.5.0.js"
+            integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+            crossorigin="anonymous"></script>
+    <script
+            src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+            integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+            crossorigin="anonymous"></script>
+
+
+
+
+</head>
+<body>
+
+<div id="Menueleiste">
+    <img src="/images/HS-OS-Logo-Standard-rgb.jpg" alt="Logo der Hochschule">
+    <p style="position: absolute;right: 0px;top: -20px"><%= benutzername %></p>
+</div>
+<input type="button" value="Pause" onclick="dialog();">
+
+
+<h1>Modul: <%= modulname %></h1>
+<h2>Thema: <%= modulthema %></h2>
+<h2>Datum: <%= datum %></h2>
+<h2>Raum: <%= raum %></h2>
+
+
+<table id="test" rules="rows" id="sortable">
+    <thead>
+    <tr>
+        <th>Reihenfolge</th>
+        <th>Gruppe</th>
+        <th>Thema</th>
+        <th>Anzahl der Gruppenteilnehmer</th>
+        <th>geplante Zeit</th>
+        <th>geplante Dauer</th>
+        <th>geplantes Ende</th>
+        <th>Raum</th>
+
+    </tr>
+    </thead>
+
+
+    <tbody>
+    <!-- Hier werden die einzelnen Tabellenzeilen geladen, die Anzahl der Zeilen ist abhängig von den Einträgen der Datenbank-->
+    <% for (var i = 0; i < reihenfolge.length;i++) {let id = ("id_" + i); %>
+
+    <tr id="<%= i %>">
+
+
+        <td id="<%= id %>"><%= reihenfolge[i] %></td>
+
+        <td><%= gruppe[i] %></td>
+
+        <td name="thema"><%= thema[i] %></td>
+
+        <td><%= mitglieder[i] %></td>
+        <form method="post" action="http://127.0.0.1:8080/sendToDB" id="formCheckBox<%= i %>">
+
+            <td><input type="time" id="time<%= i %>" value="<%= startzeit[i] %>" onchange="
+                        document.getElementById('hiddenDauer<%= i %>').value=document.getElementById('dauer<%= i %>').value;
+                        document.getElementById('hiddenStart<%= i %>').value=document.getElementById('time<%= i %>').value;
+                        setTimeout(() => {  document.getElementById('formCheckBox<%= i %>').submit() }, 1)">
+            </td>
+            <input type="hidden" id="hiddenStart<%= i %>" name="start">
+            <input type="hidden" id="hiddenDauer<%= i %>" name="dauer">
+            <input type="hidden" id="i" name="i" value="<%= i %>">
+
+
+            <td><input type="time" id="dauer<%= i %>" value="<%= dauer[i] %>" onchange="
+                        document.getElementById('hiddenDauer<%= i %>').value=document.getElementById('dauer<%= i %>').value;
+                        document.getElementById('hiddenStart<%= i %>').value=document.getElementById('time<%= i %>').value;
+                        setTimeout(() => {  document.getElementById('formCheckBox<%= i %>').submit() }, 1)">
+            </td>
+
+
+            <td><input type="time" id="ende<%= i %>"value="<%= ende[i]%>" ></td>
+
+            <td><%= raum[i] %></td>
+
+
+        <!-- In on click wird überprüft ob checkbox ausgewählt ist, wenn ja wird die Zeile durchgestrichen und die Time felder disabled,
+        wenn nein erfolgt keine textdekoration und die Time felder werden freigegeben -->
+
+        <td><input type="checkbox" id="checkbox<%= i %>" onclick="if(this.checked){
+                    document.getElementById(<%= i %>).style.textDecoration='line-through';
+                    document.getElementById('checkbox<%= i %>').style.display='none';
+                    $('#time<%= i %>').attr('disabled','disabled');
+                    $('#dauer<%= i %>').attr('disabled','disabled');
+                    $('#ende<%= i %>').attr('disabled','disabled');}
+                    else
+                    {
+                    document.getElementById(<%= i %>).style.textDecoration = 'none';
+                    $('#time<%= i %>').removeAttr('disabled');
+                    $('#dauer<%= i %>').removeAttr('disabled');
+                    $('#ende<%= i %>').removeAttr('disabled');
+                    }">
+        </td>
+        </form>
+    </tr>
+    <% } %>
+    </tbody>
+</table>
+
+<script>
+    $('#sortable').sortable({
+        update: function (event, ui) {
+            $(this).sortable();
+        }
+    });
+</script>
+</body>
+</html>
