@@ -282,10 +282,68 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
     next();
 });
 
+const routerToken = require("./Gruppe_1_Registrierung/public/routes/token/routesToken");
+app.use("/createToken", routerToken);
+app.use("/deleteToken", routerToken);
 
 app.post("/getUsers", (request, response) => {
 
 });
+
+
+// app.post("/createToken", redirectLogin, (request, response) => {
+//
+//     console.log(request.body.time);
+//     console.log(tokenLifeTime);
+//
+//     if (request.body.time < tokenLifeTime) {
+//
+//         connection.query("INSERT INTO TOKEN(START,TIME,END,GENTOKEN, USER) VALUES("
+//             + '"' + request.body.start + '",'
+//             + request.body.time + ','
+//             + '"' + request.body.end + '",'
+//             + '"' + request.body.token + '",'
+//             + '"' + request.session.userId + '")'),
+//             function (err) {
+//                 if (err)
+//                     throw err;
+//                 console.log("Inserted TOKEN")
+//             }
+//
+//         response.json({token: "Freischaltcode wurde erstellt."})
+//     } else {
+//         response.json({token: "Fehler: Die Dauer vom Freischaltcode ist zu lang gewählt."})
+//     }
+// });
+//
+// //Deletes token from Database
+// app.post("/deleteToken", redirectLogin, (request, response) => {
+//
+//     if (request.session.authorization === "admin"){
+//         connection.query("SELECT gentoken from token WHERE GENTOKEN = " + '"' + request.body.token + '";',
+//             function (err, result) {
+//                 if (err)
+//                     throw err;
+//                 else {
+//                     console.log(result.length);
+//
+//                     if (result.length > 0) {
+//                         connection.query("DELETE FROM token WHERE GENTOKEN = " + '"' + request.body.token + '";'),
+//                             function (err, result) {
+//                                 if (err)
+//                                     throw err;
+//                             }
+//                         response.json({token: "Token gelöscht!"});
+//                     } else {
+//                         response.json({token: "Token nicht gefunden"});
+//                     }
+//                 }
+//             })
+//     } else {
+//         response.json({token: "Keine Berechtigung zur Löschung von Freischaltcodes"});
+//     }
+// });
+//
 
 const server = app.listen(PORT, () => console.log(
     "listening on: " +

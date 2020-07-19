@@ -5,18 +5,17 @@
     <link type="text/css" rel="stylesheet" href="../css/adminView.css" >
     <link type="text/css" rel="stylesheet" href="../css/navigationBar.css">
     <link type="text/css" rel="stylesheet" href="../css/table.css">
-
-
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="../../privat/javascript/adminAnsicht.js" type="text/javascript" language="JavaScript"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script type="text/javascript" language="JavaScript" src="../javascript/adminAnsicht.js"></script>
 
     <title>Benutzerverwaltung</title>
 </head>
 
-<body>
+<body onload="getUser()">
 <div id="header">
 </div>
 
@@ -72,7 +71,7 @@
 </div>
 
 
-
+<br>
 <div>
 
     <div class="wrapper">
@@ -89,7 +88,6 @@
                 </svg>
             </button>
             </div>
-            <input type="button" onclick="getUser()">
             <table id="userlist" width="100%" class="table user-list" onload>
                 <thead>
                 <tr>
@@ -161,9 +159,9 @@
                         <div>
 
                             <select class="inputBox" id="rolle" disabled="disabled">
-                                <option>Admin</option>
-                                <option>Dozent</option>
-                                <option>Student</option>
+                                <option >Admin</option>
+                                <option >dozent</option>
+                                <option >student</option>
                             </select>
                             <button id="rolleBtn" type="button" onclick="changeSelectStatus('rolle')" class="btn btn-default" aria-label="Left Align"
                                     style="border: none">

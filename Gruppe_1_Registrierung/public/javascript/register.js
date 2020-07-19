@@ -39,7 +39,7 @@ function register() {
             .then(data => {
 
                 console.log(data);
-                
+
                 if (data.register === ""){
                     fetch("/successfullregistration");
                 } else {

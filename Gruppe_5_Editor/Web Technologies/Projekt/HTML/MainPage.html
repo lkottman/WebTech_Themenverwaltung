@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <title>Anforderungseditor</title>
+
+    <link rel="stylesheet" type="text/css" href="../CSS/Toolbar.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/Editfield.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/Reqs.css">
+
+    <script src="../JS/AddAttribute.js" type="text/javascript"></script>
+    <script src="../JS/Toolbar.js" type="text/javascript"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script src="../JS/newReqs.js" type="text/javascript"></script>
+</head>
+<body>
+
+<div class="navbar" id="myNavbar">
+    <a style="overflow: hidden">
+        <img alt="logo" class="logo" onclick="openOsca()" src="WebTech_Themenverwaltung/Gruppe_1_Registrierung/public/images/osca3-white.png"></a>
+    <a id="pro" href="#projects">Projekte</a>
+    <a id="mem" href="MembersGer.html"
+       onclick="window.open('MembersGer.html', 'newwindow', 'width=600, height=300');
+        return false;">Gruppenmitglieder</a>
+
+    <div class="dropdown">
+        <button id="sp" class="dropbtn" onclick="dropdownTheButton()">Sprachen
+            <i class="fa fa-caret-down" style="background-color: #e5e5e5 "></i>
+        </button>
+        <div id="drops" class="dropdown-content">
+            <a id="ger" target="_self" onclick="doGerman()">Deutsch</a>
+            <a id="eng" target="_self" onclick="doEnglish()">Englisch</a>
+        </div>
+    </div>
+    <a id="con" href="#contact" onclick="openMail()">Kontakt</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+
+<div style="padding-top: 5px"></div>
+
+<div class="Editfield">
+    <input type="checkbox" id="check">
+    <label for="check">
+    </label>
+    <div class="Sidebar">
+        <header id="header">Anforderungen bearbeiten</header>
+
+        <a id="p">Priorität:</a><br>
+        <select style="width: 50%" id="newidpre" class="selectprio">
+            <option value="">--Select--</option>
+            <option id="edm" value="M">Muss-Anforderung</option>
+            <option id="eds" value="S">Soll-Anforderung</option>
+            <option id="edn" value="N">Nett zu haben</option>
+        </select>
+        <br>
+        <a id="idf">ID:</a><br>
+        <input style="width: 50%;" type="text" name="ID" id="editid"><br>
+        <a id="namef">Name:</a><br>
+        <input style="width: 50%" type="text" name="Name" id="editname"><br>
+        <br>
+        <a id="shf">Kurzbeschreibung:</a><br>
+        <textarea id="editshortdesc"></textarea><br>
+        <button id="update" onclick="update()">Update</button>
+        <button id="exit" onclick="exitUpdate()"><i  style="background-color: inherit" class='fa fa-times'></i></button>
+
+    </div>
+</div>
+
+<div class="reqdiv">
+
+    <div class="subreqdiv">
+        <fieldset>
+            <legend id="addreq">Anlegen einer Anforderung</legend>
+
+            <a id="prio">Priorität:</a>
+            <select id="idpre" class="selectprio">
+                <option value="">--Select--</option>
+                <option id="mhave" value="M">Muss-Anforderung</option>
+                <option id="shave" value="S">Soll-Anforderung</option>
+                <option id="nhave" value="N">Nett-zu-haben</option>
+            </select>
+
+            <a id="addid">ID:</a>
+            <input type="text" name="ID" id="id">
+
+            <a id="addname">Name:</a>
+            <input type="text" name="Name" id="name">
+            <br>
+
+            <a id="addsh">Kurzbeschreibung:</a>
+            <textarea id="shortdesc" class="shortdesc" style="width: 40%"></textarea>
+
+            <button id="addbtn" style="float: right" onclick="checkdouble()">anlegen</button>
+        </fieldset>
+    </div>
+
+    <p></p>
+
+    <div class="subreqdiv">
+        <fieldset>
+            <legend id="searchreq">Suchen einer Anforderung</legend>
+            <a id="searchreqfield">Gesuchte Anforderung (ID / Name):</a>
+            <input type="text" name="searchid" id="searchfield" onkeyup="searchID()"
+                   placeholder="Nach ID suchen..">
+            <input type="text" name="searchname" id="searchfieldname" onkeyup="searchName()"
+                   placeholder="Nach Namen suchen..">
+            <button id="allin" style="float: right" onclick="miniAll()">Alle einklappen</button>
+            <button id="allout" style="float: right; margin-right: 1%" onclick="maxAll()">Alle
+                ausklappen
+            </button>
+        </fieldset>
+    </div>
+
+    <p></p>
+
+    <div class="subreqdiv">
+        <fieldset>
+            <legend id="reqs">Anforderungen</legend>
+            <table id="reqtable" class="reqtable">
+                <thead>
+                <th style="width: 10%; cursor:pointer">ID</th>
+                <th style="pointer-events: none">Name</th>
+                <th id="tableshortdesc" colspan="3" style="pointer-events: none">Kurzbeschreibung</th>
+                </thead>
+                <tbody id="mbody">
+                <tr id="1" style="visibility:collapse">
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                </tbody>
+                <tbody id="sbody">
+                <tr id="1" style="visibility:collapse">
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                </tbody>
+                <tbody id="nbody">
+                <tr id="1" style="visibility:collapse">
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script>
+    function myFunction() {
+        var x = document.getElementById("myNavbar");
+        if (x.className === "navbar") {
+            x.className += " responsive";
+        } else {
+            x.className = "navbar";
+        }
+    }
+</script>
+<script src="../JS/sortshit.js"></script>
+</body>
+</html>

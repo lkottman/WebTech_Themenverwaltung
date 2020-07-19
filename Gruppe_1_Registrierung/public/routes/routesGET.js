@@ -11,17 +11,24 @@ const path = require("../../../config/pathConfig.json");
 
 
 router.get("/login",  (request, response) => {
+    if (request.session.userId) {
+        response.redirect("/home");
+    } else {
         response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/login.html");
+    }
 });
 
 router.get("/home", (request, response) => {
     console.log("home");
-    response.sendFile(path.path + "/Gruppe_1_Registrierung/privat/html/home.html");
+    response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/home.html");
 });
 
 router.get("/register", (request, response) => {
+    if (request.session.userId) {
+        response.redirect("/home");
+    } else {
         response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/register.html");
-
+    }
 });
 
 
@@ -53,7 +60,6 @@ router.get("/getUser", (request, response) => {
  */
 router.get("/updateUser", (request, response) => {
 
-
     let sql = "SELECT id, name, surname, e_mail, password, course, authorization FROM USER;";
 
     connection.query(sql,(err, result, )  => {
@@ -69,13 +75,12 @@ router.get("/updateUser", (request, response) => {
 });
 
 
-/**
- * Checks if User has authoriuation to access this site
- */
+
+
 router.get("/token", (request, response) => {
     if (request.session.userAuthorization === "lecturer"
         || request.session.userAuthorization === "admin") {
-        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/token.html');
+        response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/token.html');
     } else {
         response.redirect("/login");
     }
@@ -93,9 +98,7 @@ router.get("/successfullregistration", (request, response) => {
     response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/successRegister.html');
 });
 
-router.get("/resetpassword", (request, response) => {
-    response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/tokenReset.html');
-});
+
 
 router.get("/changepassword", (request, response) => {
     response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/changePassword.html');

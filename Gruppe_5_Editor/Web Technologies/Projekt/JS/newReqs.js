@@ -1,3 +1,85 @@
+function checkdouble() {
+
+    let idprefield2 = document.getElementById("idpre").value;
+    let idfield2 = document.getElementById("id").value;
+
+    let insid = idprefield2 + idfield2;
+
+    let mtable = document.getElementById("mbody");
+    let stable = document.getElementById("sbody");
+    let ntable = document.getElementById("nbody");
+
+
+    let x = mtable.rows.length - 1;
+    let y = stable.rows.length - 1;
+    let z = ntable.rows.length - 1;
+    let a = 0;
+    let row;
+
+    if (idprefield2 === "M") {
+
+        for (let i = 0; mtable.rows[i]; i++) {
+            row = mtable.rows[i];
+
+            let row0 = row.querySelector("td:nth-child(1)").innerHTML;
+
+
+            if (row0 == insid) {
+                alert("hab was gefunden Bitch");
+                a = 1;
+                break;
+            }
+
+            if ((x === i) && (a === 0)) {
+                checkInput();
+                break;
+            }
+        }
+
+    } else if (idprefield2 === "S") {
+
+        for (let i = 0; stable.rows[i]; i++) {
+            row = stable.rows[i];
+
+            let row0 = row.querySelector("td:nth-child(1)").innerHTML;
+
+
+            if (row0 == insid) {
+                alert("hab was gefunden Bitch");
+                a = 1;
+                break;
+            }
+
+            if ((y === i) && (a === 0)) {
+                checkInput();
+                break;
+            }
+        }
+
+    } else {
+
+        for (let i = 0; ntable.rows[i]; i++) {
+            row = ntable.rows[i];
+
+            let row0 = row.querySelector("td:nth-child(1)").innerHTML;
+
+
+            if (row0 == insid) {
+                alert("hab was gefunden Bitch");
+                a = 1;
+                break;
+            }
+
+            if ((z === i) && (a === 0)) {
+                checkInput();
+                break;
+            }
+        }
+
+    }
+
+}
+
 /**
  *
  * @returns {boolean}
@@ -11,65 +93,52 @@ function checkInput() {
 
     submitOK = "true";
 
-    if (idprefield.length === 0)
-    {
+    if (idprefield.length === 0) {
         alert("Setzen Sie die Priorität!")
         submitOK = "false";
     }
 
-    if (isNaN(idfield))
-    {
+    if (isNaN(idfield)) {
         alert("Bitte geben Sie eine Nummer für die Anforderung ein!")
         submitOK = "false";
     }
 
-    if (idfield.length === 0)
-    {
+    if (idfield.length === 0) {
         alert("Das ID Feld muss ausgefüllt sein.")
         submitOK = "false";
     }
 
-    if (namefield.length > 20)
-    {
+    if (namefield.length > 20) {
         alert("Der Name der Anforderung ist zu lang!")
         submitOK = "false";
     }
 
-    if (namefield.length === 0)
-    {
+    if (namefield.length === 0) {
         alert("Das Namensfeld muss ausgefüllt werden.")
         submitOK = "false";
     }
 
-    if (shortdescfield.length > 255)
-    {
+    if (shortdescfield.length > 255) {
         alert("Die Kurzbeschreibung ist zu lang!")
         submitOK = "false";
     }
 
-    if (shortdescfield.length === 0)
-    {
+    if (shortdescfield.length === 0) {
         alert("Kurzbeschreibung nicht ausgefüllt.")
         submitOK = "false";
     }
 
-    if (submitOK === "false")
-    {
+    if (submitOK === "false") {
         return false;
-    } else
-        {
-            if (idprefield === "M")
-            {
-                addRow('mbody');
-            } else if (idprefield === "S")
-            {
-                addRow('sbody');
-            } else
-                {
-                    addRow('kbody')
-                }
-
+    } else {
+        if (idprefield === "M") {
+            addRow('mbody');
+        } else if (idprefield === "S") {
+            addRow('sbody');
+        } else {
+            addRow('nbody')
         }
+    }
 }
 
 /**
@@ -87,7 +156,7 @@ function clearfields() {
  */
 function addRow(tableID) {
 
-    class Requirements{
+    class Requirements {
 
         constructor(ID, Name, ShortDesc) {
             this.id = ID;
@@ -106,7 +175,7 @@ function addRow(tableID) {
     let namefield = document.getElementById("name").value;
     let shortdescfield = document.getElementById("shortdesc").value;
     let idprefield = document.getElementById("idpre").value;
-    let id = idprefield+idfield;
+    let id = idprefield + idfield;
 
     if (idprefield === "M") {
         var tableRef = document.getElementById(tableID);
@@ -120,9 +189,8 @@ function addRow(tableID) {
         newRow.className = "yellow2";
     }
 
-    if (idprefield === "K") {
+    if (idprefield === "N") {
         var tableRef = document.getElementById(tableID);
-        console.log(tableRef);
         var newRow = tableRef.insertRow(-1);
         newRow.className = "green3";
     }
@@ -145,7 +213,8 @@ function addRow(tableID) {
 
     let newrewButton = document.createElement("button");
     newrewButton.className = "rewbutton";
-    newrewButton.innerHTML = "bearbeiten";
+    newrewButton.innerHTML = "<i  style=\"background-color: inherit\" class='fas fa-edit'></i>";
+    newrewButton.id = "editbtn";
     newrewButton.onclick = function openupAdd() {
         check.checked = true;
 
@@ -153,7 +222,8 @@ function addRow(tableID) {
         fetch("/delReqData", options);
 
         let row = newrewButton.parentNode.parentNode;
-        let col1 = row.children[0].innerHTML;
+
+        let col1 = row.children[0].innerHTML.trim().substring(1);
         let col2 = row.children[1].innerHTML;
         let col3 = row.children[2].textContent;
 
@@ -164,7 +234,8 @@ function addRow(tableID) {
 
     let newdelButton = document.createElement("button");
     newdelButton.className = "delbutton";
-    newdelButton.innerHTML = "löschen";
+    newdelButton.innerHTML = "<i  style=\"background-color: inherit\" class='fa fa-trash'></i>";
+    newdelButton.id = "delbtn";
     newdelButton.onclick = function deleteRow() {
         let row = newdelButton.parentNode.parentNode;
         row.parentNode.removeChild(row);
@@ -185,16 +256,16 @@ function addRow(tableID) {
     };
 
     fetch("/saveReqData", options)
-    .then(response => response.json())
-    .then(data => {
+        .then(response => response.json())
+        .then(data => {
 
-        if (data.register === ""){
+            if (data.register === "") {
 
-        } else {
-            alert(data.register);
-            location.reload();
-        }
-    });
+            } else {
+                alert(data.register);
+                location.reload();
+            }
+        });
 
     newCell1.appendChild(newText11);
     newCell1.appendChild(newText1);
@@ -237,8 +308,7 @@ function searchName() {
     filter = input.value.toUpperCase();
     table = document.getElementById("reqtable");
     tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++)
-    {
+    for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[1];
         if (td) {
             txtValue = td.textContent || td.innerText;
@@ -265,19 +335,16 @@ function miniAll() {
     table = document.getElementById("reqtable");
     tr = table.getElementsByTagName("tr");
     console.log(tr);
-    for (i = 0; i < tr.length -1; i++)
-    {
-         td = tr[i+1].getElementsByTagName("td");
-         subs = td[0].innerHTML.substr(1);
-         val = parseFloat(subs);
+    for (i = 0; i < tr.length - 1; i++) {
+        td = tr[i + 1].getElementsByTagName("td");
+        subs = td[0].innerHTML.substr(1);
+        val = parseFloat(subs);
 
-            if (Number.isInteger(val) === true)
-            {
+        if (Number.isInteger(val) === true) {
 
-            } else
-                {
-                    tr[i+1].style.visibility = "collapse";
-                }
+        } else {
+            tr[i + 1].style.visibility = "collapse";
+        }
 
     }
 }
@@ -295,25 +362,21 @@ function maxAll() {
     table = document.getElementById("reqtable");
     tr = table.getElementsByTagName("tr");
     console.log(tr);
-    for (i = 0; i < tr.length -1; i++)
-    {
-        td = tr[i+1].getElementsByTagName("td");
+    for (i = 0; i < tr.length - 1; i++) {
+        td = tr[i + 1].getElementsByTagName("td");
         val = parseFloat(td[0].innerHTML);
 
-        if (Number.isInteger(val) === true)
-        {
+        if (Number.isInteger(val) === true) {
 
-        } else
-            {
-                tr[i+1].style.visibility = "visible";
-            }
+        } else {
+            tr[i + 1].style.visibility = "visible";
+        }
     }
 }
 
-
 function addRowupdate(tableID) {
 
-    class Requirements{
+    class Requirements {
 
         constructor(ID, Name, ShortDesc) {
             this.id = ID;
@@ -328,8 +391,8 @@ function addRowupdate(tableID) {
 
     let check = document.getElementById("check");
 
-    let idfield = (document.getElementById("editid").value).trim().substring(1);
-    let newpreID = (document.getElementById("editid").value).trim().substring(0,1);
+    let idfield = document.getElementById("editid").value;
+    let newpreID = document.getElementById("newidpre").value;
     let namefield = document.getElementById("editname").value;
     let shortdescfield = document.getElementById("editshortdesc").value;
     let id = (newpreID + idfield);
@@ -348,7 +411,7 @@ function addRowupdate(tableID) {
         newRow.className = "yellow2";
     }
 
-    if (newpreID === "K") {
+    if (newpreID === "N") {
         var tableDef = document.getElementById(tableID);
         var newRow = tableDef.insertRow(-1);
         newRow.className = "green3";
@@ -373,16 +436,18 @@ function addRowupdate(tableID) {
 
     let newrewButton = document.createElement("button");
     newrewButton.className = "rewbutton";
-    newrewButton.innerHTML = "bearbeiten";
+    newrewButton.innerHTML = "<i  style=\"background-color: inherit\" class='fas fa-edit'></i>";
     newrewButton.onclick = function openupAdd() {
         check.checked = true;
 
         this.id = "newButtID";
 
         let row = newrewButton.parentNode.parentNode;
-        let col1 = row.children[0].innerHTML;
+        let col1 = row.children[0].innerHTML.trim().substring(1);
         let col2 = row.children[1].innerHTML;
         let col3 = row.children[2].textContent;
+
+        console.log(col1);
 
         document.getElementById("editid").value = col1;
         document.getElementById("editname").value = col2;
@@ -391,7 +456,7 @@ function addRowupdate(tableID) {
 
     let newdelButton = document.createElement("button");
     newdelButton.className = "delbutton";
-    newdelButton.innerHTML = "löschen";
+    newdelButton.innerHTML = "<i  style=\"background-color: inherit\" class='fa fa-trash'></i>";
     newdelButton.onclick = function deleteRow() {
         let row = newdelButton.parentNode.parentNode;
         row.parentNode.removeChild(row);
@@ -415,7 +480,7 @@ function addRowupdate(tableID) {
         .then(response => response.json())
         .then(data => {
 
-            if (data.register === ""){
+            if (data.register === "") {
 
             } else {
                 alert(data.register);
@@ -433,7 +498,6 @@ function addRowupdate(tableID) {
     clearfields();
 }
 
-
 function update() {
     document.getElementById("check").checked = false;
     document.getElementById("editid").value;
@@ -443,19 +507,20 @@ function update() {
     let idfield = document.getElementById("editid").value;
     let idprefield = idfield.charAt(0);
 
-    if (idprefield === "M")
-    {
+    if (idprefield === "M") {
         addRowupdate('mbody');
-    } else if (idprefield === "S")
-    {
+    } else if (idprefield === "S") {
         addRowupdate('sbody');
-    } else
-    {
-        addRowupdate('kbody');
+    } else {
+        addRowupdate('nbody');
     }
 
     let letsdel = document.getElementById("newButtID");
     let row = letsdel.parentNode.parentNode;
     row.parentNode.removeChild(row);
 
+}
+
+function exitUpdate() {
+    document.getElementById("check").checked = false;
 }

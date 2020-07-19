@@ -32,7 +32,7 @@ function sendMail(mailOptions){
 }
 
 function getTextForgotPassword(resetToken, email){
-    let link = `http://webtech-01.lin.hs-osnabrueck.de/changePassword?opt=${resetToken}&e_mail=${email}`;
+    let link = `http://webtech-01.lin.hs-osnabrueck.de/changepassword?opt=${resetToken}&email=${email}`;
     let text =  `Guten Tag, \n ` +
         `Um Ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule Osnabrück zurückzusetzen`+
         ` benötigen Sie den folgenden Link: \n` +

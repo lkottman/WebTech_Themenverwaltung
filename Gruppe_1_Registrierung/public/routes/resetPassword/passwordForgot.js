@@ -1,12 +1,18 @@
 const express = require('express');
-const {validateEmail} = require('../../javascript/register.js');
 const {getTextForgotPassword,getMailOptions,sendMail} = require('../nodeMailer/nodeMailer.js');
 const {checkInputForSQLInject} = require('../../javascript/sql_InjectionTester.js');
 const connection = require('../../../../getConnectionDatabase.js');
 const redirect = require("../routesRedirect");
+const url = require("url");
 const app = express();
 
 const router = express.Router();
+
+function validateEmail(email) {
+    return /^\"?[\w-_\.]*\"?@hs-osnabrueck\.de$/.test(email);
+}
+
+
 
 
 router.post("/pwforgot", (request, response) => {
@@ -17,18 +23,18 @@ router.post("/pwforgot", (request, response) => {
     if(email === null || email === undefined )
     {
         console.log("Bitte geben Sie eine gültige E-Mail der Hochschule Osnabrueck an ");
-        response.end();
+        response.redirect("/login");
     }   // checks field to avoid sqlinjections
     else if (!checkInputForSQLInject(email))
     {
         console.log('Sie verwenden einen nicht zulässigen Ausdruck! \n Folgende Ausdruck sind nicht zulässig: \' \" \\  -- @ #');
-        response.end();
+        response.redirect("/login");
     }
     else if (!validateEmail(email))
     {
 
         console.log('Bitte geben Sie eine gültige E-Mail der Hochschule Osnabrueck an !');
-        response.end();
+        response.redirect("/login");
     }
     else {
         // checks if an email with given string exits
@@ -50,7 +56,6 @@ router.post("/pwforgot", (request, response) => {
 
 
                 let resetToken = Math.random().toString(36).substr(2, 6);
-                console.log(resetToken);
 
                 // cuts off unnecessary information
                 startDate = startDate.toISOString().slice(0, 19).replace('T', ' ');
@@ -79,5 +84,13 @@ router.post("/pwforgot", (request, response) => {
         })
     }
 });
+
+
+
+
+
+
+
+
 
 module.exports = router;
