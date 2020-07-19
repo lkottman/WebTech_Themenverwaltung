@@ -1,0 +1,44 @@
+body
+{
+    font-family: sans-serif;
+    background-color: #ffffff;
+    margin-left: 32px;
+    margin-top: 6%;
+}
+
+h1
+{
+
+    text-decoration: underline ;
+}
+
+table
+{
+
+    border-width: 1px;
+    border-color: lightgrey;
+    text-align: left;
+
+}
+
+
+#Menueleiste
+{
+    background-color: #e5e5e5;
+    width: 100%;
+    height: 5%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+td,th
+{
+    padding: 16px;
+    border-bottom: solid lightblue 1px;
+}
+img
+{   padding-right: 10em;
+    height: 100%;
+    display: inline;
+    vertical-align: middle;
+}

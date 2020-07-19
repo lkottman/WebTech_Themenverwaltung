@@ -25,18 +25,18 @@
     border: 2px solid #555555;
 }
 
-.reqtable tr.red1
+.red1 td:nth-child(1)
 {
-    background-color: rgba(221,51,67,0.42)
+    background-color: rgba(221,51,67,0.42);
 }
 
-.reqtable tr.yellow2
+.yellow2 td:nth-child(1)
 {
 
     background-color: rgba(214,234,25,0.42)
 }
 
-.reqtable tr.green3
+.green3 td:nth-child(1)
 {
     background-color: rgba(51,221,67,0.42)
 }
@@ -46,11 +46,6 @@
     border: 2px solid #555555;
     text-align: center;
     background-color: inherit;
-}
-
-.reqtable tr:nth-child(odd)
-{
-
 }
 
 .shortdesc

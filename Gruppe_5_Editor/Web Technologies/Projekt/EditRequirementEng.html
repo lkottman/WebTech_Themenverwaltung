@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Requirements</title>
+    <link href="CSS/AddAtt.css" rel="stylesheet">
+    <script type="text/javascript" src="JS/newReqs.js"></script>
+    <script type="text/javascript" src="JS/AddAttribute.js"></script>
+</head>
+<body>
+
+<div>
+    <fieldset>
+        <legend>Overview</legend>
+        ID:
+        <input type="text" name="ID" id="addID">
+        Name:
+        <input type="text" name="Name" id="addName">
+    </fieldset>
+    <fieldset>
+        <legend>Informations</legend>
+        <textarea name="Information" style="resize: none; overflow-y: scroll"></textarea>
+    </fieldset>
+    <fieldset style="height: fit-content">
+        <legend>Upload Image</legend>
+        <input type="file" id="files" name="files[]" multiple>
+        <output id="list"></output>
+    </fieldset>
+    <fieldset>
+        <button type="submit" value="Insert">Save</button>
+        <button onclick="closeSpecs()">Cancel</button>
+    </fieldset>
+</div>
+
+
+<script>
+    /**
+     *
+     * @param evt
+     */
+    function datainput(evt) {
+        var data = evt.target.files; // FileList object
+        // Auslesen der gespeicherten Dateien durch Schleife
+        for (var i = 0, f; f = data[i]; i++) {
+            // nur Bild-Dateien
+            if (!f.type.match('image.*')) {
+                continue;
+            }
+            var reader = new FileReader();
+            reader.onload = (function (theFile) {
+                return function (e) {
+                    // erzeuge Thumbnails.
+                    var preview = document.createElement('img');
+                    preview.className = 'preview';
+                    preview.src = e.target.result;
+                    preview.title = theFile.name;
+                    document.getElementById('list')
+                        .insertBefore(preview, null);
+                };
+            })(f);
+            // Bilder als Data URL auslesen.
+            reader.readAsDataURL(f);
+        }
+    }
+    // Auf neue Auswahl reagieren und gegebenenfalls Funktion dateiauswahl neu ausführen.
+    document.getElementById('files')
+        .addEventListener('change', datainput, false);
+
+</script>
+
+</body>
+</html>

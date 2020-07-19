@@ -89,7 +89,8 @@
                 </svg>
             </button>
             </div>
-            <table id="userlist" width="100%" class="table user-list">
+            <input type="button" onclick="getUser()">
+            <table id="userlist" width="100%" class="table user-list" onload>
                 <thead>
                 <tr>
                     <th onclick="sortTable(0)">Vorname</th>
@@ -101,6 +102,7 @@
                 </thead>
                 <tbody id="userListContent"></tbody>
             </table>
+
         </div>
         <div>
             <form class="box" action="">
@@ -180,7 +182,7 @@
                         </div>
                     </div>
 
-                   <button type="submit" onclick="getUsers()">Bestätigen</button>
+                   <button type="button" onclick="sendData()">Bestätigen</button>
 
                 </div>
             </form>
