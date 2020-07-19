@@ -45,6 +45,8 @@ app.use('/images',express.static('./Gruppe_1_Registrierung/public/images'));
 app.use('/',express.static('./Gruppe_1_Registrierung/public/html'));
 app.use('/javascript',express.static('./Gruppe_1_Registrierung/public/javascript'));
 app.use('/privat/images',express.static('./Gruppe_1_Registrierung/privat/images'));
+app.use('/privat/profile_images',express.static('./Gruppe_1_Registrierung/privat/profile_images'));
+
 
 
 
@@ -123,9 +125,11 @@ app.use(routerConfirmation);
 routerPassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/passwordForgot.js');
 app.use(routerPassword);
 
-
 routerLogin = require('./Gruppe_1_Registrierung/public/routes/login/routesLogin.js');
 app.use(routerLogin);
+
+routerUpload = require('./Gruppe_1_Registrierung/privat/profile_images/uploadImages.js');
+app.use(routerUpload);
 
 routerRegister = require('./Gruppe_1_Registrierung/public/routes/register/routesRegister.js');
 app.use("/register",routerRegister);

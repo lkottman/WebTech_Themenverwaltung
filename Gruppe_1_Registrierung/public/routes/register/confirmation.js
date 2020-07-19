@@ -8,18 +8,20 @@ const router = express.Router();
 
 router.post("/verify", (request, response) => {
 
-    let tokenReset = request.query.opt;
-    let e_mail = request.query.e_mail;
+    let token = request.body.token;
+    let e_mail = request.body.email;
 
-    if (tokenReset === null ||  tokenReset === undefined
+    if (token === null ||  token === undefined
         ||email === null || email === undefined )
     {
         console.log("url is not completed");
         response.redirect("/login");
-    }   else {
+    } else
+        {
 
-         if(checkForValid(tokenReset, e_mail)) {
-             let sql = "UPDATE USER SET verified = 1 WHERE confirm_token = '" + tokenReset  +
+         if(checkForValid(token, e_mail))
+         {
+             let sql = "UPDATE USER SET verified = 1 WHERE confirm_token = '" + token  +
                  "' AND e_mail = '" + e_mail + "';";
 
              connection.query(sql, function (err, result) {
@@ -41,7 +43,7 @@ function checkForValid(token, email) {
 
     now = now.toISOString().slice(0, 19).replace('T', ' ');
 
- let sql = `SELECT start, end, used FROM PW_FORGOT_TOKEN WHERE e_mail = ${email} AND token= ${token};`;
+    let sql = `SELECT start, end, used FROM PW_FORGOT_TOKEN WHERE e_mail = ${email} AND token= ${token};`;
 
     connection.query(sql, function (err, result) {
         if (err){
