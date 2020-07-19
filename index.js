@@ -130,12 +130,13 @@ app.use(routerLogin);
 routerRegister = require('./Gruppe_1_Registrierung/public/routes/register/routesRegister.js');
 app.use("/register",routerRegister);
 
-
+routerChangePassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/updatePassword.js');
+app.use(routerChangePassword);
 
 
 //Get without HTML|| email
 app.get("/cookie", (request, response) => {
-    console.log(request.session)
+    console.log(request.session);
     response.json(request.session);
 });
 
