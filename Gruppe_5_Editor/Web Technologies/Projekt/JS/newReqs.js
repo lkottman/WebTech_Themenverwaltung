@@ -149,6 +149,9 @@ function addRow(tableID) {
     newrewButton.onclick = function openupAdd() {
         check.checked = true;
 
+        this.id = "newButtID";
+        fetch("/delReqData", options);
+
         let row = newrewButton.parentNode.parentNode;
         let col1 = row.children[0].innerHTML;
         let col2 = row.children[1].innerHTML;
@@ -329,7 +332,6 @@ function addRowupdate(tableID) {
     let newpreID = (document.getElementById("editid").value).trim().substring(0,1);
     let namefield = document.getElementById("editname").value;
     let shortdescfield = document.getElementById("editshortdesc").value;
-    let idprefield = document.getElementById("idpre").value;
     let id = (newpreID + idfield);
 
     console.log(idfield);
@@ -374,6 +376,8 @@ function addRowupdate(tableID) {
     newrewButton.innerHTML = "bearbeiten";
     newrewButton.onclick = function openupAdd() {
         check.checked = true;
+
+        this.id = "newButtID";
 
         let row = newrewButton.parentNode.parentNode;
         let col1 = row.children[0].innerHTML;
@@ -449,4 +453,9 @@ function update() {
     {
         addRowupdate('kbody');
     }
+
+    let letsdel = document.getElementById("newButtID");
+    let row = letsdel.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+
 }
