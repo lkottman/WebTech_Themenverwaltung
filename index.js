@@ -6,8 +6,6 @@ const app = express();
 const nodemailer = require('nodemailer');
 
 configDatabase = require("./config/datenbankConfig.json");
-configDataMailer = require("./Gruppe_1_Registrierung/public/config/config.json");
-const configData = configDataMailer;
 const config = configDatabase;
 
 let http = require("http");
@@ -16,17 +14,6 @@ let mysql = require("mysql");
 
 // https://youtu.be/OH6Z0dJ_Huk?t=1466
 
-
-let transporter = nodemailer.createTransport({
-    host: configData.host,
-    port: configData.port,
-
-    auth: {
-        user: configData.user,
-        pass: configData.password,
-
-    }
-});
 
 let connection = mysql.createConnection(
     {
@@ -119,53 +106,28 @@ app.get("/", router);
 app.get("/login", router);
 app.get("/agb", router);
 app.get("/successfullregistration", router);
-app.get("/testmailer", router);
 app.get("/resetpassword", router);
 app.get("/token", router);
 app.get("/home", router);
 app.get("/admin", router);
-app.get("/register", router);
+app.get("/getUser", router);
+app.get("/confirmation", router);
+app.get("/passwordforgot", router);
 
+routerConfirmation = require('./Gruppe_1_Registrierung/public/routes/register/confirmation.js');
+app.use(routerConfirmation);
+
+routerPassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/passwordForgot.js');
+app.use(routerPassword);
 
 
 routerLogin = require('./Gruppe_1_Registrierung/public/routes/login/routesLogin.js');
 app.use(routerLogin);
 
-
-routerRegister = require('./Gruppe_1_Registrierung/public/routes/register/routesRegister');
+routerRegister = require('./Gruppe_1_Registrierung/public/routes/register/routesRegister.js');
 app.use("/register",routerRegister);
-app.get('/register2', routerRegister);
 
 
-
-
-
-//change to user db later and ADD USER token
-app.get("/confirmation", (request, response) => {
-    response.sendFile('//Gruppe_1_Registrierung//public//html//confirmEmail.html', {root: __dirname});
-
-    let tokenReset = request.query.opt;
-    let email = request.query.email;
-
-    console.log(email);
-    if (tokenReset === null ||  tokenReset === undefined
-        ||email === null || email === undefined )
-    {
-        console.log("Error");
-        response.redirect("/login");
-    }   else {
-        let sql = "UPDATE USER SET verified = 1 WHERE confirm_token = '" + tokenReset  +
-            "' AND e_mail = '" + email + "';";
-
-        connection.query(sql, function (err, result) {
-            if (err) throw err;
-            if (result){
-                console.log("Erfolgreich");
-            }
-        });
-        response.redirect("/login");
-    }
-});
 
 
 //Get without HTML|| email
@@ -319,6 +281,9 @@ const routerToken = require("./Gruppe_1_Registrierung/public/routes/token/routes
 app.use("/createToken", routerToken);
 app.use("/deleteToken", routerToken);
 
+app.post("/getUsers", (request, response) => {
+
+});
 
 
 // app.post("/createToken", redirectLogin, (request, response) => {

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>G4-0050</title>
+    <link rel="stylesheet" href="stylesheets/G4-0050.css">
+    <script src="/routes/G4-0050.js"></script>
+</head>
+<body>
+<div id="Menueleiste">
+    <img src="images/HS-OS-Logo-Standard-rgb.png" alt="Logo der Hochschule"> Meine Präsentation
+</div>
+<h1>Übersicht</h1>
+<!--Formular für die Modulerstellung-->
+<form method="post" action="http://127.0.01:8080/Modul" id="sendModul">
+<table rules="rows">
+    <thead>
+        <tr>
+            <th>Vorlesung</th>
+            <th>Vorlesungs-Nr.</th>
+            <th>Letze Änderung</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var i = 0; i < modul_bezeichnung.length; i++) { %>
+        <tr>
+            <!--Beim Absenden werden die Daten gespeichert und G4-0100 geladen-->
+            <td onclick="document.getElementById('modul').value=this.innerText; setTimeout(() => {
+                            document.getElementById('sendModul').submit()
+                            }, 10);"><a href="G4-0100"><%=modul_bezeichnung[i] %></a></td>
+            <td><%=modulid[i] %></td>
+            <td>Letze Änderung</td>
+        </tr>
+        <% }%>
+        <input type="text" name="testmodul" id="modul">
+    </tbody>
+</table>
+</form>
+</body>
+</html>

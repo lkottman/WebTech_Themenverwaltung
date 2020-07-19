@@ -60,9 +60,9 @@ CREATE TABLE USER(
 INSERT INTO USER( token, name, surname, e_mail, password, verified, authorization, confirm_token, semester, course)
 VALUES (
     'ABC',
-    'Petersen',
+    'Peteasdasdrsen',
     'Sven',
-        'sven.petersen@hs-osnabrueck.de',
+        'sven.asd@hs-osnabrueck.de',
         'petersen',
         false,
         'student',

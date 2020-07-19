@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>G4-0100</title>
+    <link rel="stylesheet" href="stylesheets/G4-0100.css">
+    <script src="/public/G4-0100.js"></script>
+</head>
+<body>
+<div id="Menueleiste">
+    <img src="images/HS-OS-Logo-Standard-rgb.png" alt="Logo der Hochschule"> Meine Präsentation
+</div>
+ <h1><%=modul_bezeichnung0100%></h1>
+<table rules="rows">
+    <thead>
+    <tr>
+        <th>Anlass</th>
+        <th>Datum</th>
+        <th>Raum</th>
+        <th>Gruppenreihenfolge</th>
+        <th><a href="G4-0300">Präsentationstermin erstellen</a></th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--Anlass, Datum und Raum der Präsentationen aus Datenbank abfragen und anzeigen-->
+    <% for (var i = 0; i < anlass.length; i++) { %>
+        <tr>
+            <td><%=anlass[i]%></td>
+            <td><%=datum[i]%></td>
+            <td><%=raum[i]%></td>
+            <td><a href="G4-0200.html">Gruppenreihenfolge erstellen</a> </td>
+        </tr>
+    <% }%>
+
+    </tbody>
+</table>
+</body>
+</html>

@@ -113,12 +113,13 @@ function checkPasswords() {
     }
 }
 
-
+// gibt die ein flase zurück wenn die email ungültig ist
 function validateEmail(email) {
     return /^\"?[\w-_\.]*\"?@hs-osnabrueck\.de$/.test(email);
 }
 
 module.exports = {
     validateEmail: validateEmail,
-    generateRandomString : generateRandomString(),
 };
+
+
