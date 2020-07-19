@@ -123,6 +123,17 @@ router.get("/passwordforgot", (request, response) => {
 
 });
 
+router.get("/adminView", (request, response) => {
+
+    response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/adminView.html");
+
+});
+
+router.get("/userInfo", (request, response) => {
+
+    response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/userView.html");
+
+});
 
 
 module.exports = router;
