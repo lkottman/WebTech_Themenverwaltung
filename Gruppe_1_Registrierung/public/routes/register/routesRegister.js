@@ -21,19 +21,88 @@ router.post("/register", (request, response) => {
 
     let servertime = new Date();
     let randomtoken = Math.random().toString(36).substr(2, 6);
-    var message = "";
 
-    //Check if used token is valid
-    connection.query("SELECT * FROM TOKEN WHERE " +
+    // var tokenBool = false;
+    // var startTime = "";
+    // var endTime = "";
+    // var token = "";
+    // var clientToken = request.body.token;
+    //
+    // connection.query("SELECT gentoken, start, time, end FROM TOKEN WHERE " +
+    //     'gentoken = "' + request.body.token + '"',
+    //     function (err, result, fields) {
+    //         if (err)
+    //             throw err;
+    //         else {
+    //             tokenBool = true;
+    //             startTime = result[0].start;
+    //             endTime = result[0].end;
+    //             token = result[0].gentoken;
+    //             clientToken = request.body.token;
+    //         }
+    //     });
+    //
+    // if(tokenBool === false){
+    //     response.json({register: "Fehlgeschlagen: Freischaltcode existiert nicht."});
+    // }
+    //
+    // if (token === clientToken
+    //     && servertime >= startTime
+    //     && servertime <= endTime){
+    //     tokenBool = true
+    // }
+    //
+    // if(tokenBool === false){
+    //     response.json({register: "Fehlgeschlagen: Freischaltcode ist abgelaufen."});
+    // }
+    //
+    // connection.query("SELECT * FROM USER WHERE " + 'e_mail = "'
+    //     + request.body.email + '"',
+    //     function (err, result) {
+    //         if (err) {
+    //             throw err;
+    //         } else {
+    //             if (result.length === 0){
+    //                 tokenBool = true;
+    //             }
+    //         }
+    //     })
+    //
+    // if(tokenBool === false){
+    //     response.json({register: "Fehlgeschlagen: Benutzer existiert bereits."});
+    // }
+    //
+    // connection.query("INSERT INTO USER(token,name,surname,"
+    //     + "e_mail,password,confirm_token ,verified, authorization) VALUES("
+    //     + '"' + request.body.token + '",'
+    //     + '"' + request.body.name + '",'
+    //     + '"' + request.body.surname + '",'
+    //     + '"' + request.body.email + '",'
+    //     + '"' + request.body.password + '",'
+    //     + '"' + randomtoken + '",'
+    //     + '' + "false" + ','
+    //     + '"student"' + ')',
+    //     function (err) {
+    //         if (err)
+    //             throw err;
+    //         else {
+    //             sendMail(getMailOptions(request.body.email,
+    //                 'E-Mail bestätigen!!',getTextConfirmationEmail(randomtoken,
+    //                     request.body.email, request.body.name)));
+    //             console.log("User created");
+    //             response.json({register: ""});
+    //         };
+    //     });
+
+
+    // Check if used token is valid
+    connection.query("SELECT gentoken, start, time, end FROM TOKEN WHERE " +
         'gentoken = "' + request.body.token + '"',
         function (err, result, fields) {
             if (err)
                 throw err;
             else {
-                const length = result.length;
-
-                if (result.length === 1) {
-
+                if (result[0] !== undefined) {
                     let startTime = result[0].start;
                     let endTime = result[0].end;
                     let token = result[0].gentoken;
@@ -49,6 +118,7 @@ router.post("/register", (request, response) => {
                                     throw err;
                                 } else {
                                     if (result.length === 0) {
+                                        response.json({register: ""})
                                         connection.query("INSERT INTO USER(token,name,surname,"
                                             + "e_mail,password,confirm_token ,verified, authorization) VALUES("
                                             + '"' + request.body.token + '",'
@@ -63,15 +133,10 @@ router.post("/register", (request, response) => {
                                                 if (err)
                                                     throw err;
                                                 else {
-                                                    console.log("User created");
-                                                    // response.redirect("/successfullregistration");
-
-                                                    response.json({register: ""});
-
                                                     sendMail(getMailOptions(request.body.email,
                                                         'E-Mail bestätigen!!',getTextConfirmationEmail(randomtoken,
                                                             request.body.email, request.body.name)));
-
+                                                    console.log("User created");
                                                 };
                                             });
                                     } else {
@@ -83,9 +148,7 @@ router.post("/register", (request, response) => {
                         response.json({register: "Fehlgeschlagen: Freischaltcode ist abgelaufen."});
                     }
                 } else {
-                    if (length === 0){
-                        response.json({register: "Fehlgeschlagen: Freischaltcode existiert nicht."});
-                    }
+                    response.json({register: "Fehlgeschlagen: Freischaltcode existiert nicht."});
                 }
             }
         });

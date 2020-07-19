@@ -208,6 +208,7 @@ function addRow(tableID) {
     let newTextarea = document.createElement("textarea");
     newTextarea.className = "shortdesc";
     newTextarea.innerHTML = shortdescfield;
+    newTextarea.readOnly = true;
 
     let newrewButton = document.createElement("button");
     newrewButton.className = "rewbutton";
@@ -522,6 +523,7 @@ function addRowupdate(tableID) {
     let newTextarea = document.createElement("textarea");
     newTextarea.className = "shortdesc";
     newTextarea.innerHTML = shortdescfield;
+    newTextarea.readOnly = true;
 
     let newrewButton = document.createElement("button");
     newrewButton.className = "rewbutton";
@@ -585,6 +587,7 @@ function addRowupdate(tableID) {
     newCell5.appendChild(newdelButton);
 
     clearfields();
+
 }
 
 
