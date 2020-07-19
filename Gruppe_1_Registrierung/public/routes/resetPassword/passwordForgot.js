@@ -1,5 +1,4 @@
 const express = require('express');
-const {validateEmail} = require('../../javascript/register.js');
 const {getTextForgotPassword,getMailOptions,sendMail} = require('../nodeMailer/nodeMailer.js');
 const {checkInputForSQLInject} = require('../../javascript/sql_InjectionTester.js');
 const connection = require('../../../../getConnectionDatabase.js');
@@ -8,6 +7,9 @@ const app = express();
 
 const router = express.Router();
 
+function validateEmail(email) {
+    return /^\"?[\w-_\.]*\"?@hs-osnabrueck\.de$/.test(email);
+}
 
 router.post("/pwforgot", (request, response) => {
 
@@ -79,5 +81,6 @@ router.post("/pwforgot", (request, response) => {
         })
     }
 });
+
 
 module.exports = router;

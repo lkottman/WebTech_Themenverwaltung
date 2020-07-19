@@ -117,9 +117,3 @@ function checkPasswords() {
 function validateEmail(email) {
     return /^\"?[\w-_\.]*\"?@hs-osnabrueck\.de$/.test(email);
 }
-
-module.exports = {
-    validateEmail: validateEmail,
-};
-
-
