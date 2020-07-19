@@ -47,6 +47,9 @@ app.use('/javascript',express.static('./Gruppe_1_Registrierung/public/javascript
 app.use('/javascript',express.static('./Gruppe_1_Registrierung/privat/javascript'));
 app.use('/privat/images',express.static('./Gruppe_1_Registrierung/privat/images'));
 
+app.use('/CSS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/CSS'));
+app.use('/JS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/JS'));
+app.use('/HTML',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/HTML'));
 
 
 app.use(express.json({limit: "1mb"}));
@@ -137,6 +140,12 @@ app.use(routerRegister);
 
 routerToken = require("./Gruppe_1_Registrierung/public/routes/token/routesToken.js");
 app.use(routerToken);
+
+//Gruppe 5 Editor
+routerEdit = require("./Gruppe_5_Editor/Web Technologies/Projekt/routes/routesGetPostEditor.js");
+
+app.get("/requirements",redirectLogin, routerEdit);
+app.use(routerEdit);
 
 
 
