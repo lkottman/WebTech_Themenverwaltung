@@ -11,24 +11,18 @@ const path = require("../../../config/pathConfig.json");
 
 
 router.get("/login",  (request, response) => {
-    if (request.session.userId) {
-        response.redirect("/home");
-    } else {
+
         response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/login.html");
-    }
+
 });
 
 router.get("/home", (request, response) => {
     console.log("home");
-    response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/home.html");
+    response.sendFile(path.path + "/Gruppe_1_Registrierung/privat/html/home.html");
 });
 
 router.get("/register", (request, response) => {
-    if (request.session.userId) {
-        response.redirect("/home");
-    } else {
         response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/register.html");
-    }
 });
 
 
@@ -39,6 +33,7 @@ let url = 'https://example.com';
 /**
  *  This method provides a json object with all registerd users.
  */
+
 router.get("/getUser", (request, response) => {
 
     let sql = "SELECT id, name, surname, e_mail, password, course, authorization FROM USER;";
@@ -80,7 +75,7 @@ router.get("/updateUser", (request, response) => {
 router.get("/token", (request, response) => {
     if (request.session.userAuthorization === "lecturer"
         || request.session.userAuthorization === "admin") {
-        response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/token.html');
+        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/token.html');
     } else {
         response.redirect("/login");
     }
