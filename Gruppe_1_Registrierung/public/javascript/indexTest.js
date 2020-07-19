@@ -383,7 +383,7 @@ app.post("/register", redirectHome, (request, response) => {
                                                     throw err;
                                                 else {
                                                     console.log("User created");
-
+                                                    response.json({register: ""});
 
                                                     transporter.sendMail(mailOptions, function (err, data) {
                                                         if(err) {
@@ -397,7 +397,7 @@ app.post("/register", redirectHome, (request, response) => {
                                                 }
                                             });
                                     } else {
-                                        response.json({register: "Fehlgeschlagen: Benutzer existiert bereits."});
+                                        response.json({register: "Benutzer existiert bereits."});
                                     }
                                 }
                             });

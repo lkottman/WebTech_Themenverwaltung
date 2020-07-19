@@ -1,6 +1,9 @@
 var Request = require("request");
 
-var Register = require("..\\Gruppe_1_Registrierung\\Login_etc_Dziersan\\public\\register.js")
+var Register = require("../Gruppe_1_Registrierung/public/javascript/register");
+
+// var Register = require("..\\Gruppe_1_Registrierung\\Login_etc_Dziersan\\public\\register.js")
+
 describe("Register Tests: ", function() {
     it("tests email if ..@hs-osnabrueck.de ", function() {
 
@@ -22,7 +25,9 @@ describe("Index Tests: ", function() {
 
     var server;
     beforeAll(() =>{
-        server = require("..\\Gruppe_1_Registrierung\\Login_etc_Dziersan\\indexTest.js");
+        // server = require("../Gruppe_1_Registrierung/public/javascript/indexTest");
+        server = require("../index");
+        // server = require("..\\Gruppe_1_Registrierung\\Login_etc_Dziersan\\indexTest.js");
     });
     afterAll(() => {
         server.close;
