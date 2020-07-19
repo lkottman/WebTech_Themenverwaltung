@@ -44,6 +44,7 @@ app.use('/css',express.static('./Gruppe_1_Registrierung/public/css'));
 app.use('/images',express.static('./Gruppe_1_Registrierung/public/images'));
 app.use('/',express.static('./Gruppe_1_Registrierung/public/html'));
 app.use('/javascript',express.static('./Gruppe_1_Registrierung/public/javascript'));
+app.use('/javascript',express.static('./Gruppe_1_Registrierung/privat/javascript'));
 app.use('/privat/images',express.static('./Gruppe_1_Registrierung/privat/images'));
 
 
@@ -90,6 +91,7 @@ const redirectHome = (request, response, next) => {
 };
 
 //Every connection with Server this will be executed
+//Sends cookie
 app.use((request, respond, next) => {
     const {userId} = request.session;
     if (userId) {
@@ -103,12 +105,13 @@ app.use((request, respond, next) => {
 router = require("./Gruppe_1_Registrierung/public/routes/routesGET.js");
 
 app.get("/", router);
-app.get("/login", router);
+app.get("/login",redirectHome, router);
+app.get("/register",redirectHome, router);
 app.get("/agb", router);
 app.get("/successfullregistration", router);
 app.get("/resetpassword", router);
-app.get("/token", router);
-app.get("/home", router);
+app.get("/token",redirectLogin, router);
+app.get("/home",redirectLogin, router);
 app.get("/admin", router);
 app.get("/getUser", router);
 app.get("/confirmation", router);
@@ -125,8 +128,10 @@ routerLogin = require('./Gruppe_1_Registrierung/public/routes/login/routesLogin.
 app.use(routerLogin);
 
 routerRegister = require('./Gruppe_1_Registrierung/public/routes/register/routesRegister.js');
-app.use("/register",routerRegister);
+app.use(routerRegister);
 
+routerToken = require("./Gruppe_1_Registrierung/public/routes/token/routesToken.js");
+app.use(routerToken);
 
 
 
@@ -277,68 +282,10 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
     next();
 });
 
-const routerToken = require("./Gruppe_1_Registrierung/public/routes/token/routesToken");
-app.use("/createToken", routerToken);
-app.use("/deleteToken", routerToken);
 
 app.post("/getUsers", (request, response) => {
 
 });
-
-
-// app.post("/createToken", redirectLogin, (request, response) => {
-//
-//     console.log(request.body.time);
-//     console.log(tokenLifeTime);
-//
-//     if (request.body.time < tokenLifeTime) {
-//
-//         connection.query("INSERT INTO TOKEN(START,TIME,END,GENTOKEN, USER) VALUES("
-//             + '"' + request.body.start + '",'
-//             + request.body.time + ','
-//             + '"' + request.body.end + '",'
-//             + '"' + request.body.token + '",'
-//             + '"' + request.session.userId + '")'),
-//             function (err) {
-//                 if (err)
-//                     throw err;
-//                 console.log("Inserted TOKEN")
-//             }
-//
-//         response.json({token: "Freischaltcode wurde erstellt."})
-//     } else {
-//         response.json({token: "Fehler: Die Dauer vom Freischaltcode ist zu lang gewählt."})
-//     }
-// });
-//
-// //Deletes token from Database
-// app.post("/deleteToken", redirectLogin, (request, response) => {
-//
-//     if (request.session.authorization === "admin"){
-//         connection.query("SELECT gentoken from token WHERE GENTOKEN = " + '"' + request.body.token + '";',
-//             function (err, result) {
-//                 if (err)
-//                     throw err;
-//                 else {
-//                     console.log(result.length);
-//
-//                     if (result.length > 0) {
-//                         connection.query("DELETE FROM token WHERE GENTOKEN = " + '"' + request.body.token + '";'),
-//                             function (err, result) {
-//                                 if (err)
-//                                     throw err;
-//                             }
-//                         response.json({token: "Token gelöscht!"});
-//                     } else {
-//                         response.json({token: "Token nicht gefunden"});
-//                     }
-//                 }
-//             })
-//     } else {
-//         response.json({token: "Keine Berechtigung zur Löschung von Freischaltcodes"});
-//     }
-// });
-//
 
 const server = app.listen(PORT, () => console.log(
     "listening on: " +

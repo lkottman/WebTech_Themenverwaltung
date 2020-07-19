@@ -37,15 +37,18 @@ function register() {
         fetch("/register", options)
             .then(response => response.json())
             .then(data => {
-                //
-                // if (data.register === ""){
-                //     fetch("/successfullregistration");
-                // } else {
-                //     alert(data.register);
-                //     location.reload();
-                // }
+
+                console.log(data);
+                
+                if (data.register === ""){
+                    fetch("/successfullregistration");
+                } else {
                     alert(data.register);
+
                     location.reload();
+                }
+                    // alert(data.register);
+                    // location.reload();
 
             });
     } else {
@@ -118,8 +121,5 @@ function validateEmail(email) {
     return /^\"?[\w-_\.]*\"?@hs-osnabrueck\.de$/.test(email);
 }
 
-module.exports = {
-    validateEmail: validateEmail,
-};
 
 
