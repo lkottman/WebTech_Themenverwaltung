@@ -63,13 +63,7 @@ function sendData(){
     console.log(user);
 }
 
-function getUser() {
-    fetch('/getUser').then(response => {
-        return response.json();
-    }).then(responseData => {
-        console.log(responseData);
-    });
-};
+
 
 
 

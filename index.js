@@ -48,6 +48,10 @@ app.use('/privat/images',express.static('./Gruppe_1_Registrierung/privat/images'
 app.use('/privat/profile_images',express.static('./Gruppe_1_Registrierung/privat/profile_images'));
 
 
+app.use('/CSS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/CSS'));
+app.use('/JS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/JS'));
+app.use('/HTML',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/HTML'));
+
 
 
 app.use(express.json({limit: "1mb"}));
@@ -117,6 +121,17 @@ app.get("/confirmation", router);
 app.get("/passwordforgot", router);
 app.get("/register", router);
 app.get("/changepassword", router);
+
+
+//Gruppe 5 Editor
+
+router = require("./Gruppe_5_Editor/Web Technologies/Projekt/routes/routesGetPostEditor.js")
+
+app.get("/requirements", redirectHome(),router);
+app.get("/createTable", redirectHome(),router);
+app.get("/saveReqData", redirectHome(),router);
+app.get("/delReqData", redirectHome(),router);
+app.get("/loadtable", redirectHome(),router);
 
 
 routerConfirmation = require('./Gruppe_1_Registrierung/public/routes/register/confirmation.js');

@@ -512,7 +512,7 @@ function update() {
     } else if (idprefield === "S") {
         addRowupdate('sbody');
     } else {
-        addRowupdate('kbody');
+        addRowupdate('nbody');
     }
 
     let letsdel = document.getElementById("newButtID");
