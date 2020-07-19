@@ -31,14 +31,14 @@ function sendMail(mailOptions){
     })
 }
 
-function getTextForgotPassword(resetToken){
-    let link = `http://webtech-01.lin.hs-osnabrueck.de/changePassword`;
+function getTextForgotPassword(resetToken, email){
+    let link = `http://webtech-01.lin.hs-osnabrueck.de/changePassword?opt=${resetToken}&e_mail=${email}`;
     let text =  `Guten Tag, \n ` +
         `Um Ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule Osnabrück zurückzusetzen`+
-        ` benötigen Sie den folgenden Token: \n` +
-        `${resetToken} \n` +
-        ` Bite klicken Sie auf diesen Link um ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule` +
-        `zurückzusetzen. \n ${link}`;
+        ` benötigen Sie den folgenden Link: \n` +
+        ` ${link} \n` +
+        ` Bite klicken Sie auf diesen Link um ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule Osnabrueck` +
+        `zurückzusetzen. \n `;
 
     return text;
 }
@@ -57,7 +57,7 @@ function getTextConfirmationEmail(randomtoken, e_mail, name) {
 
     let url = `http://webtech-01.lin.hs-osnabrueck.de/confirmation?opt=${randomtoken}&email=${e_mail}`;
     let bodyText = `Guten Tag Herr ${name}, Um Ihr E-Mail zu bestaetigen`+
-        `klicken Sie bitte auf folgenden Link."\n ` +
+        `klicken Sie bitte auf folgenden Link. Der Link verliert nach 3 Stunden seine Gültigkeit!"\n ` +
         `${url} \n Mit freundlichen Grüßen \n Ihre Hausarbeitsthemenverwaltung`;
 
     console.log(bodyText);

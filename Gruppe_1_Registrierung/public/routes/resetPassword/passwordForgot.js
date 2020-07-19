@@ -1,15 +1,10 @@
 const express = require('express');
-const mysql = require('mysql');
-const fs = require('fs');
-const path = require("../../../../config/pathConfig.json");
-const config = JSON.parse(fs.readFileSync(path.path + "/config/datenbankConfig.json"));
 const {validateEmail} = require('../../javascript/register.js');
 const {getTextForgotPassword,getMailOptions,sendMail} = require('../nodeMailer/nodeMailer.js');
 const {checkInputForSQLInject} = require('../../javascript/sql_InjectionTester.js');
 const connection = require('../../../../getConnectionDatabase.js');
 const redirect = require("../routesRedirect");
 const app = express();
-
 
 const router = express.Router();
 
@@ -20,14 +15,18 @@ router.post("/pwforgot", (request, response) => {
 
     if(email === null || email === undefined )
     {
-        alert("Bitte geben Sie eine gültige E-Mail der Hochschule Osnabrueck an ");
+        console.log("Bitte geben Sie eine gültige E-Mail der Hochschule Osnabrueck an ");
         response.end();
     }
     else if (!checkInputForSQLInject(email)){
+
+            console.log('Sie verwenden einen nicht zulässigen Ausdruck! \n Folgende Ausdruck sind nicht zulässig: \' \" \\ - -- @ #');
+
         response.end();
     }
     else if (!validateEmail(email)){
-        alert("Bitte geben Sie eine gültige E-Mail der Hochschule Osnabrueck an ");
+
+            console.log('Bitte geben Sie eine gültige E-Mail der Hochschule Osnabrueck an !');
         response.end();
     }
     else {
@@ -67,8 +66,8 @@ router.post("/pwforgot", (request, response) => {
                 connection.query(sqlInsertToken, function (err, result) {
                     if(err) throw err;
 
-                    sendMail(getMailOptions(email,'Passwort zurücksetzen',getTextForgotPassword(resetToken)));
-                    console.log("E-Mail versendet.")
+                    sendMail(getMailOptions(email,'Passwort zurücksetzen',getTextC(resetToken,email)));
+                    console.log(getMailOptions(email,'Passwort zurücksetzen',getTextForgotPassword(resetToken,email)))
                 });
                 response.redirect("/login");
             }

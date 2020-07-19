@@ -17,5 +17,7 @@
     "request": "^2.88.2",
     "session": "^0.1.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "popups": "^1.1.3"
+  }
 }

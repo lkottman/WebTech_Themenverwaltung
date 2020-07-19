@@ -113,6 +113,9 @@ app.get("/home", router);
 app.get("/admin", router);
 app.get("/getUser", router);
 
+routerConfirmation = require('./Gruppe_1_Registrierung/public/routes/register/confirmation.js');
+app.use("/confirmation",routerConfirmation);
+
 routerPassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/passwordForgot.js');
 app.use(routerPassword);
 
@@ -127,33 +130,6 @@ app.use("/register",routerRegister);
 
 
 
-
-//change to user db later and ADD USER token
-app.get("/confirmation", (request, response) => {
-    response.sendFile('//Gruppe_1_Registrierung//public//html//confirmEmail.html', {root: __dirname});
-
-    let tokenReset = request.query.opt;
-    let email = request.query.email;
-
-    console.log(email);
-    if (tokenReset === null ||  tokenReset === undefined
-        ||email === null || email === undefined )
-    {
-        console.log("Error");
-        response.redirect("/login");
-    }   else {
-        let sql = "UPDATE USER SET verified = 1 WHERE confirm_token = '" + tokenReset  +
-            "' AND e_mail = '" + email + "';";
-
-        connection.query(sql, function (err, result) {
-            if (err) throw err;
-            if (result){
-                console.log("Erfolgreich");
-            }
-        });
-        response.redirect("/login");
-    }
-});
 
 
 //Get without HTML|| email

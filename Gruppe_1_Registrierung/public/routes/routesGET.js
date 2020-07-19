@@ -9,6 +9,7 @@ const path = require("../../../config/pathConfig.json");
 
 
 
+
 router.get("/login",  (request, response) => {
     if (request.session.userId) {
         response.redirect("/home");
@@ -29,7 +30,6 @@ router.get("/register", (request, response) => {
         response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/register.html");
     }
 });
-
 
 
 
