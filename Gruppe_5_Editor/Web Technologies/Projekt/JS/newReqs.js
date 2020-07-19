@@ -1,3 +1,53 @@
+function checkdouble(){
+
+    let idprefield2 = document.getElementById("idpre").value;
+    let idfield2 = document.getElementById("id").value;
+
+    let insid = idprefield2 + idfield2;
+
+    let mtable = document.getElementById("mbody");
+    let stable = document.getElementById("sbody");
+    let ntable = document.getElementById("nbody");
+
+    let mtd0 = mtable.querySelector("td:nth-child(1)");
+    let std0 = stable.querySelector("td:nth-child(1)");
+    let ntd0 = ntable.querySelector("td:nth-child(1)");
+
+
+    if (idprefield2 === "M")
+    {
+
+        for (const tr of mtable.querySelectorAll("tbody tr")) {
+
+            if (mtd0.innerHTML == insid) {
+                console.log(`jo das geht nicht`);
+            }else{checkInput(); break;}
+        }
+
+    } else if (idprefield2 === "S")
+    {
+
+        for (const tr of stable.querySelectorAll("tbody tr")) {
+
+            if (std0.innerHTML == insid) {
+                console.log(`jo das geht nicht`);
+            }
+            else{ checkInput(); break;}
+        }
+
+    } else {
+
+        for (const tr of ntable.querySelectorAll("tbody tr")) {
+
+            if (ntd0.innerHTML == insid) {
+                console.log(`jo das geht nicht`);
+            }
+            else{checkInput(); break;}
+        }
+    }
+
+}
+
 /**
  *
  * @returns {boolean}
@@ -64,11 +114,9 @@ function checkInput() {
             } else if (idprefield === "S")
             {
                 addRow('sbody');
-            } else
-                {
-                    addRow('kbody')
-                }
-
+            } else {
+                    addRow('nbody')
+            }
         }
 }
 
@@ -120,7 +168,7 @@ function addRow(tableID) {
         newRow.className = "yellow2";
     }
 
-    if (idprefield === "K") {
+    if (idprefield === "N") {
         var tableRef = document.getElementById(tableID);
         console.log(tableRef);
         var newRow = tableRef.insertRow(-1);
@@ -145,7 +193,8 @@ function addRow(tableID) {
 
     let newrewButton = document.createElement("button");
     newrewButton.className = "rewbutton";
-    newrewButton.innerHTML = "bearbeiten";
+    newrewButton.innerHTML = "<i  style=\"background-color: inherit\" class='fas fa-edit'></i>";
+    newrewButton.id = "editbtn";
     newrewButton.onclick = function openupAdd() {
         check.checked = true;
 
@@ -153,7 +202,8 @@ function addRow(tableID) {
         fetch("/delReqData", options);
 
         let row = newrewButton.parentNode.parentNode;
-        let col1 = row.children[0].innerHTML;
+
+        let col1 = row.children[0].innerHTML.trim().substring(1);
         let col2 = row.children[1].innerHTML;
         let col3 = row.children[2].textContent;
 
@@ -164,7 +214,8 @@ function addRow(tableID) {
 
     let newdelButton = document.createElement("button");
     newdelButton.className = "delbutton";
-    newdelButton.innerHTML = "löschen";
+    newdelButton.innerHTML = "<i  style=\"background-color: inherit\" class='fa fa-trash'></i>";
+    newdelButton.id = "delbtn";
     newdelButton.onclick = function deleteRow() {
         let row = newdelButton.parentNode.parentNode;
         row.parentNode.removeChild(row);
@@ -310,7 +361,6 @@ function maxAll() {
     }
 }
 
-
 function addRowupdate(tableID) {
 
     class Requirements{
@@ -328,8 +378,8 @@ function addRowupdate(tableID) {
 
     let check = document.getElementById("check");
 
-    let idfield = (document.getElementById("editid").value).trim().substring(1);
-    let newpreID = (document.getElementById("editid").value).trim().substring(0,1);
+    let idfield = document.getElementById("editid").value;
+    let newpreID = document.getElementById("newidpre").value;
     let namefield = document.getElementById("editname").value;
     let shortdescfield = document.getElementById("editshortdesc").value;
     let id = (newpreID + idfield);
@@ -348,7 +398,7 @@ function addRowupdate(tableID) {
         newRow.className = "yellow2";
     }
 
-    if (newpreID === "K") {
+    if (newpreID === "N") {
         var tableDef = document.getElementById(tableID);
         var newRow = tableDef.insertRow(-1);
         newRow.className = "green3";
@@ -373,16 +423,18 @@ function addRowupdate(tableID) {
 
     let newrewButton = document.createElement("button");
     newrewButton.className = "rewbutton";
-    newrewButton.innerHTML = "bearbeiten";
+    newrewButton.innerHTML = "<i  style=\"background-color: inherit\" class='fas fa-edit'></i>";
     newrewButton.onclick = function openupAdd() {
         check.checked = true;
 
         this.id = "newButtID";
 
         let row = newrewButton.parentNode.parentNode;
-        let col1 = row.children[0].innerHTML;
+        let col1 = row.children[0].innerHTML.trim().substring(1);
         let col2 = row.children[1].innerHTML;
         let col3 = row.children[2].textContent;
+
+        console.log(col1);
 
         document.getElementById("editid").value = col1;
         document.getElementById("editname").value = col2;
@@ -391,7 +443,7 @@ function addRowupdate(tableID) {
 
     let newdelButton = document.createElement("button");
     newdelButton.className = "delbutton";
-    newdelButton.innerHTML = "löschen";
+    newdelButton.innerHTML = "<i  style=\"background-color: inherit\" class='fa fa-trash'></i>";
     newdelButton.onclick = function deleteRow() {
         let row = newdelButton.parentNode.parentNode;
         row.parentNode.removeChild(row);
@@ -433,7 +485,6 @@ function addRowupdate(tableID) {
     clearfields();
 }
 
-
 function update() {
     document.getElementById("check").checked = false;
     document.getElementById("editid").value;
@@ -458,4 +509,8 @@ function update() {
     let row = letsdel.parentNode.parentNode;
     row.parentNode.removeChild(row);
 
+}
+
+function exitUpdate() {
+    document.getElementById("check").checked = false;
 }
