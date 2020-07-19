@@ -44,13 +44,10 @@ app.use('/css',express.static('./Gruppe_1_Registrierung/public/css'));
 app.use('/images',express.static('./Gruppe_1_Registrierung/public/images'));
 app.use('/',express.static('./Gruppe_1_Registrierung/public/html'));
 app.use('/javascript',express.static('./Gruppe_1_Registrierung/public/javascript'));
+app.use('/javascript',express.static('./Gruppe_1_Registrierung/privat/javascript'));
 app.use('/privat/images',express.static('./Gruppe_1_Registrierung/privat/images'));
 app.use('/privat/profile_images',express.static('./Gruppe_1_Registrierung/privat/profile_images'));
 
-
-app.use('/CSS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/CSS'));
-app.use('/JS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/JS'));
-app.use('/HTML',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/HTML'));
 
 
 
@@ -96,6 +93,7 @@ const redirectHome = (request, response, next) => {
 };
 
 //Every connection with Server this will be executed
+//Sends cookie
 app.use((request, respond, next) => {
     const {userId} = request.session;
     if (userId) {
@@ -109,30 +107,17 @@ app.use((request, respond, next) => {
 router = require("./Gruppe_1_Registrierung/public/routes/routesGET.js");
 
 app.get("/", router);
-app.get("/login", router);
+app.get("/login",redirectHome, router);
+app.get("/register",redirectHome, router);
 app.get("/agb", router);
 app.get("/successfullregistration", router);
 app.get("/resetpassword", router);
-app.get("/token", router);
-app.get("/home", router);
+app.get("/token",redirectLogin, router);
+app.get("/home",redirectLogin, router);
 app.get("/admin", router);
 app.get("/getUser", router);
 app.get("/confirmation", router);
 app.get("/passwordforgot", router);
-app.get("/register", router);
-app.get("/changepassword", router);
-
-
-//Gruppe 5 Editor
-
-router = require("./Gruppe_5_Editor/Web Technologies/Projekt/routes/routesGetPostEditor.js")
-
-app.get("/requirements", redirectHome(),router);
-app.get("/createTable", redirectHome(),router);
-app.get("/saveReqData", redirectHome(),router);
-app.get("/delReqData", redirectHome(),router);
-app.get("/loadtable", redirectHome(),router);
-
 
 routerConfirmation = require('./Gruppe_1_Registrierung/public/routes/register/confirmation.js');
 app.use(routerConfirmation);
@@ -147,15 +132,16 @@ routerUpload = require('./Gruppe_1_Registrierung/privat/profile_images/uploadIma
 app.use(routerUpload);
 
 routerRegister = require('./Gruppe_1_Registrierung/public/routes/register/routesRegister.js');
-app.use("/register",routerRegister);
+app.use(routerRegister);
 
-routerChangePassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/updatePassword.js');
-app.use(routerChangePassword);
+routerToken = require("./Gruppe_1_Registrierung/public/routes/token/routesToken.js");
+app.use(routerToken);
+
 
 
 //Get without HTML|| email
 app.get("/cookie", (request, response) => {
-    console.log(request.session);
+    console.log(request.session)
     response.json(request.session);
 });
 
@@ -218,6 +204,59 @@ app.post("/passwordForgot.html", (request, response) => {
                 //response.json({register: "Fehlgeschlagen: Benutzer existiert bereits"});
             }
         })
+    }
+});
+
+app.post("/changePassword", redirectLogin, (request, response) =>{
+    let email = "sven.petersen@hs-osnabrueck.de";
+    let newpassword = request.body.password;
+
+    let sql = `UPDATE USER SET password = '${newpassword}' WHERE e_mail = '${email}'; `;
+    connection.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log(result);
+    })
+
+});
+
+app.post("/checkResetToken", (request, response) =>{
+
+    let resetToken = request.body.resetToken;
+
+    if(resetToken == "")
+    {
+            console.log("test");
+        response.redirect("/login");
+    }
+    else
+    {
+
+        let sql =  `SELECT e_mail, used FROM PW_FORGOT_TOKEN 
+                     WHERE current_timestamp < end
+                     AND current_timestamp > start AND token ='${resetToken}';`;
+
+
+        connection.query(sql, function (err, result) {
+            if(err)
+                throw err;
+
+            if (result.length != 0){
+                let email = result[0].e_mail;
+                let used = result[0].used;
+
+                if (used == 0) {
+                    let changeUsed = `UPDATE PW_FORGOT_TOKEN SET used = true WHERE e_mail = '${email}';`;
+                    console.log(changeUsed);
+                    connection.query(changeUsed, function (err, result) {
+                        if (err) throw err;
+
+                        if (result.length != 0){
+                            response.redirect("/passwort")
+                        }
+                    });
+                }
+            }
+        });
     }
 });
 

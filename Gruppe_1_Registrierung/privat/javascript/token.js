@@ -20,6 +20,9 @@ function createToken() {
     start = start.toISOString().slice(0, 19).replace('T', ' ');
     end = end.toISOString().slice(0, 19).replace('T', ' ');
 
+    console.log(start);
+console.log(end);
+
     token = new Token(start, end, genToken, time);
 
     document.getElementById("demo").innerHTML = start;
@@ -40,7 +43,7 @@ function createToken() {
             alert(data.token)
 
         })
-        .catch(error => console.error(error))
+        .catch(error => console.error(error));
 }
 
 function deleteToken() {

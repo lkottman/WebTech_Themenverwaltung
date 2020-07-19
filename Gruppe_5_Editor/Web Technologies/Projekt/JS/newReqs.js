@@ -25,7 +25,7 @@ function checkdouble() {
 
 
             if (row0 == insid) {
-                alert("hab was gefunden Bitch");
+                alert("ID " + insid + " existiert bereits!");
                 a = 1;
                 break;
             }
@@ -45,7 +45,7 @@ function checkdouble() {
 
 
             if (row0 == insid) {
-                alert("hab was gefunden Bitch");
+                alert("ID " + insid + " existiert bereits!");
                 a = 1;
                 break;
             }
@@ -65,7 +65,7 @@ function checkdouble() {
 
 
             if (row0 == insid) {
-                alert("hab was gefunden Bitch");
+                alert("ID " + insid + " existiert bereits!");
                 a = 1;
                 break;
             }
@@ -94,37 +94,37 @@ function checkInput() {
     submitOK = "true";
 
     if (idprefield.length === 0) {
-        alert("Setzen Sie die Priorität!")
+        alert("Setzen Sie die Priorität! \n Priority is not given!")
         submitOK = "false";
     }
 
     if (isNaN(idfield)) {
-        alert("Bitte geben Sie eine Nummer für die Anforderung ein!")
+        alert("Bitte geben Sie eine Nummer für die Anforderung ein! \n Please set a number for this requirement!")
         submitOK = "false";
     }
 
     if (idfield.length === 0) {
-        alert("Das ID Feld muss ausgefüllt sein.")
+        alert("Das ID Feld muss ausgefüllt sein! \n The ID-field has to be filled!")
         submitOK = "false";
     }
 
     if (namefield.length > 20) {
-        alert("Der Name der Anforderung ist zu lang!")
+        alert("Der Name der Anforderung ist zu lang! \n The requirements name is too long!")
         submitOK = "false";
     }
 
     if (namefield.length === 0) {
-        alert("Das Namensfeld muss ausgefüllt werden.")
+        alert("Das Namensfeld muss ausgefüllt werden. \n The Name-field has to be filled!")
         submitOK = "false";
     }
 
     if (shortdescfield.length > 255) {
-        alert("Die Kurzbeschreibung ist zu lang!")
+        alert("Die Kurzbeschreibung ist zu lang! \n The short description is too long!")
         submitOK = "false";
     }
 
     if (shortdescfield.length === 0) {
-        alert("Kurzbeschreibung nicht ausgefüllt.")
+        alert("Kurzbeschreibung nicht ausgefüllt! \n Short description is not filled!")
         submitOK = "false";
     }
 

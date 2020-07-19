@@ -1,36 +1,19 @@
 const express = require('express')
-const mysql = require('mysql')
 const router = express.Router()
-const fs = require('fs');
-const session = require("express-session");
-const bodyParser = require("body-parser");
-const config = JSON.parse(fs.readFileSync("C:/Code/WebTech_Themenverwaltung2/config/datenbankConfig.json"));
 const {sendMail, getTextConfirmationEmail, getMailOptions} = require('../nodeMailer/nodeMailer.js');
-
-const redirect = require("../routesRedirect");
-
-let connection = mysql.createConnection(
-    {
-        host: config.host,
-        user: config.user,
-        password: config.password,
-        database: config.database
-    }
-);
+const connection = require("../../../../getConnectionDatabase");
 
 function validateEmail(email) {
     return /^\"?[\w-_\.]*\"?@hs-osnabrueck\.de$/.test(email);
 }
 
-router.post("/register", redirect.redirectHome, (request, response) => {
+router.post("/register", (request, response) => {
 
-    console.log(request.body);
-
-    if(request.method == "OPTIONS"){
-        response.set('Access-Control-Allow-Origin', '*');
-        response.set('Access-Control-Allow-Headers', 'Content-Type');
-        response.status(204).send('');
-    }
+    // if(request.method == "OPTIONS"){
+    //     response.set('Access-Control-Allow-Origin', '*');
+    //     response.set('Access-Control-Allow-Headers', 'Content-Type');
+    //     response.status(204).send('');
+    // }
 
     if(validateEmail(request.body.email === false)){
         response.json({register: "Nur E-Mail Adressen mit der Endung '@hs-osnabrueck.de' sind zugelassen."});
@@ -38,6 +21,7 @@ router.post("/register", redirect.redirectHome, (request, response) => {
 
     let servertime = new Date();
     let randomtoken = Math.random().toString(36).substr(2, 6);
+    var message = "";
 
     //Check if used token is valid
     connection.query("SELECT * FROM TOKEN WHERE " +
@@ -46,7 +30,10 @@ router.post("/register", redirect.redirectHome, (request, response) => {
             if (err)
                 throw err;
             else {
-                if (result.length !== 0) {
+                const length = result.length;
+
+                if (result.length === 1) {
+
                     let startTime = result[0].start;
                     let endTime = result[0].end;
                     let token = result[0].gentoken;
@@ -77,10 +64,15 @@ router.post("/register", redirect.redirectHome, (request, response) => {
                                                     throw err;
                                                 else {
                                                     console.log("User created");
+                                                    // response.redirect("/successfullregistration");
+
+                                                    response.json({register: ""});
+
                                                     sendMail(getMailOptions(request.body.email,
                                                         'E-Mail bestätigen!!',getTextConfirmationEmail(randomtoken,
-                                                            request.body.email, request.body.name)))
-                                                }
+                                                            request.body.email, request.body.name)));
+
+                                                };
                                             });
                                     } else {
                                         response.json({register: "Fehlgeschlagen: Benutzer existiert bereits."});
@@ -88,10 +80,12 @@ router.post("/register", redirect.redirectHome, (request, response) => {
                                 }
                             });
                     } else {
-                        response.json({register: "Freischaltcode ist abgelaufen."});
+                        response.json({register: "Fehlgeschlagen: Freischaltcode ist abgelaufen."});
                     }
                 } else {
-                    response.json({register: "Freischaltcode existiert nicht."});
+                    if (length === 0){
+                        response.json({register: "Fehlgeschlagen: Freischaltcode existiert nicht."});
+                    }
                 }
             }
         });
