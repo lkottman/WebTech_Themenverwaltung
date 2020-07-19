@@ -11,44 +11,37 @@ function checkInput() {
 
     submitOK = "true";
 
-    if (idprefield.length === 0)
-    {
+    if (idprefield.length === 0) {
         alert("Setzen Sie die Priorität!")
         submitOK = "false";
     }
 
-    if (isNaN(idfield))
-    {
+    if (isNaN(idfield)) {
         alert("Bitte geben Sie eine Nummer für die Anforderung ein!")
         submitOK = "false";
     }
 
-    if (idfield.length === 0)
-    {
+    if (idfield.length === 0) {
         alert("Das ID Feld muss ausgefüllt sein.")
         submitOK = "false";
     }
 
-    if (namefield.length > 20)
-    {
+    if (namefield.length > 20) {
         alert("Der Name der Anforderung ist zu lang!")
         submitOK = "false";
     }
 
-    if (namefield.length === 0)
-    {
+    if (namefield.length === 0) {
         alert("Das Namensfeld muss ausgefüllt werden.")
         submitOK = "false";
     }
 
-    if (shortdescfield.length > 255)
-    {
+    if (shortdescfield.length > 255) {
         alert("Die Kurzbeschreibung ist zu lang!")
         submitOK = "false";
     }
 
-    if (shortdescfield.length === 0)
-    {
+    if (shortdescfield.length === 0) {
         alert("Kurzbeschreibung nicht ausgefüllt.")
         submitOK = "false";
     }
