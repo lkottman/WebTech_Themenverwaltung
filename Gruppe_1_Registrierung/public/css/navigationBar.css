@@ -15,7 +15,7 @@ body{
     font-size: 16px;
     letter-spacing: .6px;
     color: #555555;
-
+    text-decoration: none;
 }
 
 #UserMenu_All_Header{
@@ -29,9 +29,6 @@ body{
     background-color: #e5e5e5;
     height: 52px;
     margin-bottom: 52px;
-
-
-
 }
 
 .header_button{
@@ -50,7 +47,6 @@ body{
     height: 52px;
 }
 
-
 .dropdown {
     float: left;
 }
@@ -58,8 +54,6 @@ body{
 .header_button:hover{
     color: #1c9dd9;
 }
-
-
 
 .dropdown-content {
     display: none;
@@ -69,7 +63,6 @@ body{
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
-
 
 .header_button:hover .dropdown-content{
     display: block;
@@ -92,8 +85,6 @@ body{
     display: block;
 }
 
-
-
 .frame{
     width: auto;
     height: 100%;
@@ -103,18 +94,8 @@ body{
     margin: 0em 5px 0em 5px;
 
 }
-img{
-    max-height: 52px ;
-    display: block;
-    margin: 0 auto;
-    float: left;
-    vertical-align: bottom;
-    border: none;
-    width: 80px;
 
-}
-
-.oscaLogo{
+#oscaImagelogo{
     content: url("../images/osca3-white.png");
     max-height: 52px ;
     display: block;
@@ -141,6 +122,7 @@ img{
 #mailIcon:hover{
     color: #1c9dd9;
 }
+
 
 
 

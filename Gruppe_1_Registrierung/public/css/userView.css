@@ -15,39 +15,34 @@ body{
 
 }
 
+.userProfilContent{
 
-.wrapper{
+}
+
+.testContent{
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 70% 30%;
 }
 
-.wrapper > div{
-    padding: 1em;
-}
-
-.userProfilBoxes{
+.nameContent{
     display: grid;
-
-}
-.userProfilBoxes:nth-child {
-    color: #eee;
 }
 
-.inputBox{
-    width: 350px;
-    height: 26px;
+.userImage{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+.form-group{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
-#courseSelection{
+hr {
 
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
-
-input{
-    float: left;
-}
-
-label{
-    float: left;
-}
-
-
