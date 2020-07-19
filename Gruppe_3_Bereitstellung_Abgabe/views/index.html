@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Upload MultipartFile</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="/static/js/postrequest.js"></script>
+	<script src="/static/js/getrequest.js"></script>
+</head>
+ 
+<body>
+	<div class="container">
+		<h3>Meine Dateien</h3>
+		<form class="form-horizontal" method="POST" enctype="multipart/form-data" id="fileUploadForm">
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="uploadfile">Upload File:</label>
+				<div class="col-sm-5">
+					<input type="file" class="form-control" id="uploadfile" placeholder="Upload File"  name="uploadfile"></input>
+				</div>
+			</div>
+			<div class="form-group"> 
+			    <div class="col-sm-offset-2 col-sm-5">
+			      <button type="submit" class="btn btn-default" id="btnSubmit">Upload</button>
+				  <button type="submit" class="btn btn-default" id="btnGetFiles" onclick="">Files</button>
+	
+			    </div>
+			</div>
+		</form>
+		<hr/>
+		<div class="col-sm-offset-2" id="listFiles">
+		</div>
+	</div>
+</body>
+</html>

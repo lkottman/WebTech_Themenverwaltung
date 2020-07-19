@@ -23,7 +23,6 @@ function checkdouble() {
 
             let row0 = row.querySelector("td:nth-child(1)").innerHTML;
 
-
             if (row0 == insid) {
                 alert("ID " + insid + " existiert bereits!");
                 a = 1;
@@ -77,7 +76,6 @@ function checkdouble() {
         }
 
     }
-
 }
 
 /**
@@ -374,6 +372,7 @@ function maxAll() {
     }
 }
 
+
 function addRowupdate(tableID) {
 
     class Requirements {
@@ -397,7 +396,6 @@ function addRowupdate(tableID) {
     let shortdescfield = document.getElementById("editshortdesc").value;
     let id = (newpreID + idfield);
 
-    console.log(idfield);
 
     if (newpreID === "M") {
         var tableDef = document.getElementById(tableID);
@@ -504,8 +502,7 @@ function update() {
     document.getElementById("editname").value;
     document.getElementById("editshortdesc").value;
 
-    let idfield = document.getElementById("editid").value;
-    let idprefield = idfield.charAt(0);
+    let idprefield = document.getElementById("newidpre").value;
 
     if (idprefield === "M") {
         addRowupdate('mbody');

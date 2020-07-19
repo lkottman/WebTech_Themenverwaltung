@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <div class='formbox'>
+            <label for="sftwname">
+                <input type="text" id="sftwname" placeholder="Name">
+            </label>
+        </div>
+        <div class='formbox'>
+            <label for="sftwbeschreibung">
+                <input type="text" id="sftwbeschreibung" placeholder="Beschreibung">
+            </label>
+        </div>
+        <div class='formbox'>
+            <label for="sftwlink">
+                <input type="text" id="sftwlink" placeholder="Link">
+            </label>
+        </div>
+        <div class='formbox'>
+            <button id="btn">Add</button>
+        </div>
+    </form>
+
+    <table id= "table">
+        <thread>
+            <th>Id</th>
+            <th>SoftwareName</th>
+            <th>Beschreibung</th>
+            <th>Link</th>
+            <th>Delete</th>
+        </thread>
+        <tbody id='data-table'></tbody>
+    </table>
+    <table id= "table">
+        <thread>
+            <th>Gruppen Name</th>
+            <th>Text</th>
+            <th>Link</th>
+        </thread>
+        <tbody id='notification-table'></tbody>
+    </table>
+    <script src="admin.js">
+       
+    </script>
+</body>
+</html>
