@@ -2,13 +2,10 @@ const express = require('express');
 const router = express.Router();
 const connection = require('../../../getConnectionDatabase.js');
 
-
 // const redirect = require("./routesRedirect");
 const redirect = require("../../../index");
-
 const app = express();
 const path = require("../../../config/pathConfig.json");
-
 
 
 
@@ -45,8 +42,11 @@ router.get("/admin", (request, response) => {
 
 let url = 'https://example.com';
 
-router.get("/getUser", (request, response) => {
 
+/**
+ *  This method provides a json object with all registerd users.
+ */
+router.get("/getUser", (request, response) => {
 
     let sql = "SELECT id, name, surname, e_mail, password, course, authorization FROM USER;";
 
@@ -62,6 +62,9 @@ router.get("/getUser", (request, response) => {
 
 });
 
+/**
+ * This method allows the user and admin to change their personal data.
+ */
 router.get("/updateUser", (request, response) => {
 
 

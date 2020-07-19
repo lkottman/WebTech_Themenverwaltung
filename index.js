@@ -113,12 +113,12 @@ app.get("/home", router);
 app.get("/admin", router);
 app.get("/getUser", router);
 
-
+routerPassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/passwordForgot.js');
+app.use(routerPassword);
 
 
 routerLogin = require('./Gruppe_1_Registrierung/public/routes/login/routesLogin.js');
 app.use(routerLogin);
-
 
 routerRegister = require('./Gruppe_1_Registrierung/public/routes/register/routesRegister.js');
 app.use("/register",routerRegister);
