@@ -47,10 +47,19 @@
     </label>
     <div class="Sidebar">
         <header id="header">Anforderungen bearbeiten</header>
+
+        <a id="p">Priorität:</a><br>
+        <select style="width: 50%" id="idpreo" class="selectprio">
+            <option value="">--Select--</option>
+            <option value="M">Muss-Anforderung</option>
+            <option value="S">Soll-Anforderung</option>
+            <option value="K">Kann-Anforderung</option>
+        </select>
+        <br>
         <a id="idf">ID:</a><br>
-        <input type="text" name="ID" id="editid"><br>
+        <input style="width: 50%;" type="text" name="ID" id="editid"><br>
         <a id="namef">Name:</a><br>
-        <input type="text" name="Name" id="editname"><br>
+        <input style="width: 50%" type="text" name="Name" id="editname"><br>
         <br>
         <a id="shf">Kurzbeschreibung:</a><br>
         <textarea id="editshortdesc"></textarea><br>

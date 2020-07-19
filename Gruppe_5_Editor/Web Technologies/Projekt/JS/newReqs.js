@@ -376,7 +376,7 @@ function addRowupdate(tableID) {
 
     let newrewButton = document.createElement("button");
     newrewButton.className = "rewbutton";
-    newrewButton.innerHTML = "bearbeiten";
+    newrewButton.innerHTML = "<i  style=\"background-color: inherit\" class='fas fa-edit'></i>";
     newrewButton.onclick = function openupAdd() {
         check.checked = true;
 
@@ -394,7 +394,7 @@ function addRowupdate(tableID) {
 
     let newdelButton = document.createElement("button");
     newdelButton.className = "delbutton";
-    newdelButton.innerHTML = "löschen";
+    newdelButton.innerHTML = "<i  style=\"background-color: inherit\" class='fa fa-trash'></i>";
     newdelButton.onclick = function deleteRow() {
         let row = newdelButton.parentNode.parentNode;
         row.parentNode.removeChild(row);
