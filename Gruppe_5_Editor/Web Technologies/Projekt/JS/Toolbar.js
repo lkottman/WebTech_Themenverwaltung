@@ -18,9 +18,17 @@ function doEnglish() {
     document.getElementById("ger").innerText = "German";
     document.getElementById("eng").innerText = "English";
     document.getElementById("con").innerText = "Contact";
+    document.getElementById("mhave").innerText = "Must-have";
+    document.getElementById("shave").innerText = "Should-have";
+    document.getElementById("nhave").innerText = "Nice-to-Have";
+    document.getElementById("nhave").value = "N";
 
     document.getElementById("header").innerText = "Edit Requirements"
     document.getElementById("shf").innerText = "Short Description";
+    document.getElementById("edm").innerText = "Must-have";
+    document.getElementById("eds").innerText = "Should-have";
+    document.getElementById("edn").innerText = "Nice-to-Have";
+    document.getElementById("edn").value = "N";
 
     document.getElementById("addreq").innerText = "Add Requirements";
     document.getElementById("prio").innerText = "Priority";
@@ -47,9 +55,17 @@ function doGerman() {
     document.getElementById("ger").innerText = "Deutsch";
     document.getElementById("eng").innerText = "Englisch";
     document.getElementById("con").innerText = "Kontakt";
+    document.getElementById("mhave").innerText = "Muss-Anforderung";
+    document.getElementById("shave").innerText = "Soll-Anforderung";
+    document.getElementById("nhave").innerText = "Kann-Anforderung";
+    document.getElementById("nhave").value = "K";
 
     document.getElementById("header").innerText = "Anforderungen bearbeiten"
     document.getElementById("shf").innerText = "Kurzbeschreibung";
+    document.getElementById("edm").innerText = "Muss-Anforderung";
+    document.getElementById("eds").innerText = "Soll-Anforderung";
+    document.getElementById("edn").innerText = "Kann-Anforderung";
+    document.getElementById("edn").value = "K";
 
     document.getElementById("addreq").innerText = "Anlegen einer Anforderung";
     document.getElementById("prio").innerText = "Priorität";

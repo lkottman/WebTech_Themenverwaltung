@@ -51,9 +51,9 @@
         <a id="p">Priorität:</a><br>
         <select style="width: 50%" id="newidpre" class="selectprio">
             <option value="">--Select--</option>
-            <option value="M">Muss-Anforderung</option>
-            <option value="S">Soll-Anforderung</option>
-            <option value="K">Kann-Anforderung</option>
+            <option id="edm" value="M">Muss-Anforderung</option>
+            <option id="eds" value="S">Soll-Anforderung</option>
+            <option id="edn" value="K">Kann-Anforderung</option>
         </select>
         <br>
         <a id="idf">ID:</a><br>
@@ -78,9 +78,9 @@
             <a id="prio">Priorität:</a>
             <select id="idpre" class="selectprio">
                 <option value="">--Select--</option>
-                <option value="M">Muss-Anforderung</option>
-                <option value="S">Soll-Anforderung</option>
-                <option value="K">Kann-Anforderung</option>
+                <option id="mhave" value="M">Muss-Anforderung</option>
+                <option id="shave" value="S">Soll-Anforderung</option>
+                <option id="nhave" value="K">Kann-Anforderung</option>
             </select>
 
             <a id="addid">ID:</a>
@@ -136,6 +136,8 @@
                 <tbody id="sbody">
                 </tbody>
                 <tbody id="kbody">
+                </tbody>
+                <tbody id="nbody">
                 </tbody>
             </table>
         </fieldset>

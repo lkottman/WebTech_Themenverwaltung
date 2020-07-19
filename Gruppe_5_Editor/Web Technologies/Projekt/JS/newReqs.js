@@ -64,11 +64,12 @@ function checkInput() {
             } else if (idprefield === "S")
             {
                 addRow('sbody');
-            } else
+            } else if (idprefield === "K")
                 {
                     addRow('kbody')
-                }
-
+                } else {
+                    addRow('nbody')
+            }
         }
 }
 
@@ -121,6 +122,13 @@ function addRow(tableID) {
     }
 
     if (idprefield === "K") {
+        var tableRef = document.getElementById(tableID);
+        console.log(tableRef);
+        var newRow = tableRef.insertRow(-1);
+        newRow.className = "green3";
+    }
+
+    if (idprefield === "N") {
         var tableRef = document.getElementById(tableID);
         console.log(tableRef);
         var newRow = tableRef.insertRow(-1);
@@ -352,6 +360,12 @@ function addRowupdate(tableID) {
     }
 
     if (newpreID === "K") {
+        var tableDef = document.getElementById(tableID);
+        var newRow = tableDef.insertRow(-1);
+        newRow.className = "green3";
+    }
+
+    if (newpreID === "N") {
         var tableDef = document.getElementById(tableID);
         var newRow = tableDef.insertRow(-1);
         newRow.className = "green3";
