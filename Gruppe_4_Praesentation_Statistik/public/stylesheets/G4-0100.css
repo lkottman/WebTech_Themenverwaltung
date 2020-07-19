@@ -1,0 +1,42 @@
+body
+{
+    font-family: sans-serif;
+    background-color: #ffffff;
+    margin-left: 32px;
+    margin-top: 6%;
+    color: #696969;
+
+}
+
+
+
+#table
+{
+
+    border-width: 3px;
+    border-color: lightblue;
+    text-align: left;
+
+}
+
+
+#Menueleiste
+{
+    background-color: #e5e5e5;
+    width: 100%;
+    height: 5%;
+    position: absolute;
+    left: 0%;
+    top: 0%;
+}
+td,th
+{
+    padding: 16px;
+    border-bottom: solid lightgrey 1.5px;
+}
+img
+{   padding-right: 10  em;
+    height: 100%;
+    display: inline;
+    vertical-align: middle;
+}
