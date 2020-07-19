@@ -113,6 +113,9 @@ app.get("/admin", router);
 app.get("/getUser", router);
 app.get("/confirmation", router);
 app.get("/passwordforgot", router);
+app.get("/register", router);
+app.get("/changepassword", router);
+
 
 routerConfirmation = require('./Gruppe_1_Registrierung/public/routes/register/confirmation.js');
 app.use(routerConfirmation);
@@ -195,59 +198,6 @@ app.post("/passwordForgot.html", (request, response) => {
                 //response.json({register: "Fehlgeschlagen: Benutzer existiert bereits"});
             }
         })
-    }
-});
-
-app.post("/changePassword", redirectLogin, (request, response) =>{
-    let email = "sven.petersen@hs-osnabrueck.de";
-    let newpassword = request.body.password;
-
-    let sql = `UPDATE USER SET password = '${newpassword}' WHERE e_mail = '${email}'; `;
-    connection.query(sql, function (err, result) {
-        if (err) throw err;
-        console.log(result);
-    })
-
-});
-
-app.post("/checkResetToken", (request, response) =>{
-
-    let resetToken = request.body.resetToken;
-
-    if(resetToken == "")
-    {
-            console.log("test");
-        response.redirect("/login");
-    }
-    else
-    {
-
-        let sql =  `SELECT e_mail, used FROM PW_FORGOT_TOKEN 
-                     WHERE current_timestamp < end
-                     AND current_timestamp > start AND token ='${resetToken}';`;
-
-
-        connection.query(sql, function (err, result) {
-            if(err)
-                throw err;
-
-            if (result.length != 0){
-                let email = result[0].e_mail;
-                let used = result[0].used;
-
-                if (used == 0) {
-                    let changeUsed = `UPDATE PW_FORGOT_TOKEN SET used = true WHERE e_mail = '${email}';`;
-                    console.log(changeUsed);
-                    connection.query(changeUsed, function (err, result) {
-                        if (err) throw err;
-
-                        if (result.length != 0){
-                            response.redirect("/passwort")
-                        }
-                    });
-                }
-            }
-        });
     }
 });
 

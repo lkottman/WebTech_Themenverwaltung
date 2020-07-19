@@ -100,9 +100,6 @@ router.get("/successfullregistration", (request, response) => {
 });
 
 
-router.get("/resetpassword", (request, response) => {
-    response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/tokenReset.html');
-});
 
 router.get("/changepassword", (request, response) => {
     response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/changePassword.html');
