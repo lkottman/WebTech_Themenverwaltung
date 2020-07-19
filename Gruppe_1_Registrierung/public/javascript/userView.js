@@ -1,5 +1,4 @@
 
-
 function changeReadonly() {
     document.getElementById('vorname').removeAttribute('readonly');
     document.getElementById('nachname').removeAttribute('readonly');
@@ -18,4 +17,8 @@ function addReadonly() {
     document.getElementById('password').type = 'password';
     document.getElementById("e-Mail").setAttribute("readOnly", 'true');
     document.getElementById("studiengang").setAttribute("disabled", "disabled");
+}
+
+function confirmMessage() {
+    confirm("ACHTUNG!\nSie sind dabei alle persönlichen Daten zu löschen");
 }
