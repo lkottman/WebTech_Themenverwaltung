@@ -68,7 +68,7 @@
 
 <div class="container">
     <h2>Persönliche Informationen</h2>
-
+<hr>
     <form class="userProfilContent">
         <div class="form-group">
             <div class="testContent">
@@ -98,8 +98,10 @@
                 <div>
                     <form>
                         <figure>
-                            <img src="../images/avatar-icon-user-svg.png" class="rounded float-right" width="200"
-                                 height="200" style="float: right">
+                            <a href="">
+                                <img src="../images/avatar-icon-user-svg.png" class="rounded float-right" width="200"
+                                    height="200" style="float: right">
+                            </a>
                         </figure>
                     </form>
                 </div>
@@ -149,7 +151,14 @@
         <button type="button" class="btn btn-outline-primary" onclick="changeReadonly()">Bearbeiten</button>
         <button type="submit" class="btn btn-outline-secondary" onclick="addReadonly()">Bestätigen</button>
     </form>
+    <hr>
+    <p><a href="javascript:PopupFenster()">Fenster anzeigen</a></p>
 </div>
 
 </body>
+<script>
+    function PopupFenster() {
+        F = window.open("profilUebersichtTest.html","Popup","width=400,height=300");
+    }
+</script>
 </html>
