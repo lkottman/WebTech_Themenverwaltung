@@ -110,6 +110,13 @@ function sortTable(n) {
     }
 }
 
+function getUser() {
+    fetch('/getUser').then(response => {
+        return response.json();
+    }).then(responseData => {
+        console.log(responseData);
+    });
+};
 
 
 

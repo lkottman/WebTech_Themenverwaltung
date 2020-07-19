@@ -54,31 +54,32 @@ let raum = [];
  * SQL-Abfragen für die jeweiligen Spalten
  */
 function getValuesFromDb() {
-    //Deadline
+    /*//Deadline
     var sql = "SELECT deadline FROM projekt";
     con.query(sql, function (err, result) {
         if (err) throw err;
         for (var i = 0; i < result.length; i++) {
             date[i] = result[i].deadline;
         }
-    });
+    }); */
     //Bezeichnung
-    var sql1 = "SELECT Bezeichnung FROM agenda";
+    // DIESE ZEILE WAR URSPRÜNGLICH GEDACHT. WAS IST DAMIT GEMEINT? var sql1 = "SELECT Bezeichnung FROM agenda";
+    var sql1 = "SELECT anlass FROM praesentation";
     con.query(sql1, function (err, result) {
         if (err) throw err;
         //Attribute durchlaufen und in result laden
         for (var i = 0; i < result.length; i++) {
-            thema[i] = result[i].Bezeichnung;
+            thema[i] = result[i].anlass;
         }
     });
     //Raum
-    var sql2 = "SELECT Raum FROM G4_PRAESENTATION,projekt WHERE G4_PRAESENTATION.Datum = projekt.deadline";
+   /* var sql2 = "SELECT Raum FROM G4_PRAESENTATION,projekt WHERE G4_PRAESENTATION.Datum = projekt.deadline";
     con.query(sql2, function (err, result) {
         if (err) throw err;
         for (var i = 0; i < result.length; i++) {
             raum[i] = result[i].Raum;
         }
-    });
+    }); */
 }
 
 

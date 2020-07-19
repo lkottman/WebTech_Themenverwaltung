@@ -23,10 +23,9 @@ const G4_0200fs = express.Router();
  startzeit=[];
  dauer=[];
  ende=[];
- raum=[];
  tag=[];
- anlass=[];
- modul=[];
+ agendaid=[];
+ praesentationid=[];
 
 /**
  * Aufruf der Seite G4-0200 für Studenten
@@ -62,24 +61,24 @@ getValuesfromDb();
 
 function getValuesfromDb() {
 
-    var sql = "SELECT * FROM praesentation_reihenfolge ";
+    var sql = "SELECT * FROM AGENDA ";
 
     con.query(sql, function (err,result) {
         if (err) throw err;
 
 
         for (var i = 0; i < result.length; i++) {
+            agendaid[i] = result[i].aid;
+            praesentationid[i] = result[i].pid;
             reihenfolge[i] = result[i].Reihenfolge;
             gruppe[i] = result[i].GruppenNummer;
-            thema[i] = result[i].Praesentationsthema;
+            thema[i] = result[i].thema;
             mitglieder[i] = result[i].Anzahl_Mitglieder;
-            startzeit[i] = result[i].Startzeit;
-            dauer[i] = result[i].Dauer;
-            ende[i] = result[i].Endzeit;
-            raum[i] = result[i].Raum;
-            tag[i] = result[i].Tag;
-            anlass = result[i].Anlass;
-            modul = result[i].modul;
+            startzeit[i] = result[i].start_vortrag;
+            dauer[i] = result[i].dauer_vortrag;
+            ende[i] = result[i].ende_vortrag;
+            tag[i] = result[i].datum;
+
         }
     });
 }
