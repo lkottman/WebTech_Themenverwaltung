@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>G4-0700</title>
+    <link rel="stylesheet" href="__dirname+/stylesheets/G4-0700.css">
+    <script src="__dirname+/routes/G4-0700.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.5.0.js"
+            integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+            crossorigin="anonymous"></script>
+    <script
+            src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+            integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+            crossorigin="anonymous">
+    </script>
+    <script src="https://mottie.github.io/tablesorter/dist/js/jquery.tablesorter.min.js"></script>
+    <script>
+        jQuery('th.order').on('click', function () {
+            if (!jQuery(this).hasClass('active'))
+                jQuery('th.order').removeClass('desc').removeClass('asc');
+
+            if (jQuery(this).hasClass('desc'))
+                jQuery(this).removeClass('desc').addClass('asc');
+            else
+                jQuery(this).removeClass('asc').addClass('desc');
+
+            sortTable();
+        });
+
+        function sortTable() {
+            let table = jQuery('table');
+
+            jQuery('th.order').each(function ()
+            {
+                let th;
+                let thIndex;
+                let inverse;
+                if (jQuery(this).hasClass('desc')) {
+                    th = $(this);
+                    thIndex = th.index();
+                    inverse = false;
+                } else {
+                    th = $(this);
+                    thIndex = th.index();
+                    inverse = true;
+                }
+
+                th.click(function ()
+                {
+                    table.find('td').filter(function () {
+                        return jQuery(this).index() === thIndex;
+                    }).sortElements(function (a, b) {
+                        return jQuery.text([a]) > $.text([b]) ?
+                            inverse ? -1 : 1
+                            : inverse ? 1 : -1;
+                    }, function () {
+                        return this.parentNode;
+                    });
+
+                    inverse = !inverse;
+                });
+            });
+        }
+        sortTable();
+    </script>
+</head>
+<body>
+<div id="Menueleiste">
+    <img src="images/HS-OS-Logo-Standard-rgb.png" alt="Logo der Hochschule"> Meine Präsentation
+</div>
+
+<h1>Übersicht über Präsentationstermine:</h1>
+<table rules="rows" id="sortableTable" class="tablesorter">
+    <thead>
+    <tr>
+        <th id="header_modul_id" onkeyup="sortTable()">Modul-ID</th>
+        <th id="header_vorlesung_bezeichnung" onkeyup="sortTable()">Bezeichnung Vorlesung</th>
+    </tr>
+    </thead>
+    <tbody>
+        <% for (var i = 0; i < mid.length; i++) { %>
+        <tr>
+            <td><%=mid[i]%></td>
+            <td><%=modul_bezeichnung[i]%></td>
+        </tr>
+    <% } %>
+    </tbody>
+</table>
+</body>
+</html>

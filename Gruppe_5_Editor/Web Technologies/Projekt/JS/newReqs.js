@@ -1,3 +1,53 @@
+function checkdouble(){
+
+    let idprefield2 = document.getElementById("idpre").value;
+    let idfield2 = document.getElementById("id").value;
+
+    let insid = idprefield2 + idfield2;
+
+    let mtable = document.getElementById("mbody");
+    let stable = document.getElementById("sbody");
+    let ntable = document.getElementById("nbody");
+
+    let mtd0 = mtable.querySelector("td:nth-child(1)");
+    let std0 = stable.querySelector("td:nth-child(1)");
+    let ntd0 = ntable.querySelector("td:nth-child(1)");
+
+
+    if (idprefield2 === "M")
+    {
+
+        for (const tr of mtable.querySelectorAll("tbody tr")) {
+
+            if (mtd0.innerHTML == insid) {
+                console.log(`jo das geht nicht`);
+            }else{checkInput(); break;}
+        }
+
+    } else if (idprefield2 === "S")
+    {
+
+        for (const tr of stable.querySelectorAll("tbody tr")) {
+
+            if (std0.innerHTML == insid) {
+                console.log(`jo das geht nicht`);
+            }
+            else{ checkInput(); break;}
+        }
+
+    } else {
+
+        for (const tr of ntable.querySelectorAll("tbody tr")) {
+
+            if (ntd0.innerHTML == insid) {
+                console.log(`jo das geht nicht`);
+            }
+            else{checkInput(); break;}
+        }
+    }
+
+}
+
 /**
  *
  * @returns {boolean}
