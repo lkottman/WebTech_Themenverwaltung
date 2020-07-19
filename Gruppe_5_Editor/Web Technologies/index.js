@@ -40,11 +40,11 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.get("/RequirementsEditGer", (require, response) => {
-    response.sendFile('//Projekt//MainPage.html', {root: __dirname})
+    response.sendFile('//Projekt//HTML//MainPage.html', {root: __dirname})
 });
 
 app.get("/", (request, response) => {
-    response.sendFile('//Projekt//Test.html', {root: __dirname});
+    response.sendFile('//Projekt//HTML//Test.html', {root: __dirname});
 });
 
 app.post("/createTable", (request, response) => {

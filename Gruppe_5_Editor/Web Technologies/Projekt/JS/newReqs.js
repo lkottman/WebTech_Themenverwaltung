@@ -23,7 +23,6 @@ function checkdouble() {
 
             let row0 = row.querySelector("td:nth-child(1)").innerHTML;
 
-
             if (row0 == insid) {
                 alert("ID " + insid + " existiert bereits!");
                 a = 1;
@@ -77,7 +76,6 @@ function checkdouble() {
         }
 
     }
-
 }
 
 /**
@@ -94,37 +92,37 @@ function checkInput() {
     submitOK = "true";
 
     if (idprefield.length === 0) {
-        alert("Setzen Sie die Priorität!")
+        alert("Setzen Sie die Priorität! \n Priority is not given!")
         submitOK = "false";
     }
 
     if (isNaN(idfield)) {
-        alert("Bitte geben Sie eine Nummer für die Anforderung ein!")
+        alert("Bitte geben Sie eine Nummer für die Anforderung ein! \n Please set a number for this requirement!")
         submitOK = "false";
     }
 
     if (idfield.length === 0) {
-        alert("Das ID Feld muss ausgefüllt sein.")
+        alert("Das ID Feld muss ausgefüllt sein! \n The ID-field has to be filled!")
         submitOK = "false";
     }
 
     if (namefield.length > 20) {
-        alert("Der Name der Anforderung ist zu lang!")
+        alert("Der Name der Anforderung ist zu lang! \n The requirements name is too long!")
         submitOK = "false";
     }
 
     if (namefield.length === 0) {
-        alert("Das Namensfeld muss ausgefüllt werden.")
+        alert("Das Namensfeld muss ausgefüllt werden. \n The Name-field has to be filled!")
         submitOK = "false";
     }
 
     if (shortdescfield.length > 255) {
-        alert("Die Kurzbeschreibung ist zu lang!")
+        alert("Die Kurzbeschreibung ist zu lang! \n The short description is too long!")
         submitOK = "false";
     }
 
     if (shortdescfield.length === 0) {
-        alert("Kurzbeschreibung nicht ausgefüllt.")
+        alert("Kurzbeschreibung nicht ausgefüllt! \n Short description is not filled!")
         submitOK = "false";
     }
 
@@ -210,6 +208,7 @@ function addRow(tableID) {
     let newTextarea = document.createElement("textarea");
     newTextarea.className = "shortdesc";
     newTextarea.innerHTML = shortdescfield;
+    newTextarea.readOnly = true;
 
     let newrewButton = document.createElement("button");
     newrewButton.className = "rewbutton";
@@ -374,6 +373,98 @@ function maxAll() {
     }
 }
 
+
+function letsdel(){
+    let letsdel = document.getElementById("newButtID");
+    let row = letsdel.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+}
+
+
+function checkdoubleupdate() {
+
+    let idprefield2 = document.getElementById("newidpre").value;
+    let idfield2 = document.getElementById("editid").value;
+
+    let insid = idprefield2 + idfield2;
+
+    let mtable = document.getElementById("mbody");
+    let stable = document.getElementById("sbody");
+    let ntable = document.getElementById("nbody");
+
+
+    let x = mtable.rows.length - 1;
+    let y = stable.rows.length - 1;
+    let z = ntable.rows.length - 1;
+    let a = 0;
+    let row;
+
+    if (idprefield2 === "M") {
+
+        for (let i = 0; mtable.rows[i]; i++) {
+            row = mtable.rows[i];
+
+            let row0 = row.querySelector("td:nth-child(1)").innerHTML;
+
+            if (row0 == insid) {
+                alert("ID " + insid + " existiert bereits!");
+                a = 1;
+                break;
+            }
+
+            if ((x === i) && (a === 0)) {
+                addRowupdate('mbody');
+                letsdel();
+                break;
+            }
+        }
+
+    } else if (idprefield2 === "S") {
+
+        for (let i = 0; stable.rows[i]; i++) {
+            row = stable.rows[i];
+
+            let row0 = row.querySelector("td:nth-child(1)").innerHTML;
+
+
+            if (row0 == insid) {
+                alert("ID " + insid + " existiert bereits!");
+                a = 1;
+                break;
+            }
+
+            if ((y === i) && (a === 0)) {
+                addRowupdate('sbody');
+                letsdel();
+                break;
+            }
+        }
+
+    } else {
+
+        for (let i = 0; ntable.rows[i]; i++) {
+            row = ntable.rows[i];
+
+            let row0 = row.querySelector("td:nth-child(1)").innerHTML;
+
+
+            if (row0 == insid) {
+                alert("ID " + insid + " existiert bereits!");
+                a = 1;
+                break;
+            }
+
+            if ((z === i) && (a === 0)) {
+                addRowupdate('nbody');
+                letsdel();
+                break;
+            }
+        }
+
+    }
+}
+
+
 function addRowupdate(tableID) {
 
     class Requirements {
@@ -397,7 +488,6 @@ function addRowupdate(tableID) {
     let shortdescfield = document.getElementById("editshortdesc").value;
     let id = (newpreID + idfield);
 
-    console.log(idfield);
 
     if (newpreID === "M") {
         var tableDef = document.getElementById(tableID);
@@ -433,6 +523,7 @@ function addRowupdate(tableID) {
     let newTextarea = document.createElement("textarea");
     newTextarea.className = "shortdesc";
     newTextarea.innerHTML = shortdescfield;
+    newTextarea.readOnly = true;
 
     let newrewButton = document.createElement("button");
     newrewButton.className = "rewbutton";
@@ -498,28 +589,16 @@ function addRowupdate(tableID) {
     clearfields();
 }
 
+
 function update() {
     document.getElementById("check").checked = false;
     document.getElementById("editid").value;
     document.getElementById("editname").value;
     document.getElementById("editshortdesc").value;
 
-    let idfield = document.getElementById("editid").value;
-    let idprefield = idfield.charAt(0);
-
-    if (idprefield === "M") {
-        addRowupdate('mbody');
-    } else if (idprefield === "S") {
-        addRowupdate('sbody');
-    } else {
-        addRowupdate('nbody');
-    }
-
-    let letsdel = document.getElementById("newButtID");
-    let row = letsdel.parentNode.parentNode;
-    row.parentNode.removeChild(row);
-
+    checkdoubleupdate();
 }
+
 
 function exitUpdate() {
     document.getElementById("check").checked = false;
