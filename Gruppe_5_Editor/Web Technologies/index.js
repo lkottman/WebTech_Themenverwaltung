@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.get("/RequirementsEditGer", (require, response) => {
-  response.sendFile('//Projekt//MainPageGer.html', {root: __dirname})
+  response.sendFile('//Projekt//MainPage.html', {root: __dirname})
 });
 
 app.get("/RequirementsEditEng", (require, response) => {

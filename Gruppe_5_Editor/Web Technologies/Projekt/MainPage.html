@@ -21,25 +21,21 @@
 <div class="navbar" id="myNavbar">
     <a style="overflow: hidden">
         <img alt="logo" class="logo" onclick="openOsca()" src="osca3-active.png"></a>
-    <a href="#projects">Projekte</a>
-    <a href="RequirementsGer.html"
-       onclick="window.open('RequirementsGer.html', 'newwindow', 'width=600, height=300');
-        return false;">Anforderungen</a>
-
-    <a href="MembersGer.html"
+    <a id="pro" href="#projects">Projekte</a>
+    <a id="mem" href="MembersGer.html"
        onclick="window.open('MembersGer.html', 'newwindow', 'width=600, height=300');
         return false;">Gruppenmitglieder</a>
 
     <div class="dropdown">
-        <button class="dropbtn" onclick="dropdownTheButton()">Sprachen
+        <button id="sp" class="dropbtn" onclick="dropdownTheButton()">Sprachen
             <i class="fa fa-caret-down" style="background-color: #e5e5e5 "></i>
         </button>
         <div id="drops" class="dropdown-content">
-            <a target="_self" href="/RequirementsEditGer">Deutsch</a>
-            <a target="_self" href="/RequirementsEditEng">Englisch</a>
+            <a id="ger" target="_self" onclick="doGerman()">Deutsch</a>
+            <a id="eng" target="_self" onclick="doEnglish()">Englisch</a>
         </div>
     </div>
-    <a href="#contact" onclick="openMail()">Kontakt</a>
+    <a id="con" href="#contact" onclick="openMail()">Kontakt</a>
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 </div>
 
@@ -50,15 +46,16 @@
     <label for="check">
     </label>
     <div class="Sidebar">
-        <header>Anforderungen bearbeiten</header>
-        ID:<br>
+        <header id="header">Anforderungen bearbeiten</header>
+        <a id="idf">ID:</a><br>
         <input type="text" name="ID" id="editid"><br>
-        Name:<br>
+        <a id="namef">Name:</a><br>
         <input type="text" name="Name" id="editname"><br>
         <br>
-        Kurzbeschreibung:<br>
+        <a id="shf">Kurzbeschreibung:</a><br>
         <textarea id="editshortdesc"></textarea><br>
         <button id="update" onclick="update()">Update</button>
+        <button id="exit" onclick="exitUpdate()"><i  style="background-color: inherit" class='fa fa-times'></i></button>
 
     </div>
 </div>
@@ -67,23 +64,27 @@
 
     <div class="subreqdiv">
         <fieldset>
-            <legend>Anlegen einer Anforderung</legend>
-            Priorität:
+            <legend id="addreq">Anlegen einer Anforderung</legend>
+
+            <a id="prio">Priorität:</a>
             <select id="idpre" class="selectprio">
                 <option value="">--Select--</option>
                 <option value="M">Muss-Anforderung</option>
                 <option value="S">Soll-Anforderung</option>
                 <option value="K">Kann-Anforderung</option>
             </select>
-            ID:
+
+            <a id="addid">ID:</a>
             <input type="text" name="ID" id="id">
-            Name:
+
+            <a id="addname">Name:</a>
             <input type="text" name="Name" id="name">
             <br>
-            Kurzbeschreibung:
+
+            <a id="addsh">Kurzbeschreibung:</a>
             <textarea id="shortdesc" class="shortdesc" style="width: 40%"></textarea>
 
-            <button style="float: right" onclick="checkInput()">anlegen</button>
+            <button id="addbtn" style="float: right" onclick="checkInput()">anlegen</button>
         </fieldset>
     </div>
 
@@ -91,14 +92,14 @@
 
     <div class="subreqdiv">
         <fieldset>
-            <legend>Suchen einer Anforderung</legend>
-            Gesuchte Anforderung (ID / Name):
+            <legend id="searchreq">Suchen einer Anforderung</legend>
+            <a id="searchreqfield">Gesuchte Anforderung (ID / Name):</a>
             <input type="text" name="searchid" id="searchfield" onkeyup="searchID()"
                    placeholder="Nach ID suchen..">
             <input type="text" name="searchname" id="searchfieldname" onkeyup="searchName()"
                    placeholder="Nach Namen suchen..">
-            <button style="float: right" onclick="miniAll()">Alle einklappen</button>
-            <button style="float: right; margin-right: 1%" onclick="maxAll()">Alle
+            <button id="allin" style="float: right" onclick="miniAll()">Alle einklappen</button>
+            <button id="allout" style="float: right; margin-right: 1%" onclick="maxAll()">Alle
                 ausklappen
             </button>
         </fieldset>
@@ -108,12 +109,12 @@
 
     <div class="subreqdiv">
         <fieldset>
-            <legend>Anforderungen</legend>
+            <legend id="reqs">Anforderungen</legend>
             <table id="reqtable" class="reqtable">
                 <thead>
                 <th style="width: 10%; cursor:pointer">ID</th>
                 <th style="pointer-events: none">Name</th>
-                <th colspan="3" style="pointer-events: none">Kurzbeschreibung</th>
+                <th id="tableshortdesc" colspan="3" style="pointer-events: none">Kurzbeschreibung</th>
                 </thead>
                 <tbody id="mbody">
                 <tr style="visibility:collapse">

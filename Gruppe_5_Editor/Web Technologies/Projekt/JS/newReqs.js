@@ -145,7 +145,8 @@ function addRow(tableID) {
 
     let newrewButton = document.createElement("button");
     newrewButton.className = "rewbutton";
-    newrewButton.innerHTML = "bearbeiten";
+    newrewButton.innerHTML = "<i  style=\"background-color: inherit\" class='fas fa-edit'></i>";
+    newrewButton.id = "editbtn";
     newrewButton.onclick = function openupAdd() {
         check.checked = true;
 
@@ -165,7 +166,8 @@ function addRow(tableID) {
 
     let newdelButton = document.createElement("button");
     newdelButton.className = "delbutton";
-    newdelButton.innerHTML = "löschen";
+    newdelButton.innerHTML = "<i  style=\"background-color: inherit\" class='fa fa-trash'></i>";
+    newdelButton.id = "delbtn"
     newdelButton.onclick = function deleteRow() {
         let row = newdelButton.parentNode.parentNode;
         row.parentNode.removeChild(row);
@@ -434,7 +436,6 @@ function addRowupdate(tableID) {
     clearfields();
 }
 
-
 function update() {
     document.getElementById("check").checked = false;
     document.getElementById("editid").value;
@@ -459,4 +460,8 @@ function update() {
     let row = letsdel.parentNode.parentNode;
     row.parentNode.removeChild(row);
 
+}
+
+function exitUpdate() {
+    document.getElementById("check").checked = false;
 }
