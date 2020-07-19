@@ -1,4 +1,4 @@
-function checkdouble(){
+function checkdouble() {
 
     let idprefield2 = document.getElementById("idpre").value;
     let idfield2 = document.getElementById("id").value;
@@ -9,41 +9,73 @@ function checkdouble(){
     let stable = document.getElementById("sbody");
     let ntable = document.getElementById("nbody");
 
-    let mtd0 = mtable.querySelector("td:nth-child(1)");
-    let std0 = stable.querySelector("td:nth-child(1)");
-    let ntd0 = ntable.querySelector("td:nth-child(1)");
+
+    let x = mtable.rows.length - 1;
+    let y = stable.rows.length - 1;
+    let z = ntable.rows.length - 1;
+    let a = 0;
+    let row;
+
+    if (idprefield2 === "M") {
+
+        for (let i = 0; mtable.rows[i]; i++) {
+            row = mtable.rows[i];
+
+            let row0 = row.querySelector("td:nth-child(1)").innerHTML;
 
 
-    if (idprefield2 === "M")
-    {
+            if (row0 == insid) {
+                alert("ID " + insid + " existiert bereits!");
+                a = 1;
+                break;
+            }
 
-        for (const tr of mtable.querySelectorAll("tbody tr")) {
-
-            if (mtd0.innerHTML == insid) {
-                console.log(`jo das geht nicht`);
-            }else{checkInput(); break;}
+            if ((x === i) && (a === 0)) {
+                checkInput();
+                break;
+            }
         }
 
-    } else if (idprefield2 === "S")
-    {
+    } else if (idprefield2 === "S") {
 
-        for (const tr of stable.querySelectorAll("tbody tr")) {
+        for (let i = 0; stable.rows[i]; i++) {
+            row = stable.rows[i];
 
-            if (std0.innerHTML == insid) {
-                console.log(`jo das geht nicht`);
+            let row0 = row.querySelector("td:nth-child(1)").innerHTML;
+
+
+            if (row0 == insid) {
+                alert("ID " + insid + " existiert bereits!");
+                a = 1;
+                break;
             }
-            else{ checkInput(); break;}
+
+            if ((y === i) && (a === 0)) {
+                checkInput();
+                break;
+            }
         }
 
     } else {
 
-        for (const tr of ntable.querySelectorAll("tbody tr")) {
+        for (let i = 0; ntable.rows[i]; i++) {
+            row = ntable.rows[i];
 
-            if (ntd0.innerHTML == insid) {
-                console.log(`jo das geht nicht`);
+            let row0 = row.querySelector("td:nth-child(1)").innerHTML;
+
+
+            if (row0 == insid) {
+                alert("ID " + insid + " existiert bereits!");
+                a = 1;
+                break;
             }
-            else{checkInput(); break;}
+
+            if ((z === i) && (a === 0)) {
+                checkInput();
+                break;
+            }
         }
+
     }
 
 }
@@ -61,63 +93,52 @@ function checkInput() {
 
     submitOK = "true";
 
-    if (idprefield.length === 0)
-    {
-        alert("Setzen Sie die Priorität!")
+    if (idprefield.length === 0) {
+        alert("Setzen Sie die Priorität! \n Priority is not given!")
         submitOK = "false";
     }
 
-    if (isNaN(idfield))
-    {
-        alert("Bitte geben Sie eine Nummer für die Anforderung ein!")
+    if (isNaN(idfield)) {
+        alert("Bitte geben Sie eine Nummer für die Anforderung ein! \n Please set a number for this requirement!")
         submitOK = "false";
     }
 
-    if (idfield.length === 0)
-    {
-        alert("Das ID Feld muss ausgefüllt sein.")
+    if (idfield.length === 0) {
+        alert("Das ID Feld muss ausgefüllt sein! \n The ID-field has to be filled!")
         submitOK = "false";
     }
 
-    if (namefield.length > 20)
-    {
-        alert("Der Name der Anforderung ist zu lang!")
+    if (namefield.length > 20) {
+        alert("Der Name der Anforderung ist zu lang! \n The requirements name is too long!")
         submitOK = "false";
     }
 
-    if (namefield.length === 0)
-    {
-        alert("Das Namensfeld muss ausgefüllt werden.")
+    if (namefield.length === 0) {
+        alert("Das Namensfeld muss ausgefüllt werden. \n The Name-field has to be filled!")
         submitOK = "false";
     }
 
-    if (shortdescfield.length > 255)
-    {
-        alert("Die Kurzbeschreibung ist zu lang!")
+    if (shortdescfield.length > 255) {
+        alert("Die Kurzbeschreibung ist zu lang! \n The short description is too long!")
         submitOK = "false";
     }
 
-    if (shortdescfield.length === 0)
-    {
-        alert("Kurzbeschreibung nicht ausgefüllt.")
+    if (shortdescfield.length === 0) {
+        alert("Kurzbeschreibung nicht ausgefüllt! \n Short description is not filled!")
         submitOK = "false";
     }
 
-    if (submitOK === "false")
-    {
+    if (submitOK === "false") {
         return false;
-    } else
-        {
-            if (idprefield === "M")
-            {
-                addRow('mbody');
-            } else if (idprefield === "S")
-            {
-                addRow('sbody');
-            } else {
-                    addRow('nbody')
-            }
+    } else {
+        if (idprefield === "M") {
+            addRow('mbody');
+        } else if (idprefield === "S") {
+            addRow('sbody');
+        } else {
+            addRow('nbody')
         }
+    }
 }
 
 /**
@@ -135,7 +156,7 @@ function clearfields() {
  */
 function addRow(tableID) {
 
-    class Requirements{
+    class Requirements {
 
         constructor(ID, Name, ShortDesc) {
             this.id = ID;
@@ -154,7 +175,7 @@ function addRow(tableID) {
     let namefield = document.getElementById("name").value;
     let shortdescfield = document.getElementById("shortdesc").value;
     let idprefield = document.getElementById("idpre").value;
-    let id = idprefield+idfield;
+    let id = idprefield + idfield;
 
     if (idprefield === "M") {
         var tableRef = document.getElementById(tableID);
@@ -170,7 +191,6 @@ function addRow(tableID) {
 
     if (idprefield === "N") {
         var tableRef = document.getElementById(tableID);
-        console.log(tableRef);
         var newRow = tableRef.insertRow(-1);
         newRow.className = "green3";
     }
@@ -236,16 +256,16 @@ function addRow(tableID) {
     };
 
     fetch("/saveReqData", options)
-    .then(response => response.json())
-    .then(data => {
+        .then(response => response.json())
+        .then(data => {
 
-        if (data.register === ""){
+            if (data.register === "") {
 
-        } else {
-            alert(data.register);
-            location.reload();
-        }
-    });
+            } else {
+                alert(data.register);
+                location.reload();
+            }
+        });
 
     newCell1.appendChild(newText11);
     newCell1.appendChild(newText1);
@@ -288,8 +308,7 @@ function searchName() {
     filter = input.value.toUpperCase();
     table = document.getElementById("reqtable");
     tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++)
-    {
+    for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[1];
         if (td) {
             txtValue = td.textContent || td.innerText;
@@ -316,19 +335,16 @@ function miniAll() {
     table = document.getElementById("reqtable");
     tr = table.getElementsByTagName("tr");
     console.log(tr);
-    for (i = 0; i < tr.length -1; i++)
-    {
-         td = tr[i+1].getElementsByTagName("td");
-         subs = td[0].innerHTML.substr(1);
-         val = parseFloat(subs);
+    for (i = 0; i < tr.length - 1; i++) {
+        td = tr[i + 1].getElementsByTagName("td");
+        subs = td[0].innerHTML.substr(1);
+        val = parseFloat(subs);
 
-            if (Number.isInteger(val) === true)
-            {
+        if (Number.isInteger(val) === true) {
 
-            } else
-                {
-                    tr[i+1].style.visibility = "collapse";
-                }
+        } else {
+            tr[i + 1].style.visibility = "collapse";
+        }
 
     }
 }
@@ -346,24 +362,21 @@ function maxAll() {
     table = document.getElementById("reqtable");
     tr = table.getElementsByTagName("tr");
     console.log(tr);
-    for (i = 0; i < tr.length -1; i++)
-    {
-        td = tr[i+1].getElementsByTagName("td");
+    for (i = 0; i < tr.length - 1; i++) {
+        td = tr[i + 1].getElementsByTagName("td");
         val = parseFloat(td[0].innerHTML);
 
-        if (Number.isInteger(val) === true)
-        {
+        if (Number.isInteger(val) === true) {
 
-        } else
-            {
-                tr[i+1].style.visibility = "visible";
-            }
+        } else {
+            tr[i + 1].style.visibility = "visible";
+        }
     }
 }
 
 function addRowupdate(tableID) {
 
-    class Requirements{
+    class Requirements {
 
         constructor(ID, Name, ShortDesc) {
             this.id = ID;
@@ -467,7 +480,7 @@ function addRowupdate(tableID) {
         .then(response => response.json())
         .then(data => {
 
-            if (data.register === ""){
+            if (data.register === "") {
 
             } else {
                 alert(data.register);
@@ -494,15 +507,12 @@ function update() {
     let idfield = document.getElementById("editid").value;
     let idprefield = idfield.charAt(0);
 
-    if (idprefield === "M")
-    {
+    if (idprefield === "M") {
         addRowupdate('mbody');
-    } else if (idprefield === "S")
-    {
+    } else if (idprefield === "S") {
         addRowupdate('sbody');
-    } else
-    {
-        addRowupdate('kbody');
+    } else {
+        addRowupdate('nbody');
     }
 
     let letsdel = document.getElementById("newButtID");
