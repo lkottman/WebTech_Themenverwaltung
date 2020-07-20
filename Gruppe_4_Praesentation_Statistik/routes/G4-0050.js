@@ -34,23 +34,7 @@ G4_0050.get('/G4-0050', function (request, result) {
   //  result.render("G4-0100.ejs");
 //});
 
-
-/**
- * G4-0300 aufrufen
- */
-G4_0050.get('/G4-0300', function (request, result) {
-
-    result.render("G4-0300.ejs", {
-        benutzername:"Rokko",
-    });
-
-});
-
-
 getConnection();
-
-
-
 
 /**
  * Verbindung zur Datenbank herstellen

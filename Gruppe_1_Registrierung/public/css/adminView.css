@@ -12,9 +12,23 @@ html {
 body{
     font-family: "Roboto Thin";
     font-size: 16px;
-
 }
 
+.header_button:focus{
+    outline: none;
+}
+
+.outerBox{
+    margin-left: 2em;
+}
+
+.box {
+margin-left: 3em;
+}
+
+.wrapper{
+padding-left: 1em;
+}
 
 .wrapper{
     display: grid;

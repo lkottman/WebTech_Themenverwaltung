@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link type="text/css" rel="stylesheet" href="../css/adminView.css" >
-    <link type="text/css" rel="stylesheet" href="../css/navigationBar.css">
+    <link type="text/css" rel="stylesheet" href="../../../css/navigationBar.css">
     <link type="text/css" rel="stylesheet" href="../css/table.css">
     <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -21,7 +21,6 @@
 
 
 <div id="UserMenu_All_Header">
-
     <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
         <a href="https://osca.hs-osnabrueck.de/">
             <div class="outer-wrapper" style="float:left">
@@ -32,14 +31,18 @@
         </a>
 
         <div class="dropdown" style="margin-left: 5px">
-            <button class="header_button">Meine Gruppe</button>
+            <form action="/myGroups">
+                <button class="header_button">Meine Gruppe</button>
+            </form>
             <div class="dropdown-content">
-                <a>Gruppe beitreten</a>
-                <a>Anforderungsdefinition</a>
+                <a href="/joinGroup">Gruppe beitreten</a>
+                <a href="/requirementsdefinition">Anforderungsdefinition</a>
             </div>
         </div>
 
-        <button class="header_button">Präsentation</button>
+        <form action="/presentation">
+            <button class="header_button">Präsentation</button>
+        </form>
     </div>
 
     <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
@@ -63,17 +66,21 @@
             </a>
         </div>
         <div class="dropdown">
-            <button class="header_button">Benutzer</button>
+            <form action="/userInfo">
+                <button class="header_button">Benutzer</button>
+            </form>
         </div>
-
-        <button class="header_button">Logout</button>
+        <div class="dropdown">
+            <form action="/logout">
+                <button class="header_button">Logout</button>
+            </form>
+        </div>
     </div>
 </div>
 
 
 <br>
-<div>
-
+<div class="outerBox">
     <div class="wrapper">
         <div id="content" style="overflow-x: auto">
             <h3>Benutzerliste</h3>
@@ -189,7 +196,19 @@
 </div>
 
 
-
 <script src="../javascript/userMngt_Admin.js"></script>
+<script>
+    var close = document.getElementsByClassName("close");
+    var i;
+
+    for (i = 0; i < close.length; i++) {
+        close[i].onclick = function(){
+            var div = this.parentElement;
+            div.style.opacity = "0";
+            setTimeout(function(){ div.style.display = "none"; }, 600);
+        }
+    }
+
+</script>
 </body>
 </html>

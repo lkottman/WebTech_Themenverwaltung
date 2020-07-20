@@ -7,7 +7,7 @@
     border-color: lightskyblue;
     border-radius: 25px;
     list-style: none;
-    position: absolute;
+    position: fixed;
     width: 25%;
     height: 75%;
     text-align: center;
@@ -27,13 +27,6 @@
     width: 100%;
 }
 
-#editid {
-
-}
-
-#editname {
-
-}
 
 #editshortdesc {
     width: 90%;
@@ -51,4 +44,12 @@
     right: 40%;
     opacity: 100;
     pointer-events: all;
+}
+
+@media screen and (min-width: 320px) and (max-width: 1024px){
+
+    .Sidebar{
+        width: 80%;
+        left: 10%;
+    }
 }

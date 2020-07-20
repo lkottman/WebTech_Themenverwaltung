@@ -5,6 +5,9 @@
     <title>G4-0600</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/G4-0200.css">
     <script src="/javascripts/G4-0600js.js"></script>
+    <link rel="stylesheet" href="../stylesheets/navigationBar.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
 
     <script
@@ -22,16 +25,61 @@
 </head>
 <body>
 
-<div id="Menueleiste">
-    <img src="/images/HS-OS-Logo-Standard-rgb.jpg" alt="Logo der Hochschule">
-    <p style="position: absolute;right: 0px;top: -20px"><%= benutzername %></p>
+<div id="UserMenu_All_Header"> <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px"> <a href="https://osca.hs-osnabrueck.de/"> <div class="outer-wrapper" style="float:left"> <div class="frame" style="height: 52px"> <img id="oscaImagelogo" class="oscaLogo"> </div> </div> </a>
+
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/myGroups">
+                <button class="header_button">Meine Gruppe</button>
+            </form>
+            <div class="dropdown-content">
+                <a href="/joinGroup">Gruppe beitreten</a>
+                <a href="/requirementsdefinition">Anforderungsdefinition</a>
+            </div>
+        </div>
+
+        <form action="/presentation">
+            <button class="header_button">Präsentation</button>
+        </form>
+    </div>
+
+    <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
+
+        <div class="frame" style="float: left;">
+            <a href="https://my.hs-osnabrueck.de/owa/">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="mailIcon" class="far fa-envelope fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="frame" style="float: left;">
+            <a href="https://netcase.hs-osnabrueck.de">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="netcaseIcon" class="fas fa-briefcase fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="dropdown">
+            <form action="/userInfo">
+                <button class="header_button">Benutzer</button>
+            </form>
+        </div>
+        <div class="dropdown">
+            <form action="/logout">
+                <button class="header_button">Logout</button>
+            </form>
+        </div>
+    </div>
 </div>
 <input type="button" value="Pause" onclick="dialog();">
 
 
 <h1>Modul: <%= modulname %></h1>
-<h2>Thema: <%= modulthema %></h2>
-<h2>Datum: <%= datum %></h2>
+<h2>Thema: <%= anlass %></h2>
+<h2>Datum: <%= tag %></h2>
 <h2>Raum: <%= raum %></h2>
 
 
@@ -54,19 +102,12 @@
     <tbody>
     <!-- Hier werden die einzelnen Tabellenzeilen geladen, die Anzahl der Zeilen ist abhängig von den Einträgen der Datenbank-->
     <% for (var i = 0; i < reihenfolge.length;i++) {let id = ("id_" + i); %>
-
     <tr id="<%= i %>">
-
-
         <td id="<%= id %>"><%= reihenfolge[i] %></td>
-
         <td><%= gruppe[i] %></td>
-
         <td name="thema"><%= thema[i] %></td>
-
         <td><%= mitglieder[i] %></td>
         <form method="post" action="http://127.0.0.1:8080/sendToDB" id="formCheckBox<%= i %>">
-
             <td><input type="time" id="time<%= i %>" value="<%= startzeit[i] %>" onchange="
                         document.getElementById('hiddenDauer<%= i %>').value=document.getElementById('dauer<%= i %>').value;
                         document.getElementById('hiddenStart<%= i %>').value=document.getElementById('time<%= i %>').value;
@@ -75,37 +116,29 @@
             <input type="hidden" id="hiddenStart<%= i %>" name="start">
             <input type="hidden" id="hiddenDauer<%= i %>" name="dauer">
             <input type="hidden" id="i" name="i" value="<%= i %>">
-
-
             <td><input type="time" id="dauer<%= i %>" value="<%= dauer[i] %>" onchange="
                         document.getElementById('hiddenDauer<%= i %>').value=document.getElementById('dauer<%= i %>').value;
                         document.getElementById('hiddenStart<%= i %>').value=document.getElementById('time<%= i %>').value;
                         setTimeout(() => {  document.getElementById('formCheckBox<%= i %>').submit() }, 1)">
             </td>
-
-
             <td><input type="time" id="ende<%= i %>"value="<%= ende[i]%>" ></td>
-
-            <td><%= raum[i] %></td>
-
-
-        <!-- In on click wird überprüft ob checkbox ausgewählt ist, wenn ja wird die Zeile durchgestrichen und die Time felder disabled,
-        wenn nein erfolgt keine textdekoration und die Time felder werden freigegeben -->
-
-        <td><input type="checkbox" id="checkbox<%= i %>" onclick="if(this.checked){
-                    document.getElementById(<%= i %>).style.textDecoration='line-through';
-                    document.getElementById('checkbox<%= i %>').style.display='none';
-                    $('#time<%= i %>').attr('disabled','disabled');
-                    $('#dauer<%= i %>').attr('disabled','disabled');
-                    $('#ende<%= i %>').attr('disabled','disabled');}
-                    else
-                    {
-                    document.getElementById(<%= i %>).style.textDecoration = 'none';
-                    $('#time<%= i %>').removeAttr('disabled');
-                    $('#dauer<%= i %>').removeAttr('disabled');
-                    $('#ende<%= i %>').removeAttr('disabled');
-                    }">
-        </td>
+            <td><%= raum %></td>
+            <!-- In on click wird überprüft ob checkbox ausgewählt ist, wenn ja wird die Zeile durchgestrichen und die Time felder disabled,
+            wenn nein erfolgt keine textdekoration und die Time felder werden freigegeben -->
+            <td><input type="checkbox" id="checkbox<%= i %>" onclick="if(this.checked){
+                        document.getElementById(<%= i %>).style.textDecoration='line-through';
+                        document.getElementById('checkbox<%= i %>').style.display='none';
+                        $('#time<%= i %>').attr('disabled','disabled');
+                        $('#dauer<%= i %>').attr('disabled','disabled');
+                        $('#ende<%= i %>').attr('disabled','disabled');}
+                        else
+                        {
+                        document.getElementById(<%= i %>).style.textDecoration = 'none';
+                        $('#time<%= i %>').removeAttr('disabled');
+                        $('#dauer<%= i %>').removeAttr('disabled');
+                        $('#ende<%= i %>').removeAttr('disabled');
+                        }">
+            </td>
         </form>
     </tr>
     <% } %>

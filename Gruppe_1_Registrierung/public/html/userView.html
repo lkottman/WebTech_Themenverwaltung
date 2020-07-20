@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <title>Input Group Example</title>
     <link rel="stylesheet" href="../css/userView.css" type="text/css">
-    <link rel="stylesheet" href="../css/navigationBar.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/navigationBar.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script language="javascript" type="text/javascript" src="../javascript/profilÜbersicht.js"></script>
+    <script language="javascript" type="text/javascript" src="../javascript/userView.js"></script>
 
 
 </head>
@@ -16,7 +16,6 @@
 <body>
 
 <div id="UserMenu_All_Header">
-
     <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
         <a href="https://osca.hs-osnabrueck.de/">
             <div class="outer-wrapper" style="float:left">
@@ -27,14 +26,18 @@
         </a>
 
         <div class="dropdown" style="margin-left: 5px">
-            <button class="header_button">Meine Gruppe</button>
+            <form action="/myGroups">
+                <button class="header_button">Meine Gruppe</button>
+            </form>
             <div class="dropdown-content">
-                <a>Gruppe beitreten</a>
-                <a>Anforderungsdefinition</a>
+                <a href="/joinGroup">Gruppe beitreten</a>
+                <a href="/requirementsdefinition">Anforderungsdefinition</a>
             </div>
         </div>
 
-        <button class="header_button">Präsentation</button>
+        <form action="/presentation">
+            <button class="header_button">Präsentation</button>
+        </form>
     </div>
 
     <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
@@ -58,49 +61,54 @@
             </a>
         </div>
         <div class="dropdown">
-            <button class="header_button">Benutzer</button>
+            <form action="/userInfo">
+                <button class="header_button">Benutzer</button>
+            </form>
         </div>
-
-        <button class="header_button">Logout</button>
+        <div class="dropdown">
+            <form action="/logout">
+                <button class="header_button">Logout</button>
+            </form>
+        </div>
     </div>
 </div>
 
 
 <div class="container">
     <h2>Persönliche Informationen</h2>
-<hr>
+    <hr>
     <form class="userProfilContent">
-        <div class="form-group">
+        <div class="form-group" >
             <div class="testContent">
                 <div class="nameContent">
 
-                        <div class="form-row">
-                            <div class="col">
-                                <div class="md-form mt-0">
-                                    <label for="vorname">Vorname</label>
-                                    <input type="text" class="form-control" placeholder="Vorname" id="vorname" readonly>
-                                </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="md-form mt-0">
+                                <label for="vorname">Vorname</label>
+                                <input type="text" class="form-control" placeholder="Vorname" id="vorname" readonly>
                             </div>
                         </div>
+                    </div>
 
 
-                        <div class="form-row">
-                            <div class="col">
-                                <div class="md-form mt-0">
-                                    <label for="nachname">Nachname</label>
-                                    <input type="text" class="form-control" placeholder="Nachname" id="nachname"
-                                           readonly>
-                                </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="md-form mt-0">
+                                <label for="nachname">Nachname</label>
+                                <input type="text" class="form-control" placeholder="Nachname" id="nachname"
+                                       readonly>
                             </div>
                         </div>
+                    </div>
 
                 </div>
                 <div>
                     <form>
                         <figure>
-                            <a href="">
+                            <a href="http://www.netflix.de">
                                 <img src="../images/avatar-icon-user-svg.png" class="rounded float-right" width="200"
-                                    height="200" style="float: right">
+                                     height="200" style="float: right">
                             </a>
                         </figure>
                     </form>
@@ -114,12 +122,12 @@
                     <label class="input-group-text" for="studiengang">Studiengang</label>
                 </div>
                 <select class="custom-select" id="studiengang" disabled="disabled">
-                    <option selected>                           Ich studieren...</option>
-                    <option value="wirtschaftsinformatik">      Wirtschaftsinformatik</option>
-                    <option value="bwl">                        Betriebswirtschaft und Management</option>
-                    <option value="maschienenbau">              Maschinenbau</option>
-                    <option value="wing">                       Wirtschaftsingenieurwesen</option>
-                    <option value="wingMaster">                 Wirtschaftsingenieurwesen – Energiewirtschaft
+                    <option selected> Ich studieren...</option>
+                    <option value="wirtschaftsinformatik"> Wirtschaftsinformatik</option>
+                    <option value="bwl"> Betriebswirtschaft und Management</option>
+                    <option value="maschienenbau"> Maschinenbau</option>
+                    <option value="wing"> Wirtschaftsingenieurwesen</option>
+                    <option value="wingMaster"> Wirtschaftsingenieurwesen – Energiewirtschaft
                         (Master)
                     </option>
                 </select>
@@ -150,18 +158,52 @@
 
         <button type="button" class="btn btn-outline-primary" onclick="changeReadonly()">Bearbeiten</button>
         <button type="submit" class="btn btn-outline-secondary" onclick="addReadonly()">Bestätigen</button>
+        <br><br>
     </form>
-    <hr>
-    <h3>Nutzerdaten abfragen</h3>
-    <hr>
-    <h3>Nutzerdaten löschen</h3>
+    <hr><br>
+    <div>
+        <h3>E-Mail Benachrichtigung</h3>
+        <div>Hier können Sie entscheiden zu welchen Ereignis Sie eine E-Mail erhalten wollen
+        </div>
+        <br>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="">
+            <label class="form-check-label" for="">E-Mail Benachrichtigung ob eine neue Datei hochgeladen wurde.</label>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="">
+            <label class="form-check-label" for="">E-Mail Benachrichtigung ob eine Nachricht vorliegt.</label>
+        </div>
+    </div>
+    <br><hr><br>
+    <div>
+        <h3>Nutzerdaten abfragen</h3>
+        <div>Hier können Sie alle Daten abfragen die von Ihnen gespeichert wurden.
+        </div>
+        <br>
+        <button type="button" class="btn btn-outline-primary">Nutzerdaten anzeigen</button>
+    </div>
+    <br><hr><br>
+    <div>
+        <h3>Nutzerdaten löschen</h3>
+
+        <div>Wenn Sie alle Daten, die von Ihnen gespeichert wurde, löschen möchten, drücken Sie bitte auf diesen
+            Button!
+        </div>
+        <br>
+        <button type="button" class="btn btn-outline-danger" onclick="confirmMessage()">Nutzerdaten löschen</button>
+
+    </div>
+
     <p><a href="javascript:PopupFenster()">Fenster anzeigen</a></p>
 </div>
 
 </body>
+
+
 <script>
     function PopupFenster() {
-        F = window.open("profilUebersichtTest.html","Popup","width=400,height=300");
+        F = window.open("profilUebersichtTest.html", "Popup", "width=400,height=300");
     }
 </script>
 </html>

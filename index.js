@@ -41,18 +41,16 @@ let staticOptions = {
 }
 //imports
 app.use('/css',express.static('./Gruppe_1_Registrierung/public/css'));
+app.use('/css',express.static('./css'));
 app.use('/images',express.static('./Gruppe_1_Registrierung/public/images'));
 app.use('/',express.static('./Gruppe_1_Registrierung/public/html'));
 app.use('/javascript',express.static('./Gruppe_1_Registrierung/public/javascript'));
+app.use('/javascript',express.static('./Gruppe_1_Registrierung/privat/javascript'));
 app.use('/privat/images',express.static('./Gruppe_1_Registrierung/privat/images'));
-
-app.use('/privat/profile_images',express.static('./Gruppe_1_Registrierung/privat/profile_images'));
-
 
 app.use('/CSS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/CSS'));
 app.use('/JS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/JS'));
 app.use('/HTML',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/HTML'));
-
 
 
 app.use(express.json({limit: "1mb"}));
@@ -72,6 +70,17 @@ app.use(session({
         secure: false    //in development in production :true
     }
 }));
+
+const redirectCookie = (request, response, next) => {
+
+    if (request.session.enabledCookies === false
+    || request.session.enabledCookies === undefined) {
+        response.redirect("/");
+    } else {
+        next();
+    }
+};
+
 
 // Redirect to Login if there are no cookies. No Access to the private sites
 const redirectLogin = (request, response, next) => {
@@ -96,9 +105,25 @@ const redirectHome = (request, response, next) => {
     }
 };
 
+function ignoreFavicon(req, res, next) {
+    if (req.originalUrl === '/favicon.ico') {
+        res.status(204).json({nope: true});
+        console.log("ignored");
+    } else {
+        console.log("next");
+        next();
+    }
+};
+
+
 //Every connection with Server this will be executed
+//Sends cookie
 app.use((request, respond, next) => {
     const {userId} = request.session;
+
+    respond.locals.enabledCookies = request.session.enabledCookies;
+
+
     if (userId) {
         respond.locals.userId = request.session.userId;
         respond.locals.userName = request.session.userName;
@@ -110,30 +135,37 @@ app.use((request, respond, next) => {
 router = require("./Gruppe_1_Registrierung/public/routes/routesGET.js");
 
 app.get("/", router);
-app.get("/login", router);
-app.get("/agb", router);
-app.get("/successfullregistration", router);
+app.get("/login",redirectHome,redirectCookie, router);
+app.get("/register",redirectHome, ignoreFavicon, redirectCookie, router);
+app.get("/agb",redirectCookie, router);
+app.get("/successfullregistration",redirectCookie, router);
 app.get("/resetpassword", router);
-app.get("/token", router);
-app.get("/home", router);
+app.get("/token",redirectLogin, router);
+app.get("/home",redirectLogin, router);
 app.get("/admin", router);
 app.get("/getUser", router);
 app.get("/confirmation", router);
 app.get("/passwordforgot", router);
 app.get("/register", router);
 app.get("/changepassword", router);
+app.get("/adminView", router);
+app.get("/impressum", router);
+app.get("/userInfo", router);
+app.get("/presentation", router);
 
 
-//Gruppe 5 Editor
-/**
-router = require("./Gruppe_5_Editor/Web Technologies/Projekt/routes/routesGetPostEditor.js")
+//-------------------------------------------
+//Hier muss noch die routesGet angepasst werden
+//-------------------------------------------
+app.get("/myGroups", router);
+app.get("/joinGroup", router);
+app.get("/requirementsdefinition", router);
 
-app.get("/requirements", redirectHome(),router);
-app.get("/createTable", redirectHome(),router);
-app.get("/saveReqData", redirectHome(),router);
-app.get("/delReqData", redirectHome(),router);
-app.get("/loadtable", redirectHome(),router);
-*/
+app.get("/favicon.ico", (request, response) => {
+    response.writeHead(204, {'Content-Type': 'image/x-icon'} );
+    response.end();
+    console.log('favicon requested');
+});
 
 routerConfirmation = require('./Gruppe_1_Registrierung/public/routes/register/confirmation.js');
 app.use(routerConfirmation);
@@ -141,25 +173,35 @@ app.use(routerConfirmation);
 routerPassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/passwordForgot.js');
 app.use(routerPassword);
 
+
 routerLogin = require('./Gruppe_1_Registrierung/public/routes/login/routesLogin.js');
 app.use(routerLogin);
-
-routerUpload = require('./Gruppe_1_Registrierung/privat/profile_images/uploadImages.js');
-app.use(routerUpload);
 
 routerRegister = require('./Gruppe_1_Registrierung/public/routes/register/routesRegister.js');
 app.use(routerRegister);
 
-routerChangePassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/updatePassword.js');
-app.use(routerChangePassword);
+routerToken = require("./Gruppe_1_Registrierung/public/routes/token/routesToken.js");
+app.use(routerToken);
 
+//Gruppe 5 Editor
+routerEdit = require("./Gruppe_5_Editor/Web Technologies/Projekt/routes/routesGetPostEditor.js");
+
+app.get("/requirements",redirectLogin, routerEdit);
+app.use(routerEdit);
 
 
 
 //Get without HTML|| email
 app.get("/cookie", (request, response) => {
-    console.log(request.session);
+
     response.json(request.session);
+});
+
+app.post("/enableCookie", (request, response) => {
+    request.session.enabledCookies = true;
+    console.log(request.session)
+
+    response.end();
 });
 
 /*+
@@ -224,6 +266,58 @@ app.post("/passwordForgot.html", (request, response) => {
     }
 });
 
+app.post("/changePassword", redirectLogin, (request, response) =>{
+    let email = "sven.petersen@hs-osnabrueck.de";
+    let newpassword = request.body.password;
+
+    let sql = `UPDATE USER SET password = '${newpassword}' WHERE e_mail = '${email}'; `;
+    connection.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log(result);
+    })
+
+});
+
+app.post("/checkResetToken", (request, response) =>{
+
+    let resetToken = request.body.resetToken;
+
+    if(resetToken == "")
+    {
+            console.log("test");
+        response.redirect("/login");
+    }
+    else
+    {
+
+        let sql =  `SELECT e_mail, used FROM PW_FORGOT_TOKEN 
+                     WHERE current_timestamp < end
+                     AND current_timestamp > start AND token ='${resetToken}';`;
+
+
+        connection.query(sql, function (err, result) {
+            if(err)
+                throw err;
+
+            if (result.length != 0){
+                let email = result[0].e_mail;
+                let used = result[0].used;
+
+                if (used == 0) {
+                    let changeUsed = `UPDATE PW_FORGOT_TOKEN SET used = true WHERE e_mail = '${email}';`;
+                    console.log(changeUsed);
+                    connection.query(changeUsed, function (err, result) {
+                        if (err) throw err;
+
+                        if (result.length != 0){
+                            response.redirect("/passwort")
+                        }
+                    });
+                }
+            }
+        });
+    }
+});
 
 
 app.post("/logout",  (request, respond) => {
@@ -234,12 +328,8 @@ app.post("/logout",  (request, respond) => {
         }
         respond.clearCookie(sessionName);
         console.log("cookies deleted!")
-        respond.redirect("/login");
+        respond.redirect("/");
     })
-});
-
-app.post("/sendToken", (request, response) => {
-
 });
 
 // Post Methods
@@ -250,76 +340,15 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
     next();
 });
 
-const routerToken = require("./Gruppe_1_Registrierung/public/routes/token/routesToken");
-app.use("/createToken", routerToken);
-app.use("/deleteToken", routerToken);
-
-app.post("/getUsers", (request, response) => {
-
-});
-
-
-// app.post("/createToken", redirectLogin, (request, response) => {
-//
-//     console.log(request.body.time);
-//     console.log(tokenLifeTime);
-//
-//     if (request.body.time < tokenLifeTime) {
-//
-//         connection.query("INSERT INTO TOKEN(START,TIME,END,GENTOKEN, USER) VALUES("
-//             + '"' + request.body.start + '",'
-//             + request.body.time + ','
-//             + '"' + request.body.end + '",'
-//             + '"' + request.body.token + '",'
-//             + '"' + request.session.userId + '")'),
-//             function (err) {
-//                 if (err)
-//                     throw err;
-//                 console.log("Inserted TOKEN")
-//             }
-//
-//         response.json({token: "Freischaltcode wurde erstellt."})
-//     } else {
-//         response.json({token: "Fehler: Die Dauer vom Freischaltcode ist zu lang gewählt."})
-//     }
-// });
-//
-// //Deletes token from Database
-// app.post("/deleteToken", redirectLogin, (request, response) => {
-//
-//     if (request.session.authorization === "admin"){
-//         connection.query("SELECT gentoken from token WHERE GENTOKEN = " + '"' + request.body.token + '";',
-//             function (err, result) {
-//                 if (err)
-//                     throw err;
-//                 else {
-//                     console.log(result.length);
-//
-//                     if (result.length > 0) {
-//                         connection.query("DELETE FROM token WHERE GENTOKEN = " + '"' + request.body.token + '";'),
-//                             function (err, result) {
-//                                 if (err)
-//                                     throw err;
-//                             }
-//                         response.json({token: "Token gelöscht!"});
-//                     } else {
-//                         response.json({token: "Token nicht gefunden"});
-//                     }
-//                 }
-//             })
-//     } else {
-//         response.json({token: "Keine Berechtigung zur Löschung von Freischaltcodes"});
-//     }
-// });
-//
 
 const server = app.listen(PORT, () => console.log(
     "listening on: " +
     `http://localhost:${PORT}`
 ));
 
+
 module.exports = {
-  server: server,
+    server: server,
     session: session,
     redirectLogin: redirectLogin,
     redirectHome: redirectHome,

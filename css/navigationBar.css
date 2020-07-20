@@ -2,7 +2,7 @@
 
 html {
     height: 100%;
-    font-family: Roboto;
+    font-family: "Roboto Thin";
     font-size: 100%;
     overflow-y: scroll;
     -webkit-text-size-adjust: 100%;
@@ -11,7 +11,7 @@ html {
 }
 
 body{
-    font-family: "Roboto Thin";
+    font-family: Roboto;
     font-size: 16px;
     letter-spacing: .6px;
     color: #555555;
@@ -68,6 +68,10 @@ body{
     display: block;
 }
 
+.header_button:focus{
+    outline: none;
+}
+
 .dropdown-content a {
     float: none;
     color: black;
@@ -96,7 +100,7 @@ body{
 }
 
 #oscaImagelogo{
-    content: url("../images/osca3-white.png");
+    content: url("osca3-white.png");
     max-height: 52px ;
     display: block;
     margin: 0 auto;

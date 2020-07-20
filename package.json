@@ -19,6 +19,7 @@
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "nodemailer": "latest",
+    "q": "^1.5.1",
     "request": "^2.88.2",
     "session": "^0.1.0"
   },

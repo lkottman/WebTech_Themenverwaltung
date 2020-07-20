@@ -20,7 +20,7 @@
 
 <div class="navbar" id="myNavbar">
     <a style="overflow: hidden">
-        <img alt="logo" class="logo" onclick="openOsca()" src="WebTech_Themenverwaltung/Gruppe_1_Registrierung/public/images/osca3-white.png"></a>
+        <img alt="logo" class="logo" onclick="openOsca()" src="osca3-white.png"></a>
     <a id="pro" href="#projects">Projekte</a>
     <a id="mem" href="MembersGer.html"
        onclick="window.open('MembersGer.html', 'newwindow', 'width=600, height=300');
@@ -63,6 +63,13 @@
         <br>
         <a id="shf">Kurzbeschreibung:</a><br>
         <textarea id="editshortdesc"></textarea><br>
+
+        <a id="editstartid">Anfangszeitpunkt:</a><br>
+        <input type="date" id="editstarttime"><br>
+
+        <a id="editendid">Endzeitpunkt:</a><br>
+        <input type="date" id="editendtime"><br><br>
+
         <button id="update" onclick="update()">Update</button>
         <button id="exit" onclick="exitUpdate()"><i  style="background-color: inherit" class='fa fa-times'></i></button>
 
@@ -89,10 +96,15 @@
             <a id="addname">Name:</a>
             <input type="text" name="Name" id="name">
             <br>
-
+            <br>
             <a id="addsh">Kurzbeschreibung:</a>
-            <textarea id="shortdesc" class="shortdesc" style="width: 40%"></textarea>
-
+            <textarea id="shortdesc" class="shortdesc"></textarea>
+            <br>
+            <br>
+            <a id="startid">Anfangszeitpunkt:</a>
+            <input type="date" id="starttime">
+            <a id="endid">Endzeitpunkt:</a>
+            <input type="date" id="endtime">
             <button id="addbtn" style="float: right" onclick="checkdouble()">anlegen</button>
         </fieldset>
     </div>
@@ -121,8 +133,9 @@
             <legend id="reqs">Anforderungen</legend>
             <table id="reqtable" class="reqtable">
                 <thead>
-                <th style="width: 10%; cursor:pointer">ID</th>
-                <th style="pointer-events: none">Name</th>
+                <th id="tableid" style="width: 10%; cursor:pointer">ID</th>
+                <th id="nametable" style="pointer-events: none">Name</th>
+                <th id="startendtable" style="pointer-events: none">Start- / Endzeitpunkt</th>
                 <th id="tableshortdesc" colspan="3" style="pointer-events: none">Kurzbeschreibung</th>
                 </thead>
                 <tbody id="mbody">
@@ -165,6 +178,6 @@
         }
     }
 </script>
-<script src="../JS/sortshit.js"></script>
+<script src="../JS/tablesort.js"></script>
 </body>
 </html>

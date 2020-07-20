@@ -9,7 +9,7 @@ const express = require('express');
 const G4_0700 = express.Router();
 
 //Definition der Arrays
-mid = [];
+modul_id = [];
 modul_bezeichnung = [];
 
 
@@ -17,16 +17,19 @@ modul_bezeichnung = [];
  * JS auf ejs laden und aufrufen
  */
 
-    app.get('/G4-0700', function (request, result) {
-        result.render("G4-0700.ejs");
-    });
-
-
-
+G4_0700.get('/G4-0700', function (request, result) {
+    //if (request.session.userAuthorization === "student"
+      //      || request.session.userAuthorization === "admin") {
+    result.render("G4-0700.ejs");
+    }else
+      {
+    //    result.redirect('/G4-0050');
+    //}
+});
+/**
+ * Verbindung zur Datenbank herstellen
+ */
 getValuesFromDb();
-
-
-
 
 
 /**
@@ -34,18 +37,16 @@ getValuesFromDb();
  */
 function getValuesFromDb() {
     //alle Attribute aus Relation modul abfragen
-    var sql = "SELECT * FROM G4_MODUL";
+    var sql = "SELECT * FROM modul /* da muss noch ne Abfrage für den speziellen USER hinzugefügt werden */";
     con.query(sql, function (err, result) {
 
-        if (err) throw err;
+        if(err) throw err;
         //alle Attribute durchlaufen und in result laden
         for (var i = 0; i < result.length; i++) {
-            mid[i] = result[i].mid;
+            modul_id[i] = result[i].mid;
             modul_bezeichnung[i] = result[i].modul_bezeichnung;
         }
     });
 }
-
-
 module.exports = G4_0700;
 

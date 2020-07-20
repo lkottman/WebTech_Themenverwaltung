@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <title>CreateModul</title>
     <link rel="stylesheet" href="../style.css">
+    <script src="NeuesModul.js" type="text/javascript"></script>
 </head>
 <body>
+
+
+
 <header>
     <nav>
         <br>
@@ -37,17 +41,18 @@
 
             <hr>
             Modulname: <br>
-            <input id="Titel" type="text" name="Titel">
+            <input id="modulName" type="text" name="modulName">
             <br><br>
 
             Modulbeginn: <br>
-            <input type="datetime-local" name="modulStart" id="modulStart"> <br><br>
+            <input type="date" name="modulBeginn" id="modulBeginn"> <br><br>
 
             Modulende: <br>
-            <input type="datetime-local" name="modulEnd" id="modulEnd"> <br><br>
+            <input type="date" name="modulEnde" id="modulEnde"> <br><br>
             <br>
 
-            <input type="submit" name="saveModul" value="Modul Speichern">
+            <input type="submit" onclick="newModul()" name="saveModul" value="Modul Speichern">
+
         </article>
 
         <aside class="sidebar-right">

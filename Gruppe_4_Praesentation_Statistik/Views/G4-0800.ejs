@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <title>G4-0800</title>
     <link rel="stylesheet" href="/stylesheets/G4-0800.css">
+    <link rel="stylesheet" href="../stylesheets/navigationBar.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 <body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src="https://mottie.github.io/tablesorter/dist/js/jquery.tablesorter.min.js"></script>
 <script>
+    //Sortieren der Tabelle
     var table = $('table');
-
     $('#thema_header', '#datum_header', '#raum_header')
         .wrapInner('<span title="sort this column"/>')
         .each(function () {
@@ -36,13 +39,60 @@
     $(function () {
         $("#sortableTable").tablesorter();
     });
-
 </script>
-<div id="Menueleiste">
-    <img src="/images/HS-OS-Logo-Standard-rgb.jpg" alt="Logo der Hochschule">
-    <p style="position: absolute;right: 0px;top: -20px"><%= benutzername %></p>
+
+<div id="UserMenu_All_Header"> <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px"> <a href="https://osca.hs-osnabrueck.de/"> <div class="outer-wrapper" style="float:left"> <div class="frame" style="height: 52px"> <img id="oscaImagelogo" class="oscaLogo"> </div> </div> </a>
+
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/myGroups">
+                <button class="header_button">Meine Gruppe</button>
+            </form>
+            <div class="dropdown-content">
+                <a href="/joinGroup">Gruppe beitreten</a>
+                <a href="/requirementsdefinition">Anforderungsdefinition</a>
+            </div>
+        </div>
+
+        <form action="/presentation">
+            <button class="header_button">Präsentation</button>
+        </form>
+    </div>
+
+    <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
+
+        <div class="frame" style="float: left;">
+            <a href="https://my.hs-osnabrueck.de/owa/">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="mailIcon" class="far fa-envelope fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="frame" style="float: left;">
+            <a href="https://netcase.hs-osnabrueck.de">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="netcaseIcon" class="fas fa-briefcase fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="dropdown">
+            <form action="/userInfo">
+                <button class="header_button">Benutzer</button>
+            </form>
+        </div>
+        <div class="dropdown">
+            <form action="/logout">
+                <button class="header_button">Logout</button>
+            </form>
+        </div>
+    </div>
 </div>
+
 <h1><%= Modulname %></h1>
+<!--Formular zum Abfrage der Gruppenreihenfolge-->
 <form method="post" action="http://127.0.0.1:8080/Reihenfolge" id="FormReihenfolge">
     <table id="sortableTable" class="tablesorter" rules="rows" style="border-spacing: 32px 16px">
         <thead>
@@ -50,20 +100,24 @@
             <th id="thema_header">Anlass</th>
             <th id="datum_header">Datum</th>
             <th id="raum_header">Raum</th>
+            <th id="praesentationsid_header">Präsentations ID</th>
             <th>Gruppenreihenfolge</th>
         </tr>
         </thead>
         <tbody>
-        <% for (var i = 0; i < thema.length;i++) { %>
+        <!--Thema, Tag und Raum der Präsentation aus Datenbank abfragen und anzeigen-->
+        <% for (var i = 0; i < pid.length;i++) { %>
             <tr>
-                <td id="thema<%= i %>"> <%= thema[i] %></td>
-                <td> <%= date[i] %></td>
+                <td> <%= anlass[i] %></td>
+                <td> <%= datum[i] %></td>
                 <td> <%= raum[i] %></td>
-                <td style="color: -webkit-link; text-decoration: underline; cursor: pointer" onclick="document.getElementById('text').value = (document.getElementById('thema<%= i %>').innerText);
-                        setTimeout(() => {
-                        document.getElementById('FormReihenfolge').submit()
-                        }, 10);"> Reihenfolge der Gruppen ansehen</td>
-
+                <td> <%= pid[i] %></td>
+                <!--FormReihenfolge wird beim Anklicken ausgeführt-->
+                <td style="color: -webkit-link; text-decoration: underline; cursor: pointer"
+                    onclick="document.getElementById('text').value = (document.getElementById('thema<%= i %>').innerText);
+                            setTimeout(() => {
+                            document.getElementById('FormReihenfolge').submit()
+                            }, 10);"> Reihenfolge der Gruppen ansehen</td>
             </tr>
         <% } %>
         </tbody>
