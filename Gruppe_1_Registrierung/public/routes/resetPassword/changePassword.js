@@ -28,21 +28,18 @@ router.post("/updatePassword", (request, response) =>{
 
         let sql = `UPDATE USER SET password = '${password}' WHERE e_mail = '${email}';`;
 
-        connection.query(sql, function (err, result) {
+          connection.query(sql, function (err, result) {
             if (err) throw err;
-            if (result) {
-                console.log("Erfolgreich");
-            }
+                console.log("password changed!");
+
         });
         response.redirect("/login");
     }
 });
 
-    function checkToken(token){
-
+   async function checkToken(token){
     if(token === "" || token === null || token === undefined)
     {
-        console.log("where is the token");
         redirect("/login");
     }
     else
@@ -61,8 +58,8 @@ router.post("/updatePassword", (request, response) =>{
 
                 if (used === 0)
                 {
-                    let changeUsed = `UPDATE PW_FORGOT_TOKEN SET used = true WHERE e_mail = '${email}';`;
-                    console.log("password_token changed to: "+ changeUsed);
+                    let changeUsed = `UPDATE PW_FORGOT_TOKEN SET used = 1 WHERE e_mail = '${email}';`;
+                    
 
                     connection.query(changeUsed, function (err, result) {
                         if (err) throw err;
@@ -76,16 +73,47 @@ router.post("/updatePassword", (request, response) =>{
                 }
             }
             else {
-                console.log("something went wrong?!");
                 return false;
             }
         });
     }};
 
 
-function validateEmail(email) {
-    return /^\"?[\w-_\.]*\"?@hs-osnabrueck\.de$/.test(email);
-}
+async function checkForValid(token, e_mail) {
+
+    let now = new Date();
+    now.setHours(now.getHours() + 2);
+    now = now.toISOString().slice(0, 19).replace('T', ' ');
+
+    let sql = `SELECT start, end, used FROM PW_FORGOT_TOKEN WHERE e_mail = '${e_mail}' AND token = '${token}';`;
+
+    connection.query(sql, function (err, result) {
+        if (err){
+            throw err;
+            return false;
+        }
+        if (result[0].used == 1)
+        {
+            console.log("e-mail already registiered");
+            return false;
+        } else if (result[0].start >= now && now >= result[0].end) {
+            console.log(("e-mail verification link is over "));
+            return false;
+        }
+        else {
+            console.log("e-mail isnt't verified and token not used");
+
+            let sql = `UPDATE PW_FORGOT_TOKEN SET used = 1 WHERE e_mail = '${e_mail}' AND token = '${token}';`;
+
+            connection.query(sql, function (err, result) {
+                if (err) throw err;
+                if (result)
+                    console.log('token status successful changed');
+            });
+            return true;
+        }
+    });
+};
 
 
 module.exports = router;
