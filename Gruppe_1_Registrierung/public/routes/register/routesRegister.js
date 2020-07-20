@@ -51,7 +51,6 @@ router.post("/register",  (request, response) => {
         connection.query(sqlInsert, function(error, results){
             response.json({register: "created"});
         });
-
     }
 
     if (request.body.tutorium === undefined) {

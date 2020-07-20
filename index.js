@@ -137,6 +137,7 @@ app.use((request, respond, next) => {
         respond.locals.userId = request.session.userId;
         respond.locals.userName = request.session.userName;
         respond.locals.userAuthorization = request.session.userAuthorization;
+        //put your own cookies here
     }
     next();
 });
