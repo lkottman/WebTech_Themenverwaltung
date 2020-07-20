@@ -39,9 +39,10 @@ function getTextForgotPassword(resetToken, email){
         ` ${link} \n` +
         ` Bite klicken Sie auf diesen Link um ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule Osnabrueck` +
         `zurückzusetzen. \n `;
-    console.log(bodyText);
 
-    return text;
+    console.log(bodytext);
+
+    return bodytext;
 }
 
 function getMailOptions(recipient, subject, text ) {

@@ -1,18 +1,15 @@
+class UserToVerify {
 
-class UserToUpdate {
-
-    constructor(email, token, password) {
+    constructor(email, token) {
 
         this.email = email;
         this.token = token;
-        this.password = password;
     }
 
-    getUserToUpdate(){
+    getUserToVerify(){
         let email = getQueryParams("email");
         let token    = getQueryParams("opt");
-        let password  =  document.getElementById("password").value;
-        return new UserToUpdate( email, token, password);
+        return new UserToVerify(email, token);
     }
 }
 
@@ -28,12 +25,11 @@ function getQueryParams(qs) {
     }
 
     return params;
-};
+}
 
 
-
-function sendData() {
-    var user = new UserToUpdate().getUserToUpdate();
+function sendUserDataToConfirm() {
+    var user = new UserToVerify().getUserToVerify();
     const options = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -41,15 +37,9 @@ function sendData() {
     };
 
 
-    fetch("/updatePassword", options)
+    fetch('/verify', options)
         .then(response => response.json())
         .then(data => {
             console.log(data)
         })
- }
-
-
-
-
-
-
+};
