@@ -22,13 +22,18 @@ function doEnglish() {
     document.getElementById("shave").innerText = "Should-have";
     document.getElementById("nhave").innerText = "Nice-to-Have";
     document.getElementById("nhave").value = "N";
+    document.getElementById("startid").innerText = "Start-time:";
+    document.getElementById("endid").innerText = "End-time:";
 
     document.getElementById("header").innerText = "Edit Requirements"
-    document.getElementById("shf").innerText = "Short Description";
+    document.getElementById("p").innerText = "Priority"
+    document.getElementById("shf").innerText = "Short Description:";
     document.getElementById("edm").innerText = "Must-have";
     document.getElementById("eds").innerText = "Should-have";
     document.getElementById("edn").innerText = "Nice-to-Have";
     document.getElementById("edn").value = "N";
+    document.getElementById("editstartid").innerText = "Start-time:";
+    document.getElementById("editendid").innerText = "End-time:";
 
     document.getElementById("addreq").innerText = "Add Requirements";
     document.getElementById("prio").innerText = "Priority";
@@ -43,7 +48,8 @@ function doEnglish() {
     document.getElementById("allout").innerText = "Expand all";
 
     document.getElementById("reqs").innerText = "Requirements";
-    document.getElementById("tableshortdesc").innerText = "Short Description";
+    document.getElementById("tableshortdesc").innerHTML = "Short Description";
+    document.getElementById("startendtable").innerText = "Start- / End-time";
 
 }
 
@@ -59,13 +65,18 @@ function doGerman() {
     document.getElementById("shave").innerText = "Soll-Anforderung";
     document.getElementById("nhave").innerText = "Nett-zu-haben";
     document.getElementById("nhave").value = "N";
+    document.getElementById("startid").innerText = "Anfangszeitpunkt:";
+    document.getElementById("endid").innerText = "Endzeitpunkt:";
 
     document.getElementById("header").innerText = "Anforderungen bearbeiten"
+    document.getElementById("p").innerText = "Priorität"
     document.getElementById("shf").innerText = "Kurzbeschreibung";
     document.getElementById("edm").innerText = "Muss-Anforderung";
     document.getElementById("eds").innerText = "Soll-Anforderung";
     document.getElementById("edn").innerText = "Nett-zu-haben";
     document.getElementById("edn").value = "N";
+    document.getElementById("editstartid").innerText = "Anfangszeitpunkt:";
+    document.getElementById("editendid").innerText = "Endzeitpunkt:";
 
     document.getElementById("addreq").innerText = "Anlegen einer Anforderung";
     document.getElementById("prio").innerText = "Priorität";
@@ -80,6 +91,7 @@ function doGerman() {
     document.getElementById("allout").innerText = "Alle ausklappen";
 
     document.getElementById("reqs").innerText = "Anforderungen";
+    document.getElementById("startendtable").innerHTML = "Start- / Endzeitpunkt";
     document.getElementById("tableshortdesc").innerText = "Kurzbeschreibung";
 
 }

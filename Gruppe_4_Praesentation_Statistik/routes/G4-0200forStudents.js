@@ -1,6 +1,3 @@
-/*
-Author: Constantin Brans
- */
 
 /**
  * Importieren der App und MySql-Module
@@ -62,7 +59,7 @@ getValuesfromDb();
 
 function getValuesfromDb() {
 
-    var sql = "SELECT * FROM agenda WHERE pid = '57'";
+    var sql = "SELECT * FROM AGENDA /* WHERE PID IS = */";
 
     con.query(sql, function (err,result) {
         if (err) throw err;
@@ -79,7 +76,7 @@ function getValuesfromDb() {
 
         }
     });
-    var sql1 = "SELECT raum, anlass, datum, modul FROM praesentation WHERE pid = '57' ";
+    var sql1 = "SELECT raum, anlass, datum, modul FROM G4_PRAESENTATION /* WHERE pid = */ ";
 
     con.query(sql1, function (err,result) {
         if (err) throw err;

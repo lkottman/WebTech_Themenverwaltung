@@ -1,6 +1,3 @@
-/*
-Author: Constantin Brans
- */
 
 /**
  * G4-0800 / Übersicht über Präsentationen in einem Modul für die Studierenden
@@ -32,7 +29,6 @@ G4_0800.get('/G4-0800',function (request,result) {
 });
 
 
-
 /**
  * JS auf ejs laden und an /reihenfolge schicken
  */
@@ -54,7 +50,7 @@ getValuesFromDb();
  */
 function getValuesFromDb() {
     //Anlass
-    var sql = "SELECT anlass FROM praesentation /*,modul WHERE modul(von Tabelle praesentation) = mid(die mitgegeben wurde)*/ ";
+    var sql = "SELECT anlass FROM G4_PRAESENTATION /*,modul WHERE modul(von Tabelle praesentation) = mid(die mitgegeben wurde)*/ ";
     con.query(sql, function (err, result) {
         if (err) throw err;
         for (var i = 0; i < result.length; i++) {
@@ -62,7 +58,7 @@ function getValuesFromDb() {
         }
     });
     //Datum
-    var sql1 = "SELECT datum FROM praesentation /*,modul WHERE modul(von Tabelle praesentation) = mid(die mitgegeben wurde) */";
+    var sql1 = "SELECT datum FROM G4_PRAESENTATION /*,modul WHERE modul(von Tabelle praesentation) = mid(die mitgegeben wurde) */";
     con.query(sql1, function (err, result) {
         if (err) throw err;
         //Attribute durchlaufen und in result laden
@@ -71,14 +67,14 @@ function getValuesFromDb() {
         }
     });
     //Raum
-    var sql2 = "SELECT raum FROM praesentation /*,modul  WHERE modul(von Tabelle praesentation) = mid(die mitgegeben wurde) */";
+    var sql2 = "SELECT raum FROM G4_PRAESENTATION /*,modul  WHERE modul(von Tabelle praesentation) = mid(die mitgegeben wurde) */";
     con.query(sql2, function (err, result) {
         if (err) throw err;
         for (var i = 0; i < result.length; i++) {
-            raum[i] = result[i].Raum;
+            raum[i] = result[i].raum;
         }
     });
-    var sql3 = "SELECT pid FROM praesentation /*,modul  WHERE modul(von Tabelle praesentation) = mid(die mitgegeben wurde) */";
+    var sql3 = "SELECT pid FROM G4_PRAESENTATION /*,modul  WHERE modul(von Tabelle praesentation) = mid(die mitgegeben wurde) */";
     con.query(sql3, function (err, result) {
         if (err) throw err;
         for (var i = 0; i < result.length; i++) {
@@ -92,19 +88,11 @@ function getValuesFromDb() {
 
 
 
-//TODO Modulnamen und Benutzer aus DB
 
 
 
-/*module.exports = G4_0800;
-export { getValuesFromDb, getConnection, reihenfolge, get, listen };*/
+
 
 module.exports = G4_0800;
-
-
-
-
-
-module.exports = G4_0700;
 
 

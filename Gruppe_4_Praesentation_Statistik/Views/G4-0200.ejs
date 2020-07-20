@@ -5,6 +5,9 @@
     <title>G4-0200</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/G4-0200.css">
     <script src="/javascripts/G4-0200js.js"></script>
+    <link rel="stylesheet" href="/stylesheets/navigationBar.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 <body>
 <!--Die Gruppenreihenfolge wird von Studenten und Lehrkräften genutzt. Die Inhalte dieser Übersicht sind:
@@ -16,14 +19,54 @@
  - Übersicht über geplante Pausen
  - Raum
 -->
-<div id="Menueleiste">
-    <img src="/images/HS-OS-Logo-Standard-rgb.jpg" alt="Logo der Hochschule">
-    <p style="position: absolute;right: 0px;top: -20px"><%= benutzername %></p>
+<div id="UserMenu_All_Header"> <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px"> <a href="https://osca.hs-osnabrueck.de/"> <div class="outer-wrapper" style="float:left"> <div class="frame" style="height: 52px"> <img id="oscaImagelogo" class="oscaLogo"> </div> </div> </a>
 
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/myGroups">
+                <button class="header_button">Meine Gruppe</button>
+            </form>
+            <div class="dropdown-content">
+                <a href="/joinGroup">Gruppe beitreten</a>
+                <a href="/requirementsdefinition">Anforderungsdefinition</a>
+            </div>
+        </div>
 
-    <form method="post" action="http://127.0.0.1:8080/Livetracking">
-        <button type="submit" name="livetracking">Livetracking starten</button>
-    </form>
+        <form action="/G4-0050">
+            <button class="header_button">Präsentation</button>
+        </form>
+    </div>
+
+    <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
+
+        <div class="frame" style="float: left;">
+            <a href="https://my.hs-osnabrueck.de/owa/">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="mailIcon" class="far fa-envelope fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="frame" style="float: left;">
+            <a href="https://netcase.hs-osnabrueck.de">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="netcaseIcon" class="fas fa-briefcase fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="dropdown">
+            <form action="/userInfo">
+                <button class="header_button">Benutzer</button>
+            </form>
+        </div>
+        <div class="dropdown">
+            <form action="/logout">
+                <button class="header_button">Logout</button>
+            </form>
+        </div>
+    </div>
 </div>
 <!-- Anzeige des Moduls, Themas, Datum und Raum der Präsentation. Wird aus der Datenbank entnommen-->
 <h1>Modul: <%= modulname %></h1>
@@ -69,8 +112,9 @@
             <td><%= ende[i] %></td>
             <td><%= raum[0] %></td>
         </tr>
-        </tbody>
         <% } %>
+        </tbody>
+
     </table>
     <p><input type="button" onclick="getAfterSortOrder();printAlert();" value="Reihenfolge festlegen"></p>
     <input name="afterDrag" type="hidden" id="AfterSortOrder">

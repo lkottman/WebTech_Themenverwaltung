@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nachrichten für Dozenten</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/G4-0200.css">
+    <link rel="stylesheet" href="/stylesheets/navigationBar.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Gruppen_ID</th>
+        <th>Nachricht</th>
+        <th>Datum</th>
+        <th>Art der Anfrage</th>
+    </tr>
+    <% for (var i = 0; i < reihenfolge.length;i++) {let id = ("id_" + i); %>
+    <tr>
+        <td><%= id[i]%></td>
+        <td><%= groupID[i] %></td>
+        <td><%= nachricht[i] %></td>
+        <td><%= datum[i] %></td>
+        <td><%= anfrageArt %></td>
+    </tr>
+</table>
+</body>
+</html>

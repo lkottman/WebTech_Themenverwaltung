@@ -1,7 +1,3 @@
-/*
-Author: Constantin Brans
- */
-
 const app = require('../app');
 const express = require('express');
 const G4_02000600 = express.Router();

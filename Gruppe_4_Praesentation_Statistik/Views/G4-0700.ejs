@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>G4-0700</title>
-    <link rel="stylesheet" href="stylesheets/G4-0700.css">
-    <script src="/routes/G4-0700.js"></script>
+    <link rel="stylesheet" href="../stylesheets/navigationBar.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="__dirname+/stylesheets/G4-0700.css">
+    <script src="__dirname+/routes/G4-0700.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script
             src="https://code.jquery.com/jquery-3.5.0.js"
@@ -59,10 +62,59 @@
         }
         sortTable();
     </script>
+    <link rel="stylesheet" href="/stylesheets/navigationBar.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 <body>
-<div id="Menueleiste">
-    <img src="images/HS-OS-Logo-Standard-rgb.png" alt="Logo der Hochschule"> Meine Präsentation
+<div id="UserMenu_All_Header"> <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px"> <a href="https://osca.hs-osnabrueck.de/"> <div class="outer-wrapper" style="float:left"> <div class="frame" style="height: 52px"> <img id="oscaImagelogo" class="oscaLogo"> </div> </div> </a>
+
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/myGroups">
+                <button class="header_button">Meine Gruppe</button>
+            </form>
+            <div class="dropdown-content">
+                <a href="/joinGroup">Gruppe beitreten</a>
+                <a href="/requirementsdefinition">Anforderungsdefinition</a>
+            </div>
+        </div>
+
+        <form action="/presentation">
+            <button class="header_button">Präsentation</button>
+        </form>
+    </div>
+
+    <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
+
+        <div class="frame" style="float: left;">
+            <a href="https://my.hs-osnabrueck.de/owa/">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="mailIcon" class="far fa-envelope fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="frame" style="float: left;">
+            <a href="https://netcase.hs-osnabrueck.de">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="netcaseIcon" class="fas fa-briefcase fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="dropdown">
+            <form action="/userInfo">
+                <button class="header_button">Benutzer</button>
+            </form>
+        </div>
+        <div class="dropdown">
+            <form action="/logout">
+                <button class="header_button">Logout</button>
+            </form>
+        </div>
+    </div>
 </div>
 
 <h1>Übersicht über Präsentationstermine:</h1>
@@ -71,7 +123,6 @@
     <tr>
         <th id="header_modul_id" onkeyup="sortTable()">Modul-ID</th>
         <th id="header_modul_bezeichnung" onkeyup="sortTable()">Modul</th>
-        <th>Letzte Änderung</th>
     </tr>
     </thead>
     <tbody>
@@ -79,7 +130,6 @@
     <tr>
         <td><%=modul_id[i]%></td>
         <td><%=modul_bezeichnung[i]%></td>
-        <td>13.05.2020 13:00:00</td>
     </tr>
     <% } %>
     </tbody>
