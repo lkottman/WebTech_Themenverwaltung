@@ -5,12 +5,12 @@ body{
   background: #ffffff;
 }
 #example1{
-  background-image: url("background-balance-business-commerce-583846.jpg");
+  background-image: url("../../../../GoogleDrive/WebTech Thema 2/css/background-balance-business-commerce-583846.jpg");
   background-size: 1920px 1050px;
   background-repeat: no-repeat;
 }
 section{
-  padding: 1em 0 5px 0;
+  padding: 1em 0px 5px 0em;
 }
 
 ul {
@@ -31,7 +31,7 @@ li{
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 0 solid #3498db;
+  border: 0px solid #3498db;
   width: 300px;
   outline: none;
   color: #757575;
@@ -82,7 +82,7 @@ li{
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 0 solid #fffcfc;
+  border: 0px solid #fffcfc;
   padding: 14px 10px;
   width: 200px;
   outline: none;
@@ -120,7 +120,7 @@ li{
   grid-template-columns: 15% auto 15%;
   grid-template-rows: repeat(1, minmax(600px , max-content));
   grid-gap: 1em;
-  padding: 0;
+  padding: 0px;
 }
 
 .grid h1 {
@@ -128,7 +128,7 @@ li{
 }
 
 .sidebar-left {
-  border-bottom: 2px solid lightgray;
+  border-bottom: 2px solit lightgray;
   /*padding: 1px 5px 5px 20px;*/
   background-color: whitesmoke;
   grid-row: 1;
@@ -139,7 +139,7 @@ li{
 }
 
 article {
-  padding: 0 20px 5px 20px;
+  padding: 0px 20px 5px 20px;
   background-color: whitesmoke;
   grid-row: 1;
   grid-column: 2/3;
@@ -167,7 +167,7 @@ article td {
 }
 
 .sidebar-right{
-  padding: 0 5px 5px 20px;
+  padding: 0px 5px 5px 20px;
   background-color: whitesmoke;
   grid-row: 1;
   grid-column: 3 /4;
