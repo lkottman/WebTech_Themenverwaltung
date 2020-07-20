@@ -96,9 +96,9 @@ router.post("/register", redirect.redirectHome, (request, response) => {
 
                                         response.json({register: "Fehlgeschlagen: Benutzer existiert bereits."});
                                         }
-                                    }
-                                });
-                            }
+                                    };
+                                })
+                            };
                         else
                         {
                         response.json({register: "Freischaltcode ist abgelaufen."});
@@ -111,7 +111,7 @@ router.post("/register", redirect.redirectHome, (request, response) => {
                 }
             })
         }
-    );
+};
 
 
 module.exports = router;
