@@ -175,8 +175,8 @@ function addRow(tableID) {
     let namefield = document.getElementById("name").value;
     let shortdescfield = document.getElementById("shortdesc").value;
     let idprefield = document.getElementById("idpre").value;
-    let startdate = document.getElementById("starttime").value;
-    let enddate = document.getElementById("endtime").value;
+    let startdatenew = document.getElementById("starttime").value;
+    let enddatenew = document.getElementById("endtime").value;
     let id = idprefield + idfield;
 
     if (idprefield === "M") {
@@ -210,15 +210,13 @@ function addRow(tableID) {
     let newText1 = document.createTextNode(idfield);
     let newText2 = document.createTextNode(namefield);
 
-    let newInputStartDate = document.createElement("input");
-    newInputStartDate.setAttribute("type", "date")
-    newInputStartDate.value = startdate;
+    let startdate = document.createElement("input");
+    startdate.setAttribute("type", "date")
+    startdate.value = startdatenew;
 
-    let newInputEndDate = document.createElement("input");
-    newInputEndDate.setAttribute("type", "date")
-    newInputEndDate.value = enddate;
-
-    console.log(newInputStartDate.value);
+    let enddate = document.createElement("input");
+    enddate.setAttribute("type", "date")
+    enddate.value = enddatenew;
 
     let newTextarea = document.createElement("textarea");
     newTextarea.className = "shortdesc";
@@ -266,8 +264,8 @@ function addRow(tableID) {
         id,
         namefield,
         newTextarea.value,
-        newInputStartDate.value,
-        newInputEndDate.value
+        startdate.value,
+        enddate.value
     );
 
     const options = {
@@ -291,8 +289,8 @@ function addRow(tableID) {
     newCell1.appendChild(newText11);
     newCell1.appendChild(newText1);
     newCell2.appendChild(newText2);
-    newCell3.appendChild(newInputStartDate);
-    newCell3.appendChild(newInputEndDate);
+    newCell3.appendChild(startdate);
+    newCell3.appendChild(enddate);
     newCell4.appendChild(newTextarea);
     newCell5.appendChild(newrewButton);
     newCell6.appendChild(newdelButton);
@@ -542,8 +540,8 @@ function addRowupdate(tableID) {
     let newpreID = document.getElementById("newidpre").value;
     let namefield = document.getElementById("editname").value;
     let shortdescfield = document.getElementById("editshortdesc").value;
-    let editstarttime = document.getElementById("editstarttime").value;
-    let editendtime = document.getElementById("editendtime").value;
+    let startdatenew = document.getElementById("editstarttime").value;
+    let enddatenew = document.getElementById("editendtime").value;
     let id = (newpreID + idfield);
 
     if (newpreID === "M") {
@@ -578,13 +576,13 @@ function addRowupdate(tableID) {
     let newText1 = document.createTextNode(idfield);
     let newText2 = document.createTextNode(namefield);
 
-    let starttime = document.createElement("input");
-    starttime.setAttribute("type", "date")
-    starttime.value = editstarttime;
+    let startdate = document.createElement("input");
+    startdate.setAttribute("type", "date")
+    startdate.value = startdatenew;
 
-    let endtime = document.createElement("input");
-    endtime.setAttribute("type", "date")
-    endtime.value = editendtime;
+    let enddate = document.createElement("input");
+    enddate.setAttribute("type", "date")
+    enddate.value = enddatenew;
 
     let newTextarea = document.createElement("textarea");
     newTextarea.className = "shortdesc";
@@ -600,13 +598,12 @@ function addRowupdate(tableID) {
         this.id = "newButtID";
 
         let row = newrewButton.parentNode.parentNode;
+
         let col1 = row.children[0].innerHTML.trim().substring(1);
         let col2 = row.children[1].innerHTML;
         let col31 = row.children[2].children[0].value;
         let col32 = row.children[2].children[1].value;
         let col4 = row.children[3].textContent;
-
-        console.log(col1);
 
         document.getElementById("editid").value = col1;
         document.getElementById("editname").value = col2;
@@ -629,8 +626,8 @@ function addRowupdate(tableID) {
         id,
         namefield,
         newTextarea.value,
-        starttime.value,
-        endtime.value
+        startdate.value,
+        enddate.value
     );
 
     const options = {
@@ -654,8 +651,8 @@ function addRowupdate(tableID) {
     newCell1.appendChild(newText11);
     newCell1.appendChild(newText1);
     newCell2.appendChild(newText2);
-    newCell3.appendChild(starttime);
-    newCell3.appendChild(endtime);
+    newCell3.appendChild(startdate);
+    newCell3.appendChild(enddate);
     newCell4.appendChild(newTextarea);
     newCell5.appendChild(newrewButton);
     newCell6.appendChild(newdelButton);

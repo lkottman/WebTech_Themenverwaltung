@@ -93,8 +93,8 @@ app.post("/saveReqData", (request, response) => {
       + '"' + request.body.id + '",'
       + '"' + request.body.name + '",'
       + '"' + request.body.shortdesc + '",'
-      + '"' + request.body.starttime + '",'
-      + '"' + request.body.endtime + '")',
+      + '"' + request.body.startdate + '",'
+      + '"' + request.body.enddate + '")',
       function (err) {
         if (err)
           throw err;
