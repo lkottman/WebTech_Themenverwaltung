@@ -18,7 +18,7 @@ CREATE TABLE STUDENT_MODUL(
 matrikel_nr varchar(6),
 modul_id int
 );
-DROP TABLE IF EXISTS AGENDA;
+DROP TABLE AGENDA IF EXISTS;
 create table AGENDA (
     aid               int auto_increment
         primary key,
@@ -34,7 +34,7 @@ create table AGENDA (
     constraint agenda_G4_PRAESENTATION_pid_fk
         foreign key (pid) references G4_PRAESENTATION (pid)
 );
-DROP TABLE IF EXISTS G4_PRAESENTATION;
+DROP TABLE G4_PRAESENTATION IF EXISTS ;
 create table G4_PRAESENTATION
 (
     pid        int auto_increment
@@ -49,7 +49,7 @@ create table G4_PRAESENTATION
     constraint G4_PRAESENTATION_G4_THEMA_tid_fk
         foreign key (projekt_id) references G4_THEMA (tid)
 );
-DROP TABLE IF EXISTS G4_THEMA;
+DROP TABLE G4_THEMA IF EXISTS;
 create table G4_Thema
 (
     projekt_beschreibung varchar(255) null,
@@ -58,6 +58,18 @@ create table G4_Thema
     pmodul_bezeichnung   varchar(255) null,
     semester             varchar(255) null
 );
+DROP TABLE NACHRICHTEN IF EXISTS;
+create table NACHRICHTEN
+(
+    Nachricht_ID int auto_increment
+        primary key,
+    Gruppen_ID   int          null,
+    Nachricht    varchar(500) null,
+    Datum        date         null,
+    Anfrage_art  varchar(50)  null
+);
+
+
 DROP TABLE IF EXISTS PW_FORGOT_TOKEN;
 CREATE TABLE PW_FORGOT_TOKEN(
                                 id INTEGER AUTO_INCREMENT ,
@@ -134,4 +146,8 @@ VALUES (
         'ABC',
         1
        );
+
+
+
+
 
