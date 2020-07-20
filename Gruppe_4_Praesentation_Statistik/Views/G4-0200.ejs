@@ -5,7 +5,7 @@
     <title>G4-0200</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/G4-0200.css">
     <script src="/javascripts/G4-0200js.js"></script>
-    <link rel="stylesheet" href="../stylesheets/navigationBar.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/navigationBar.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <form action="/presentation">
+        <form action="/G4-0050">
             <button class="header_button">Präsentation</button>
         </form>
     </div>
@@ -68,11 +68,6 @@
         </div>
     </div>
 </div>
-
-    <form method="post" action="http://127.0.0.1:8080/Livetracking">
-        <button type="submit" name="livetracking">Livetracking starten</button>
-    </form>
-
 <!-- Anzeige des Moduls, Themas, Datum und Raum der Präsentation. Wird aus der Datenbank entnommen-->
 <h1>Modul: <%= modulname %></h1>
 <h2>Anlass: <%= anlass %></h2>
@@ -117,8 +112,9 @@
             <td><%= ende[i] %></td>
             <td><%= raum[0] %></td>
         </tr>
-        </tbody>
         <% } %>
+        </tbody>
+
     </table>
     <p><input type="button" onclick="getAfterSortOrder();printAlert();" value="Reihenfolge festlegen"></p>
     <input name="afterDrag" type="hidden" id="AfterSortOrder">

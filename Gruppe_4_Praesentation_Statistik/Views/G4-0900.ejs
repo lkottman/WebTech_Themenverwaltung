@@ -5,12 +5,13 @@
     <title>Anfrage an Dozenten für Hilfe und/oder Terminvereinbarung</title>
     <link rel="stylesheet" href="/stylesheets/G4-0900.css">
     <script src="/javascripts/G4-0900js.js"></script>
-    <link rel="stylesheet" href="../stylesheets/navigationBar.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/navigationBar.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 <body>
 
+<!-- Menüleiste -->
 <div id="UserMenu_All_Header"> <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px"> <a href="https://osca.hs-osnabrueck.de/"> <div class="outer-wrapper" style="float:left"> <div class="frame" style="height: 52px"> <img id="oscaImagelogo" class="oscaLogo"> </div> </div> </a>
 
         <div class="dropdown" style="margin-left: 5px">
@@ -60,11 +61,8 @@
         </div>
     </div>
 </div>
-
-<!--Kontaktformular -->
+<!--Formular zur Anfrage-->
 <form action="http://127.0.0.1:8080/sendMessage" method="post" id="sendMessage">
-
-
     <!-- Gruppennummer -->
     <h1 style="text-align: center">Anfrage an Dozenten</h1>
     <h2> Anfrage für die Gruppe-Nr <%= Gruppennummer %></h2>
@@ -89,20 +87,14 @@
         <textarea id="message" name="message" maxlength="500" cols="50" rows="4" style="position: relative; left: 10%;"
                   placeholder="Hier Ihre Nachricht eingeben(max.500 Zeichen)"></textarea>
         <br>
-        <br></div>
-
-
+        <br>
+    </div>
     <!-- Eingabe Datum -->
     <label for="date">Datum:</label>
     <input type="date" id="date" name="date">
     <p>
-        <button type="button" style="text-align: center"
-                onclick="noDateEntry()">
-            Absenden
-        </button>
+        <button type="button" style="text-align: center" onclick="noDateEntry()">Absenden</button>
     </p>
-
-
 </form>
 
 </body>
