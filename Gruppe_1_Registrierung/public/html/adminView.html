@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link type="text/css" rel="stylesheet" href="../css/adminView.css" >
-    <link type="text/css" rel="stylesheet" href="../css/navigationBar.css">
+    <link type="text/css" rel="stylesheet" href="../../../css/navigationBar.css">
     <link type="text/css" rel="stylesheet" href="../css/table.css">
     <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -32,14 +32,18 @@
         </a>
 
         <div class="dropdown" style="margin-left: 5px">
-            <button class="header_button">Meine Gruppe</button>
+            <form action="/myGroups">
+                <button class="header_button">Meine Gruppe</button>
+            </form>
             <div class="dropdown-content">
-                <a>Gruppe beitreten</a>
-                <a>Anforderungsdefinition</a>
+                <a href="/joinGroup">Gruppe beitreten</a>
+                <a href="/requirementsdefinition">Anforderungsdefinition</a>
             </div>
         </div>
 
-        <button class="header_button">Präsentation</button>
+        <form action="/presentation">
+            <button class="header_button">Präsentation</button>
+        </form>
     </div>
 
     <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
@@ -74,8 +78,7 @@
 
 
 <br>
-<div>
-
+<div class="outerBox">
     <div class="wrapper">
         <div id="content" style="overflow-x: auto">
             <h3>Benutzerliste</h3>
