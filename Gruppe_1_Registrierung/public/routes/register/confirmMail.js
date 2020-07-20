@@ -24,12 +24,14 @@ router.post("/verify", (request, response) => {
 
         connection.query(sql, function (err, result) {
         if (err) throw err;
-        if (result){
+
                      console.log("account is verified!");
                      response.redirect("/login");
-                 }
-             });
+
+             })
     }
 });
+
+function
 
 module.exports = router;
