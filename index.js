@@ -41,6 +41,7 @@ let staticOptions = {
 }
 //imports
 app.use('/css',express.static('./Gruppe_1_Registrierung/public/css'));
+app.use('/css',express.static('./css'));
 app.use('/images',express.static('./Gruppe_1_Registrierung/public/images'));
 app.use('/',express.static('./Gruppe_1_Registrierung/public/html'));
 app.use('/javascript',express.static('./Gruppe_1_Registrierung/public/javascript'));
@@ -70,6 +71,17 @@ app.use(session({
     }
 }));
 
+const redirectCookie = (request, response, next) => {
+
+    if (request.session.enabledCookies === false
+    || request.session.enabledCookies === undefined) {
+        response.redirect("/");
+    } else {
+        next();
+    }
+};
+
+
 // Redirect to Login if there are no cookies. No Access to the private sites
 const redirectLogin = (request, response, next) => {
 
@@ -93,10 +105,25 @@ const redirectHome = (request, response, next) => {
     }
 };
 
+function ignoreFavicon(req, res, next) {
+    if (req.originalUrl === '/favicon.ico') {
+        res.status(204).json({nope: true});
+        console.log("ignored");
+    } else {
+        console.log("next");
+        next();
+    }
+};
+
+
 //Every connection with Server this will be executed
 //Sends cookie
 app.use((request, respond, next) => {
     const {userId} = request.session;
+
+    respond.locals.enabledCookies = request.session.enabledCookies;
+
+
     if (userId) {
         respond.locals.userId = request.session.userId;
         respond.locals.userName = request.session.userName;
@@ -108,10 +135,10 @@ app.use((request, respond, next) => {
 router = require("./Gruppe_1_Registrierung/public/routes/routesGET.js");
 
 app.get("/", router);
-app.get("/login",redirectHome, router);
-app.get("/register",redirectHome, router);
-app.get("/agb", router);
-app.get("/successfullregistration", router);
+app.get("/login",redirectHome,redirectCookie, router);
+app.get("/register",redirectHome, ignoreFavicon, redirectCookie, router);
+app.get("/agb",redirectCookie, router);
+app.get("/successfullregistration",redirectCookie, router);
 app.get("/resetpassword", router);
 app.get("/token",redirectLogin, router);
 app.get("/home",redirectLogin, router);
@@ -134,6 +161,11 @@ app.get("/myGroups", router);
 app.get("/joinGroup", router);
 app.get("/requirementsdefinition", router);
 
+app.get("/favicon.ico", (request, response) => {
+    response.writeHead(204, {'Content-Type': 'image/x-icon'} );
+    response.end();
+    console.log('favicon requested');
+});
 
 routerConfirmation = require('./Gruppe_1_Registrierung/public/routes/register/confirmation.js');
 app.use(routerConfirmation);
@@ -161,8 +193,15 @@ app.use(routerEdit);
 
 //Get without HTML|| email
 app.get("/cookie", (request, response) => {
-    console.log(request.session)
+
     response.json(request.session);
+});
+
+app.post("/enableCookie", (request, response) => {
+    request.session.enabledCookies = true;
+    console.log(request.session)
+
+    response.end();
 });
 
 /*+
@@ -281,7 +320,6 @@ app.post("/checkResetToken", (request, response) =>{
 });
 
 
-
 app.post("/logout",  (request, respond) => {
 
     request.session.destroy(err => {
@@ -290,12 +328,8 @@ app.post("/logout",  (request, respond) => {
         }
         respond.clearCookie(sessionName);
         console.log("cookies deleted!")
-        respond.redirect("/login");
+        respond.redirect("/");
     })
-});
-
-app.post("/sendToken", (request, response) => {
-
 });
 
 // Post Methods
@@ -307,12 +341,11 @@ app.post("/index.html", redirectLogin, (request, response, next) => {
 });
 
 
-
-
 const server = app.listen(PORT, () => console.log(
     "listening on: " +
     `http://localhost:${PORT}`
 ));
+
 
 module.exports = {
     server: server,

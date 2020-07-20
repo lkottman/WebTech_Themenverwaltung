@@ -21,7 +21,6 @@
 
 
 <div id="UserMenu_All_Header">
-
     <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
         <a href="https://osca.hs-osnabrueck.de/">
             <div class="outer-wrapper" style="float:left">
@@ -71,8 +70,11 @@
                 <button class="header_button">Benutzer</button>
             </form>
         </div>
-
-        <button class="header_button">Logout</button>
+        <div class="dropdown">
+            <form action="/logout">
+                <button class="header_button">Logout</button>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -194,7 +196,19 @@
 </div>
 
 
-
 <script src="../javascript/userMngt_Admin.js"></script>
+<script>
+    var close = document.getElementsByClassName("close");
+    var i;
+
+    for (i = 0; i < close.length; i++) {
+        close[i].onclick = function(){
+            var div = this.parentElement;
+            div.style.opacity = "0";
+            setTimeout(function(){ div.style.display = "none"; }, 600);
+        }
+    }
+
+</script>
 </body>
 </html>

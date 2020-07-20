@@ -12,7 +12,10 @@ html {
 body{
     font-family: "Roboto Thin";
     font-size: 16px;
+}
 
+.header_button:focus{
+    outline: none;
 }
 
 .outerBox{
