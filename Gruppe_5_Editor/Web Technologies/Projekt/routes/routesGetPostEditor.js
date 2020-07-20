@@ -41,10 +41,12 @@ router.post("/saveReqData", (request, response) => {
     response.status(204).send('');
   }
 
-  connection.query("INSERT INTO Anforderungen(id,name,shortdesc) VALUES("
+  connection.query("INSERT INTO Anforderungen(id,name,shortdesc,starttime,endtime) VALUES("
       + '"' + request.body.id + '",'
       + '"' + request.body.name + '",'
-      + '"' + request.body.shortdesc + '")',
+      + '"' + request.body.shortdesc + '",'
+      + '"' + request.body.starttime + '",'
+      + '"' + request.body.endtime + '")',
       function (err) {
         if (err)
           throw err;
