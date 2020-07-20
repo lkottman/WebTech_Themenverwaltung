@@ -1,3 +1,10 @@
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
+
 
 class UserToUpdate {
 
@@ -9,29 +16,17 @@ class UserToUpdate {
     }
 
     getUserToUpdate(){
-        let email = getQueryParams("email");
-        let token    = getQueryParams("opt");
+        let email = getUrlParameter("email");
+        let token    = getUrlParameter("opt");
         let password  =  document.getElementById("password").value;
         return new UserToUpdate( email, token, password);
     }
 }
 
-function getQueryParams(qs) {
-    qs = qs.split('+').join(' ');
-
-    var params = {},
-        tokens,
-        re = /[?&]?([^=]+)=([^&]*)/g;
-
-    while (tokens = re.exec(qs)) {
-        params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
-    }
-
-    return params;
-};
 
 
-function sendData() {
+
+async function sendData() {
     var user = new UserToUpdate().getUserToUpdate();
     const options = {
         method: "POST",

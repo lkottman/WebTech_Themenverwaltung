@@ -47,7 +47,6 @@ app.use('/',express.static('./Gruppe_1_Registrierung/public/html'));
 app.use('/javascript',express.static('./Gruppe_1_Registrierung/public/javascript'));
 app.use('/javascript',express.static('./Gruppe_1_Registrierung/privat/javascript'));
 app.use('/privat/images',express.static('./Gruppe_1_Registrierung/privat/images'));
-
 app.use('/CSS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/CSS'));
 app.use('/JS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/JS'));
 app.use('/HTML',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/HTML'));
@@ -128,7 +127,6 @@ app.use((request, respond, next) => {
         respond.locals.userId = request.session.userId;
         respond.locals.userName = request.session.userName;
         respond.locals.userAuthorization = request.session.userAuthorization;
-        //put your own cookies here
     }
     next();
 });
@@ -168,12 +166,14 @@ app.get("/favicon.ico", (request, response) => {
     console.log('favicon requested');
 });
 
-routerConfirmation = require('./Gruppe_1_Registrierung/public/routes/register/confirmation.js');
+routerConfirmation = require('./Gruppe_1_Registrierung/public/routes/register/confirmMail.js');
 app.use(routerConfirmation);
 
 routerPassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/passwordForgot.js');
 app.use(routerPassword);
 
+routerChangePassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/updatePassword.js');
+app.use(routerChangePassword)
 
 routerLogin = require('./Gruppe_1_Registrierung/public/routes/login/routesLogin.js');
 app.use(routerLogin);
@@ -203,121 +203,6 @@ app.post("/enableCookie", (request, response) => {
     console.log(request.session)
 
     response.end();
-});
-
-/*+
-    checks for given entry in user with given e-mail  and creates entry in PASSWORT_RESET TOKEN
- */
-app.post("/passwordForgot.html", (request, response) => {
-    let email = request.body.email;
-    console.log(email);
-
-    // error message ausgeben
-    if(email === null || email === undefined )
-    {
-        response.redirect("/login");
-    } else {
-
-        let checkEntry = "SELECT EXISTS(SELECT * FROM USER WHERE e_mail = '" + email +  "') AS test" + ";";
-        console.log(checkEntry);
-
-        connection.query(checkEntry, function (err, result, fields) {
-            if(err) throw err;
-
-            // checks if entry exists
-            let check = result[0].test;
-            console.log(check);
-            if (check === 1){
-
-
-                let startDate = new Date();
-                startDate.setHours(startDate.getHours() + 2);
-                console.log(startDate);
-
-                //generate endDate and add 1 hour for limited reset
-                let endDate = new Date();
-                endDate.setHours(startDate.getHours() + 3);
-                console.log(endDate);
-
-                let resetToken = Math.random().toString(36).substr(2, 6);
-                console.log(resetToken);
-
-                // cuts off unnecessary information
-                startDate = startDate.toISOString().slice(0, 19).replace('T', ' ');
-                endDate = endDate.toISOString().slice(0, 19).replace('T', ' ');
-
-                // use of gravis for easier insertString
-                let insertToken = `INSERT INTO pw_forgot_token(e_mail, start, end, token, used) VALUES ('${email}', 
-                    '${startDate}','${endDate}', '${resetToken}', false )`;
-                console.log(insertToken);
-
-
-                connection.query(insertToken, function (err, result) {
-                    if(err) throw err;
-                    console.log("1 record inserted");
-                })
-                // hier muss nodemailer noch eingebunden werden
-                response.redirect("/login");
-            } else
-            {
-                console.log("Error");
-                //response.json({register: "Fehlgeschlagen: Benutzer existiert bereits"});
-            }
-        })
-    }
-});
-
-app.post("/changePassword", redirectLogin, (request, response) =>{
-    let email = "sven.petersen@hs-osnabrueck.de";
-    let newpassword = request.body.password;
-
-    let sql = `UPDATE USER SET password = '${newpassword}' WHERE e_mail = '${email}'; `;
-    connection.query(sql, function (err, result) {
-        if (err) throw err;
-        console.log(result);
-    })
-
-});
-
-app.post("/checkResetToken", (request, response) =>{
-
-    let resetToken = request.body.resetToken;
-
-    if(resetToken == "")
-    {
-            console.log("test");
-        response.redirect("/login");
-    }
-    else
-    {
-
-        let sql =  `SELECT e_mail, used FROM PW_FORGOT_TOKEN 
-                     WHERE current_timestamp < end
-                     AND current_timestamp > start AND token ='${resetToken}';`;
-
-
-        connection.query(sql, function (err, result) {
-            if(err)
-                throw err;
-
-            if (result.length != 0){
-                let email = result[0].e_mail;
-                let used = result[0].used;
-
-                if (used == 0) {
-                    let changeUsed = `UPDATE PW_FORGOT_TOKEN SET used = true WHERE e_mail = '${email}';`;
-                    console.log(changeUsed);
-                    connection.query(changeUsed, function (err, result) {
-                        if (err) throw err;
-
-                        if (result.length != 0){
-                            response.redirect("/passwort")
-                        }
-                    });
-                }
-            }
-        });
-    }
 });
 
 

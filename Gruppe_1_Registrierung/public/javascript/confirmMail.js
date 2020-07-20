@@ -28,7 +28,7 @@ function getQueryParams(qs) {
 }
 
 
-function sendUserDataToConfirm() {
+async function sendUserDataToConfirm() {
     var user = new UserToVerify().getUserToVerify();
     const options = {
         method: "POST",
