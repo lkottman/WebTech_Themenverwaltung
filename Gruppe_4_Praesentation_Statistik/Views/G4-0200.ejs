@@ -15,7 +15,6 @@
  - geplante Dauer der einzelnen Präsentationen
  - Übersicht über geplante Pausen
  - Raum
-
 -->
 <div id="Menueleiste">
     <img src="/images/HS-OS-Logo-Standard-rgb.jpg" alt="Logo der Hochschule">
@@ -28,8 +27,8 @@
 </div>
 <!-- Anzeige des Moduls, Themas, Datum und Raum der Präsentation. Wird aus der Datenbank entnommen-->
 <h1>Modul: <%= modulname %></h1>
-<h2>Thema: <%= modulthema %></h2>
-<h2>Datum: <%= datum %></h2>
+<h2>Anlass: <%= anlass %></h2>
+<h2>Datum: <%= tag %></h2>
 <h2>Raum: <%= raum %></h2>
 <!--
     Diese Seite ist nur für den Dozenten gedacht, die Studenten bekommen eine Seite nur mit Übersicht
@@ -40,7 +39,6 @@
     G4-0400: Automatische Planung und Erstellung von Gruppenreihenfolge, Pausenslots und Raumbelegung<br>
     G4-0500: Bearbeitung der Präsentationsreihenfolge durch Drag & Drop)<br>
     G4-0600: Live-Tracking der Präsentationen<br>
-
 -->
 <form action="http://127.0.0.1:8080/getIdValues" method="post" id="idValues">
     <table rules="rows" id="sortable">
@@ -69,7 +67,7 @@
             <td><%= startzeit[i] %></td>
             <td><%= dauer[i] %></td>
             <td><%= ende[i] %></td>
-            <td><%= raum[i] %></td>
+            <td><%= raum[0] %></td>
         </tr>
         </tbody>
         <% } %>
@@ -86,7 +84,6 @@
         integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
         crossorigin="anonymous"></script>
 <script>
-
     //Zum Sortieren der Seite
     $('#sortable').sortable({
         update: function (event, ui) {

@@ -15,26 +15,26 @@
 
 <!-- Anzeige des Moduls, Themas, Datum und Raum der Präsentation. Wird aus der Datenbank entnommen-->
 <h1>Modul: <%= modulname %></h1>
-<h2>Thema: <%= modulthema %></h2>
-<h2>Datum: <%= datum %></h2>
-<h2>Raum: </h2>
-    <table rules="rows">
-        <thead>
-        <tr>
-            <th>&nbsp</th>
-            <th>Reihenfolge</th>
-            <th>Gruppe</th>
-            <th>Thema</th>
-            <th>Anzahl der Gruppenteilnehmer</th>
-            <th>geplante Zeit</th>
-            <th>geplante Dauer</th>
-            <th>geplantes Ende</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        <!-- Hier werden die einzelnen Tabellenzeilen geladen, die Anzahl der Zeilen ist abhängig von den Einträgen der Datenbank-->
-        <% for (var i = 0; i < reihenfolge.length;i++) { %>
+<h2>Anlass: <%= anlass %></h2>
+<h2>Datum: <%= tag %></h2>
+<h2>Raum: <%= raum %></h2>
+<table rules="rows">
+    <thead>
+    <tr>
+        <th>&nbsp</th>
+        <th>Reihenfolge</th>
+        <th>Gruppe</th>
+        <th>Thema</th>
+        <th>Anzahl der Gruppenteilnehmer</th>
+        <th>geplante Zeit</th>
+        <th>geplante Dauer</th>
+        <th>geplantes Ende</th>
+        <th>Raum</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Hier werden die einzelnen Tabellenzeilen geladen, die Anzahl der Zeilen ist abhängig von den Einträgen der Datenbank-->
+    <% for (var i = 0; i < reihenfolge.length;i++) { %>
         <tr>
             <td>&nbsp;</td>
             <td><%= reihenfolge[i] %></td>
@@ -44,11 +44,11 @@
             <td><%= startzeit[i] %></td>
             <td><%= dauer[i] %></td>
             <td><%= ende[i] %></td>
-
+            <td><%= raum %></td>
         </tr>
-        </tbody>
-        <% } %>
-    </table>
+    </tbody>
+    <% } %>
+</table>
 </form>
 </body>
 </html>

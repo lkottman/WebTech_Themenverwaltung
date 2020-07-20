@@ -9,8 +9,8 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src="https://mottie.github.io/tablesorter/dist/js/jquery.tablesorter.min.js"></script>
 <script>
+    //Sortieren der Tabelle
     var table = $('table');
-
     $('#thema_header', '#datum_header', '#raum_header')
         .wrapInner('<span title="sort this column"/>')
         .each(function () {
@@ -36,13 +36,15 @@
     $(function () {
         $("#sortableTable").tablesorter();
     });
-
 </script>
+
 <div id="Menueleiste">
     <img src="/images/HS-OS-Logo-Standard-rgb.jpg" alt="Logo der Hochschule">
     <p style="position: absolute;right: 0px;top: -20px"><%= benutzername %></p>
 </div>
+
 <h1><%= Modulname %></h1>
+<!--Formular zum Abfrage der Gruppenreihenfolge-->
 <form method="post" action="http://127.0.0.1:8080/Reihenfolge" id="FormReihenfolge">
     <table id="sortableTable" class="tablesorter" rules="rows" style="border-spacing: 32px 16px">
         <thead>
@@ -50,20 +52,24 @@
             <th id="thema_header">Anlass</th>
             <th id="datum_header">Datum</th>
             <th id="raum_header">Raum</th>
+            <th id="praesentationsid_header">Präsentations ID</th>
             <th>Gruppenreihenfolge</th>
         </tr>
         </thead>
         <tbody>
-        <% for (var i = 0; i < thema.length;i++) { %>
+        <!--Thema, Tag und Raum der Präsentation aus Datenbank abfragen und anzeigen-->
+        <% for (var i = 0; i < pid.length;i++) { %>
             <tr>
-                <td id="thema<%= i %>"> <%= thema[i] %></td>
-                <td> <%= date[i] %></td>
+                <td> <%= anlass[i] %></td>
+                <td> <%= datum[i] %></td>
                 <td> <%= raum[i] %></td>
-                <td style="color: -webkit-link; text-decoration: underline; cursor: pointer" onclick="document.getElementById('text').value = (document.getElementById('thema<%= i %>').innerText);
-                        setTimeout(() => {
-                        document.getElementById('FormReihenfolge').submit()
-                        }, 10);"> Reihenfolge der Gruppen ansehen</td>
-
+                <td> <%= pid[i] %></td>
+                <!--FormReihenfolge wird beim Anklicken ausgeführt-->
+                <td style="color: -webkit-link; text-decoration: underline; cursor: pointer"
+                    onclick="document.getElementById('text').value = (document.getElementById('thema<%= i %>').innerText);
+                            setTimeout(() => {
+                            document.getElementById('FormReihenfolge').submit()
+                            }, 10);"> Reihenfolge der Gruppen ansehen</td>
             </tr>
         <% } %>
         </tbody>

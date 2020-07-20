@@ -16,16 +16,17 @@ const G4_0200fs = express.Router();
  * Arrays für die Speicherung der SQL-Abfragen
  */
 
- reihenfolge =[];
- gruppe=[];
- thema=[];
- mitglieder=[];
- startzeit=[];
- dauer=[];
- ende=[];
- tag=[];
- agendaid=[];
- praesentationid=[];
+reihenfolge =[];
+gruppe=[];
+thema=[];
+mitglieder=[];
+startzeit=[];
+dauer=[];
+ende=[];
+raum=[];
+tag=[];
+anlass=[];
+modul=[];
 
 /**
  * Aufruf der Seite G4-0200 für Studenten
@@ -39,10 +40,10 @@ G4_0200fs.get('/G4-0200fS', function (request, result) {
 
         //Modulinformationen
 
-        modulname: "Web-Technologien",
+        modulname: modul,
         modulthema: anlass,
-        datum: tag[0],
-        raum1: raum[0],
+        datum: tag,
+        raum1: raum,
 
     });
 
@@ -61,24 +62,35 @@ getValuesfromDb();
 
 function getValuesfromDb() {
 
-    var sql = "SELECT * FROM AGENDA ";
+    var sql = "SELECT * FROM agenda WHERE pid = '57'";
 
     con.query(sql, function (err,result) {
         if (err) throw err;
 
 
         for (var i = 0; i < result.length; i++) {
-            agendaid[i] = result[i].aid;
-            praesentationid[i] = result[i].pid;
-            reihenfolge[i] = result[i].Reihenfolge;
-            gruppe[i] = result[i].GruppenNummer;
+            reihenfolge[i] = result[i].reihenfolge;
+            gruppe[i] = result[i].gruppenNummer;
             thema[i] = result[i].thema;
-            mitglieder[i] = result[i].Anzahl_Mitglieder;
+            mitglieder[i] = result[i].anzahl_mitglieder;
             startzeit[i] = result[i].start_vortrag;
             dauer[i] = result[i].dauer_vortrag;
             ende[i] = result[i].ende_vortrag;
-            tag[i] = result[i].datum;
 
+        }
+    });
+    var sql1 = "SELECT raum, anlass, datum, modul FROM praesentation WHERE pid = '57' ";
+
+    con.query(sql1, function (err,result) {
+        if (err) throw err;
+
+
+        for (var i = 0; i < result.length; i++) {
+
+            raum[i] = result[i].raum;
+            tag[i] = result[i].datum;
+            anlass = result[i].anlass;
+            modul = result[i].modul;
         }
     });
 }
