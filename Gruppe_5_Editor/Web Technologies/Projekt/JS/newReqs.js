@@ -218,6 +218,8 @@ function addRow(tableID) {
     newInputEndDate.setAttribute("type", "date")
     newInputEndDate.value = enddate;
 
+    console.log(newInputStartDate.value);
+
     let newTextarea = document.createElement("textarea");
     newTextarea.className = "shortdesc";
     newTextarea.innerHTML = shortdescfield;
@@ -264,8 +266,8 @@ function addRow(tableID) {
         id,
         namefield,
         newTextarea.value,
-        startdate,
-        enddate
+        newInputStartDate.value,
+        newInputEndDate.value
     );
 
     const options = {
@@ -299,6 +301,7 @@ function addRow(tableID) {
 }
 
 /**
+ *
  *
  */
 function searchID() {
@@ -395,7 +398,9 @@ function maxAll() {
     }
 }
 
-
+/**
+ *
+ */
 function letsdel(){
     let letsdel = document.getElementById("newButtID");
     let row = letsdel.parentNode.parentNode;
@@ -404,7 +409,9 @@ function letsdel(){
     //wir deleten das noch in der Zukunft aus der Datenbank
 }
 
-
+/**
+ *
+ */
 function checkdoubleupdate() {
 
     let idprefield2 = document.getElementById("newidpre").value;
@@ -508,7 +515,10 @@ function checkdoubleupdate() {
     }
 }
 
-
+/**
+ *
+ * @param tableID
+ */
 function addRowupdate(tableID) {
 
     class Requirements {
@@ -618,9 +628,9 @@ function addRowupdate(tableID) {
     requirement = new Requirements(
         id,
         namefield,
-        starttime,
-        endtime,
-        newTextarea.value
+        newTextarea.value,
+        starttime.value,
+        endtime.value
     );
 
     const options = {
@@ -654,6 +664,9 @@ function addRowupdate(tableID) {
 
 }
 
+/**
+ *
+ */
 function update() {
     document.getElementById("check").checked = false;
     document.getElementById("editid").value;
@@ -665,6 +678,9 @@ function update() {
     checkdoubleupdate();
 }
 
+/**
+ *
+ */
 function exitUpdate() {
     document.getElementById("check").checked = false;
 }
