@@ -1,5 +1,4 @@
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
+
 class UserToUpdate {
 
     constructor(email, token, password) {
@@ -10,12 +9,26 @@ class UserToUpdate {
     }
 
     getUserToUpdate(){
-        let email = urlParams.get('email');
-        let token    = urlParams.get('opt');
+        let email = getQueryParams("email");
+        let token    = getQueryParams("opt");
         let password  =  document.getElementById("password").value;
         return new UserToUpdate( email, token, password);
     }
 }
+
+function getQueryParams(qs) {
+    qs = qs.split('+').join(' ');
+
+    var params = {},
+        tokens,
+        re = /[?&]?([^=]+)=([^&]*)/g;
+
+    while (tokens = re.exec(qs)) {
+        params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+    }
+
+    return params;
+};
 
 
 
@@ -28,12 +41,12 @@ function sendData() {
     };
 
 
-    fetch('/updatePassword', options)
+    fetch("/updatePassword", options)
         .then(response => response.json())
         .then(data => {
             console.log(data)
         })
- };
+ }
 
 
 

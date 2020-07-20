@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="../css/style.css" rel="stylesheet" type="text/css">
+    <script src="../javascript/confirmMail.js" type="text/javascript" language="JavaScript"></script>
 </head>
-<body>
+<body onload="sendUserDataToConfirm()">
 <br>
 <img alt="hslogo" class="logo" src="../images/hsos-logo-neu.png">
 <br> <br><br><br>
@@ -13,13 +14,13 @@
 <br>
 
 
-<form action="/verify" class="box" method="post" onload="">
+<form action="/login" class="box" method="get" onload="">
     <div class="box1">
         Bitte warten Sie, ihr E-Mail wird gerade verifiziert. Falls sie nicht automatisch weitergeleitet werden drücken
-        Sie auf Zurück.
+        Sie auf Weiter.
 
 
-            <input name="" type="submit" value="Zurück">
+            <input name="" type="submit" value="Weiter">
         <br>
     </div>
 </form>
@@ -27,7 +28,7 @@
 
 <div class="footer">
     <p>
-        <a href="impressum.html"> Impressum</a>
+        <a href="/impressum"> Impressum</a>
         // Kontakt: Mo-Fr 12-16 Uhr unter 01741972105
     </p>
 </div>

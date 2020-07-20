@@ -40,9 +40,9 @@ router.post("/updatePassword", (request, response) =>{
 
     function checkToken(token){
 
-    if(token == "" || token === null || token === undefined)
+    if(token === "" || token === null || token === undefined)
     {
-        console.log("test");
+        console.log("where is the token");
         redirect("/login");
     }
     else

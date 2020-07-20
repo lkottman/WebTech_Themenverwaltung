@@ -27,6 +27,7 @@ th {
     background-color: #3498db;
     color: white;
     cursor: pointer;
+    font-weight: 700;
 }
 
 th, td {

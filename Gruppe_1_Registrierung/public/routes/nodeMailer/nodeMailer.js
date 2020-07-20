@@ -33,14 +33,16 @@ function sendMail(mailOptions){
 
 function getTextForgotPassword(resetToken, email){
     let link = `http://webtech-01.lin.hs-osnabrueck.de/changepassword?opt=${resetToken}&email=${email}`;
-    let text =  `Guten Tag, \n ` +
+    let bodytext =  `Guten Tag, \n ` +
         `Um Ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule Osnabrück zurückzusetzen`+
         ` benötigen Sie den folgenden Link: \n` +
         ` ${link} \n` +
         ` Bite klicken Sie auf diesen Link um ihr Passwort für die Hausarbeitsthemenverwaltung der Hochschule Osnabrueck` +
         `zurückzusetzen. \n `;
 
-    return text;
+    console.log(bodytext);
+
+    return bodytext;
 }
 
 function getMailOptions(recipient, subject, text ) {
