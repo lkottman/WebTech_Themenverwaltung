@@ -147,8 +147,18 @@ app.get("/confirmation", router);
 app.get("/passwordforgot", router);
 app.get("/register", router);
 app.get("/changepassword", router);
-app.get("/userInfo", router);
 app.get("/adminView", router);
+app.get("/impressum", router);
+app.get("/userInfo", router);
+app.get("/presentation", router);
+
+
+//-------------------------------------------
+//Hier muss noch die routesGet angepasst werden
+//-------------------------------------------
+app.get("/myGroups", router);
+app.get("/joinGroup", router);
+app.get("/requirementsdefinition", router);
 
 app.get("/favicon.ico", (request, response) => {
     response.writeHead(204, {'Content-Type': 'image/x-icon'} );

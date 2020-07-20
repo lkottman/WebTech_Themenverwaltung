@@ -96,7 +96,7 @@ body{
 }
 
 #oscaImagelogo{
-    content: url("../images/osca3-white.png");
+    content: url("osca3-white.png");
     max-height: 52px ;
     display: block;
     margin: 0 auto;

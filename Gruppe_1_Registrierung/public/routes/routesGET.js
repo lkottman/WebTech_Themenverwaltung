@@ -95,7 +95,6 @@ router.get("/successfullregistration", (request, response) => {
 });
 
 
-
 router.get("/changepassword", (request, response) => {
     response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/changePassword.html');
 });
@@ -125,12 +124,17 @@ router.get("/adminView", (request, response) => {
 
 });
 
+router.get("/impressum", (request, response) => {
+
+    response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/impressum.html");
+
+});
+
 router.get("/userInfo", (request, response) => {
 
     response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/userView.html");
 
 });
-
 
 module.exports = router;
 
