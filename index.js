@@ -41,6 +41,7 @@ let staticOptions = {
 }
 //imports
 app.use('/css',express.static('./Gruppe_1_Registrierung/public/css'));
+app.use('/css',express.static('./css'));
 app.use('/images',express.static('./Gruppe_1_Registrierung/public/images'));
 app.use('/',express.static('./Gruppe_1_Registrierung/public/html'));
 app.use('/javascript',express.static('./Gruppe_1_Registrierung/public/javascript'));
