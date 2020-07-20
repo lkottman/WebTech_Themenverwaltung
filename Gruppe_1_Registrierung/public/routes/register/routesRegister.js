@@ -11,7 +11,6 @@ function validateEmail(email) {
 
 router.post("/register",  (request, response) => {
 
-    console.log("test");
     // if(request.method == "OPTIONS"){
     //     response.set('Access-Control-Allow-Origin', '*');
     //     response.set('Access-Control-Allow-Headers', 'Content-Type');
@@ -51,6 +50,7 @@ router.post("/register",  (request, response) => {
         connection.query(sqlInsert, function(error, results){
             response.json({register: "created"});
         });
+
     }
 
     if (request.body.tutorium === undefined) {
@@ -89,10 +89,11 @@ router.post("/register",  (request, response) => {
         }
     } else {
     }
+
 });
 
-module.exports = router;
 
+module.exports = router;
 
 
 

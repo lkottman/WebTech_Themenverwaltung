@@ -52,6 +52,7 @@ app.use('/CSS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/CSS'))
 app.use('/JS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/JS'));
 app.use('/HTML',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/HTML'));
 
+
 app.use(express.json({limit: "1mb"}));
 app.use(bodyParser.urlencoded({
     extended: true
@@ -114,17 +115,6 @@ function ignoreFavicon(req, res, next) {
     }
 };
 
-//Get without HTML|| email
-app.get("/cookie", (request, response) => {
-    response.json(request.session);
-});
-
-app.post("/enableCookie", (request, response) => {
-    request.session.enabledCookies = true;
-    console.log(request.session)
-
-    response.end();
-});
 
 //Every connection with Server this will be executed
 //Sends cookie
@@ -132,6 +122,7 @@ app.use((request, respond, next) => {
     const {userId} = request.session;
 
     respond.locals.enabledCookies = request.session.enabledCookies;
+
 
     if (userId) {
         respond.locals.userId = request.session.userId;
@@ -146,9 +137,9 @@ router = require("./Gruppe_1_Registrierung/public/routes/routesGET.js");
 
 app.get("/", router);
 app.get("/login",redirectHome,redirectCookie, router);
-app.get("/register",redirectHome, redirectCookie, router);
-app.get("/agb", router);
-app.get("/successfullregistration", router);
+app.get("/register",redirectHome, ignoreFavicon, redirectCookie, router);
+app.get("/agb",redirectCookie, router);
+app.get("/successfullregistration",redirectCookie, router);
 app.get("/resetpassword", router);
 app.get("/token",redirectLogin, router);
 app.get("/home",redirectLogin, router);
@@ -158,8 +149,18 @@ app.get("/confirmation", router);
 app.get("/passwordforgot", router);
 app.get("/register", router);
 app.get("/changepassword", router);
-app.get("/userInfo", router);
 app.get("/adminView", router);
+app.get("/impressum", router);
+app.get("/userInfo", router);
+app.get("/presentation", router);
+
+
+//-------------------------------------------
+//Hier muss noch die routesGet angepasst werden
+//-------------------------------------------
+app.get("/myGroups", router);
+app.get("/joinGroup", router);
+app.get("/requirementsdefinition", router);
 
 app.get("/favicon.ico", (request, response) => {
     response.writeHead(204, {'Content-Type': 'image/x-icon'} );
@@ -189,6 +190,20 @@ routerEdit = require("./Gruppe_5_Editor/Web Technologies/Projekt/routes/routesGe
 app.get("/requirements",redirectLogin, routerEdit);
 app.use(routerEdit);
 
+
+
+//Get without HTML|| email
+app.get("/cookie", (request, response) => {
+
+    response.json(request.session);
+});
+
+app.post("/enableCookie", (request, response) => {
+    request.session.enabledCookies = true;
+    console.log(request.session)
+
+    response.end();
+});
 
 /*+
     checks for given entry in user with given e-mail  and creates entry in PASSWORT_RESET TOKEN
