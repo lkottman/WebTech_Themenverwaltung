@@ -15,7 +15,7 @@ function addGroup() {
     group.number = document.getElementById("enterNumber").value;
     group.startTime = document.getElementById("enterStartTime").value;
     group.duration = document.getElementById("enterDuration").value;
-    //group.room = document.getElementById("enterRoom").value;
+    group.endTime = document.getElementById("enterEnde").value;
     groups[groups.length] = group;
 
     let table = document.getElementById("groupTable");
@@ -28,9 +28,9 @@ function addGroup() {
     row.insertCell(3).innerHTML = group.number;
     row.insertCell(4).innerHTML = group.startTime;
     row.insertCell(5).innerHTML = group.duration;
-    // row.insertCell(6).innerHTML = group.room;
+    row.insertCell(6).innerHTML = group.endTime;
     //Button zum Löschen
-    row.insertCell(6).innerHTML =
+    row.insertCell(7).innerHTML =
         "<input type=\"button\" value=\"löschen\" onclick=\"deleteGroup(" + (n) + ")\">";
     //Input des letzten Elements hidden setzen
     let lastElement = groups.length - 1;
@@ -40,8 +40,8 @@ function addGroup() {
     appendHiddenInput(lastElement, "startTime",
         groups[lastElement].startTime);
     appendHiddenInput(lastElement, "duration", groups[lastElement].duration);
-    //   appendHiddenInput(lastElement, "room",
-    //     groups[lastElement].room);
+    appendHiddenInput(lastElement, "endTime",
+        groups[lastElement].endTime);
 }
 
 

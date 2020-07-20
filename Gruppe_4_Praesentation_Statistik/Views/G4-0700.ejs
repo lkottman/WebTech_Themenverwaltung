@@ -62,6 +62,9 @@
         }
         sortTable();
     </script>
+    <link rel="stylesheet" href="/stylesheets/navigationBar.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 <body>
 <div id="UserMenu_All_Header"> <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px"> <a href="https://osca.hs-osnabrueck.de/"> <div class="outer-wrapper" style="float:left"> <div class="frame" style="height: 52px"> <img id="oscaImagelogo" class="oscaLogo"> </div> </div> </a>
@@ -120,7 +123,6 @@
     <tr>
         <th id="header_modul_id" onkeyup="sortTable()">Modul-ID</th>
         <th id="header_modul_bezeichnung" onkeyup="sortTable()">Modul</th>
-        <th>Letzte Änderung</th>
     </tr>
     </thead>
     <tbody>
@@ -128,7 +130,6 @@
     <tr>
         <td><%=modul_id[i]%></td>
         <td><%=modul_bezeichnung[i]%></td>
-        <td>13.05.2020 13:00:00</td>
     </tr>
     <% } %>
     </tbody>

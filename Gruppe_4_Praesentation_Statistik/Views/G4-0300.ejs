@@ -5,7 +5,7 @@
     <script src="/javascripts/G4-0300js.js"></script>
     <meta charset="UTF-8">
     <title>Erstellung Gruppenreihenfolge</title>
-    <link rel="stylesheet" href="../stylesheets/navigationBar.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/navigationBar.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
@@ -63,6 +63,7 @@
         </div>
     </div>
 </div>
+
 <!--Formular zur Erstellung des Präsentationstmerins-->
 <form method="post" action="http://127.0.0.1:8080/generatePresentation" id="generateDay">
 
@@ -126,12 +127,12 @@
         <label for ="enterDuration">Dauer:</label>
         <input type="time" name="Duration" id="enterDuration" class="expand"
                placeholder="00:15" value="">
-        <!--Raum-->
-        <%#
-        <label for ="enterRoom">Raum:</label>
-        <input type="text" name="Room" id="enterRoom" class="expand"
-               placeholder="Raum" value="">
-           %>
+        <!--Endzeit-->
+
+        <label for ="enterEnde">Endzeit:</label>
+        <input type="time" name="endTime" id="enterEnde" class="expand"
+               placeholder="08:30" value="">
+
         <!--Button zum Anlegen einer Gruppe-->
         <input type="button" value="Hinzufügen" onclick="addGroup(); getGroups();">
     </fieldset>
@@ -148,7 +149,7 @@
         <td class="bordered" style="width:20%">Anzahl der Mitglieder</td>
         <td class="bordered" style="width:10%">Startzeit</td>
         <td class="bordered" style="width:10%">Dauer</td>
-        <%#  <td class="bordered" style="width:20%">Raum</td> %>
+        <td class="bordered" style="width:20%">Endzeit</td>
         <td class="bordered" style="width:20%">Löschen</td>
     </tr>
 </table>
@@ -156,8 +157,8 @@
 <!--Formular zum Absenden der erstellten Präsentationstermine-->
 <form method="post" action="http://127.0.0.1:8080/submit">
     <input type="hidden" name="submitter" id="submitter">
-    <input type="text" name="dateAgenda" id="dateAgenda">
-    <input type="text" name="starting" id="starting">
+    <input type="hidden" name="dateAgenda" id="dateAgenda">
+    <input type="hidden" name="starting" id="starting">
     <input type="submit" value="Lossenden">
 </form>
 
