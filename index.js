@@ -52,7 +52,6 @@ app.use('/CSS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/CSS'))
 app.use('/JS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/JS'));
 app.use('/HTML',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/HTML'));
 
-
 app.use(express.json({limit: "1mb"}));
 app.use(bodyParser.urlencoded({
     extended: true
@@ -134,7 +133,6 @@ app.use((request, respond, next) => {
 
     respond.locals.enabledCookies = request.session.enabledCookies;
 
-
     if (userId) {
         respond.locals.userId = request.session.userId;
         respond.locals.userName = request.session.userName;
@@ -147,7 +145,7 @@ router = require("./Gruppe_1_Registrierung/public/routes/routesGET.js");
 
 app.get("/", router);
 app.get("/login",redirectHome,redirectCookie, router);
-app.get("/register",redirectHome, ignoreFavicon, redirectCookie, router);
+app.get("/register",redirectHome, redirectCookie, router);
 app.get("/agb", router);
 app.get("/successfullregistration", router);
 app.get("/resetpassword", router);

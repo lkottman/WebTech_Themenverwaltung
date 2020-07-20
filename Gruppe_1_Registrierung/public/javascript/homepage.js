@@ -13,7 +13,6 @@ fetch('/cookie')
             if (r == true) {
 
                 var enableCookie = {cookie: true};
-
                 const options = {
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
@@ -23,7 +22,6 @@ fetch('/cookie')
                 fetch('/enableCookie', options)
                     .then(response => response.json())
                     .then(data => {
-
                     })
                     .catch(error => console.error(error))
 
@@ -32,8 +30,6 @@ fetch('/cookie')
                 window.location.replace("/");
             }
         }
-
-
     })
     .catch(error => console.error(error))
 

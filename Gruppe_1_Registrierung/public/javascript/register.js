@@ -34,11 +34,6 @@ async function register() {
             body: JSON.stringify(person)
         };
 
-        const options1 = {
-            method: "GET",
-            headers: {"Content-Type": "application/json"},
-        };
-
         await fetch("/register", options)
             .then(response => response.json())
             .then(data => {
@@ -53,7 +48,6 @@ async function register() {
                 }
                     // alert(data.register);
                     // location.reload();
-
             });
     } else {
         alert("Nur E-Mail Adressen mit der Endung '@hs-osnabrueck.de' sind zugelassen.")
