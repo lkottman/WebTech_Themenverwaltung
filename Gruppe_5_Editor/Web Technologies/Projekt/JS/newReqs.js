@@ -156,14 +156,16 @@ function addRow(tableID) {
 
     class Requirements {
 
-        constructor(ID, Name, ShortDesc) {
+        constructor(ID, Name, ShortDesc, startdate, enddate) {
             this.id = ID;
             this.name = Name;
             this.shortdesc = ShortDesc;
+            this.startdate = startdate;
+            this.enddate = enddate;
         }
 
         toString() {
-            return this.id + " " + this.name + " " + this.shortdesc;
+            return this.id + " " + this.name + " " + this.shortdesc + " " + this.startdate + " " + this.enddate;
         }
     }
 
@@ -173,6 +175,8 @@ function addRow(tableID) {
     let namefield = document.getElementById("name").value;
     let shortdescfield = document.getElementById("shortdesc").value;
     let idprefield = document.getElementById("idpre").value;
+    let startdate = document.getElementById("starttime").value;
+    let enddate = document.getElementById("endtime").value;
     let id = idprefield + idfield;
 
     if (idprefield === "M") {
@@ -197,13 +201,22 @@ function addRow(tableID) {
     let newCell2 = newRow.insertCell(1);
     let newCell3 = newRow.insertCell(2);
     let newCell4 = newRow.insertCell(3);
-    newCell4.className = "newcell";
     let newCell5 = newRow.insertCell(4);
     newCell5.className = "newcell";
+    let newCell6 = newRow.insertCell(5);
+    newCell6.className = "newcell";
 
     let newText11 = document.createTextNode(idprefield);
     let newText1 = document.createTextNode(idfield);
     let newText2 = document.createTextNode(namefield);
+
+    let newInputStartDate = document.createElement("input");
+    newInputStartDate.setAttribute("type", "date")
+    newInputStartDate.value = startdate;
+
+    let newInputEndDate = document.createElement("input");
+    newInputEndDate.setAttribute("type", "date")
+    newInputEndDate.value = enddate;
 
     let newTextarea = document.createElement("textarea");
     newTextarea.className = "shortdesc";
@@ -224,11 +237,16 @@ function addRow(tableID) {
 
         let col1 = row.children[0].innerHTML.trim().substring(1);
         let col2 = row.children[1].innerHTML;
-        let col3 = row.children[2].textContent;
+        let col31 = row.children[2].children[0].value;
+        let col32 = row.children[2].children[1].value;
+        let col4 = row.children[3].textContent;
 
         document.getElementById("editid").value = col1;
         document.getElementById("editname").value = col2;
-        document.getElementById("editshortdesc").value = col3;
+        document.getElementById("editshortdesc").value = col4;
+        document.getElementById("editstarttime").value = col31;
+        document.getElementById("editendtime").value = col32;
+
     };
 
     let newdelButton = document.createElement("button");
@@ -245,7 +263,9 @@ function addRow(tableID) {
     requirement = new Requirements(
         id,
         namefield,
-        newTextarea.value
+        newTextarea.value,
+        startdate,
+        enddate
     );
 
     const options = {
@@ -269,9 +289,11 @@ function addRow(tableID) {
     newCell1.appendChild(newText11);
     newCell1.appendChild(newText1);
     newCell2.appendChild(newText2);
-    newCell3.appendChild(newTextarea);
-    newCell4.appendChild(newrewButton);
-    newCell5.appendChild(newdelButton);
+    newCell3.appendChild(newInputStartDate);
+    newCell3.appendChild(newInputEndDate);
+    newCell4.appendChild(newTextarea);
+    newCell5.appendChild(newrewButton);
+    newCell6.appendChild(newdelButton);
 
     clearfields();
 }
@@ -491,14 +513,16 @@ function addRowupdate(tableID) {
 
     class Requirements {
 
-        constructor(ID, Name, ShortDesc) {
+        constructor(ID, Name, ShortDesc, Starttime, Endtime) {
             this.id = ID;
             this.name = Name;
             this.shortdesc = ShortDesc;
+            this.starttime = Starttime;
+            this.endtime = Endtime;
         }
 
         toString() {
-            return this.id + " " + this.name + " " + this.shortdesc;
+            return this.id + " " + this.name + " " + this.shortdesc + " " + this.starttime + " " + this.endtime;
         }
     }
 
@@ -508,8 +532,9 @@ function addRowupdate(tableID) {
     let newpreID = document.getElementById("newidpre").value;
     let namefield = document.getElementById("editname").value;
     let shortdescfield = document.getElementById("editshortdesc").value;
+    let editstarttime = document.getElementById("editstarttime").value;
+    let editendtime = document.getElementById("editendtime").value;
     let id = (newpreID + idfield);
-
 
     if (newpreID === "M") {
         var tableDef = document.getElementById(tableID);
@@ -534,13 +559,22 @@ function addRowupdate(tableID) {
     let newCell2 = newRow.insertCell(1);
     let newCell3 = newRow.insertCell(2);
     let newCell4 = newRow.insertCell(3);
-    newCell4.className = "newcell";
     let newCell5 = newRow.insertCell(4);
     newCell5.className = "newcell";
+    let newCell6 = newRow.insertCell(5);
+    newCell6.className = "newcell";
 
     let newText11 = document.createTextNode(newpreID);
     let newText1 = document.createTextNode(idfield);
     let newText2 = document.createTextNode(namefield);
+
+    let starttime = document.createElement("input");
+    starttime.setAttribute("type", "date")
+    starttime.value = editstarttime;
+
+    let endtime = document.createElement("input");
+    endtime.setAttribute("type", "date")
+    endtime.value = editendtime;
 
     let newTextarea = document.createElement("textarea");
     newTextarea.className = "shortdesc";
@@ -558,13 +592,17 @@ function addRowupdate(tableID) {
         let row = newrewButton.parentNode.parentNode;
         let col1 = row.children[0].innerHTML.trim().substring(1);
         let col2 = row.children[1].innerHTML;
-        let col3 = row.children[2].textContent;
+        let col31 = row.children[2].children[0].value;
+        let col32 = row.children[2].children[1].value;
+        let col4 = row.children[3].textContent;
 
         console.log(col1);
 
         document.getElementById("editid").value = col1;
         document.getElementById("editname").value = col2;
-        document.getElementById("editshortdesc").value = col3;
+        document.getElementById("editstarttime").value = col31;
+        document.getElementById("editendtime").value = col32;
+        document.getElementById("editshortdesc").value = col4;
     };
 
     let newdelButton = document.createElement("button");
@@ -580,6 +618,8 @@ function addRowupdate(tableID) {
     requirement = new Requirements(
         id,
         namefield,
+        starttime,
+        endtime,
         newTextarea.value
     );
 
@@ -604,24 +644,26 @@ function addRowupdate(tableID) {
     newCell1.appendChild(newText11);
     newCell1.appendChild(newText1);
     newCell2.appendChild(newText2);
-    newCell3.appendChild(newTextarea);
-    newCell4.appendChild(newrewButton);
-    newCell5.appendChild(newdelButton);
+    newCell3.appendChild(starttime);
+    newCell3.appendChild(endtime);
+    newCell4.appendChild(newTextarea);
+    newCell5.appendChild(newrewButton);
+    newCell6.appendChild(newdelButton);
 
     clearfields();
 
 }
-
 
 function update() {
     document.getElementById("check").checked = false;
     document.getElementById("editid").value;
     document.getElementById("editname").value;
     document.getElementById("editshortdesc").value;
+    document.getElementById("editstarttime").value;
+    document.getElementById("editendtime").value;
 
     checkdoubleupdate();
 }
-
 
 function exitUpdate() {
     document.getElementById("check").checked = false;

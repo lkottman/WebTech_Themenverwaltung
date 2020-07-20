@@ -1,3 +1,15 @@
+#nametable{
+    width: 10%;
+}
+
+#startendtable{
+    width: 10%;
+}
+
+#tableid{
+    width: 10%;
+}
+
 .reqtable
 {
     border-collapse: collapse;

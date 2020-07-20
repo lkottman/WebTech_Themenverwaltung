@@ -63,6 +63,13 @@
         <br>
         <a id="shf">Kurzbeschreibung:</a><br>
         <textarea id="editshortdesc"></textarea><br>
+
+        <a id="editstartid">Anfangszeitpunkt:</a><br>
+        <input type="date" id="editstarttime"><br>
+
+        <a id="editendid">Endzeitpunkt:</a><br>
+        <input type="date" id="editendtime"><br><br>
+
         <button id="update" onclick="update()">Update</button>
         <button id="exit" onclick="exitUpdate()"><i  style="background-color: inherit" class='fa fa-times'></i></button>
 
@@ -92,7 +99,12 @@
             <br>
             <a id="addsh">Kurzbeschreibung:</a>
             <textarea id="shortdesc" class="shortdesc"></textarea>
-
+            <br>
+            <br>
+            <a id="startid">Anfangszeitpunkt:</a>
+            <input type="date" id="starttime">
+            <a id="endid">Endzeitpunkt:</a>
+            <input type="date" id="endtime">
             <button id="addbtn" style="float: right" onclick="checkdouble()">anlegen</button>
         </fieldset>
     </div>
@@ -121,8 +133,9 @@
             <legend id="reqs">Anforderungen</legend>
             <table id="reqtable" class="reqtable">
                 <thead>
-                <th style="width: 10%; cursor:pointer">ID</th>
-                <th style="pointer-events: none">Name</th>
+                <th id="tableid" style="width: 10%; cursor:pointer">ID</th>
+                <th id="nametable" style="pointer-events: none">Name</th>
+                <th id="startendtable" style="pointer-events: none">Start- / Endzeitpunkt</th>
                 <th id="tableshortdesc" colspan="3" style="pointer-events: none">Kurzbeschreibung</th>
                 </thead>
                 <tbody id="mbody">
