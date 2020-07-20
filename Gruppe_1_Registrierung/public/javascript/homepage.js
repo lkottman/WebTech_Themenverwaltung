@@ -2,22 +2,13 @@ window.onbeforeunload = function () {
     window.scrollTo(0, 0);
 }
 
-
-    // var txt;
-    //
-    // var r = confirm("Press a button!");
-    // if (r == true) {
-    //     txt = "You pressed OK!";
-    // } else {
-    //     txt = "You pressed Cancel!";
-    // }
-
 fetch('/cookie')
     .then(response => response.json())
     .then(data => {
 
         if (data.enabledCookies === false
         || data.enabledCookies === undefined){
+
             var r = confirm("Auf dieser Seite werden Cookies angelegt. Wenn Sie einverstanden sind drücken Sie ja.");
             if (r == true) {
 

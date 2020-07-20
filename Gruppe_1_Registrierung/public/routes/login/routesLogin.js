@@ -69,7 +69,8 @@ router.post("/login",  (request, response) => {
                         request.session.userName = result[0].name;
                         request.session.userAuthorization = result[0].authorization;
 
-                        response.redirect("/home");
+                        response.json({login: "success"})
+                        // response.redirect("/home");
                     }
                 }
             }

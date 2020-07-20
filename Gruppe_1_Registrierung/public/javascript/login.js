@@ -33,8 +33,13 @@ function login() {
         .then(response => response.json())
         .then(data => {
 
-            console.log(data.login);
-            alert(data.login)
+            if (data.login === "success"){
+                window.location.replace("/home");
+            } else {
+                alert(data.register);
+                location.reload();
+            }
+            // alert(data.login)
 
         })
         .catch(error => console.error(error))

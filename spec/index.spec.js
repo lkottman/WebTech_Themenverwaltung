@@ -1,6 +1,8 @@
 var Request = require("request");
 
-var Register = require("../Gruppe_1_Registrierung/public/javascript/register");
+
+var Register = require("..\\Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js");
+const serverURL = "http://localhost:3000";
 
 // var Register = require("..\\Gruppe_1_Registrierung\\Login_etc_Dziersan\\public\\register.js")
 
@@ -24,10 +26,19 @@ describe("Register Tests: ", function() {
 describe("Index Tests: ", function() {
 
     var server;
+
     beforeAll(() =>{
-        // server = require("../Gruppe_1_Registrierung/public/javascript/indexTest");
+
         server = require("../index");
-        // server = require("..\\Gruppe_1_Registrierung\\Login_etc_Dziersan\\indexTest.js");
+
+        var cookie = {
+            cookie: true,
+        };
+
+        Request.post("http://localhost:3000/enableCookies", {json: true, body: cookie}, function (error, response) {
+            done();
+        });
+
     });
     afterAll(() => {
         server.close;
@@ -37,7 +48,7 @@ describe("Index Tests: ", function() {
     describe("GET /", () =>{
         var data = {};
         beforeAll((done) => {
-            Request.get("http://localhost:3001/", (error, response, body) => {
+            Request.get("http://localhost:3000/", (error, response, body) => {
                 data.status = response.statusCode;
                 data.body = body;
 
@@ -53,62 +64,71 @@ describe("Index Tests: ", function() {
     describe("GET /login", () =>{
         var data = {};
         beforeAll((done) => {
-            Request.get("http://localhost:3001/login", (error, response, body) => {
+            Request.get("http://localhost:3000/login", (error, response, body) => {
 
                 data.status = response.statusCode;
                 data.body = body;
-
                 done();
             });
         });
         it("Status 200", () =>{
             expect(data.status).toBe(200);
         });
-
-
     });
 
     describe("POST /login", () =>{
 
         jsonLoginBodyEmpty = { email: '', password: '', checkboxLogin: false };
         jsonLoginBodyUser = { email: 'dominik.dziersan@hs-osnabrueck.de', password: 'Test123E', checkboxLogin: false };
+        jsonLoginBodyUserLong = { email: 'dominik.dziersan@hs-osnabrueck.de', password: 'Test123E', checkboxLogin: true };
 
         it('Status 200', function (done) {
-            Request.post("http://localhost:3001/login", {json: true, body: jsonLoginBodyEmpty}, function (error, response) {
+            Request.post("http://localhost:3000/login", {json: true, body: jsonLoginBodyEmpty}, function (error, response) {
                 expect(response.statusCode).toEqual(200);
                 done();
             });
         });
 
         it('Failed to Login because of false Informations', function (done) {
-            Request.post("http://localhost:3001/login", {json: true, body: jsonLoginBodyEmpty}, function (error, response) {
+            Request.post("http://localhost:3000/login", {json: true, body: jsonLoginBodyEmpty}, function (error, response) {
                 expect(response.body).toEqual(Object({ login: 'Fehlgeschlagen: Falsche Informationen oder nicht registriert' }));
                 done();
             });
         });
 
-        it('Failed to Login because of false Informations', function (done) {
-            Request.post("http://localhost:3001/login", {json: true, body: jsonLoginBodyEmpty}, function (error, response) {
-                expect(response.body).toEqual(Object({ login: 'Fehlgeschlagen: Falsche Informationen oder nicht registriert' }));
+        it('Login worked', function (done) {
+            Request.post("http://localhost:3000/login", {json: true, body: jsonLoginBodyUser}, function (error, request, response) {
+                expect(response.body).toEqual(Object({ login: 'success' }));
                 done();
             });
         });
 
-        jsonLoginBodyUser = { email: 'dominik.dziersan@hs-osnabrueck.de', password: 'Test123E', checkboxLogin: true };
-        it('Failed to Login because of false Informations', function (done) {
-            Request.post("http://localhost:3001/login", {json: true, body: jsonLoginBodyUser}, function (error, request, response) {
-                // cookie = request.session
-                // expect(request.session.maxAge).toEqual(54000);
+        it('Login worked with Login saved', function (done) {
+            Request.post("http://localhost:3000/login", {json: true, body: jsonLoginBodyUserLong}, function (error, request, response) {
+                expect(response.body).toEqual(Object({ login: 'success' }));
+                done();
+            });
+        });
+
+        it('Cookies expiration', function (done) {
+            Request.post("http://localhost:3000/login", {json: true, body: jsonLoginBodyUser}, function (error, request, response) {
+                expect(response.session.maxAge).toEqual(86400000);
+                done();
+            });
+        });
+
+        it('Cookies expiration when login saved', function (done) {
+            Request.post("http://localhost:3000/login", {json: true, body: jsonLoginBodyUserLong}, function (error, request, response) {
+                expect(response.session.maxAge).toEqual(315360000000);
                 done();
             });
         });
     });
 
-
     describe("GET /register", () =>{
         var data = {};
         beforeAll((done) => {
-            Request.get("http://localhost:3001/register", (error, response, body) => {
+            Request.get("http://localhost:3000/register", (error, response, body) => {
                 data.status = response.statusCode;
                 data.body = body;
 
@@ -134,7 +154,7 @@ describe("Index Tests: ", function() {
         };
 
         it('Status 200', function (done) {
-            Request.post("http://localhost:3001/register", {json: true, body: jsonRegisterBodyUser}, function (error, response) {
+            Request.post("http://localhost:3000/register", {json: true, body: jsonRegisterBodyUser}, function (error, response) {
                 expect(response.statusCode).toEqual(200);
                 done();
             });
@@ -154,7 +174,7 @@ describe("Index Tests: ", function() {
             };
 
 
-            Request.post("http://localhost:3001/register", {json: true, body: jsonRegisterBodyUser}, function (error, response) {
+            Request.post("http://localhost:3000/register", {json: true, body: jsonRegisterBodyUser}, function (error, response) {
                 expect(response.body).toEqual(Object({ register: "Freischaltcode existiert nicht." }));
                 done();
             });
@@ -171,7 +191,7 @@ describe("Index Tests: ", function() {
                 password: "Test123E",
                 secretToken: "secretToken"
             };
-            Request.post("http://localhost:3001/register", {json: true, body: jsonRegisterBodyUser}, function (error, response) {
+            Request.post("http://localhost:3000/register", {json: true, body: jsonRegisterBodyUser}, function (error, response) {
                 expect(response.body).toEqual(Object({ register: "Fehlgeschlagen: Benutzer existiert bereits." }));
                 done();
             });
@@ -188,7 +208,7 @@ describe("Index Tests: ", function() {
                 password: "Test123E",
                 secretToken: "secretToken"
             };
-            Request.post("http://localhost:3001/register", {json: true, body: jsonRegisterBodyUser}, function (error, response) {
+            Request.post("http://localhost:3000/register", {json: true, body: jsonRegisterBodyUser}, function (error, response) {
                 expect(response.body).toEqual(Object({ register: "Freischaltcode ist abgelaufen." }));
                 done();
             });
@@ -206,7 +226,7 @@ describe("Index Tests: ", function() {
                 secretToken: "secretToken"
             };
 
-            Request.post("http://localhost:3001/register", {json: true, body: jsonRegisterBodyUser}, function (error, response) {
+            Request.post("http://localhost:3000/register", {json: true, body: jsonRegisterBodyUser}, function (error, response) {
                 expect(response.body).toEqual(Object({ register: 'Fehlgeschlagen: Benutzer existiert bereits.' }));
                 done();
             });
@@ -217,7 +237,7 @@ describe("Index Tests: ", function() {
     describe("GET /successfullregistration", () =>{
         var data = {};
         beforeAll((done) => {
-            Request.get("http://localhost:3001/successfullregistration", (error, response, body) => {
+            Request.get("http://localhost:3000/successfullregistration", (error, response, body) => {
                 data.status = response.statusCode;
                 data.body = body;
 
@@ -232,7 +252,7 @@ describe("Index Tests: ", function() {
     describe("GET /token", () =>{
         var data = {};
         beforeAll((done) => {
-            Request.get("http://localhost:3001/token", (error, response, body) => {
+            Request.get("http://localhost:3000/token", (error, response, body) => {
                 data.status = response.statusCode;
                 data.body = body;
 
@@ -247,7 +267,7 @@ describe("Index Tests: ", function() {
     describe("GET /agb", () =>{
         var data = {};
         beforeAll((done) => {
-            Request.get("http://localhost:3001/agb", (error, response, body) => {
+            Request.get("http://localhost:3000/agb", (error, response, body) => {
                 data.status = response.statusCode;
                 data.body = body;
 
@@ -262,7 +282,7 @@ describe("Index Tests: ", function() {
     describe("GET /resetpassword", () =>{
         var data = {};
         beforeAll((done) => {
-            Request.get("http://localhost:3001/resetpassword", (error, response, body) => {
+            Request.get("http://localhost:3000/resetpassword", (error, response, body) => {
                 data.status = response.statusCode;
                 data.body = body;
 
@@ -277,7 +297,7 @@ describe("Index Tests: ", function() {
     describe("GET /changepassword", () =>{
         var data = {};
         beforeAll((done) => {
-            Request.get("http://localhost:3001/changepassword", (error, response, body) => {
+            Request.get("http://localhost:3000/changepassword", (error, response, body) => {
                 data.status = response.statusCode;
                 data.body = body;
 
@@ -292,7 +312,7 @@ describe("Index Tests: ", function() {
     describe("GET /confirmation", () =>{
         var data = {};
         beforeAll((done) => {
-            Request.get("http://localhost:3001/confirmation", (error, response, body) => {
+            Request.get("http://localhost:3000/confirmation", (error, response, body) => {
                 data.status = response.statusCode;
                 data.body = body;
 
@@ -313,7 +333,7 @@ describe("Index Tests: ", function() {
         //         '"secure"':false,'"httpOnly"':true,'"path"':'"/"','"sameSite"':true}};
 
         beforeAll((done) => {
-            Request.get("http://localhost:3001/cookie", (error, response, body) => {
+            Request.get(`http://localhost:3000/cookie`, (error, response, body) => {
                 data.status = response.statusCode;
                 data.body = body;
 
@@ -326,7 +346,6 @@ describe("Index Tests: ", function() {
 
         it("Cookies equals", () =>{
 
-            // expect(data.body).toBe(cookie);
         });
 
     });

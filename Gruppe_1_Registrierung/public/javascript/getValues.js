@@ -18,7 +18,6 @@ class UserToUpdate {
 }
 
 
-
 function sendData() {
     var user = new UserToUpdate().getUserToUpdate();
     const options = {
