@@ -54,11 +54,9 @@ app.get("/loadtable", (request, response) => {
             throw err;
         else {
             console.log(result);
-
+            response.send(result);
         }
     });
-
-    response.end;
 });
 
 app.post("/createTable", (request, response) => {

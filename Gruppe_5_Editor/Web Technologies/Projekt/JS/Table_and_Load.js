@@ -45,15 +45,14 @@ function loadTable() {
     //     namefield,
     //     newTextarea.value
     // );
-    //
 
     let data;
 
     fetch("/loadtable")
         .then(response => response.json())
-        .then(response => data)
+        .then(data = response)
         .then(console.log("ja"))
-        .then(console.log(response))
+        .then(console.log(data))
 
     // let idfield = document.getElementById("id").value;
     // let namefield = document.getElementById("name").value;
