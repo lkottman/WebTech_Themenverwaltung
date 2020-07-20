@@ -77,18 +77,20 @@ app.post("/saveReqData", (request, response) => {
         response.status(204).send('');
     }
 
-    connection.query("INSERT INTO Anforderungen(id,name,shortdesc) VALUES("
-        + '"' + request.body.id + '",'
-        + '"' + request.body.name + '",'
-        + '"' + request.body.shortdesc + '")',
-        function (err) {
-            if (err)
-                throw err;
-            else {
-                console.log("Requirement created");
-            }
-        });
-    response.end();
+  connection.query("INSERT INTO Anforderungen(id,name,shortdesc,starttime,endtime) VALUES("
+      + '"' + request.body.id + '",'
+      + '"' + request.body.name + '",'
+      + '"' + request.body.shortdesc + '",'
+      + '"' + request.body.starttime + '",'
+      + '"' + request.body.endtime + '")',
+      function (err) {
+        if (err)
+          throw err;
+        else {
+          console.log("Requirement created");
+        }
+      });
+  response.end();
 });
 
 app.post("/delReqData", (request, response) => {

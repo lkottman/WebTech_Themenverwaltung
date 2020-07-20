@@ -218,6 +218,8 @@ function addRow(tableID) {
     newInputEndDate.setAttribute("type", "date")
     newInputEndDate.value = enddate;
 
+    console.log(newInputStartDate.value);
+
     let newTextarea = document.createElement("textarea");
     newTextarea.className = "shortdesc";
     newTextarea.innerHTML = shortdescfield;
@@ -264,8 +266,8 @@ function addRow(tableID) {
         id,
         namefield,
         newTextarea.value,
-        startdate,
-        enddate
+        newInputStartDate.value,
+        newInputEndDate.value
     );
 
     const options = {
@@ -618,9 +620,9 @@ function addRowupdate(tableID) {
     requirement = new Requirements(
         id,
         namefield,
-        starttime,
-        endtime,
-        newTextarea.value
+        newTextarea.value,
+        starttime.value,
+        endtime.value
     );
 
     const options = {
