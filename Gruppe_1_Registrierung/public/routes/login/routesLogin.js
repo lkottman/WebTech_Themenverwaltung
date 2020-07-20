@@ -39,6 +39,8 @@ app.use(session({
 //Takes E-Mail and password from User and check if these matches if database
 router.post("/login",  (request, response) => {
 
+    console.log(request.body);
+
     connection.query("SELECT id, name,verified, token, e_mail, password, authorization from user where "
         + 'e_mail = "' + request.body.email + '"'
         + ' AND password = "' + request.body.password + '"',
