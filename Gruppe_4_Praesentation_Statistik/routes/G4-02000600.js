@@ -19,13 +19,15 @@ ende =[];
 tag=[];
 anlass=[];
 modul=[];
+raum = [];
 getValuesfromDb();
+
 
 
 G4_02000600.get('/G4-0200', function (request, result) {
 
     //Für den Zugriff auf die Seite für Admin und Dozent sonst redirect zu G4-0200fs
-  //  if (request.session.userAuthorization === "lecturer"
+    //  if (request.session.userAuthorization === "lecturer"
     //    || request.session.userAuthorization === "admin") {
 
 
@@ -37,13 +39,11 @@ G4_02000600.get('/G4-0200', function (request, result) {
         //Modulinformationen
 
         modulname: "Web-Technologien",
-        modulthema: "Zwischenpräsentation",
-        datum: tag[0],
-        raum: raum,
+
 
     });
 //}else
-  //  {
+    //  {
     //    result.redirect('/G4-0200fS');
     //}
 
@@ -51,33 +51,41 @@ G4_02000600.get('/G4-0200', function (request, result) {
 //getConnection();
 /*app.listen(8080, function () {
     console.log('Server running at http://127.0.0.1:8080/G4-0200');
-
 });*/
 
 
 
-    //Datenbankabfrage
-    function getValuesfromDb() {
+//Datenbankabfrage
+function getValuesfromDb() {
 
-        var sql = "SELECT DISTINCT * FROM praesentation_reihenfolge ";
+    var sql = "SELECT DISTINCT * FROM agenda WHERE pid = '57'";
 
-        pool.query(sql, function (err,result) {
-            if (err) throw err;
+    pool.query(sql, function (err,result) {
+        if (err) throw err;
 
-            for (var i = 0; i < result.length; i++) {
-                reihenfolge[i] = result[i].Reihenfolge;
-                gruppe[i] = result[i].GruppenNummer;
-                thema[i] = result[i].Praesentationsthema;
-                mitglieder[i] = result[i].Anzahl_Mitglieder;
-                startzeit[i] = result[i].Startzeit;
-                dauer[i] = result[i].Dauer;
-                ende[i] = result[i].Endzeit;
-                raum[i] = result[i].Raum;
-                tag[i] = result[i].Tag;
-                anlass = result[i].Anlass;
-                modul = result[i].modul;
-            }
-        });
+        for (var i = 0; i < result.length; i++) {
+            reihenfolge[i] = result[i].Reihenfolge;
+            gruppe[i] = result[i].GruppenNummer;
+            thema[i] = result[i].thema;
+            mitglieder[i] = result[i].anzahl_mitglieder;
+            startzeit[i] = result[i].start_vortrag;
+            dauer[i] = result[i].dauer_vortrag;
+            ende[i] = result[i].ende_vortrag;
+        }
+    });
+
+    var sql1 = "SELECT  raum, datum, anlass FROM praesentation  WHERE pid = '57' ";
+
+    pool.query(sql1, function (err,result) {
+        if (err) throw err;
+
+        for (var i = 0; i < result.length; i++) {
+            raum[i] = result[i].raum;
+            tag[i] = result[i].datum;
+            anlass[i] = result[i].anlass;
+
+        }
+    });
 }
 G4_02000600.post('/getIdValues', function (request, result) {
 
@@ -109,15 +117,13 @@ G4_02000600.post('/Livetracking', function (request,result)
         //Modulinformationen
 
         modulname: "Web-Technologien",
-        modulthema: "Zwischenpräsentation",
-        datum: tag[0],
-        raum: raum,
+
     });
 });
 
 G4_02000600.post('/sendToDB', function (request,result) {
     var plusone = parseInt(request.body.i)+1;
-    sqlStatement= "UPDATE praesentation_reihenfolge SET Startzeit='"+request.body.start+"',Dauer='"+request.body.dauer+"',Endzeit = CAST(Startzeit+Dauer AS TIME) WHERE Reihenfolge="+ plusone+";";
+    sqlStatement= "UPDATE agenda SET start_vortrag='"+request.body.start+"',Dauer='"+request.body.dauer+"',Endzeit = CAST(start_vortrag+dauer_vortrag AS TIME) WHERE Reihenfolge="+ plusone+";";
     pool.query(sqlStatement, function (err) {
         if (err) throw err;
     });
@@ -130,11 +136,11 @@ G4_02000600.post('/sendToDB', function (request,result) {
         //Modulinformationen
 
         modulname: "Web-Technologien",
-        modulthema: "Zwischenpräsentation",
-        datum: tag[0],
-        raum: raum,
+
+
     }); }, 100)
 })
+
 
 
 module.exports = G4_02000600;

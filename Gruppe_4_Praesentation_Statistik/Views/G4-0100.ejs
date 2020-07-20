@@ -10,7 +10,7 @@
 <div id="Menueleiste">
     <img src="images/HS-OS-Logo-Standard-rgb.png" alt="Logo der Hochschule"> Meine Präsentation
 </div>
- <h1><%=modul_bezeichnung0100%></h1>
+
 <table rules="rows">
     <thead>
     <tr>
@@ -24,12 +24,12 @@
     <tbody>
     <!--Anlass, Datum und Raum der Präsentationen aus Datenbank abfragen und anzeigen-->
     <% for (var i = 0; i < anlass.length; i++) { %>
-        <tr>
-            <td><%=anlass[i]%></td>
-            <td><%=datum[i]%></td>
-            <td><%=raum[i]%></td>
-            <td><a href="G4-0200.html">Gruppenreihenfolge erstellen</a> </td>
-        </tr>
+    <tr>
+        <td><%=anlass[i]%></td>
+        <td><%=datum[i]%></td>
+        <td><%=raum[i]%></td>
+        <td><a href="G4-0200.html">Gruppenreihenfolge erstellen</a> </td>
+    </tr>
     <% }%>
 
     </tbody>
