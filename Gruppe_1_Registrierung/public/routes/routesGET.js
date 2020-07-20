@@ -11,9 +11,8 @@ const path = require("../../../config/pathConfig.json");
 
 
 router.get("/login",  (request, response) => {
-
+    console.log(request.session.enabledCookies + " Cookie ");
         response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/login.html");
-
 });
 
 router.get("/home", (request, response) => {
@@ -82,7 +81,9 @@ router.get("/token", (request, response) => {
 });
 
 router.get("/", (request, response) => {
+
     response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/index.html');
+
 });
 
 router.get("/agb", (request, response) => {

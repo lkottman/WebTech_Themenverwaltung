@@ -1,4 +1,4 @@
-function register() {
+async function register() {
 
     class Person {
         constructor(token, name, surname, email, password, verified) {
@@ -34,17 +34,21 @@ function register() {
             body: JSON.stringify(person)
         };
 
-        fetch("/register", options)
+        const options1 = {
+            method: "GET",
+            headers: {"Content-Type": "application/json"},
+        };
+
+        await fetch("/register", options)
             .then(response => response.json())
             .then(data => {
 
                 console.log(data);
 
-                if (data.register === ""){
-                    fetch("/successfullregistration");
+                if (data.register === "created"){
+                    window.location.replace("/successfullregistration");
                 } else {
                     alert(data.register);
-
                     location.reload();
                 }
                     // alert(data.register);

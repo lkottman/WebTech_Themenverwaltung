@@ -5,13 +5,16 @@ const config = JSON.parse(fs.readFileSync(path.path + "/config/datenbankConfig.j
 
 
 function getConnection(){
+
    return  mysql.createConnection(
         {
             host: config.host,
             user: config.user,
             password: config.password,
-            database: config.database
+            database: config.database,
+            multipleStatements: true
         }
+
     );
 
 };
