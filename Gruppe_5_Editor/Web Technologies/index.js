@@ -32,7 +32,7 @@ const {
 } = process.env;
 
 app.use(express.static(__dirname + '/projekt'));
-app.use(express.static(__dirname + '/css'))
+app.use(express.static(__dirname + '/css'));
 app.use(express.static('/js'));
 app.use(express.json({limit: "1mb"}));
 app.use(bodyParser.urlencoded({
@@ -45,6 +45,18 @@ app.get("/RequirementsEditGer", (require, response) => {
 
 app.get("/", (request, response) => {
     response.sendFile('//Projekt//HTML//Test.html', {root: __dirname});
+});
+
+app.get("/loadtable", (request, response) => {
+
+    connection.query("SELECT * FROM ANFORDERUNGEN", function (err, result, data) {
+        if (err)
+            throw err;
+        else {
+            console.log(result);
+            response.send(result);
+        }
+    });
 });
 
 app.post("/createTable", (request, response) => {
@@ -110,17 +122,6 @@ app.post("/delReqData", (request, response) => {
             }
         });
     response.end();
-});
-
-app.post("/loadtable", (request, response) => {
-
-    connection.query("SELECT * FROM ANFORDERUNGEN", function (err, result, fields) {
-        if (err)
-            throw err;
-        else {
-            console.log(result);
-        }
-    })
 });
 
 app.post("/editReq", (request, response) => {

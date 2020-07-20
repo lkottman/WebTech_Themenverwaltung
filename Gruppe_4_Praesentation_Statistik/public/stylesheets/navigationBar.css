@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,300&display=swap');
+
+html {
+    height: 100%;
+    font-family: "Roboto Thin";
+    font-size: 100%;
+    overflow-y: scroll;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    letter-spacing: .6px !important;
+}
+
+body{
+    font-family: Roboto;
+    font-size: 16px;
+    letter-spacing: .6px;
+    color: #555555;
+    text-decoration: none;
+}
+
+#UserMenu_All_Header{
+
+    font-size: 17px;
+    letter-spacing: .6px;
+    color: #666;
+    white-space: nowrap;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    background-color: #e5e5e5;
+    height: 52px;
+    margin-bottom: 52px;
+}
+
+.header_button{
+    font-family: "Roboto Light";
+    color: #555555;
+    font-size: 16px;
+    letter-spacing: .6px;
+    height: 52px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+
+.All_Header_Boxes{
+    margin: 0em 1em 0em 1em;
+    height: 52px;
+}
+
+.dropdown {
+    float: left;
+}
+
+.header_button:hover{
+    color: #1c9dd9;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: whitesmoke;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.header_button:hover .dropdown-content{
+    display: block;
+}
+
+.header_button:focus{
+    outline: none;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content{
+    display: block;
+}
+
+.frame{
+    width: auto;
+    height: 100%;
+    vertical-align: middle;
+    text-align: center;
+    display: table-cell;
+    margin: 0em 5px 0em 5px;
+
+}
+
+#oscaImagelogo{
+    content: url("osca3-white.png");
+    max-height: 52px ;
+    display: block;
+    margin: 0 auto;
+    float: left;
+    vertical-align: bottom;
+    border: none;
+    width: 80px;
+}
+
+
+#netcaseIcon{
+    color: #555555;
+}
+
+#netcaseIcon:hover{
+    color: #1c9dd9;
+}
+
+#mailIcon{
+    color: #555555;
+}
+
+#mailIcon:hover{
+    color: #1c9dd9;
+}
+
+
+
+
+
+
+
+
+
+
+

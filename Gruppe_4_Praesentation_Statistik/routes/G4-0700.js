@@ -18,18 +18,14 @@ modul_bezeichnung = [];
  */
 
 G4_0700.get('/G4-0700', function (request, result) {
+    //if (request.session.userAuthorization === "student"
+      //      || request.session.userAuthorization === "admin") {
     result.render("G4-0700.ejs");
+    }else
+      {
+    //    result.redirect('/G4-0050');
+    //}
 });
-
-
-
-
-
-
-
-
-
-
 /**
  * Verbindung zur Datenbank herstellen
  */
@@ -52,22 +48,5 @@ function getValuesFromDb() {
         }
     });
 }
-
-
-/**
- * G4-0900 aufrufen
- */
-
-G4_0700.get('/G4-0900', function (request, response) {
-    console.log("G4-0900 wurde geladen");
-    response.render("G4-0900.ejs", {
-        benutzername: "Test",
-        Gruppennummer: "2",
-    });
-});
-
-
-
-
 module.exports = G4_0700;
 

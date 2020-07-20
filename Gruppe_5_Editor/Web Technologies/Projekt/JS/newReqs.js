@@ -300,6 +300,7 @@ function addRow(tableID) {
 
 /**
  *
+ *
  */
 function searchID() {
     let input, filter, table, tr, td, i, txtValue;
@@ -395,7 +396,9 @@ function maxAll() {
     }
 }
 
-
+/**
+ *
+ */
 function letsdel(){
     let letsdel = document.getElementById("newButtID");
     let row = letsdel.parentNode.parentNode;
@@ -404,7 +407,9 @@ function letsdel(){
     //wir deleten das noch in der Zukunft aus der Datenbank
 }
 
-
+/**
+ *
+ */
 function checkdoubleupdate() {
 
     let idprefield2 = document.getElementById("newidpre").value;
@@ -508,7 +513,10 @@ function checkdoubleupdate() {
     }
 }
 
-
+/**
+ *
+ * @param tableID
+ */
 function addRowupdate(tableID) {
 
     class Requirements {
@@ -653,6 +661,9 @@ function addRowupdate(tableID) {
 
 }
 
+/**
+ *
+ */
 function update() {
     document.getElementById("check").checked = false;
     document.getElementById("editid").value;
@@ -664,6 +675,9 @@ function update() {
     checkdoubleupdate();
 }
 
+/**
+ *
+ */
 function exitUpdate() {
     document.getElementById("check").checked = false;
 }
