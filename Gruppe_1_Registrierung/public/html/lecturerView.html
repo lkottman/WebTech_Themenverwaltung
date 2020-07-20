@@ -14,30 +14,31 @@
 </head>
 
 <body>
-<div id="header">
-</div>
 
 
 <div id="UserMenu_All_Header">
-
     <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
         <a href="https://osca.hs-osnabrueck.de/">
             <div class="outer-wrapper" style="float:left">
                 <div class="frame" style="height: 52px">
-                    <img id="oscaImagelogo" class="oscaLogo" alt="OSCA">
+                    <img id="oscaImagelogo" class="oscaLogo">
                 </div>
             </div>
         </a>
 
         <div class="dropdown" style="margin-left: 5px">
-            <button class="header_button">Meine Gruppe</button>
+            <form action="/myGroups">
+                <button class="header_button">Meine Gruppe</button>
+            </form>
             <div class="dropdown-content">
-                <a>Gruppe beitreten</a>
-                <a>Anforderungsdefinition</a>
+                <a href="/joinGroup">Gruppe beitreten</a>
+                <a href="/requirementsdefinition">Anforderungsdefinition</a>
             </div>
         </div>
 
-        <button class="header_button">Präsentation</button>
+        <form action="/presentation">
+            <button class="header_button">Präsentation</button>
+        </form>
     </div>
 
     <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
@@ -61,13 +62,17 @@
             </a>
         </div>
         <div class="dropdown">
-            <button class="header_button">Benutzer</button>
+            <form action="/userInfo">
+                <button class="header_button">Benutzer</button>
+            </form>
         </div>
-
-        <button class="header_button">Logout</button>
+        <div class="dropdown">
+            <form action="/logout">
+                <button class="header_button">Logout</button>
+            </form>
+        </div>
     </div>
 </div>
-
 
 <br>
 <br>
