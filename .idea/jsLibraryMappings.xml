@@ -2,5 +2,6 @@
 <project version="4">
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{Node.js Core}" />
+    <file url="file://$PROJECT_DIR$/Gruppe_1_Registrierung/public/javascript/changePassword.js" libraries="{HTTP Response Handler}" />
   </component>
 </project>

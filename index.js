@@ -169,11 +169,11 @@ app.get("/favicon.ico", (request, response) => {
 routerConfirmation = require('./Gruppe_1_Registrierung/public/routes/register/confirmMail.js');
 app.use(routerConfirmation);
 
-routerPassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/passwordForgot.js');
+routerPassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/sendMailToChangePassword.js');
 app.use(routerPassword);
 
-routerChangePassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/updatePassword.js');
-app.use(routerChangePassword)
+routerChangePassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/changePassword.js');
+app.use(routerChangePassword);
 
 routerLogin = require('./Gruppe_1_Registrierung/public/routes/login/routesLogin.js');
 app.use(routerLogin);

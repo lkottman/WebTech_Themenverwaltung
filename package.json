@@ -21,7 +21,8 @@
     "nodemailer": "latest",
     "q": "^1.5.1",
     "request": "^2.88.2",
-    "session": "^0.1.0"
+    "session": "^0.1.0",
+    "Q": "latest"
   },
   "devDependencies": {
     "popups": "^1.1.3"
