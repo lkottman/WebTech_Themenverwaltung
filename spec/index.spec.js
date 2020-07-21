@@ -117,6 +117,40 @@ describe("Index Tests: ", function() {
         });
     });
 
+    describe("POST /login & /createToken", () =>{
+
+        const jsonLoginBodyUser = { email: 'dominik.dziersan@hs-osnabrueck.de', password: 'Test123E', checkboxLogin: false };
+        const createTokenSuccess = {"start":"2020-07-21 19:28:01","time":null,"end":"2020-07-21 19:28:01","token":"pc6vkg"};
+        const createTokenFails = {"start":"2020-07-21 19:28:01","time":null,"end":"2040-07-21 19:28:01","token":"pc6vkg"};
+
+        it('Create token from now until the specified time ', function (done) {
+            Request.post("http://localhost:3000/login", {json: true, body: jsonLoginBodyUser}, function (error, response) {
+            });
+
+
+            Request.post("http://localhost:3000/token", {json: true, body: createTokenSuccess}, function (error, response) {
+                expect(response.body).toEqual(Object({ token: "Freischaltcode wurde erstellt." }));
+                done();
+            });
+        });
+
+        it('Fails to create token because of a time which is to long ', function (done) {
+            Request.post("http://localhost:3000/login", {json: true, body: jsonLoginBodyUser}, function (error, response) {
+            });
+
+
+            Request.post("http://localhost:3000/token", {json: true, body: createTokenFails}, function (error, response) {
+                expect(response.body).toEqual(Object({ token: "Fehler: Die Dauer vom Freischaltcode ist zu lang gewählt." }));
+                done();
+            });
+        });
+
+
+
+    });
+
+
+
     describe("GET /register", () =>{
         var data = {};
         beforeAll((done) => {

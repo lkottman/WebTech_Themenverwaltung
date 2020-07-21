@@ -51,34 +51,69 @@ router.post("/createToken",  (request, response) => {
         response.json({token: "Fehler: Die Dauer vom Freischaltcode ist zu lang gewählt."})
     }
 });
-//
-// //Deletes token from Database
-// router.post("/deleteToken", (request, response) => {
-//
-//     console.log(request.session);
-//     if (request.session.userAuthorization === "admin"){
-//         connection.query("SELECT gentoken from token WHERE GENTOKEN = " + '"' + request.body.token + '";',
-//             function (err, result) {
-//                 if (err)
-//                     throw err;
-//                 else {
-//                     console.log(result.length);
-//
-//                     if (result.length > 0) {
-//                         connection.query("DELETE FROM token WHERE GENTOKEN = " + '"' + request.body.token + '";'),
-//                             function (err, result) {
-//                                 if (err)
-//                                     throw err;
-//                             }
-//                         response.json({token: "Token gelöscht!"});
-//                     } else {
-//                         response.json({token: "Token nicht gefunden."});
-//                     }
-//                 }
-//             })
-//     } else {
-//         response.json({token: "Keine Berechtigung zur Löschung von Freischaltcodes."});
-//     }
-// });
+
+
+
+//Deletes token from Database
+router.post("/deleteToken", (request, response) => {
+
+    console.log(request.session);
+    if (request.session.userAuthorization === "admin"){
+        connection.query("SELECT gentoken from token WHERE GENTOKEN = " + '"' + request.body.token + '";',
+            function (err, result) {
+                if (err)
+                    throw err;
+                else {
+                    console.log(result.length);
+
+                    if (result.length > 0) {
+                        connection.query("DELETE FROM token WHERE GENTOKEN = " + '"' + request.body.token + '";'),
+                            function (err, result) {
+                                if (err)
+                                    throw err;
+                            }
+                        response.json({token: "Token gelöscht!"});
+                    } else {
+                        response.json({token: "Token nicht gefunden."});
+                    }
+                }
+            })
+    } else {
+        response.json({token: "Keine Berechtigung zur Löschung von Freischaltcodes."});
+    }
+});
+
+
+router.get("/getToken", (request, response) => {
+
+    console.log(request.session.userId);
+
+    var userId = request.session.userId;
+    var authorization = request.session.userAuthorization;
+
+    var sqlStatementAdmin       = "SELECT start, end, gentoken, user FROM token;";
+    var sqlStatementLecturer    = "SELECT start, end, gentoken, user FROM token where user = " + userId + ";";
+
+    console.log(request.session);
+    if (authorization === "admin"){
+        connection.query(sqlStatementAdmin,
+            function (err, result) {
+                if (err)
+                    console.log(result);
+                    response.json(result);
+            });
+    } else if (authorization === "lecturer"){
+        connection.query(sqlStatementLecturer,
+            function (err, result) {
+                if (err)
+                    console.log("result " + result);
+                    response.json(result);
+            });
+    } else {
+        response.json({token: "error"});
+    }
+});
+
+
 
 module.exports = router;

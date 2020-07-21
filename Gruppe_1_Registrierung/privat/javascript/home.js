@@ -2,7 +2,10 @@ fetch('/cookie')
     .then(response => response.json())
     .then(data => {
 
-        console.log(data.name);
+        var greeting = "Willkommen zurück " + data.userName;
+
+        document.getElementById("name").innerHTML = greeting;
+
 
     })
     .catch(error => console.error(error))

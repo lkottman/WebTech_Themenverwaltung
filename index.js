@@ -26,8 +26,8 @@ let connection = mysql.createConnection(
 
 var lifeTime = 1000 * 60 * 60 * 24;// 24 hour
 var lifeTimeLong = 1000 * 60 * 60 * 24 * 365 * 10;  //1 Year
-const tokenLifeTime = 60 * 24 * 366;// 10 + 1 day year
-const fieldsQueryResult = 0;
+var tokenLifeTime = 60 * 24 * 366;// 10 + 1 day year
+
 
 var {
     PORT = 3000,
@@ -35,6 +35,17 @@ var {
     sessionName = "sid",
     secretSession = "test"
 } = process.env;
+
+
+// var {
+//     PORT = 3000,
+//     sessionLifetime = lifeTime,
+//     sessionName = "sid",
+//     secretSession = "test"
+//     lifeTime = 1000 * 60 * 60 * 24;// 24 hour
+//     lifeTimeLong = 1000 * 60 * 60 * 24 * 365 * 10;  //1 Year
+//     tokenLifeTime = 60 * 24 * 366;// 10 + 1 day year
+// } = process.env;
 
 let staticOptions = {
 
@@ -183,6 +194,7 @@ routerRegister = require('./Gruppe_1_Registrierung/public/routes/register/routes
 app.use(routerRegister);
 
 routerToken = require("./Gruppe_1_Registrierung/public/routes/token/routesToken.js");
+app.get("/getToken", routerToken);
 app.use(routerToken);
 
 //Gruppe 5 Editor
@@ -200,7 +212,6 @@ app.get("/cookie", (request, response) => {
 
 app.post("/enableCookie", (request, response) => {
     request.session.enabledCookies = true;
-    console.log(request.session)
 
     response.end();
 });

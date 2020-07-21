@@ -7,6 +7,8 @@ class Token {
     }
 }
 
+const tokenMaxLife = 5256000; //10 Years
+
 function createToken() {
 
 
@@ -136,7 +138,7 @@ window.onload = function() {
 function setMaxDate(){
     var maxDate = new Date();
     maxDate.setMinutes(maxDate.getMinutes()
-        + parseInt(5256000));
+        + parseInt(tokenMaxLife));
 
     var month = maxDate.getUTCMonth() + 1;
     var day = maxDate.getUTCDate();
@@ -154,10 +156,24 @@ function setMaxDate(){
 
 function diffMinutes(dt2, dt1)
 {
-
     var diff =(dt2.getTime() - dt1.getTime()) / 1000;
     diff /= 60;
-
     return Math.abs(Math.round(diff));
 
 }
+
+function getToken(){
+
+    fetch('/getToken')
+        .then(response => response.json())
+        .then(data => {
+
+            if (data.token === "error"){
+                alert("Es konnte nichts gefunden werden.")
+            } else {
+                console.log(data)
+            }
+        })
+        .catch(error => console.error(error))
+}
+

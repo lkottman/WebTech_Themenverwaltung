@@ -7,15 +7,12 @@
 
 </head>
 <body>
+
 <div>
     <input id="token" name="" onkeypress="validate()" placeholder="Zeit in Minuten angeben." required type="text">
     <button onclick="createToken()">Erstelle Freischaltcode</button>
 </div>
 
-<div>
-    <input id="deleteToken" name="" type="text" placeholder="Token angeben.">
-    <button onclick="deleteToken()">Lösche Freischaltcode</button>
-</div>
 
 <br>
 
@@ -25,10 +22,19 @@
     </div>
     <div>
         <input type="datetime-local" id="endCalender" name="endCalender" >
+        <button onclick="createTokenCalender()">Erstelle Freischaltcode</button>
     </div>
-    <button onclick="createTokenCalender()">Erstelle Freischaltcode</button>
 
 </div>
+
+<br>
+
+<div>
+    <input id="deleteToken" name="" type="text" placeholder="Token angeben.">
+    <button onclick="deleteToken()">Lösche Freischaltcode</button>
+</div>
+
+<button onclick="getToken()">HOLE TOKEN</button>
 
 <br> <br>
 <p id="demo"></p>
