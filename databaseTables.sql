@@ -2,7 +2,6 @@ DROP SCHEMA IF EXISTS Webtech;
 CREATE SCHEMA Webtech;
 USE Webtech;
 
-
 DROP TABLE IF EXISTS MODUL;
 CREATE TABLE MODUL(
 modul_id INT,
@@ -18,6 +17,7 @@ CREATE TABLE STUDENT_MODUL(
 matrikel_nr varchar(6),
 modul_id int
 );
+
 DROP TABLE AGENDA IF EXISTS;
 create table AGENDA (
     aid               int auto_increment
@@ -34,6 +34,7 @@ create table AGENDA (
     constraint agenda_G4_PRAESENTATION_pid_fk
         foreign key (pid) references G4_PRAESENTATION (pid)
 );
+
 DROP TABLE G4_PRAESENTATION IF EXISTS ;
 create table G4_PRAESENTATION
 (

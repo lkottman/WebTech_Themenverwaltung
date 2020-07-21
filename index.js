@@ -195,7 +195,6 @@ app.use(routerEdit);
 
 //Get without HTML|| email
 app.get("/cookie", (request, response) => {
-
     response.json(request.session);
 });
 

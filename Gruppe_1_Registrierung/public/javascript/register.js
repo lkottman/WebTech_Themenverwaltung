@@ -47,7 +47,6 @@ async function register() {
 
                 if (data.register === "created"){
 
-                    alert("GESCHAFFT");
                     window.location.replace("/successfullregistration");
 
                 } else {

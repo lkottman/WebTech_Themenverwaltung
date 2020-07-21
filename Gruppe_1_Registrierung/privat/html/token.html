@@ -7,16 +7,34 @@
 
 </head>
 <body>
-<input id="token" name="" onkeypress="validate()" placeholder="Token" required type="text">
-<button onclick="createToken()">Try it</button>
+<div>
+    <input id="token" name="" onkeypress="validate()" placeholder="Token" required type="text">
+    <button onclick="createToken()">Erstelle Freischaltcode</button>
+</div>
 
+<div>
+    <input id="deleteToken" name="" placeholder="" type="text" >
+    <button onclick="deleteToken()">Lösche Freischaltcode</button>
+</div>
+
+<br>
+
+<div>
+    <div>
+        <input type="datetime-local" id="startCalender">
+    </div>
+    <div>
+        <input type="datetime-local" id="endCalender" name="endCalender" >
+    </div>
+    <button onclick="createTokenCalender()">Erstelle Freischaltcode</button>
+
+</div>
+
+<br> <br>
 <p id="demo"></p>
 <p id="demo1"></p>
 <p id="demo2"></p>
 <p id="demo3"></p>
-
-<input id="deleteToken" name="" placeholder="" type="text" >
-<button onclick="deleteToken()">Try it</button>
 
 
 </body>

@@ -1,25 +1,19 @@
 var Request = require("request");
-
-
-var Register = require("..\\Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js");
 const serverURL = "http://localhost:3000";
 
-// var Register = require("..\\Gruppe_1_Registrierung\\Login_etc_Dziersan\\public\\register.js")
-
+const Register = require("..\\Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js");
 describe("Register Tests: ", function() {
     it("tests email if ..@hs-osnabrueck.de ", function() {
 
         expect(Register.validateEmail("dominik.dziersan@hs-osnabrueck.de")).toBe(true);
 
     });
-
     it("Test if two randoms strings are different ", function() {
 
         var string0 = Register.generateRandomString;
         var string1 = Register.generateRandomString;
 
         expect(string0 === string1).toBe(true);
-
     });
 });
 
@@ -34,11 +28,9 @@ describe("Index Tests: ", function() {
         var cookie = {
             cookie: true,
         };
-
         Request.post("http://localhost:3000/enableCookies", {json: true, body: cookie}, function (error, response) {
             done();
         });
-
     });
     afterAll(() => {
         server.close;
@@ -78,9 +70,9 @@ describe("Index Tests: ", function() {
 
     describe("POST /login", () =>{
 
-        jsonLoginBodyEmpty = { email: '', password: '', checkboxLogin: false };
-        jsonLoginBodyUser = { email: 'dominik.dziersan@hs-osnabrueck.de', password: 'Test123E', checkboxLogin: false };
-        jsonLoginBodyUserLong = { email: 'dominik.dziersan@hs-osnabrueck.de', password: 'Test123E', checkboxLogin: true };
+        const jsonLoginBodyEmpty = { email: '', password: '', checkboxLogin: false };
+        const jsonLoginBodyUser = { email: 'dominik.dziersan@hs-osnabrueck.de', password: 'Test123E', checkboxLogin: false };
+        const jsonLoginBodyUserLong = { email: 'dominik.dziersan@hs-osnabrueck.de', password: 'Test123E', checkboxLogin: true };
 
         it('Status 200', function (done) {
             Request.post("http://localhost:3000/login", {json: true, body: jsonLoginBodyEmpty}, function (error, response) {
