@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const {sendMail, getTextConfirmationEmail, getMailOptions} = require('../nodeMailer/nodeMailer.js');
 const connection = require("../../../../getConnectionDatabase");
-var Q = require('Q');
+var q = require('q');
 
 function validateEmail(email) {
     return /^\"?[\w-_\.]*\"?@hs-osnabrueck\.de$/.test(email);
@@ -40,7 +40,7 @@ router.post("/register",  (request, response) => {
     var sqlStatement = sqlToken + sqlEmail;
 
     function getData(){
-        var defered = Q.defer();
+        var defered = q.defer();
         connection.query(sqlStatement, defered.makeNodeResolver());
         return defered.promise;
     }
@@ -57,7 +57,7 @@ router.post("/register",  (request, response) => {
 
         } else {
 
-            Q.all([getData()]).then(function (result) {
+            q.all([getData()]).then(function (result) {
 
                 let dbToken = result[0][0][0][0];
                 let dbUser = result[0][0][1][0];
@@ -128,22 +128,23 @@ router.post("/changeUser",  (request, response) => {
 
 router.post("/addUser",  (request, response) => {
 
-    var name = request.body.name;
-    var surname = request.body.surname;
-    var email = request.body.e_mail;
-    var password = request.body.password;
-    var verified = request.body.verified;
-    var authorization = request.body.authorization;
+    var name ="'"+ request.body.name+"'";
+    var surname ="'"+ request.body.surname+"'";
+    var email = "'"+request.body.email+"'";
+    var password = "'"+request.body.password+"'";
+    var verified ="'"+ request.body.verified+"'";
+    var authorization = "'"+request.body.authorization+"'";
 
-    var sqlStatement = '"INSERT INTO user "'
-        + 'SET name = "' + `${name}`  + '"'
-        + ' AND SET surname = "' + `${surname}` + '"'
-        + ' AND SET e_mail = "' +  `${email}` + '"'
-        + ' AND SET password = "' + `${password}` + '"'
-        + ' AMD SET authorization = "' + `${authorization}` + '"'
-        +  ";"
+    var sqlStatement = "INSERT INTO `user`(`name`, `surname`, `e_mail`, `password`, `authorization`) VALUES "
+        + '( ' + `${name}`  + ''
+        + ' ,  ' + `${surname}` + ''
+        + ' ,   ' +  `${email}` + ''
+        + ' ,   ' + `${password}` + ''
+        + ' ,   ' + `${authorization}` + ''
+        +  ");"
 
     connection.query(sqlStatement, function(err, result){
+        console.log(sqlStatement);
         if(err) {
             console.log(err);
             response.end();

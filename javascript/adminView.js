@@ -104,6 +104,8 @@ window.addEventListener('click', function () {
                         document.getElementById("rolle").value = this.cells[j].innerHTML;
                     case 5:
                         document.getElementById("verified").value = this.cells[j].innerHTML;
+                    case 6:
+                        document.getElementById("userID").value = this.cells[j].innerHTML;
                     case 7:
                        document.getElementById("password").value = this.cells[j].innerHTML;
                 }
