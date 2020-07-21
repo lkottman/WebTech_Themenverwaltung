@@ -72,6 +72,7 @@ class UserToUpdate {
 }
 
 function sendData(){
+    console.log("Test")
     let user = new UserToUpdate().getSelectedUser();
     console.log(user);
     console.log(JSON.stringify(user))

@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link type="text/css" rel="stylesheet" href="../css/adminView.css" >
+    <meta http-equiv="Content-Type" content="text/html">
+    <link type="text/css" rel="stylesheet" href="../../../css/adminView.css" >
     <link type="text/css" rel="stylesheet" href="../../../css/navigationBar.css">
-    <link type="text/css" rel="stylesheet" href="../css/table.css">
+    <link  rel="stylesheet" type="text/css" href="../../../css/table.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
     <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script type="text/javascript" language="JavaScript" src="../javascript/adminAnsicht.js"></script>
+    <script type="text/javascript" language="JavaScript" src="../../../javascript/adminAnsicht.js"></script>
 
     <title>Benutzerverwaltung</title>
 </head>
@@ -101,8 +102,8 @@
                     <th onclick="sortTable(3)">Studiengang</th>
                     <th onclick="sortTable(4)">Rolle</th>
                     <th onclick="sortTable(5)">Verifiziert</th>
-                    <th style="display: ">ID</th>
-                    <th style="display: ">pwd</th>
+                    <th style="display: none">ID</th>
+                    <th style="display: none">pwd</th>
                 </tr>
                 </thead>
                 <tbody id="userListContent"></tbody>
@@ -204,6 +205,12 @@
                             </button>
                         </div>
                     </div>
+                    <div class="userProfilBoxes" style="display: none">
+                        <label for="password"> Passwort: </label>
+                        <div>
+                            <input class="inputBox" type="password" value="" id="userID" readonly>
+                        </div>
+                    </div>
                     <div style="margin-top: 1em">
                         <button  type="button" class="btn btn-outline-primary" onclick="sendData()">
                             Bestätigen
@@ -216,7 +223,7 @@
 </div>
 
 
-<script src="../javascript/adminView.js"></script>
+<script src="../../../javascript/adminView.js"></script>
 <script>
     var close = document.getElementsByClassName("close");
     var i;
@@ -230,7 +237,7 @@
     }
 
     function addUserPopUp() {
-        F = window.open("addUser.html", "Popup", "width=400,height=580");
+        F = window.open("/addUser", "Popup", "width=400,height=580");
     }
 
 </script>
@@ -240,7 +247,7 @@
 </body>
 
 <style>
-    td:nth-of-type() {display: none;}
-    td:nth-of-type() {display: none;}
+    td:nth-of-type(7) {display: none;}
+    td:nth-of-type(8) {display: none;}
 </style>
 </html>

@@ -121,11 +121,6 @@ router.get("/passwordforgot", (request, response) => {
 
 });
 
-router.get("/adminView", (request, response) => {
-
-    response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/adminView.html");
-
-});
 
 router.get("/impressum", (request, response) => {
 
@@ -135,14 +130,36 @@ router.get("/impressum", (request, response) => {
 
 router.get("/userInfo", (request, response) => {
 
-    response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/userView.html");
+    response.sendFile(path.path + "/Gruppe_1_Registrierung/privat/html/userView.html");
 
 });
 
 router.get("/admin", (request, response) => {
 
-    response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/adminView.html");
+    response.sendFile(path.path + "/Gruppe_1_Registrierung/privat/html/adminView.html");
 
+});
+
+router.get("/lecturerView", (request, response) => {
+
+    response.sendFile(path.path + "/Gruppe_1_Registrierung/privat/html/lecturerView.html");
+
+});
+
+router.get("/addUser", (request, response) => {
+
+    response.sendFile(path.path + "/Gruppe_1_Registrierung/privat/html/addUser.html");
+
+});
+
+router.get("/showUsers", (request, response) => {
+    if (request.session.userAuthorization === "lecturer") {
+        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/lecturerView.html');
+    } else if(request.session.userAuthorization === "admin") {
+        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/adminView.html');
+    } else {
+        response.redirect("/profil");
+    }
 });
 
 module.exports = router;

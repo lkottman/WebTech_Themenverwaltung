@@ -53,11 +53,15 @@ let staticOptions = {
 //imports
 app.use('/css',express.static('./Gruppe_1_Registrierung/public/css'));
 app.use('/css',express.static('./css'));
+app.use('/javascript',express.static('./javascript'));
+app.use('/css',express.static('./Gruppe_1_Registrierung/private/css'));
 app.use('/images',express.static('./Gruppe_1_Registrierung/public/images'));
 app.use('/',express.static('./Gruppe_1_Registrierung/public/html'));
 app.use('/javascript',express.static('./Gruppe_1_Registrierung/public/javascript'));
 app.use('/javascript',express.static('./Gruppe_1_Registrierung/privat/javascript'));
 app.use('/privat/images',express.static('./Gruppe_1_Registrierung/privat/images'));
+
+
 
 app.use('/CSS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/CSS'));
 app.use('/JS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/JS'));

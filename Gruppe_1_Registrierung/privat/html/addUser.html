@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <title>Benutzer hinzufügen</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
-    <script src="../javascript/register.js" type="text/javascript" language="JavaScript"></script>
-    <script src="../javascript/addUser.js" type="text/javascript" language="JavaScript"></script>
+    <script src="../../../javascript/addUser.js" type="text/javascript" language="JavaScript"></script>
 
     <style>
         .userProfilContent {
@@ -86,25 +85,6 @@
     </button>
     <br>
 </form>
-<script>
-    function checkPassword() {
-        let password = document.getElementById("password").value;
-        let password1 = document.getElementById("passwordConf").value;
 
-        passwordBackground = document.getElementById("passwordConf");
-
-        if (password != password1 || password.length > 255) {
-            passwordBackground.style.borderColor = "red";
-            passwordBackground.style.boxShadow = "0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px red";
-            passwordBackground.style.outline = "none";
-            return false;
-        } else {
-            passwordBackground.style.borderColor = "rgba(126, 239, 104, 0.8)";
-            passwordBackground.style.boxShadow = "0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.8)";
-            passwordBackground.style.outline = "none";
-            return true;
-        }
-    }
-</script>
 </body>
 </html>

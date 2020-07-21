@@ -12,9 +12,8 @@ class UserToAdd {
     getSelectedUser(){
         let name    =  document.getElementById("vorname").value;
         let surname =  document.getElementById("nachname").value;
-        let e_mail  =  document.getElementById("e-Mail").value;
-        let role     = document.getElementById("rolle").value;
-        let course   = document.getElementById("studiengang").value;
+        let e_mail  =  document.getElementById("email").value;
+        let role     = document.getElementById("role").value;
         let password = document.getElementById("password").value;
 
 
@@ -24,12 +23,13 @@ class UserToAdd {
         console.log(role);
         console.log(password);
 
-        return new UserToUpdate( name, surname, e_mail, password, role);
+        return new UserToAdd( name, surname, e_mail, password, role);
 
     }
 }
 
 function sendAddUser(){
+    console.log("TEst");
     let user = new UserToAdd().getSelectedUser();
     console.log(user);
     console.log(JSON.stringify(user))
@@ -44,4 +44,23 @@ function sendAddUser(){
     fetch('/addUser', options)
         .then(response => response.json())
 
+}
+
+function checkPassword() {
+    let password = document.getElementById("password").value;
+    let password1 = document.getElementById("passwordConf").value;
+
+    passwordBackground = document.getElementById("passwordConf");
+
+    if (password != password1 || password.length > 255) {
+        passwordBackground.style.borderColor = "red";
+        passwordBackground.style.boxShadow = "0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px red";
+        passwordBackground.style.outline = "none";
+        return false;
+    } else {
+        passwordBackground.style.borderColor = "rgba(126, 239, 104, 0.8)";
+        passwordBackground.style.boxShadow = "0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.8)";
+        passwordBackground.style.outline = "none";
+        return true;
+    }
 }
