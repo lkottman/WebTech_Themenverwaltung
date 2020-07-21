@@ -11,17 +11,23 @@ function createToken() {
 
 
     let start = new Date();
-    let end = document.getElementById("token").value;
-    if (end === "")
-        end = 0;
+    let end = new Date();
+
+    let tokenTime = document.getElementById("token").value;
+
+    if (tokenTime === ""){
+        tokenTime = 0
+    }
 
     end.setMinutes(start.getMinutes()
-        + parseInt(document.getElementById("token").value));
+        + parseInt(tokenTime));
     let genToken = Math.random().toString(36).substr(2, 6);
     let time = parseInt(document.getElementById("token").value);
 
     start = start.toISOString().slice(0, 19).replace('T', ' ');
     end = end.toISOString().slice(0, 19).replace('T', ' ');
+
+
 
     token = new Token(start, end, genToken, time);
 
@@ -142,6 +148,7 @@ function setMaxDate(){
 
     maxDate = year + "-" + month + "-" + day;
     document.getElementById("endCalender").max = maxDate + "T23:59";
+    document.getElementById("startCalender").max = maxDate + "T23:59";
 }
 
 
