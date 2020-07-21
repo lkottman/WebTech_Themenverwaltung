@@ -93,29 +93,67 @@ router.post("/register",  (request, response) => {
 
 router.post("/changeUser",  (request, response) => {
 
-    var ID = request.body.userID;
-    var name = request.body.surname;
+    var ID = request.body.id;
+    var name = request.body.name;
+    var surname = request.body.surname;
+    var email = request.body.email;
+    var password = request.body.password;
+    var verified = request.body.verified;
+    var course = request.body.course;
+    var authorization = request.body.authorization;
+
+    var sqlStatement = "UPDATE user "
+        + 'SET name = "' + `${name}`  + '"'
+        + ' ,  surname = "' + `${surname}` + '"'
+        + ' ,  e_mail = "' +  `${email}` + '"'
+        + ' ,  password = "' + `${password}` + '"'
+        + ' ,  verified = ' + `${verified}` + ''
+        + ' ,  course = "' + `${course}` + '"'
+        + ' ,  authorization = "' + `${authorization}` + '"'
+        + ' WHERE id = ' + `${ID}` + ";"
+
+    connection.query(sqlStatement, function(err, result){
+        console.log("SQL:   "+sqlStatement);
+        if(err) {
+
+            console.log(err);
+            response.end();
+        }
+        response.contentType('application/json');
+        response.json(result);
+        return result;
+    });
+});
+
+
+router.post("/addUser",  (request, response) => {
+
+    var name = request.body.name;
+    var surname = request.body.surname;
     var email = request.body.e_mail;
     var password = request.body.password;
     var verified = request.body.verified;
     var authorization = request.body.authorization;
 
-    var sqlStatement = "UPDATE user "
+    var sqlStatement = '"INSERT INTO user "'
         + 'SET name = "' + `${name}`  + '"'
+        + ' AND SET surname = "' + `${surname}` + '"'
         + ' AND SET e_mail = "' +  `${email}` + '"'
         + ' AND SET password = "' + `${password}` + '"'
-        + ' AND SET verified = "' + `${verified}` + '"'
-        + ' AMD SET authorization = "' + `${authorization}` + '"' +
-        + ' where id = ' + `${ID}` + ";"
+        + ' AMD SET authorization = "' + `${authorization}` + '"'
+        +  ";"
 
     connection.query(sqlStatement, function(err, result){
-        if(err)
-            throw err;
-        else{
+        if(err) {
+            console.log(err);
             response.end();
         }
+        response.contentType('application/json');
+        response.json(result);
+        return result;
     });
 });
+
 
 module.exports = router;
 

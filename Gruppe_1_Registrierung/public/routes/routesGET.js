@@ -35,7 +35,7 @@ let url = 'https://example.com';
 
 router.get("/getUser", (request, response) => {
 
-    let sql = "SELECT id, name, surname, e_mail, password, course, authorization FROM USER;";
+    let sql = "SELECT id, name, surname, e_mail, password, course, authorization, verified FROM USER;";
 
     connection.query(sql,(err, result, )  => {
         if(err) {
@@ -105,13 +105,6 @@ router.get("/confirmation", (request, response) => {
 });
 
 
-router.get("/admin", (request, response) => {
-
-    response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/adminView.html");
-
-});
-
-
 router.get("/passwordforgot", (request, response) => {
 
     response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/passwordForgot.html");
@@ -133,6 +126,12 @@ router.get("/impressum", (request, response) => {
 router.get("/userInfo", (request, response) => {
 
     response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/userView.html");
+
+});
+
+router.get("/admin", (request, response) => {
+
+    response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/adminView.html");
 
 });
 

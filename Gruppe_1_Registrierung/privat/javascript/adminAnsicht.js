@@ -36,31 +36,63 @@ function changeVisibility(input) {
 
 class UserToUpdate {
     // id?
-    constructor(name, surname,email, password, authorization, course) {
+    constructor(name, surname,email, password, authorization, course, verified, id) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
-        this.password = authorization;
+        this.authorization = authorization;
         this.course = course;
+        this.verified = verified;
+        this.id = id;
     }
 
      getSelectedUser(){
-        let surname =  document.getElementById("vorname").value;
-        let name    =  document.getElementById("nachname").value;
+         let name    =  document.getElementById("vorname").value;
+        let surname =  document.getElementById("nachname").value;
         let e_mail  =  document.getElementById("e-Mail").value;
-        let course   = document.getElementById("studiengang").value;
         let role     = document.getElementById("rolle").value;
+         let course   = document.getElementById("studiengang").value;
         let password = document.getElementById("password").value;
-        return new UserToUpdate( name, surname, e_mail, course, role, password);
+         let verified   = document.getElementById("verified").value;
+         let userID   = document.getElementById("userID").value;
+
+         console.log(name);
+         console.log(surname);
+         console.log(e_mail);
+         console.log(role);
+         console.log(course);
+         console.log(password);
+         console.log(verified);
+         console.log(userID);
+
+        return new UserToUpdate( name, surname, e_mail, password, role,course, verified, userID );
+
     }
 }
 
 function sendData(){
-
-
     let user = new UserToUpdate().getSelectedUser();
     console.log(user);
+    console.log(JSON.stringify(user))
+
+
+    const options = {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(user)
+    };
+
+    fetch('/changeUser', options)
+            .then(response => response.json())
+        .then(data => {
+
+            if (data.login === "success"){
+                alert("Geht!");
+            } else {
+                alert("Nope");
+            }
+        })
 }
 
 
