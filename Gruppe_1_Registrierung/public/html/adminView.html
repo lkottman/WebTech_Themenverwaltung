@@ -100,6 +100,9 @@
                     <th onclick="sortTable(2)">E-Mail</th>
                     <th onclick="sortTable(3)">Studiengang</th>
                     <th onclick="sortTable(4)">Rolle</th>
+                    <th onclick="sortTable(5)">Verifiziert</th>
+                    <th style="display: ">ID</th>
+                    <th style="display: ">pwd</th>
                 </tr>
                 </thead>
                 <tbody id="userListContent"></tbody>
@@ -163,9 +166,9 @@
                         <div>
 
                             <select class="inputBox" id="rolle" disabled="disabled">
-                                <option >Admin</option>
-                                <option >dozent</option>
-                                <option >student</option>
+                                <option value="admin">Admin</option>
+                                <option value="docent">Dozent</option>
+                                <option value="student">Student</option>
                             </select>
                             <button id="rolleBtn" type="button" onclick="changeSelectStatus('rolle')" class="btn btn-default" aria-label="Left Align"
                                     style="border: none">
@@ -173,6 +176,24 @@
                             </button>
                         </div>
                     </div>
+
+
+                    <div class="userProfilBoxes">
+                        <label for="verfiedBtn"> Verifiziert:</label>
+                        <div>
+
+                            <select class="inputBox" id="verified" disabled="disabled">
+                                <option value="1">Ja</option>
+                                <option value="0">Nein</option>
+                            </select>
+                            <button id="verfiedBtn" type="button" onclick="changeSelectStatus('verified')" class="btn btn-default" aria-label="Left Align"
+                                    style="border: none">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+
                     <div class="userProfilBoxes">
                         <label for="password"> Passwort: </label>
                         <div>
@@ -217,4 +238,9 @@
 
 </script>
 </body>
+
+<style>
+    td:nth-of-type() {display: none;}
+    td:nth-of-type() {display: none;}
+</style>
 </html>

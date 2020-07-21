@@ -25,12 +25,18 @@ function renderHTML(data) {
         var column3 = x.insertCell(2);
         var column4 = x.insertCell(3);
         var column5 = x.insertCell(4);
+        var column6 = x.insertCell(5);
+        var column7 = x.insertCell(6);
+        var column8 = x.insertCell(7);
 
         column1.innerHTML = data[i].name;
         column2.innerHTML = data[i].surname;
         column3.innerHTML = data[i].e_mail;
         column4.innerHTML = data[i].course;
         column5.innerHTML = data[i].authorization;
+        column6.innerHTML = data[i].verified;
+        column7.innerHTML = data[i].id;
+        column8.innerHTML = data[i].password;
 
         rowCounter++;
     }
@@ -75,6 +81,7 @@ function sortTable(n) {
     }
 }
 
+
 window.addEventListener('click', function () {
     var table = document.getElementById('userlist');
     for (var i = 1; i < table.rows.length; i++) {
@@ -86,15 +93,19 @@ window.addEventListener('click', function () {
                 console.log("i: "+i+"  j:"+ j +"  value: "+msg)
                 switch (j) {
                     case 0:
-                        document.getElementById("nachname").value = this.cells[j].innerHTML;
-                    case 1:
                         document.getElementById("vorname").value = this.cells[j].innerHTML;
+                    case 1:
+                        document.getElementById("nachname").value = this.cells[j].innerHTML;
                     case 2:
                         document.getElementById("e-Mail").value = this.cells[j].innerHTML;
                     case 3:
                         document.getElementById("studiengang").value = this.cells[j].innerHTML;
                     case 4:
                         document.getElementById("rolle").value = this.cells[j].innerHTML;
+                    case 5:
+                        document.getElementById("verified").value = this.cells[j].innerHTML;
+                    case 7:
+                       document.getElementById("password").value = this.cells[j].innerHTML;
                 }
             }
             console.log(msg)
