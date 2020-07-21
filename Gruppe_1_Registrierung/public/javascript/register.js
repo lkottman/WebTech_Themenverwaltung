@@ -23,7 +23,7 @@ async function register() {
         document.getElementById("password").value
     );
 
-//TODO Serverseitig abprüfen
+
     if (validateEmail(document.getElementById("email").value) === true
         && checkPasswords() === true
         && document.getElementById("checkAgb").checked === true) {
