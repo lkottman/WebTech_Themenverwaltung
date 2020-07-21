@@ -1,3 +1,11 @@
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
+
+
 class UserToVerify {
 
     constructor(email, token) {
@@ -7,25 +15,12 @@ class UserToVerify {
     }
 
     getUserToVerify(){
-        let email = getQueryParams("email");
-        let token    = getQueryParams("opt");
+        let email = getUrlParameter("email");
+        let token    = getUrlParameter("opt");
         return new UserToVerify(email, token);
     }
 }
 
-function getQueryParams(qs) {
-    qs = qs.split('+').join(' ');
-
-    var params = {},
-        tokens,
-        re = /[?&]?([^=]+)=([^&]*)/g;
-
-    while (tokens = re.exec(qs)) {
-        params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
-    }
-
-    return params;
-}
 
 
 async function sendUserDataToConfirm() {
