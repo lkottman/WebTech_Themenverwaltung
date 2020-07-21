@@ -47,6 +47,7 @@ app.use('/',express.static('./Gruppe_1_Registrierung/public/html'));
 app.use('/javascript',express.static('./Gruppe_1_Registrierung/public/javascript'));
 app.use('/javascript',express.static('./Gruppe_1_Registrierung/privat/javascript'));
 app.use('/privat/images',express.static('./Gruppe_1_Registrierung/privat/images'));
+
 app.use('/CSS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/CSS'));
 app.use('/JS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/JS'));
 app.use('/HTML',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/HTML'));
