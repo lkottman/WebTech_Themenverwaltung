@@ -43,7 +43,6 @@ router.post("/register",  (request, response) => {
         var defered = Q.defer();
         connection.query(sqlStatement, defered.makeNodeResolver());
         return defered.promise;
-
     }
 
     function insertData (){
@@ -92,6 +91,31 @@ router.post("/register",  (request, response) => {
 
 });
 
+router.post("/changeUser",  (request, response) => {
+
+    var ID = request.body.userID;
+    var name = request.body.surname;
+    var email = request.body.e_mail;
+    var password = request.body.password;
+    var verified = request.body.verified;
+    var authorization = request.body.authorization;
+
+    var sqlStatement = "UPDATE user "
+        + 'SET name = "' + `${name}`  + '"'
+        + ' AND SET e_mail = "' +  `${email}` + '"'
+        + ' AND SET password = "' + `${password}` + '"'
+        + ' AND SET verified = "' + `${verified}` + '"'
+        + ' AMD SET authorization = "' + `${authorization}` + '"' +
+        + ' where id = ' + `${ID}` + ";"
+
+    connection.query(sqlStatement, function(err, result){
+        if(err)
+            throw err;
+        else{
+            response.end();
+        }
+    });
+});
 
 module.exports = router;
 
