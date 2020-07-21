@@ -80,6 +80,16 @@ router.get("/token", (request, response) => {
     }
 });
 
+router.get("/showUsers", (request, response) => {
+    if (request.session.userAuthorization === "lecturer") {
+        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/showUsersLexturer.html');
+    } else if(request.session.userAuthorization === "admin") {
+        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/showUsersAdmin.html');
+    } else {
+        response.redirect("/profil");
+    }
+});
+
 router.get("/", (request, response) => {
 
     response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/index.html');

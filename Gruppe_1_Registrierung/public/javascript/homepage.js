@@ -104,6 +104,13 @@ function getCookie(name) {
     return null;
 }
 
+function cookieDismiss() {
+    setCookie('cookieDismiss','1',7);
+    pureFadeOut("cookieConsentContainer");
+    confirmCookie = true;
+    cookiePopup();
+}
+
 function eraseCookie() {
     cookieDismiss();
     document.cookie = 'cookieDismiss =; expires=Thu, 01-Jan-70 00:00:01 GMT;';
@@ -122,9 +129,4 @@ function cookieConsent() {
     }
 }
 
-function cookieDismiss() {
-    setCookie('cookieDismiss','1',7);
-    pureFadeOut("cookieConsentContainer");
-    confirmCookie = true;
-    cookiePopup();
-}
+
