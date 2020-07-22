@@ -118,13 +118,5 @@ function sendMyData(){
     fetch('/changeMyUser', options)
         .then(response => response.json())
         .then(data => {
-
-            if (data.login === "success"){
-                alert("Geht!");
-            } else {
-                alert("Nope");
-            }
-
-
         })
 }
