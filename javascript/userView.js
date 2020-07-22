@@ -1,7 +1,8 @@
+let cookieID = ""
 fetch('/cookie')
     .then(response => response.json())
     .then(data => {
-
+     cookieID = data.userId
         console.log(data.userId);
     })
     .catch(error => console.error(error))
@@ -51,10 +52,10 @@ function addReadonly() {
 function deleteMyUserMessage() {
     if(confirm("ACHTUNG!\nSie sind dabei Ihren Account zu löschen!")){
 
-        console.log("Test")
-        let user = new UserToUpdate().getSelectedUser();
+
+        let user = new UserToUpdate().getSelectUser();
         console.log(user);
-        console.log(JSON.stringify(user))
+        console.log("t_: "+JSON.stringify(user))
 
 
         const options = {
@@ -66,47 +67,51 @@ function deleteMyUserMessage() {
         fetch('/deleteUser', options)
             .then(response => response.json())
             .then(data => {
+            })
+
+
+        fetch('/logout', options)
+            .then(response => response.json())
+            .then(data => {
 
             })
-        location.reload()
+
     }
 }
 
 
 class UserToUpdate {
-    // id?
-    constructor(name, surname,email, password, course, verified, id) {
+    constructor(name, surname,email, password, course, id) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
         this.course = course;
-        this.verified = verified;
+        this.id = id;
     }
 
-    getSelectedUser(){
+    getSelectUser(){
         let name    =  document.getElementById("vorname").value;
         let surname =  document.getElementById("nachname").value;
         let e_mail  =  document.getElementById("e-Mail").value;
-        let course   = document.getElementById("studiengang").value;
         let password = document.getElementById("password").value;
+        let course   = document.getElementById("studiengang").value;
+        let id = cookieID
 
         console.log(name);
         console.log(surname);
         console.log(e_mail);
         console.log(course);
         console.log(password);
+        console.log(cookieID)
 
-        return new UserToUpdate( name, surname, e_mail, password,course );
+        return new UserToUpdate( name, surname, e_mail, password,course,id);
 
     }
 }
 
 function sendMyData(){
-    console.log("Test")
-    let user = new UserToUpdate().getSelectedUser();
-    console.log(user);
-    console.log(JSON.stringify(user))
+    let user = new UserToUpdate().getSelectUser();
 
 
     const options = {

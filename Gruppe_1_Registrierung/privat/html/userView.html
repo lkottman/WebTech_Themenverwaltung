@@ -61,12 +61,12 @@
             </a>
         </div>
         <div class="dropdown">
-            <form action="/userInfo">
+            <form action="/showUsers">
                 <button class="header_button">Benutzer</button>
             </form>
         </div>
         <div class="dropdown">
-            <form action="/logout">
+            <form action="/logout" method="post">
                 <button class="header_button">Logout</button>
             </form>
         </div>
@@ -199,11 +199,10 @@
 </div>
 <br><br>
 </body>
+<footer>
+    <div style="text-align: center">© 2020 Copyright:
+        <a href="/Impressum"> zum Impressum geht es hier lang</a>
+    </div>
+</footer>
 
-
-<script>
-    function PopupFenster() {
-        F = window.open("profilUebersichtTest.html", "Popup", "width=400,height=300");
-    }
-</script>
 </html>

@@ -108,7 +108,7 @@ router.get("/showUsers", (request, response) => {
     } else if(request.session.userAuthorization === "admin") {
         response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/adminView.html');
     } else {
-        response.redirect("/profil");
+        response.redirect("/userInfo");
     }
 });
 
@@ -155,14 +155,18 @@ router.get("/userInfo", (request, response) => {
 });
 
 router.get("/admin", (request, response) => {
-
-    response.sendFile(path.path + "/Gruppe_1_Registrierung/privat/html/adminView.html");
-
+    if(request.session.userAuthorization === "admin") {
+        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/adminView.html');
+    } else {
+        response.redirect("/userInfo");
+    }
 });
 
 router.get("/lecturerView", (request, response) => {
-
-    response.sendFile(path.path + "/Gruppe_1_Registrierung/privat/html/lecturerView.html");
+    if (request.session.userAuthorization === "lecturer") {
+        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/lecturerView.html');
+    } else
+        response.redirect("/UserInfo");
 
 });
 

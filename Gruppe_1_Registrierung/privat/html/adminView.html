@@ -62,12 +62,12 @@
             </a>
         </div>
         <div class="dropdown">
-            <form action="/userInfo">
+            <form action="/showUsers">
                 <button class="header_button">Benutzer</button>
             </form>
         </div>
         <div class="dropdown">
-            <form action="/logout">
+            <form action="/logout" method="post">
                 <button class="header_button">Logout</button>
             </form>
         </div>
@@ -156,9 +156,18 @@
                     <div class="userProfilBoxes">
                         <label for="studiengang"> Studiengang:</label>
                         <div>
-                            <input class="inputBox" type="text" value="Studiengang" id="studiengang" readonly>
-                            <button id="studiengangBtn" type="button" onclick="changeFieldStatus('studiengang')" class="btn btn-default" aria-label="Left Align"
-                                    style="float: left; border: none">
+                            <select class="inputBox" id="studiengang" disabled="disabled">
+                                <option selected>Studiengang</option>
+                                <option value="wirtschaftsinformatik"> Wirtschaftsinformatik</option>
+                                <option value="bwl"> Betriebswirtschaft und Management</option>
+                                <option value="maschienenbau"> Maschinenbau</option>
+                                <option value="wing"> Wirtschaftsingenieurwesen</option>
+                                <option value="wingMaster"> Wirtschaftsingenieurwesen – Energiewirtschaft
+                                    (Master)
+                                </option>
+                            </select>
+                            <button id="studiengangBtn" type="button" onclick="changeSelectStatus('studiengang')" class="btn btn-default" aria-label="Left Align"
+                                    style="border: none">
                                 <i class="fas fa-pencil-alt"></i>
                             </button>
                         </div>
@@ -258,6 +267,11 @@
 <script>
 </script>
 </body>
+<footer>
+    <div style="text-align: center">© 2020 Copyright:
+        <a href="/Impressum"> zum Impressum geht es hier lang</a>
+    </div>
+</footer>
 
 <style>
     td:nth-of-type(7) {display: none;}

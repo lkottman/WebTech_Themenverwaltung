@@ -127,6 +127,15 @@ body{
     color: #1c9dd9;
 }
 
+footer {
+    background-color: #e8f0fe;
+    height: 40px;
+    position: fixed;
+    padding: 10px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
 
 
 
