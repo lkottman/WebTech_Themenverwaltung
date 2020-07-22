@@ -70,7 +70,7 @@ router.post("/login",  (request, response) => {
                         request.session.userAuthorization = result[0].authorization;
 
                         response.json({login: "success"})
-                        // response.redirect("/home");
+
                     }
                 }
             }

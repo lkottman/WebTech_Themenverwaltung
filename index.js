@@ -1,19 +1,13 @@
 const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
-const fs = require('fs');
 const app = express();
-const nodemailer = require('nodemailer');
+
 
 configDatabase = require("./config/datenbankConfig.json");
 const config = configDatabase;
 
-let http = require("http");
-let url = require("url");
 let mysql = require("mysql");
-
-// https://youtu.be/OH6Z0dJ_Huk?t=1466
-
 
 let connection = mysql.createConnection(
     {
@@ -61,8 +55,6 @@ app.use('/javascript',express.static('./Gruppe_1_Registrierung/public/javascript
 app.use('/javascript',express.static('./Gruppe_1_Registrierung/privat/javascript'));
 app.use('/privat/images',express.static('./Gruppe_1_Registrierung/privat/images'));
 
-
-
 app.use('/CSS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/CSS'));
 app.use('/JS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/JS'));
 app.use('/HTML',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/HTML'));
@@ -96,7 +88,6 @@ const redirectCookie = (request, response, next) => {
     }
 };
 
-
 // Redirect to Login if there are no cookies. No Access to the private sites
 const redirectLogin = (request, response, next) => {
 
@@ -107,7 +98,6 @@ const redirectLogin = (request, response, next) => {
         next();
     }
 };
-
 // Redirect to Home if User is logged in. There is no need to go to the login/registration Site if
 // logged in
 const redirectHome = (request, response, next) => {
@@ -157,15 +147,15 @@ app.get("/successfullregistration",redirectCookie, router);
 app.get("/resetpassword", router);
 app.get("/token",redirectLogin, router);
 app.get("/home",redirectLogin, router);
-app.get("/admin", router);
-app.get("/getUser", router);
+app.get("/admin",redirectLogin, router);
+app.get("/getUser",redirectLogin, router);
 app.get("/confirmation", router);
 app.get("/passwordforgot", router);
 app.get("/register", router);
 app.get("/changepassword", router);
-app.get("/adminView", router);
+app.get("/adminView",redirectLogin, router);
 app.get("/impressum", router);
-app.get("/userInfo", router);
+app.get("/userInfo",redirectLogin, router);
 app.get("/presentation", router);
 
 
