@@ -29,9 +29,6 @@ app.use(session({
 
 router.post("/createToken",  (request, response) => {
 
-    console.log(request.body.time);
-    console.log("Createed");
-
     if (request.body.time < tokenLifeTime) {
 
         connection.query("INSERT INTO TOKEN(START,TIME,END,GENTOKEN, USER) VALUES("
@@ -113,7 +110,6 @@ router.get("/getToken", (request, response) => {
         response.json({token: "error"});
     }
 });
-
 
 
 module.exports = router;

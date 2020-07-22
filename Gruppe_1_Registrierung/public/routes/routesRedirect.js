@@ -1,19 +1,6 @@
 const express = require('express')
 const router = express.Router()
 
-//Configuration Cookies
-// router.use(session({
-//     name: sessionName,
-//     resave: false,
-//     saveUninitialized: false,
-//     secret: secretSession,
-//     cookie: {
-//         maxAge: sessionLifetime,
-//         sameSite: true,
-//         secure: false    //in development in production :true
-//     }
-// }));
-
 // Redirect to Login if there are no cookies. No Access to the private sites
 const redirectLogin = (request, response, next) => {
 

@@ -11,12 +11,10 @@ const path = require("../../../config/pathConfig.json");
 
 
 router.get("/login",  (request, response) => {
-    console.log(request.session.enabledCookies + " Cookie ");
         response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/login.html");
 });
 
 router.get("/home", (request, response) => {
-    console.log("home");
     response.sendFile(path.path + "/Gruppe_1_Registrierung/privat/html/home.html");
 });
 
@@ -104,7 +102,6 @@ router.get("/successfullregistration", (request, response) => {
     response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/successRegister.html');
 });
 
-
 router.get("/changepassword", (request, response) => {
     response.sendFile(path.path + '/Gruppe_1_Registrierung/public/html/changePassword.html');
 });
@@ -113,7 +110,6 @@ router.get("/confirmation", (request, response) => {
 
     response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/confirmEmail.html");
 });
-
 
 router.get("/passwordforgot", (request, response) => {
 
