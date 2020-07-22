@@ -125,6 +125,36 @@ router.post("/changeUser",  (request, response) => {
     });
 });
 
+router.post("/changeMyUser",  (request, response) => {
+
+    var ID = request.session.userId;
+    var name = request.body.name;
+    var surname = request.body.surname;
+    var email = request.body.email;
+    var password = request.body.password;
+    var course = request.body.course;
+
+    var sqlStatement = "UPDATE user "
+        + 'SET name = "' + `${name}`  + '"'
+        + ' ,  surname = "' + `${surname}` + '"'
+        + ' ,  e_mail = "' +  `${email}` + '"'
+        + ' ,  password = "' + `${password}` + '"'
+        + ' ,  course = "' + `${course}` + '"'
+        + ' WHERE id = ' + `${ID}` + ";"
+
+    connection.query(sqlStatement, function(err, result){
+        console.log("SQL:   "+sqlStatement);
+        if(err) {
+
+            console.log(err);
+            response.end();
+        }
+        response.contentType('application/json');
+        response.json(result);
+        return result;
+    });
+});
+
 
 router.post("/addUser",  (request, response) => {
 
@@ -142,6 +172,28 @@ router.post("/addUser",  (request, response) => {
         + ' ,   ' + `${password}` + ''
         + ' ,   ' + `${authorization}` + ''
         +  ");"
+
+    connection.query(sqlStatement, function(err, result){
+        console.log(sqlStatement);
+        if(err) {
+            console.log(err);
+            response.end();
+        }
+        response.contentType('application/json');
+        response.json(result);
+        return result;
+    });
+});
+
+
+//DELETE FROM `user` WHERE id =62
+
+router.post("/deleteUser",  (request, response) => {
+
+    var ID = request.body.id;
+
+    var sqlStatement = "DELETE FROM `user`"
+     + ' WHERE id = ' + `${ID}` + ";"
 
     connection.query(sqlStatement, function(err, result){
         console.log(sqlStatement);

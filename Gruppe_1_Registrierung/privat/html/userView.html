@@ -106,10 +106,10 @@
                 <div>
                     <form>
                         <figure>
-                            <button type="submit" style="float: right;">
-                                <img src="../../public/images/avatar-icon-user-svg.png" class="rounded float-right"
+                            <button type="submit" style="float: right; border-color: #555555">
+                                <img id="userImageLogo" class="rounded float-right"
                                      width="200"
-                                     height="200" style="float: right">
+                                     height="200">
                             </button>
 
                         </figure>
@@ -124,7 +124,7 @@
                     <label class="input-group-text" for="studiengang">Studiengang</label>
                 </div>
                 <select class="custom-select" id="studiengang" disabled="disabled">
-                    <option selected> Ich studieren...</option>
+                    <option selected> Ich studiere...</option>
                     <option value="wirtschaftsinformatik"> Wirtschaftsinformatik</option>
                     <option value="bwl"> Betriebswirtschaft und Management</option>
                     <option value="maschienenbau"> Maschinenbau</option>
@@ -159,7 +159,7 @@
 
 
         <button type="button" class="btn btn-outline-primary" onclick="changeReadonly()">Bearbeiten</button>
-        <button type="submit" class="btn btn-outline-secondary" onclick="addReadonly()">Bestätigen</button>
+        <button type="submit" class="btn btn-outline-secondary" onclick="addReadonly();sendMyData()">Bestätigen</button>
         <br><br>
     </form>
     <hr><br>
@@ -193,7 +193,7 @@
             Button!
         </div>
         <br>
-        <button type="button" class="btn btn-outline-danger" onclick="confirmMessage()">Nutzerdaten löschen</button>
+        <button type="button" class="btn btn-outline-danger" onclick="deleteMyUserMessage()">Nutzerdaten löschen</button>
 
     </div>
 </div>

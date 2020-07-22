@@ -53,6 +53,7 @@ class UserToUpdate {
         let e_mail  =  document.getElementById("e-Mail").value;
         let role     = document.getElementById("rolle").value;
          let course   = document.getElementById("studiengang").value;
+         console.log(document.getElementById("studiengang").value);
         let password = document.getElementById("password").value;
          let verified   = document.getElementById("verified").value;
          let userID   = document.getElementById("userID").value;
@@ -87,16 +88,32 @@ function sendData(){
     fetch('/changeUser', options)
             .then(response => response.json())
         .then(data => {
-
-            if (data.login === "success"){
-                alert("Geht!");
-            } else {
-                alert("Nope");
-            }
         })
 }
 
+function deleteUserMessage() {
+    if(confirm("ACHTUNG!\nSie sind dabei den gewälten User zu löschen")){
 
+        console.log("Test")
+        let user = new UserToUpdate().getSelectedUser();
+        console.log(user);
+        console.log(JSON.stringify(user))
+
+
+        const options = {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(user)
+        };
+
+        fetch('/deleteUser', options)
+            .then(response => response.json())
+            .then(data => {
+
+            })
+        location.reload()
+    }
+}
 
 
 

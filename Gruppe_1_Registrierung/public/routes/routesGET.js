@@ -70,6 +70,30 @@ router.get("/updateUser", (request, response) => {
 
 
 
+/**
+ *  This method provides a json object with one registerd users.
+ */
+
+router.get("/getOneUser", (request, response) => {
+
+    var userId = request.session.userId;
+    console.log(request.session.userId);
+
+
+    let sql = "SELECT name, surname, e_mail, password, semester,course FROM user where id = " + userId + ";";
+
+    connection.query(sql,(err, result, )  => {
+        if(err) {
+            console.log(err);
+            response.end();
+        }
+        response.contentType('application/json');
+        response.json(result);
+        return result;
+    });
+});
+
+
 
 router.get("/token", (request, response) => {
     if (request.session.userAuthorization === "lecturer"
@@ -82,9 +106,9 @@ router.get("/token", (request, response) => {
 
 router.get("/showUsers", (request, response) => {
     if (request.session.userAuthorization === "lecturer") {
-        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/showUsersLexturer.html');
+        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/lecturerView.html');
     } else if(request.session.userAuthorization === "admin") {
-        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/showUsersAdmin.html');
+        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/adminView.html');
     } else {
         response.redirect("/profil");
     }

@@ -2,46 +2,189 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="../javascript/token.js" type="text/javascript" language="JavaScript" ></script>
+    <meta http-equiv="Content-Type" content="text/html">
+    <link type="text/css" rel="stylesheet" href="../../../css/adminView.css" >
+    <link type="text/css" rel="stylesheet" href="../../../css/navigationBar.css">
+    <link  rel="stylesheet" type="text/css" href="../../../css/table.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
+    <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script type="text/javascript" language="JavaScript" src="../../../javascript/token.js"></script>
 
+    <title>Benutzerverwaltung</title>
 </head>
-<body>
 
-<div>
-    <input id="token" name="" onkeypress="validate()" placeholder="Zeit in Minuten angeben." required type="text">
-    <button onclick="createToken()">Erstelle Freischaltcode</button>
+<body onload="getToken();setMaxDate()">
+
+<div id="UserMenu_All_Header">
+    <div id="All_Header_left" class="All_Header_Boxes" style="float: left; margin-right: 5px">
+        <a href="https://osca.hs-osnabrueck.de/">
+            <div class="outer-wrapper" style="float:left">
+                <div class="frame" style="height: 52px">
+                    <img id="oscaImagelogo" class="oscaLogo">
+                </div>
+            </div>
+        </a>
+
+        <div class="dropdown" style="margin-left: 5px">
+            <form action="/myGroups">
+                <button class="header_button">Meine Gruppe</button>
+            </form>
+            <div class="dropdown-content">
+                <a href="/joinGroup">Gruppe beitreten</a>
+                <a href="/requirementsdefinition">Anforderungsdefinition</a>
+            </div>
+        </div>
+
+        <form action="/presentation">
+            <button class="header_button">Präsentation</button>
+        </form>
+    </div>
+
+    <div id="All_Header_right" class="All_Header_Boxes" style="float: right">
+
+        <div class="frame" style="float: left;">
+            <a href="https://my.hs-osnabrueck.de/owa/">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="mailIcon" class="far fa-envelope fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="frame" style="float: left;">
+            <a href="https://netcase.hs-osnabrueck.de">
+                <div class="outer-wrapper" style="float:left">
+                    <div class="frame" style="height: 52px">
+                        <i id="netcaseIcon" class="fas fa-briefcase fa-lg" style="font-size: 25px"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="dropdown">
+            <form action="/userInfo">
+                <button class="header_button">Benutzer</button>
+            </form>
+        </div>
+        <div class="dropdown">
+            <form action="/logout">
+                <button class="header_button">Logout</button>
+            </form>
+        </div>
+    </div>
 </div>
 
 
 <br>
+<div class="outerBox">
+    <div class="wrapper">
+        <div id="content" style="overflow-x: auto">
+            <h3>Tokenliste</h3>
+<br><br>
+            <table id="tokenList" width="100%" class="table user-list" onload>
+                <thead>
+                <tr>
+                    <th onclick="sortTable(0)">ID</th>
+                    <th onclick="sortTable(1)">Start</th>
+                    <th onclick="sortTable(2)">End</th>
+                    <th onclick="sortTable(3)">User</th>
+                </tr>
+                </thead>
+                <tbody id="userListContent"></tbody>
+            </table>
 
-<div>
-    <div>
-        <input type="datetime-local" id="startCalender">
-    </div>
-    <div>
-        <input type="datetime-local" id="endCalender" name="endCalender" >
-        <button onclick="createTokenCalender()">Erstelle Freischaltcode</button>
-    </div>
+        </div>
+        <div>
+            <form class="box" action="">
+                <h3>Token erstellen</h3>
+                <br>
+                <div class="box1">
+                    <hr>
+                    <div>
+                        <div style="margin-top: 1em">
+                            <h5>50 Minuten Token ertellen</h5>
+                            <button type="button" class="btn btn-outline-primary" onclick="createToken()">
+                                Erstelle Token
+                            </button>
+                        </div>
+                        <div style="margin-top: 1em">
+                            <input type="text" class="form-control form-control-sm"
+                                   placeholder="Zeit in Minuten angeben" id="token" style="width: 340px" onkeypress="validate()">
+                        </div>
 
+                        <br>
+                        <br>
+
+                        <div style="margin-top: 1em">
+                            <h5>Unbegrenzten Token ertellen</h5>
+                            <button type="button" class="btn btn-outline-primary" onclick="createTokenCalender()">
+                                Erstelle Token
+                            </button>
+                        </div>
+                        <div>
+                            <div style="width: 400px; margin-top: 1em">
+                                <label for="startCalender" style="float: left">Startdatum</label>
+                                <input type="datetime-local" class="form-control" id="startCalender"
+                                       style="width: 340px; float: left">
+                            </div>
+                            <br>
+                            <br><br>
+                            <div style="width: 400px; margin-top: 1em">
+                                <label for="endCalender" style="float: left">Enddatum</label>
+                                <input type="datetime-local" class="form-control" id="endCalender"
+                                       style="width: 340px; float: left">
+                            </div>
+                            <br>
+                        </div>
+                        <br>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <div>
+                        <h2>Token löschen</h2>
+                        <div>Hier können Sie einen Token eingeben den sie löschen möchten
+                        </div>
+                        <div style="margin-top: 1em">
+                            <h5>Token eingeben</h5>
+                            <button type="button" class="btn btn-outline-danger" onclick="deleteMessage()">
+                                Token löschen
+                            </button>
+                        </div>
+                        <div style="margin-top: 1em">
+                            <input type="text" class="form-control form-control-sm" placeholder="Token eingeben"
+                                   id="deleteToken" style="width: 340px">
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
-<br>
+<script>
+    var close = document.getElementsByClassName("close");
+    var i;
 
-<div>
-    <input id="deleteToken" name="" type="text" placeholder="Token angeben.">
-    <button onclick="deleteToken()">Lösche Freischaltcode</button>
-</div>
+    for (i = 0; i < close.length; i++) {
+        close[i].onclick = function(){
+            var div = this.parentElement;
+            div.style.opacity = "0";
+            setTimeout(function(){ div.style.display = "none"; }, 600);
+        }
+    }
 
-<button onclick="getToken()">HOLE TOKEN</button>
+    function addUserPopUp() {
+        F = window.open("/addUser", "Popup", "width=400,height=580");
+    }
 
-<br> <br>
-<p id="demo"></p>
-<p id="demo1"></p>
-<p id="demo2"></p>
-<p id="demo3"></p>
-
-
+</script>
+<script>
+</script>
 </body>
+
+<style>
+    td:nth-of-type(7) {display: none;}
+    td:nth-of-type(8) {display: none;}
+</style>
 </html>

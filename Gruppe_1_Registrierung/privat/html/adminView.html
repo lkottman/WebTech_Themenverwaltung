@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
     <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script type="text/javascript" language="JavaScript" src="../../../javascript/adminAnsicht.js"></script>
+    <script type="text/javascript" language="JavaScript" src="../../../javascript/token.js"></script>
 
     <title>Benutzerverwaltung</title>
 </head>
@@ -113,6 +114,7 @@
         <div>
             <form class="box" action="">
                 <h3>Benutzerinfomationen</h3>
+                <br>
                 <div class="box1">
 
                     <div class="userProfilBoxes">
@@ -216,6 +218,18 @@
                             Bestätigen
                         </button>
                     </div>
+                    <hr><br>
+
+                    <div>
+                        <h2>Benutzer löschen</h2>
+                        <div>Hier können Sie den gewählten User löschen
+                        </div>
+                        <div style="margin-top: 1em">
+                            <button  type="button" class="btn btn-outline-danger" onclick="deleteUserMessage()">
+                                Benutzer löschen
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
@@ -242,7 +256,6 @@
 
 </script>
 <script>
-
 </script>
 </body>
 
