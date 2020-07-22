@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const {sendMail, getTextConfirmationEmail, getMailOptions} = require('../nodeMailer/nodeMailer.js');
 const connection = require("../../../../getConnectionDatabase");
-var q = require('q');
+var Q = require('Q');
 
 function validateEmail(email) {
     return /^\"?[\w-_\.]*\"?@hs-osnabrueck\.de$/.test(email);
@@ -10,6 +10,12 @@ function validateEmail(email) {
 
 
 router.post("/register",  (request, response) => {
+
+    // if(request.method == "OPTIONS"){
+    //     response.set('Access-Control-Allow-Origin', '*');
+    //     response.set('Access-Control-Allow-Headers', 'Content-Type');
+    //     response.status(204).send('');
+    // }
 
     if(validateEmail(request.body.email === false)){
         response.json({register: "Nur E-Mail Adressen mit der Endung '@hs-osnabrueck.de' sind zugelassen."});
@@ -34,7 +40,7 @@ router.post("/register",  (request, response) => {
     var sqlStatement = sqlToken + sqlEmail;
 
     function getData(){
-        var defered = q.defer();
+        var defered = Q.defer();
         connection.query(sqlStatement, defered.makeNodeResolver());
         return defered.promise;
     }
@@ -51,7 +57,7 @@ router.post("/register",  (request, response) => {
 
         } else {
 
-            q.all([getData()]).then(function (result) {
+            Q.all([getData()]).then(function (result) {
 
                 let dbToken = result[0][0][0][0];
                 let dbUser = result[0][0][1][0];
@@ -119,78 +125,25 @@ router.post("/changeUser",  (request, response) => {
     });
 });
 
-router.post("/changeMyUser",  (request, response) => {
-
-    var ID = request.session.userId;
-    var name = request.body.name;
-    var surname = request.body.surname;
-    var email = request.body.email;
-    var password = request.body.password;
-    var course = request.body.course;
-
-    var sqlStatement = "UPDATE user "
-        + 'SET name = "' + `${name}`  + '"'
-        + ' ,  surname = "' + `${surname}` + '"'
-        + ' ,  e_mail = "' +  `${email}` + '"'
-        + ' ,  password = "' + `${password}` + '"'
-        + ' ,  course = "' + `${course}` + '"'
-        + ' WHERE id = ' + `${ID}` + ";"
-
-    connection.query(sqlStatement, function(err, result){
-        console.log("SQL:   "+sqlStatement);
-        if(err) {
-
-            console.log(err);
-            response.end();
-        }
-        response.contentType('application/json');
-        response.json(result);
-        return result;
-    });
-});
-
 
 router.post("/addUser",  (request, response) => {
 
-    var name ="'"+ request.body.name+"'";
-    var surname ="'"+ request.body.surname+"'";
-    var email = "'"+request.body.email+"'";
-    var password = "'"+request.body.password+"'";
-    var verified ="'"+ request.body.verified+"'";
-    var authorization = "'"+request.body.authorization+"'";
+    var name = request.body.name;
+    var surname = request.body.surname;
+    var email = request.body.e_mail;
+    var password = request.body.password;
+    var verified = request.body.verified;
+    var authorization = request.body.authorization;
 
-    var sqlStatement = "INSERT INTO `user`(`name`, `surname`, `e_mail`, `password`, `authorization`) VALUES "
-        + '( ' + `${name}`  + ''
-        + ' ,  ' + `${surname}` + ''
-        + ' ,   ' +  `${email}` + ''
-        + ' ,   ' + `${password}` + ''
-        + ' ,   ' + `${authorization}` + ''
-        +  ");"
-
-    connection.query(sqlStatement, function(err, result){
-        console.log(sqlStatement);
-        if(err) {
-            console.log(err);
-            response.end();
-        }
-        response.contentType('application/json');
-        response.json(result);
-        return result;
-    });
-});
-
-
-//DELETE FROM `user` WHERE id =62
-
-router.post("/deleteUser",  (request, response) => {
-
-    var ID = request.body.id;
-
-    var sqlStatement = "DELETE FROM `user`"
-     + ' WHERE id = ' + `${ID}` + ";"
+    var sqlStatement = '"INSERT INTO user "'
+        + 'SET name = "' + `${name}`  + '"'
+        + ' AND SET surname = "' + `${surname}` + '"'
+        + ' AND SET e_mail = "' +  `${email}` + '"'
+        + ' AND SET password = "' + `${password}` + '"'
+        + ' AMD SET authorization = "' + `${authorization}` + '"'
+        +  ";"
 
     connection.query(sqlStatement, function(err, result){
-        console.log(sqlStatement);
         if(err) {
             console.log(err);
             response.end();

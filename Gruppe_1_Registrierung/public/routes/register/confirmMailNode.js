@@ -17,9 +17,10 @@ router.post("/verify", (request, response) => {
         console.log("url is not completed");
         response.redirect("/login");
     } else {
-
+        updateUser(e_mail, token );
+        console.log("Success");
     }
-    response.redirect("/login");
+
 });
 
 async function updateUser(e_mail, token)
@@ -31,7 +32,6 @@ async function updateUser(e_mail, token)
         if (err) throw err;
 
     });
-    return true;
 }
 
 module.exports = router;

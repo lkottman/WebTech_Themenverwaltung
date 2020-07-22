@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const connection = require('../../../getConnectionDatabase.js');
-
+const {sendUserDataToConfirm} = require('../javascript/confirmMail.js');
 // const redirect = require("./routesRedirect");
 const redirect = require("../../../index");
 const app = express();
@@ -67,6 +67,8 @@ router.get("/updateUser", (request, response) => {
 });
 
 
+router.get("/getHash", (request, response) => {
+
 
 /**
  *  This method provides a json object with one registerd users.
@@ -92,6 +94,18 @@ router.get("/getOneUser", (request, response) => {
 });
 
 
+
+    connection.query(sql,(err, result, )  => {
+        if(err) {
+            console.log(err);
+            response.end();
+        }
+        response.contentType('application/json');
+        response.json(result);
+        return result;
+    });
+
+});
 
 router.get("/token", (request, response) => {
     if (request.session.userAuthorization === "lecturer"
@@ -131,7 +145,6 @@ router.get("/changepassword", (request, response) => {
 });
 
 router.get("/confirmation", (request, response) => {
-
     response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/confirmEmail.html");
 });
 

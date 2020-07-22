@@ -172,7 +172,7 @@ app.get("/favicon.ico", (request, response) => {
     console.log('favicon requested');
 });
 
-routerConfirmation = require('./Gruppe_1_Registrierung/public/routes/register/confirmMail.js');
+routerConfirmation = require('./Gruppe_1_Registrierung/public/routes/register/confirmMailNode.js');
 app.use(routerConfirmation);
 
 routerPassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/sendMailToChangePassword.js');
@@ -180,6 +180,9 @@ app.use(routerPassword);
 
 routerChangePassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/changePassword.js');
 app.use(routerChangePassword);
+
+routerHashing = require("./Gruppe_1_Registrierung/public/routes/passwortHash.js");
+app.use(routerHashing);
 
 routerLogin = require('./Gruppe_1_Registrierung/public/routes/login/routesLogin.js');
 app.use(routerLogin);

@@ -173,7 +173,7 @@ app.get("/changepassword", (request, response) => {
 app.get("/confirmation", (request, response) => {
     response.sendFile('//public//Sven_Louis//confirmEmail.html', {root: __dirname});
 
-    let tokenReset = request.query.opt;
+    let tokenReset = request.query.token;
     let email = request.query.email;
 
     console.log(email);

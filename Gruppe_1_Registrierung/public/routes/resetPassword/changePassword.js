@@ -3,7 +3,7 @@ const {getTextForgotPassword,getMailOptions,sendMail} = require('../nodeMailer/n
 const {checkInputForSQLInject} = require('../../javascript/sql_InjectionTester.js');
 const connection = require('../../../../getConnectionDatabase.js');
 const redirect = require("../routesRedirect");
-
+const router = express.Router();
 
 
 

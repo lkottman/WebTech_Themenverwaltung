@@ -108,6 +108,9 @@ function checkPasswordRequirements() {
 
 }
 
+
+
+
 function checkPasswords() {
     let password = document.getElementById("password").value;
     let password1 = document.getElementById("password1").value;
