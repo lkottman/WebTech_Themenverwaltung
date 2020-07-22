@@ -11,12 +11,6 @@ function validateEmail(email) {
 
 router.post("/register",  (request, response) => {
 
-    // if(request.method == "OPTIONS"){
-    //     response.set('Access-Control-Allow-Origin', '*');
-    //     response.set('Access-Control-Allow-Headers', 'Content-Type');
-    //     response.status(204).send('');
-    // }
-
     if(validateEmail(request.body.email === false)){
         response.json({register: "Nur E-Mail Adressen mit der Endung '@hs-osnabrueck.de' sind zugelassen."});
     }
@@ -130,7 +124,6 @@ router.post("/changeMyUser",  (request, response) => {
     var ID = request.session.userId;
     var name = request.body.name;
     var surname = request.body.surname;
-    var email = request.body.email;
     var email = request.body.email;
     var password = request.body.password;
     var course = request.body.course;
