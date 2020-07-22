@@ -77,6 +77,8 @@ router.post("/register",  (request, response) => {
                         if (dbUser === undefined){
                             insertData();
                             console.log("user created");
+                            sendMail(getMailOptions(request.body.email,'E-Mail bestätigen!',
+                                getTextConfirmationEmail(randomtoken,request.body.email,request.body.name)));
                         } else {
                             response.json({register: "Fehlgeschlagen: Benutzer existiert bereits."});
                         }

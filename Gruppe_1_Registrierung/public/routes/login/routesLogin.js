@@ -3,6 +3,7 @@ const session = require("express-session");
 const mysql = require('mysql');
 const path = require("../../../../config/pathConfig.json");
 const fs = require('fs');
+
 const config = JSON.parse(fs.readFileSync(path.path + "/config/datenbankConfig.json"));
 const app = express();
 const redirect = require("../routesRedirect");
@@ -41,7 +42,7 @@ router.post("/login",  (request, response) => {
 
     console.log(request.body);
 
-    connection.query("SELECT id, name,verified, token, e_mail, password, authorization from user where "
+    connection.query("SELECT id, name,verified, token, e_mail, password, authorization from USER where "
         + 'e_mail = "' + request.body.email + '"'
         + ' AND password = "' + request.body.password + '"',
         function (err, result) {
@@ -64,7 +65,7 @@ router.post("/login",  (request, response) => {
                         if(request.body.checkboxLogin === true){
                             request.session.cookie.maxAge = lifeTimeLong;
                         }
-
+                        s
                         request.session.userId = result[0].id;
                         request.session.userName = result[0].name;
                         request.session.userAuthorization = result[0].authorization;
