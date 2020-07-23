@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Gruppe_1_Registrierung\public\routes\register\routesRegister.js - Documenting JavaScript with YUIDoc</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="Documenting JavaScript with YUIDoc" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/Client side from login.html">Client side from login</a></li>
+                                <li><a href="../classes/Client side from register.html">Client side from register</a></li>
+                                <li><a href="../classes/client side from token.html">client side from token</a></li>
+                                <li><a href="../classes/Mainpage from this project.html">Mainpage from this project</a></li>
+                                <li><a href="../classes/Node.js server.html">Node.js server</a></li>
+                                <li><a href="../classes/routesLogin, server site processing of the Login process.html">routesLogin, server site processing of the Login process</a></li>
+                                <li><a href="../classes/Server-Side from login.html">Server-Side from login</a></li>
+                                <li><a href="../classes/Server-Side from token.html">Server-Side from token</a></li>
+                                <li><a href="../classes/Tests for login, register and simple functions.html">Tests for login, register and simple functions</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/This router is for processing GETs to html files and simple GETs.html">This router is for processing GETs to html files and simple GETs</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: Gruppe_1_Registrierung\public\routes\register\routesRegister.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+const express = require(&#x27;express&#x27;)
+const router = express.Router()
+const {sendMail, getTextConfirmationEmail, getMailOptions} = require(&#x27;../nodeMailer/nodeMailer.js&#x27;);
+const connection = require(&quot;../../../../getConnectionDatabase&quot;);
+var q = require(&#x27;q&#x27;);
+
+/**
+ * Version 1.0
+ * 23.07.2020
+ * AUTHOR: Dominik Dziersan &amp; Sven Petersen
+ * @class Server-Side from login
+ */
+
+/**
+ * @method
+ * Checks if the email ends with &quot;hs-osnabrueck.de&quot;
+ * @param email
+ * @returns {boolean}
+ */
+function validateEmail(email) {
+    return /^\&quot;?[\w-_\.]*\&quot;?@hs-osnabrueck\.de$/.test(email);
+}
+
+/**
+ *@method
+ * Processing POST register
+ */
+router.post(&quot;/register&quot;,  (request, response) =&gt; {
+
+    if(validateEmail(request.body.email === false)){
+        response.json({register: &quot;Nur E-Mail Adressen mit der Endung &#x27;@hs-osnabrueck.de&#x27; sind zugelassen.&quot;});
+    }
+
+    let servertime = new Date();
+    let randomtoken = Math.random().toString(36).substr(2, 6);
+
+
+    var sqlToken = &quot;SELECT * FROM TOKEN WHERE &quot; + &#x27;gentoken = &quot;&#x27; + request.body.token + &#x27;&quot;; &#x27;;
+    var sqlEmail = &quot;SELECT * FROM USER WHERE &quot; + &#x27;e_mail = &quot;&#x27; + request.body.email + &#x27;&quot;;&#x27;;
+    var sqlInsert = &quot;INSERT INTO USER(token,name,surname,&quot;
+            + &quot;e_mail,password,confirm_token ,verified, authorization) VALUES(&quot;
+            + &#x27;&quot;&#x27; + request.body.token + &#x27;&quot;,&#x27;
+            + &#x27;&quot;&#x27; + request.body.name + &#x27;&quot;,&#x27;
+            + &#x27;&quot;&#x27; + request.body.surname + &#x27;&quot;,&#x27;
+            + &#x27;&quot;&#x27; + request.body.email + &#x27;&quot;,&#x27;
+            + &#x27;&quot;&#x27; + request.body.password + &#x27;&quot;,&#x27;
+            + &#x27;&quot;&#x27; + randomtoken + &#x27;&quot;,&#x27;
+            + &#x27;&#x27; + &quot;false&quot; + &#x27;,&#x27;
+            + &#x27;&quot;student&quot;&#x27; + &#x27;);&#x27;;
+
+    var sqlStatement = sqlToken + sqlEmail;
+
+    // Waits to executes sql statement and returns results
+    function getData(){
+        var defered = q.defer();
+        connection.query(sqlStatement, defered.makeNodeResolver());
+        return defered.promise;
+    }
+
+    function insertData (){
+        connection.query(sqlInsert, function(error, results){
+            response.json({register: &quot;created&quot;});
+        });
+
+    }
+
+    if (request.body.tutorium === undefined) {
+        if (request.body.email === undefined) {
+
+        } else {
+
+            q.all([getData()]).then(function (result) {
+
+                let dbToken = result[0][0][0][0];
+                let dbUser = result[0][0][1][0];
+
+                //If there is no result finding an token in database
+                if(dbToken === undefined){
+                    response.json({register: &quot;Fehlgeschlagen: Freischaltcode existiert nicht.&quot;});
+                } else {
+                    let startTime = dbToken.start;
+                    let endTime = dbToken.end;
+                    let token = dbToken.gentoken;
+                    let clientToken = request.body.token;
+
+                    //checks if the found token is valid and is not expired
+                    if (token === clientToken
+                        &amp;&amp; servertime &gt;= startTime
+                        &amp;&amp; servertime &lt;= endTime) {
+
+                        //If there is no user, a new user can be created
+                        if (dbUser === undefined){
+                            insertData();
+                            console.log(&quot;user created&quot;);
+                        } else {
+                            response.json({register: &quot;Fehlgeschlagen: Benutzer existiert bereits.&quot;});
+                        }
+                    } else {
+                        response.json({register: &quot;Fehlgeschlagen: Freischaltcode ist abgelaufen.&quot;});
+                    }
+                }
+            })//
+        }
+    } else {
+    }
+
+});
+
+/**
+ * @@method
+ * Change information from a user
+ */
+router.post(&quot;/changeUser&quot;,  (request, response) =&gt; {
+
+    var ID = request.body.id;
+    var name = request.body.name;
+    var surname = request.body.surname;
+    var email = request.body.email;
+    var password = request.body.password;
+    var verified = request.body.verified;
+    var course = request.body.course;
+    var authorization = request.body.authorization;
+
+    var sqlStatement = &quot;UPDATE user &quot;
+        + &#x27;SET name = &quot;&#x27; + &#x60;${name}&#x60;  + &#x27;&quot;&#x27;
+        + &#x27; ,  surname = &quot;&#x27; + &#x60;${surname}&#x60; + &#x27;&quot;&#x27;
+        + &#x27; ,  e_mail = &quot;&#x27; +  &#x60;${email}&#x60; + &#x27;&quot;&#x27;
+        + &#x27; ,  password = &quot;&#x27; + &#x60;${password}&#x60; + &#x27;&quot;&#x27;
+        + &#x27; ,  verified = &#x27; + &#x60;${verified}&#x60; + &#x27;&#x27;
+        + &#x27; ,  course = &quot;&#x27; + &#x60;${course}&#x60; + &#x27;&quot;&#x27;
+        + &#x27; ,  authorization = &quot;&#x27; + &#x60;${authorization}&#x60; + &#x27;&quot;&#x27;
+        + &#x27; WHERE id = &#x27; + &#x60;${ID}&#x60; + &quot;;&quot;
+
+    connection.query(sqlStatement, function(err, result){
+        console.log(&quot;SQL:   &quot;+sqlStatement);
+        if(err) {
+
+            console.log(err);
+            response.end();
+        }
+        response.contentType(&#x27;application/json&#x27;);
+        response.json(result);
+        return result;
+    });
+});
+
+/**
+ * @method
+ * Change information for the user who is logged in
+ */
+router.post(&quot;/changeMyUser&quot;,  (request, response) =&gt; {
+
+    var ID = request.session.userId;
+    var name = request.body.name;
+    var surname = request.body.surname;
+    var email = request.body.email;
+    var password = request.body.password;
+    var course = request.body.course;
+
+    var sqlStatement = &quot;UPDATE user &quot;
+        + &#x27;SET name = &quot;&#x27; + &#x60;${name}&#x60;  + &#x27;&quot;&#x27;
+        + &#x27; ,  surname = &quot;&#x27; + &#x60;${surname}&#x60; + &#x27;&quot;&#x27;
+        + &#x27; ,  e_mail = &quot;&#x27; +  &#x60;${email}&#x60; + &#x27;&quot;&#x27;
+        + &#x27; ,  password = &quot;&#x27; + &#x60;${password}&#x60; + &#x27;&quot;&#x27;
+        + &#x27; ,  course = &quot;&#x27; + &#x60;${course}&#x60; + &#x27;&quot;&#x27;
+        + &#x27; WHERE id = &#x27; + &#x60;${ID}&#x60; + &quot;;&quot;
+
+    connection.query(sqlStatement, function(err, result){
+        console.log(&quot;SQL:   &quot;+sqlStatement);
+        if(err) {
+
+            console.log(err);
+            response.end();
+        }
+        response.contentType(&#x27;application/json&#x27;);
+        response.json(result);
+        return result;
+    });
+});
+
+
+/**
+ * @method
+ * Adds a user from the adminpage
+ */
+router.post(&quot;/addUser&quot;,  (request, response) =&gt; {
+
+    var name =&quot;&#x27;&quot;+ request.body.name+&quot;&#x27;&quot;;
+    var surname =&quot;&#x27;&quot;+ request.body.surname+&quot;&#x27;&quot;;
+    var email = &quot;&#x27;&quot;+request.body.email+&quot;&#x27;&quot;;
+    var password = &quot;&#x27;&quot;+request.body.password+&quot;&#x27;&quot;;
+    var verified =&quot;&#x27;&quot;+ request.body.verified+&quot;&#x27;&quot;;
+    var authorization = &quot;&#x27;&quot;+request.body.authorization+&quot;&#x27;&quot;;
+
+    var sqlStatement = &quot;INSERT INTO &#x60;user&#x60;(&#x60;name&#x60;, &#x60;surname&#x60;, &#x60;e_mail&#x60;, &#x60;password&#x60;, &#x60;authorization&#x60;) VALUES &quot;
+        + &#x27;( &#x27; + &#x60;${name}&#x60;  + &#x27;&#x27;
+        + &#x27; ,  &#x27; + &#x60;${surname}&#x60; + &#x27;&#x27;
+        + &#x27; ,   &#x27; +  &#x60;${email}&#x60; + &#x27;&#x27;
+        + &#x27; ,   &#x27; + &#x60;${password}&#x60; + &#x27;&#x27;
+        + &#x27; ,   &#x27; + &#x60;${authorization}&#x60; + &#x27;&#x27;
+        +  &quot;);&quot;
+
+    connection.query(sqlStatement, function(err, result){
+        console.log(sqlStatement);
+        if(err) {
+            console.log(err);
+            response.end();
+        }
+        response.contentType(&#x27;application/json&#x27;);
+        response.json(result);
+        return result;
+    });
+});
+
+
+//DELETE FROM &#x60;user&#x60; WHERE id =62
+
+/**
+ * @method
+ * Deletes user
+ */
+router.post(&quot;/deleteUser&quot;,  (request, response) =&gt; {
+
+    var ID = request.body.id;
+
+    var sqlStatement = &quot;DELETE FROM &#x60;user&#x60;&quot;
+     + &#x27; WHERE id = &#x27; + &#x60;${ID}&#x60; + &quot;;&quot;
+
+    connection.query(sqlStatement, function(err, result){
+        console.log(sqlStatement);
+        if(err) {
+            console.log(err);
+            response.end();
+        }
+        response.contentType(&#x27;application/json&#x27;);
+        response.json(result);
+        return result;
+    });
+});
+
+
+module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//OLD
+// connection.query(sqlStatement, function(error, result) {
+//     if (error) {
+//         throw error;
+//     }
+//     var startTime = result[0].start;
+//     var endTime = result[0].end;
+//     var token = result[0].gentoken;
+//     var clientToken = request.body.token;
+//
+//     console.log(result[0]);
+//     console.log(result[1]);
+//
+//
+//     console.log(token);
+//     console.log(clientToken);
+//     console.log(startTime + &quot; &quot; + servertime + &quot; &quot; +  endTime);
+//     console.log(result[0].token);
+//
+//     // console.log(servertime);
+//     // console.log(request.body.token + &quot; &quot; + token)
+//
+//     resultEmail = result[1];
+//
+//     if ( resultToken[0] === &quot;&quot;){
+//         response.json({register: &quot;Fehlgeschlagen: Freischaltcode existiert nicht.&quot;});
+//     } else {
+//         if (token == clientToken
+//             &amp;&amp; servertime &gt;= startTime
+//             &amp;&amp; servertime &lt;= endTime) {
+//             if (resultEmail.length !== 0){
+//                 response.json({register: &quot;Fehlgeschlagen: Benutzer existiert bereits.&quot;});
+//             } else {
+//                 insertData();
+//                 response.json({register: &quot;&quot;});
+//             }
+//         } else {
+//             response.json({register: &quot;Fehlgeschlagen: Freischaltcode ist abgelaufen.&quot;});
+//         }
+//     }
+//
+// });
+
+
+
+
+
+
+//     var tokenBool = false;
+//     var startTime = &quot;&quot;;
+//     var endTime = &quot;&quot;;
+//     var token = &quot;&quot;;
+//     var clientToken = request.body.token;
+//
+//     try{
+//         await connection.query(&quot;SELECT gentoken, start, time, end FROM TOKEN WHERE &quot; +
+//             &#x27;gentoken = &quot;&#x27; + request.body.token + &#x27;&quot;&#x27;,
+//             function (err, result, fields) {
+//                 if (err)
+//                     throw err;
+//                 else {
+//                     tokenBool = true;
+//                     startTime = result[0].start;
+//                     endTime = result[0].end;
+//                     token = result[0].gentoken;
+//                     clientToken = request.body.token;
+//                 }
+//             });
+//     } catch (error){
+//         return next(error);
+//     }
+//
+//
+//     if(tokenBool === false){
+//         response.json({register: &quot;Fehlgeschlagen: Freischaltcode existiert nicht.&quot;});
+//     }
+//
+//     if (token === clientToken
+//         &amp;&amp; servertime &gt;= startTime
+//         &amp;&amp; servertime &lt;= endTime){
+//         tokenBool = true
+//     }
+//
+//     if(tokenBool === false){
+//         response.json({register: &quot;Fehlgeschlagen: Freischaltcode ist abgelaufen.&quot;});
+//     }
+//
+// try {
+//     await connection.query(&quot;SELECT * FROM USER WHERE &quot; + &#x27;e_mail = &quot;&#x27;
+//         + request.body.email + &#x27;&quot;&#x27;,
+//         function (err, result) {
+//             if (err) {
+//                 throw err;
+//             } else {
+//                 if (result.length === 0){
+//                     tokenBool = true;
+//                 }
+//             }
+//         })
+// } catch (error) {
+//         return next(error);
+// }
+//
+//
+//     if(tokenBool === false){
+//         response.json({register: &quot;Fehlgeschlagen: Benutzer existiert bereits.&quot;});
+//     }
+//
+//     try{
+//         await connection.query(&quot;INSERT INTO USER(token,name,surname,&quot;
+//             + &quot;e_mail,password,confirm_token ,verified, authorization) VALUES(&quot;
+//             + &#x27;&quot;&#x27; + request.body.token + &#x27;&quot;,&#x27;
+//             + &#x27;&quot;&#x27; + request.body.name + &#x27;&quot;,&#x27;
+//             + &#x27;&quot;&#x27; + request.body.surname + &#x27;&quot;,&#x27;
+//             + &#x27;&quot;&#x27; + request.body.email + &#x27;&quot;,&#x27;
+//             + &#x27;&quot;&#x27; + request.body.password + &#x27;&quot;,&#x27;
+//             + &#x27;&quot;&#x27; + randomtoken + &#x27;&quot;,&#x27;
+//             + &#x27;&#x27; + &quot;false&quot; + &#x27;,&#x27;
+//             + &#x27;&quot;student&quot;&#x27; + &#x27;)&#x27;,
+//             function (err) {
+//                 if (err)
+//                     throw err;
+//                 else {
+//                     sendMail(getMailOptions(request.body.email,
+//                         &#x27;E-Mail bestätigen!!&#x27;,getTextConfirmationEmail(randomtoken,
+//                             request.body.email, request.body.name)));
+//                     console.log(&quot;User created&quot;);
+//                     response.json({register: &quot;&quot;});
+//                 };
+//             });
+//     } catch (error){
+//         return next(Error);
+//     }
+//
+//
+//
+//
+//     console.log(request.body.tutorium);
+//     console.log(request.body.email);
+//
+//     if (request.body.tutorium === undefined) {
+//         if (request.body.email === undefined){
+//             response.end()
+//         } else {
+//         console.log(&quot;register&quot;);
+//
+//         // Check if used token is valid
+//         connection.query(&quot;SELECT gentoken, start, time, end FROM TOKEN WHERE &quot; +
+//             &#x27;gentoken = &quot;&#x27; + request.body.token + &#x27;&quot;&#x27;,
+//             function (err, result, fields) {
+//                 if (err)
+//                     throw err;
+//                 else {
+//                     if (result[0] != undefined) {
+//                         let startTime = result[0].start;
+//                         let endTime = result[0].end;
+//                         let token = result[0].gentoken;
+//                         let clientToken = request.body.token;
+//
+//                         if (token === clientToken
+//                             &amp;&amp; servertime &gt;= startTime
+//                             &amp;&amp; servertime &lt;= endTime) {
+//                             connection.query(&quot;SELECT * FROM USER WHERE &quot; + &#x27;e_mail = &quot;&#x27;
+//                                 + request.body.email + &#x27;&quot;&#x27;,
+//                                 function (err, result) {
+//                                     if (err) {
+//                                         throw err;
+//                                     } else {
+//                                         if (result.length === 0) {
+//                                             connection.query(&quot;INSERT INTO USER(token,name,surname,&quot;
+//                                                 + &quot;e_mail,password,confirm_token ,verified, authorization) VALUES(&quot;
+//                                                 + &#x27;&quot;&#x27; + request.body.token + &#x27;&quot;,&#x27;
+//                                                 + &#x27;&quot;&#x27; + request.body.name + &#x27;&quot;,&#x27;
+//                                                 + &#x27;&quot;&#x27; + request.body.surname + &#x27;&quot;,&#x27;
+//                                                 + &#x27;&quot;&#x27; + request.body.email + &#x27;&quot;,&#x27;
+//                                                 + &#x27;&quot;&#x27; + request.body.password + &#x27;&quot;,&#x27;
+//                                                 + &#x27;&quot;&#x27; + randomtoken + &#x27;&quot;,&#x27;
+//                                                 + &#x27;&#x27; + &quot;false&quot; + &#x27;,&#x27;
+//                                                 + &#x27;&quot;student&quot;&#x27; + &#x27;)&#x27;,
+//                                                 function (err) {
+//                                                     if (err)
+//                                                         throw err;
+//                                                     else {
+//
+//                                                         // sendMail(getMailOptions(request.body.email,
+//                                                         //     &#x27;E-Mail bestätigen!!&#x27;,getTextConfirmationEmail(randomtoken,
+//                                                         //         request.body.email, request.body.name)));
+//                                                         console.log(&quot;User created&quot;);
+//                                                         response.json({register: &quot;&quot;});
+//                                                     }
+//                                                     ;
+//                                                 });
+//                                         } else {
+//                                             response.json({register: &quot;Fehlgeschlagen: Benutzer existiert bereits.&quot;});
+//                                         }
+//                                     }
+//                                 });
+//                         } else {
+//                             response.json({register: &quot;Fehlgeschlagen: Freischaltcode ist abgelaufen.&quot;});
+//                         }
+//                     } else {
+//                         response.json({register: &quot;Fehlgeschlagen: Freischaltcode existiert nicht.&quot;});
+//                     }
+//                 }
+//             });
+//         }
+//     } else {
+//         response.end();
+//     }
+//
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

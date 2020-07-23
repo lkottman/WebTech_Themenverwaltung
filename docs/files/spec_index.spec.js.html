@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>spec\index.spec.js - Documenting JavaScript with YUIDoc</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="Documenting JavaScript with YUIDoc" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/Client side from login.html">Client side from login</a></li>
+                                <li><a href="../classes/Client side from register.html">Client side from register</a></li>
+                                <li><a href="../classes/client side from token.html">client side from token</a></li>
+                                <li><a href="../classes/Mainpage from this project.html">Mainpage from this project</a></li>
+                                <li><a href="../classes/Node.js server.html">Node.js server</a></li>
+                                <li><a href="../classes/routesLogin, server site processing of the Login process.html">routesLogin, server site processing of the Login process</a></li>
+                                <li><a href="../classes/Server-Side from login.html">Server-Side from login</a></li>
+                                <li><a href="../classes/Server-Side from token.html">Server-Side from token</a></li>
+                                <li><a href="../classes/Tests for login, register and simple functions.html">Tests for login, register and simple functions</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/This router is for processing GETs to html files and simple GETs.html">This router is for processing GETs to html files and simple GETs</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: spec\index.spec.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * Version 1.0
+ * 23.07.2020
+ * AUTHOR: Dominik Dziersan
+ * @class Tests for login, register and simple functions
+ */
+
+var Request = require(&quot;request&quot;);
+const serverURL = &quot;http://localhost:3000&quot;;
+const Register = require(&quot;..\\Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js&quot;);
+describe(&quot;Register Tests: &quot;, function() {
+    it(&quot;tests email if ..@hs-osnabrueck.de &quot;, function() {
+
+        expect(Register.validateEmail(&quot;dominik.dziersan@hs-osnabrueck.de&quot;)).toBe(true);
+
+    });
+    it(&quot;Test if two randoms strings are different &quot;, function() {
+
+        var string0 = Register.generateRandomString;
+        var string1 = Register.generateRandomString;
+
+        expect(string0 === string1).toBe(true);
+    });
+});
+
+/**
+ * @method
+ * beforeAll
+ */
+describe(&quot;Index Tests: &quot;, function() {
+
+    var server;
+
+    beforeAll(() =&gt;{
+
+        server = require(&quot;../index&quot;);
+
+        var cookie = {
+            cookie: true,
+        };
+        Request.post(&quot;http://localhost:3000/enableCookies&quot;, {json: true, body: cookie}, function (error, response) {
+            done();
+        });
+    });
+    afterAll(() =&gt; {
+        server.close;
+    });
+
+    /**
+     * @method
+     * GET connection status 200 test
+     */
+    describe(&quot;GET /&quot;, () =&gt;{
+        var data = {};
+        beforeAll((done) =&gt; {
+            Request.get(&quot;http://localhost:3000/&quot;, (error, response, body) =&gt; {
+                data.status = response.statusCode;
+                data.body = body;
+
+                done();
+            });
+        });
+        it(&quot;Status 200&quot;, () =&gt;{
+            expect(data.status).toBe(200);
+        });
+    });
+
+
+    describe(&quot;GET /login&quot;, () =&gt;{
+        var data = {};
+        beforeAll((done) =&gt; {
+            Request.get(&quot;http://localhost:3000/login&quot;, (error, response, body) =&gt; {
+
+                data.status = response.statusCode;
+                data.body = body;
+                done();
+            });
+        });
+        it(&quot;Status 200&quot;, () =&gt;{
+            expect(data.status).toBe(200);
+        });
+    });
+
+    /**
+     * @method
+     * POST /login test
+     */
+    describe(&quot;POST /login&quot;, () =&gt;{
+
+        const jsonLoginBodyEmpty = { email: &#x27;&#x27;, password: &#x27;&#x27;, checkboxLogin: false };
+        const jsonLoginBodyUser = { email: &#x27;dominik.dziersan@hs-osnabrueck.de&#x27;, password: &#x27;Test123E&#x27;, checkboxLogin: false };
+        const jsonLoginBodyUserLong = { email: &#x27;dominik.dziersan@hs-osnabrueck.de&#x27;, password: &#x27;Test123E&#x27;, checkboxLogin: true };
+
+        it(&#x27;Status 200&#x27;, function (done) {
+            Request.post(&quot;http://localhost:3000/login&quot;, {json: true, body: jsonLoginBodyEmpty}, function (error, response) {
+                expect(response.statusCode).toEqual(200);
+                done();
+            });
+        });
+
+        it(&#x27;Failed to Login because of false Informations&#x27;, function (done) {
+            Request.post(&quot;http://localhost:3000/login&quot;, {json: true, body: jsonLoginBodyEmpty}, function (error, response) {
+                expect(response.body).toEqual(Object({ login: &#x27;Fehlgeschlagen: Falsche Informationen oder nicht registriert&#x27; }));
+                done();
+            });
+        });
+
+        it(&#x27;Login worked&#x27;, function (done) {
+            Request.post(&quot;http://localhost:3000/login&quot;, {json: true, body: jsonLoginBodyUser}, function (error, request, response) {
+                expect(response.body).toEqual(Object({ login: &#x27;success&#x27; }));
+                done();
+            });
+        });
+
+        it(&#x27;Login worked with Login saved&#x27;, function (done) {
+            Request.post(&quot;http://localhost:3000/login&quot;, {json: true, body: jsonLoginBodyUserLong}, function (error, request, response) {
+                expect(response.body).toEqual(Object({ login: &#x27;success&#x27; }));
+                done();
+            });
+        });
+
+        it(&#x27;Cookies expiration&#x27;, function (done) {
+            Request.post(&quot;http://localhost:3000/login&quot;, {json: true, body: jsonLoginBodyUser}, function (error, request, response) {
+                expect(response.session.maxAge).toEqual(86400000);
+                done();
+            });
+        });
+
+        it(&#x27;Cookies expiration when login saved&#x27;, function (done) {
+            Request.post(&quot;http://localhost:3000/login&quot;, {json: true, body: jsonLoginBodyUserLong}, function (error, request, response) {
+                expect(response.session.maxAge).toEqual(315360000000);
+                done();
+            });
+        });
+    });
+
+    /**
+     * @method
+     * POST /login &amp; /createToken test
+     */
+    describe(&quot;POST /login &amp; /createToken&quot;, () =&gt;{
+
+        const jsonLoginBodyUser = { email: &#x27;dominik.dziersan@hs-osnabrueck.de&#x27;, password: &#x27;Test123E&#x27;, checkboxLogin: false };
+        const createTokenSuccess = {&quot;start&quot;:&quot;2020-07-21 19:28:01&quot;,&quot;time&quot;:null,&quot;end&quot;:&quot;2020-07-21 19:28:01&quot;,&quot;token&quot;:&quot;pc6vkg&quot;};
+        const createTokenFails = {&quot;start&quot;:&quot;2020-07-21 19:28:01&quot;,&quot;time&quot;:null,&quot;end&quot;:&quot;2040-07-21 19:28:01&quot;,&quot;token&quot;:&quot;pc6vkg&quot;};
+
+        it(&#x27;Create token from now until the specified time &#x27;, function (done) {
+            Request.post(&quot;http://localhost:3000/login&quot;, {json: true, body: jsonLoginBodyUser}, function (error, response) {
+            });
+
+
+            Request.post(&quot;http://localhost:3000/token&quot;, {json: true, body: createTokenSuccess}, function (error, response) {
+                expect(response.body).toEqual(Object({ token: &quot;Freischaltcode wurde erstellt.&quot; }));
+                done();
+            });
+        });
+
+        it(&#x27;Fails to create token because of a time which is to long &#x27;, function (done) {
+            Request.post(&quot;http://localhost:3000/login&quot;, {json: true, body: jsonLoginBodyUser}, function (error, response) {
+            });
+
+
+            Request.post(&quot;http://localhost:3000/token&quot;, {json: true, body: createTokenFails}, function (error, response) {
+                expect(response.body).toEqual(Object({ token: &quot;Fehler: Die Dauer vom Freischaltcode ist zu lang gewählt.&quot; }));
+                done();
+            });
+        });
+
+
+
+    });
+
+
+
+    describe(&quot;GET /register&quot;, () =&gt;{
+        var data = {};
+        beforeAll((done) =&gt; {
+            Request.get(&quot;http://localhost:3000/register&quot;, (error, response, body) =&gt; {
+                data.status = response.statusCode;
+                data.body = body;
+
+                done();
+            });
+        });
+        it(&quot;Status 200&quot;, () =&gt;{
+            expect(data.status).toBe(200);
+        });
+    });
+
+    /**
+     * @method
+     * POST /register test
+     */
+    describe(&quot;POST /register&quot;, () =&gt;{
+
+        var token = &quot;&quot;;
+        var email = &quot;&quot;;
+        var jsonRegisterBodyUser = {
+            token: &#x60;${token}&#x60;,
+            name: &quot;Dominik&quot;,
+            surname: &quot;Dziersan&quot;,
+            email: &#x60;${email}&#x60;,
+            password: &quot;Test123E&quot;,
+            secretToken: &quot;secretToken&quot;
+        };
+
+        it(&#x27;Status 200&#x27;, function (done) {
+            Request.post(&quot;http://localhost:3000/register&quot;, {json: true, body: jsonRegisterBodyUser}, function (error, response) {
+                expect(response.statusCode).toEqual(200);
+                done();
+            });
+        });
+
+        it(&#x27;Failed to Login because Token doesnt exists&#x27;, function (done) {
+            token = &quot;FalscherToken&quot;;
+            email = &quot;Email.Test@hs-osnabrueck.de&quot;;
+
+            var jsonRegisterBodyUser = {
+                token: &#x60;${token}&#x60;,
+                name: &quot;Dominik&quot;,
+                surname: &quot;Dziersan&quot;,
+                email: &#x60;${email}&#x60;,
+                password: &quot;Test123E&quot;,
+                secretToken: &quot;secretToken&quot;
+            };
+
+
+            Request.post(&quot;http://localhost:3000/register&quot;, {json: true, body: jsonRegisterBodyUser}, function (error, response) {
+                expect(response.body).toEqual(Object({ register: &quot;Freischaltcode existiert nicht.&quot; }));
+                done();
+            });
+        });
+
+        it(&#x27;Failed to Login because User already exists&#x27;, function (done) {
+            token = &quot;9bllcx&quot;;
+            email = &quot;dominik.dziersan@hs-osnabrueck.de&quot;;
+            var jsonRegisterBodyUser = {
+                token: &#x60;${token}&#x60;,
+                name: &quot;Dominik&quot;,
+                surname: &quot;Dziersan&quot;,
+                email: &#x60;${email}&#x60;,
+                password: &quot;Test123E&quot;,
+                secretToken: &quot;secretToken&quot;
+            };
+            Request.post(&quot;http://localhost:3000/register&quot;, {json: true, body: jsonRegisterBodyUser}, function (error, response) {
+                expect(response.body).toEqual(Object({ register: &quot;Fehlgeschlagen: Benutzer existiert bereits.&quot; }));
+                done();
+            });
+        });
+
+        it(&#x27;Failed to Login because Token is expired&#x27;, function (done) {
+            token = &quot;c3ehla&quot;;
+            email = &quot;Email.Test@hs-osnabrueck.de&quot;;
+            var jsonRegisterBodyUser = {
+                token: &#x60;${token}&#x60;,
+                name: &quot;Dominik&quot;,
+                surname: &quot;Dziersan&quot;,
+                email: &#x60;${email}&#x60;,
+                password: &quot;Test123E&quot;,
+                secretToken: &quot;secretToken&quot;
+            };
+            Request.post(&quot;http://localhost:3000/register&quot;, {json: true, body: jsonRegisterBodyUser}, function (error, response) {
+                expect(response.body).toEqual(Object({ register: &quot;Freischaltcode ist abgelaufen.&quot; }));
+                done();
+            });
+        });
+
+        it(&#x27;Failed to Login because Token is expired&#x27;, function (done) {
+            token = &quot;9bllcx&quot;;
+            email = &quot;Email.Test@web.de&quot;;
+            var jsonRegisterBodyUser = {
+                token: &#x60;${token}&#x60;,
+                name: &quot;Dominik&quot;,
+                surname: &quot;Dziersan&quot;,
+                email: &#x60;${email}&#x60;,
+                password: &quot;Test123E&quot;,
+                secretToken: &quot;secretToken&quot;
+            };
+
+            Request.post(&quot;http://localhost:3000/register&quot;, {json: true, body: jsonRegisterBodyUser}, function (error, response) {
+                expect(response.body).toEqual(Object({ register: &#x27;Fehlgeschlagen: Benutzer existiert bereits.&#x27; }));
+                done();
+            });
+        });
+
+    });
+
+    describe(&quot;GET /successfullregistration&quot;, () =&gt;{
+        var data = {};
+        beforeAll((done) =&gt; {
+            Request.get(&quot;http://localhost:3000/successfullregistration&quot;, (error, response, body) =&gt; {
+                data.status = response.statusCode;
+                data.body = body;
+
+                done();
+            });
+        });
+        it(&quot;Status 200&quot;, () =&gt;{
+            expect(data.status).toBe(200);
+        });
+    });
+
+    describe(&quot;GET /token&quot;, () =&gt;{
+        var data = {};
+        beforeAll((done) =&gt; {
+            Request.get(&quot;http://localhost:3000/token&quot;, (error, response, body) =&gt; {
+                data.status = response.statusCode;
+                data.body = body;
+
+                done();
+            });
+        });
+        it(&quot;Status 200&quot;, () =&gt;{
+            expect(data.status).toBe(200);
+        });
+    });
+
+    describe(&quot;GET /agb&quot;, () =&gt;{
+        var data = {};
+        beforeAll((done) =&gt; {
+            Request.get(&quot;http://localhost:3000/agb&quot;, (error, response, body) =&gt; {
+                data.status = response.statusCode;
+                data.body = body;
+
+                done();
+            });
+        });
+        it(&quot;Status 200&quot;, () =&gt;{
+            expect(data.status).toBe(200);
+        });
+    });
+
+    describe(&quot;GET /resetpassword&quot;, () =&gt;{
+        var data = {};
+        beforeAll((done) =&gt; {
+            Request.get(&quot;http://localhost:3000/resetpassword&quot;, (error, response, body) =&gt; {
+                data.status = response.statusCode;
+                data.body = body;
+
+                done();
+            });
+        });
+        it(&quot;Status 200&quot;, () =&gt;{
+            expect(data.status).toBe(200);
+        });
+    });
+
+    describe(&quot;GET /changepassword&quot;, () =&gt;{
+        var data = {};
+        beforeAll((done) =&gt; {
+            Request.get(&quot;http://localhost:3000/changepassword&quot;, (error, response, body) =&gt; {
+                data.status = response.statusCode;
+                data.body = body;
+
+                done();
+            });
+        });
+        it(&quot;Status 200&quot;, () =&gt;{
+            expect(data.status).toBe(200);
+        });
+    });
+
+    describe(&quot;GET /confirmation&quot;, () =&gt;{
+        var data = {};
+        beforeAll((done) =&gt; {
+            Request.get(&quot;http://localhost:3000/confirmation&quot;, (error, response, body) =&gt; {
+                data.status = response.statusCode;
+                data.body = body;
+
+                done();
+            });
+        });
+        it(&quot;Status 200&quot;, () =&gt;{
+            expect(data.status).toBe(200);
+        });
+    });
+
+    describe(&quot;GET /cookie&quot;, () =&gt;{
+        var data = {};
+        let time = new Date();
+        time = time.toISOString().slice(0, 19).replace(&#x27;T&#x27;, &#x27; &#x27;);
+
+        // const cookie = {&#x27;&quot;cookie&quot;&#x27;:{&#x27;&quot;originalMaxAge&quot;&#x27;:86400000,&#x27;&quot;expires&quot;&#x27;:&#x27;&quot;&#x27;&#x60;${time}&#x60;+&#x27;&quot;&#x27;,
+        //         &#x27;&quot;secure&quot;&#x27;:false,&#x27;&quot;httpOnly&quot;&#x27;:true,&#x27;&quot;path&quot;&#x27;:&#x27;&quot;/&quot;&#x27;,&#x27;&quot;sameSite&quot;&#x27;:true}};
+
+        beforeAll((done) =&gt; {
+            Request.get(&#x60;http://localhost:3000/cookie&#x60;, (error, response, body) =&gt; {
+                data.status = response.statusCode;
+                data.body = body;
+
+                done();
+            });
+        });
+        it(&quot;Status 200&quot;, () =&gt;{
+            expect(data.status).toBe(200);
+        });
+
+        it(&quot;Cookies equals&quot;, () =&gt;{
+
+        });
+
+    });
+});
+
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

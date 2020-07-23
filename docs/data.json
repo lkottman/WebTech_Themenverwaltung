@@ -1,0 +1,1829 @@
+{
+    "project": {
+        "name": "Documenting JavaScript with YUIDoc",
+        "description": "A tutorial about YUIDoc, for Nettuts+",
+        "version": "1.0.0",
+        "url": "http://net.tutsplus.com"
+    },
+    "files": {
+        "Gruppe_1_Registrierung\\privat\\javascript\\token.js": {
+            "name": "Gruppe_1_Registrierung\\privat\\javascript\\token.js",
+            "modules": {},
+            "classes": {
+                "client side from token": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_1_Registrierung\\public\\javascript\\changeProfilData.js": {
+            "name": "Gruppe_1_Registrierung\\public\\javascript\\changeProfilData.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_1_Registrierung\\public\\javascript\\homepage.js": {
+            "name": "Gruppe_1_Registrierung\\public\\javascript\\homepage.js",
+            "modules": {},
+            "classes": {
+                "Mainpage from this project": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_1_Registrierung\\public\\javascript\\login.js": {
+            "name": "Gruppe_1_Registrierung\\public\\javascript\\login.js",
+            "modules": {},
+            "classes": {
+                "Client side from login": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_1_Registrierung\\public\\javascript\\passwortHash.js": {
+            "name": "Gruppe_1_Registrierung\\public\\javascript\\passwortHash.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_1_Registrierung\\public\\javascript\\register.js": {
+            "name": "Gruppe_1_Registrierung\\public\\javascript\\register.js",
+            "modules": {},
+            "classes": {
+                "Client side from register": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_1_Registrierung\\public\\javascript\\sql_InjectionTester.js": {
+            "name": "Gruppe_1_Registrierung\\public\\javascript\\sql_InjectionTester.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_1_Registrierung\\public\\routes\\login\\routesLogin.js": {
+            "name": "Gruppe_1_Registrierung\\public\\routes\\login\\routesLogin.js",
+            "modules": {},
+            "classes": {
+                "routesLogin, server site processing of the Login process": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js": {
+            "name": "Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js",
+            "modules": {},
+            "classes": {
+                "Server-Side from login": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_1_Registrierung\\public\\routes\\token\\routesToken.js": {
+            "name": "Gruppe_1_Registrierung\\public\\routes\\token\\routesToken.js",
+            "modules": {},
+            "classes": {
+                "Server-Side from token": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_1_Registrierung\\public\\routes\\routesGET.js": {
+            "name": "Gruppe_1_Registrierung\\public\\routes\\routesGET.js",
+            "modules": {
+                "This router is for processing GETs to html files and simple GETs": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_1_Registrierung\\public\\routes\\routesRedirect.js": {
+            "name": "Gruppe_1_Registrierung\\public\\routes\\routesRedirect.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_2_Gruppendefinition\\.idea\\src\\Docents\\CreateNewTopic.js": {
+            "name": "Gruppe_2_Gruppendefinition\\.idea\\src\\Docents\\CreateNewTopic.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_2_Gruppendefinition\\.idea\\src\\Docents\\GroupOverview.js": {
+            "name": "Gruppe_2_Gruppendefinition\\.idea\\src\\Docents\\GroupOverview.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_2_Gruppendefinition\\src\\Docents\\CreateNewTopic.js": {
+            "name": "Gruppe_2_Gruppendefinition\\src\\Docents\\CreateNewTopic.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_2_Gruppendefinition\\src\\Docents\\GroupOverview.js": {
+            "name": "Gruppe_2_Gruppendefinition\\src\\Docents\\GroupOverview.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_2_Gruppendefinition\\src\\Students\\GroupView.js": {
+            "name": "Gruppe_2_Gruppendefinition\\src\\Students\\GroupView.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_2_Gruppendefinition\\src\\Students\\ThemeOverview.js": {
+            "name": "Gruppe_2_Gruppendefinition\\src\\Students\\ThemeOverview.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0300js.js": {
+            "name": "Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0300js.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0900js.js": {
+            "name": "Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0900js.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_4_Praesentation_Statistik\\routes\\G4-0050.js": {
+            "name": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0050.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_4_Praesentation_Statistik\\routes\\G4-0100.js": {
+            "name": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0100.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_4_Praesentation_Statistik\\routes\\G4-0200forStudents.js": {
+            "name": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0200forStudents.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_4_Praesentation_Statistik\\routes\\G4-0300.js": {
+            "name": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0300.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_4_Praesentation_Statistik\\routes\\G4-0700.js": {
+            "name": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0700.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_4_Praesentation_Statistik\\routes\\G4-0800.js": {
+            "name": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0800.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_4_Praesentation_Statistik\\routes\\G4-0900.js": {
+            "name": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0900.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\AddAttribute.js": {
+            "name": "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\AddAttribute.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js": {
+            "name": "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\tablesort.js": {
+            "name": "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\tablesort.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "spec\\index.spec.js": {
+            "name": "spec\\index.spec.js",
+            "modules": {},
+            "classes": {
+                "Tests for login, register and simple functions": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "getConnectionDatabase.js": {
+            "name": "getConnectionDatabase.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "index.js": {
+            "name": "index.js",
+            "modules": {},
+            "classes": {
+                "Node.js server": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "This router is for processing GETs to html files and simple GETs": {
+            "name": "This router is for processing GETs to html files and simple GETs",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "client side from token": 1,
+                "Mainpage from this project": 1,
+                "Client side from login": 1,
+                "Client side from register": 1,
+                "routesLogin, server site processing of the Login process": 1,
+                "Server-Side from login": 1,
+                "Server-Side from token": 1,
+                "Tests for login, register and simple functions": 1,
+                "Node.js server": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "index.js",
+            "line": 2,
+            "description": "Version 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan & Sven Petersen & Louis Kottmann"
+        }
+    },
+    "classes": {
+        "client side from token": {
+            "name": "client side from token",
+            "shortname": "client side from token",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "This router is for processing GETs to html files and simple GETs",
+            "file": "Gruppe_1_Registrierung\\privat\\javascript\\token.js",
+            "line": 1,
+            "description": "Version 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan"
+        },
+        "Mainpage from this project": {
+            "name": "Mainpage from this project",
+            "shortname": "Mainpage from this project",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "This router is for processing GETs to html files and simple GETs",
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\homepage.js",
+            "line": 1,
+            "description": "Version 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan & Sven Petersen"
+        },
+        "Client side from login": {
+            "name": "Client side from login",
+            "shortname": "Client side from login",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "This router is for processing GETs to html files and simple GETs",
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\login.js",
+            "line": 1,
+            "description": "Version 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan"
+        },
+        "Client side from register": {
+            "name": "Client side from register",
+            "shortname": "Client side from register",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "This router is for processing GETs to html files and simple GETs",
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\register.js",
+            "line": 1,
+            "description": "Version 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan"
+        },
+        "routesLogin, server site processing of the Login process": {
+            "name": "routesLogin, server site processing of the Login process",
+            "shortname": "routesLogin, server site processing of the Login process",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "This router is for processing GETs to html files and simple GETs",
+            "file": "Gruppe_1_Registrierung\\public\\routes\\login\\routesLogin.js",
+            "line": 13,
+            "description": "Version 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan\nServer-Side from login"
+        },
+        "Server-Side from login": {
+            "name": "Server-Side from login",
+            "shortname": "Server-Side from login",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "This router is for processing GETs to html files and simple GETs",
+            "file": "Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js",
+            "line": 7,
+            "description": "Version 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan & Sven Petersen"
+        },
+        "Server-Side from token": {
+            "name": "Server-Side from token",
+            "shortname": "Server-Side from token",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "This router is for processing GETs to html files and simple GETs",
+            "file": "Gruppe_1_Registrierung\\public\\routes\\token\\routesToken.js",
+            "line": 2,
+            "description": "Version 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan"
+        },
+        "Tests for login, register and simple functions": {
+            "name": "Tests for login, register and simple functions",
+            "shortname": "Tests for login, register and simple functions",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "This router is for processing GETs to html files and simple GETs",
+            "namespace": "",
+            "file": "spec\\index.spec.js",
+            "line": 1,
+            "description": "Version 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan"
+        },
+        "Node.js server": {
+            "name": "Node.js server",
+            "shortname": "Node.js server",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "This router is for processing GETs to html files and simple GETs",
+            "namespace": "",
+            "file": "index.js",
+            "line": 2,
+            "description": "Version 1.0\n23.07.2020\nAUTHOR: Created, refactored by group 1"
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "Gruppe_1_Registrierung\\privat\\javascript\\token.js",
+            "line": 20,
+            "itemtype": "method",
+            "name": "Creates token object from input field, brings the data in the right format and uses\npostCreateToken",
+            "class": "client side from token"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\privat\\javascript\\token.js",
+            "line": 52,
+            "itemtype": "method",
+            "name": "Gets information from input field and send an POST delete request to /deleteToken",
+            "class": "client side from token"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\privat\\javascript\\token.js",
+            "line": 80,
+            "itemtype": "method",
+            "name": "Creates token object from datetime-local fields, brings the data in the right format and\nuses postCreateToken",
+            "class": "client side from token"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\privat\\javascript\\token.js",
+            "line": 111,
+            "itemtype": "method",
+            "name": "POSTs givin token to /createToken",
+            "params": [
+                {
+                    "name": "token",
+                    "description": ""
+                }
+            ],
+            "class": "client side from token"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\privat\\javascript\\token.js",
+            "line": 135,
+            "itemtype": "method",
+            "name": "Onkeypress event to avoid any chars instead of numbers",
+            "params": [
+                {
+                    "name": "evt",
+                    "description": ""
+                }
+            ],
+            "class": "client side from token"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\privat\\javascript\\token.js",
+            "line": 161,
+            "itemtype": "method",
+            "name": "Limit the datetime-locals to a maximum of 10 years",
+            "class": "client side from token"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\privat\\javascript\\token.js",
+            "line": 191,
+            "itemtype": "method",
+            "name": "Gets token",
+            "class": "client side from token"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\changeProfilData.js",
+            "line": 14,
+            "params": [
+                {
+                    "name": "id",
+                    "description": "user to change data"
+                },
+                {
+                    "name": "columnName",
+                    "description": "to update"
+                },
+                {
+                    "name": "entryChange",
+                    "description": "new information"
+                }
+            ],
+            "class": "Mainpage from this project"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\homepage.js",
+            "line": 23,
+            "itemtype": "method",
+            "name": "Checks if the user already accept cookies and POST it",
+            "class": "Mainpage from this project"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\homepage.js",
+            "line": 69,
+            "itemtype": "method",
+            "name": "Fade in for the Textbox",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": ""
+                },
+                {
+                    "name": "display",
+                    "description": ""
+                }
+            ],
+            "class": "Mainpage from this project"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\homepage.js",
+            "line": 89,
+            "itemtype": "method",
+            "name": "Fade in for the Textbox",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": ""
+                },
+                {
+                    "name": "display",
+                    "description": ""
+                }
+            ],
+            "class": "Mainpage from this project"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\homepage.js",
+            "line": 108,
+            "itemtype": "method",
+            "name": "Creates cookie with given parameters",
+            "params": [
+                {
+                    "name": "name",
+                    "description": ""
+                },
+                {
+                    "name": "value",
+                    "description": ""
+                },
+                {
+                    "name": "days",
+                    "description": ""
+                }
+            ],
+            "class": "Mainpage from this project"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\homepage.js",
+            "line": 125,
+            "itemtype": "method",
+            "name": "Get Cookies",
+            "params": [
+                {
+                    "name": "name",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String|null"
+            },
+            "class": "Mainpage from this project"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\homepage.js",
+            "line": 141,
+            "itemtype": "method",
+            "name": "dismiss cookie",
+            "params": [
+                {
+                    "name": "name",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String|null"
+            },
+            "class": "Mainpage from this project"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\homepage.js",
+            "line": 153,
+            "itemtype": "method",
+            "name": "Sets cookie to an expired date, so it will be invalid",
+            "class": "Mainpage from this project"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\homepage.js",
+            "line": 164,
+            "methoc": "HTML for the infobox with the declared informations",
+            "class": "Mainpage from this project"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\login.js",
+            "line": 9,
+            "itemtype": "method",
+            "name": "Gets information from input fields, creates an object and POST it to /login",
+            "class": "Client side from login"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\passwortHash.js",
+            "line": 4,
+            "description": "This method hashes an given input string and adds an salt for proper security.",
+            "params": [
+                {
+                    "name": "input",
+                    "description": "to be hashed."
+                }
+            ],
+            "class": "Client side from register"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\passwortHash.js",
+            "line": 25,
+            "description": "* This method compares an given input string with an hashed + salt generated password.",
+            "params": [
+                {
+                    "name": "input",
+                    "description": "string from user to compare with hash"
+                },
+                {
+                    "name": "hash",
+                    "description": "string from database to check for."
+                }
+            ],
+            "class": "Client side from register"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\register.js",
+            "line": 9,
+            "itemtype": "method",
+            "name": "Gets information from input fields, creates Person object and validates the password and email to\npost the object to /register",
+            "return": {
+                "description": "",
+                "type": "Promise<void>"
+            },
+            "class": "Client side from register"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\register.js",
+            "line": 77,
+            "itemtype": "method",
+            "name": "Manipulates the password progress bar for any matched constraint",
+            "class": "Client side from register"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\register.js",
+            "line": 124,
+            "itemtype": "method",
+            "name": "Manipulates the background color of the input field if the second password doesnt match",
+            "class": "Client side from register"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\register.js",
+            "line": 144,
+            "description": "Checks if the email ends with \"@hs-osnabrueck.de \"",
+            "params": [
+                {
+                    "name": "email",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Client side from register"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\sql_InjectionTester.js",
+            "line": 12,
+            "description": "This method checks a given string for illegal metacharacters to prevent SQL-Injections.\nIf the input contains illegal metacharacters a window will pop up with an error message.",
+            "params": [
+                {
+                    "name": "input",
+                    "description": "to be checked"
+                }
+            ],
+            "class": "routesLogin, server site processing of the Login process"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\sql_InjectionTester.js",
+            "line": 37,
+            "description": "This method splits a given String into an array of chars.",
+            "params": [
+                {
+                    "name": "input",
+                    "description": "to be split."
+                }
+            ],
+            "return": {
+                "description": "[] an array with chars from given String."
+            },
+            "class": "routesLogin, server site processing of the Login process"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\sql_InjectionTester.js",
+            "line": 52,
+            "description": "This method checks a given input length to prevent SQL-Injection.\nIf a given input is to long the result ist false",
+            "params": [
+                {
+                    "name": "input",
+                    "description": "to check for l"
+                }
+            ],
+            "class": "routesLogin, server site processing of the Login process"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\login\\routesLogin.js",
+            "line": 50,
+            "itemtype": "method",
+            "name": "Creates an session with the user if the login succes. Else the server respond with a errormessage\nrequest: json with email and password.",
+            "class": "routesLogin, server site processing of the Login process"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\login\\routesLogin.js",
+            "line": 93,
+            "itemtype": "method",
+            "name": "Deletes session with the user",
+            "class": "routesLogin, server site processing of the Login process"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js",
+            "line": 14,
+            "itemtype": "method",
+            "name": "Checks if the email ends with \"hs-osnabrueck.de\"",
+            "params": [
+                {
+                    "name": "email",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Server-Side from login"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js",
+            "line": 24,
+            "itemtype": "method",
+            "name": "Processing POST register",
+            "class": "Server-Side from login"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js",
+            "line": 109,
+            "class": "Server-Side from login"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js",
+            "line": 147,
+            "itemtype": "method",
+            "name": "Change information for the user who is logged in",
+            "class": "Server-Side from login"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js",
+            "line": 182,
+            "itemtype": "method",
+            "name": "Adds a user from the adminpage",
+            "class": "Server-Side from login"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js",
+            "line": 218,
+            "itemtype": "method",
+            "name": "Deletes user",
+            "class": "Server-Side from login"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\token\\routesToken.js",
+            "line": 38,
+            "itemtype": "method",
+            "name": "Creates token from the request of the client",
+            "class": "Server-Side from token"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\token\\routesToken.js",
+            "line": 72,
+            "itemtype": "method",
+            "name": "Deletes token if the the user has the authorization to do so",
+            "class": "Server-Side from token"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\token\\routesToken.js",
+            "line": 103,
+            "itemtype": "method",
+            "name": "Sends tokens in json format for different users. Admins get all existing tokens, lecturer\nwhat they created themselves",
+            "class": "Server-Side from token"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\routesGET.js",
+            "line": 28,
+            "description": "This method provides a json object with all registerd users.",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\routesGET.js",
+            "line": 48,
+            "description": "This method allows the user and admin to change their personal data.",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\routesGET.js",
+            "line": 69,
+            "description": "This method provides a json object with one registerd users.",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\routesGET.js",
+            "line": 93,
+            "description": "This get Method gives higher authorized users the HTML otherwise redirecting",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\routesGET.js",
+            "line": 105,
+            "description": "sends different HTMLS to specific authorized users",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\routesRedirect.js",
+            "line": 3,
+            "description": "Version 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_2_Gruppendefinition\\.idea\\src\\Docents\\CreateNewTopic.js",
+            "line": 1,
+            "description": "var titel = document.getElementById(\"Titel\").value;\nvar beschreibung = document.getElementById(\"Beschreibung\").value;\nvar maxMembers = document.getElementById(\"maxMembers\").value;\nvar beginAnmeldung = document.getElementById(\"BeginAnmeldung\").value;\nvar endAnmeldung = document.getElementById(\"EndAnmeldung\").value;\n\n// Insert Data into Database",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_2_Gruppendefinition\\.idea\\src\\Docents\\GroupOverview.js",
+            "line": 1,
+            "description": "var ThemaTitel = Database.Module.Thema.get(Titel);\nvar currentParticipants = Database.Module.Thema.get(Mitglieder);\nvar maxParticipants = Database.Module.Thema.get(maxParticipants);",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_2_Gruppendefinition\\src\\Docents\\CreateNewTopic.js",
+            "line": 1,
+            "description": "var titel = document.getElementById(\"Titel\").value;\nvar beschreibung = document.getElementById(\"Beschreibung\").value;\nvar maxMembers = document.getElementById(\"maxMembers\").value;\nvar beginAnmeldung = document.getElementById(\"BeginAnmeldung\").value;\nvar endAnmeldung = document.getElementById(\"EndAnmeldung\").value;\n\n// Insert Data into Database",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_2_Gruppendefinition\\src\\Docents\\GroupOverview.js",
+            "line": 1,
+            "description": "var ThemaTitel = Database.Module.Thema.get(Titel);\nvar currentParticipants = Database.Module.Thema.get(Mitglieder);\nvar maxParticipants = Database.Module.Thema.get(maxParticipants);",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_2_Gruppendefinition\\src\\Students\\GroupView.js",
+            "line": 1,
+            "description": "var Beschreibung = Database.Person.Modul.Thema.get(Beschreibung);\nvar Gruppenmitglieder = Database.Person.Modul.Thema.get(currentMitglieder);\nvar Links = Database.Person.Modul.Thema.get(Links);\nvar Meilensteine = Database.Person.Modul.Thema.get(Meilensteine);\n\nvar NewMilestoneName = document.getElementById(\"milestoneName\").value;\nvar milestoneDate = document.getElementById(\"milestoneDate\").value;\nvar Linktitel = document.getElementById(\"Linktitel\").value;",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_2_Gruppendefinition\\src\\Students\\ThemeOverview.js",
+            "line": 1,
+            "description": "var ThemaTitel = Database.Module.Thema.get(Titel);\nvar currentParticipants = Database.Module.Thema.get(Mitglieder);",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0300js.js",
+            "line": 1,
+            "description": "JS für G4-0300",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0300js.js",
+            "line": 7,
+            "description": "Gruppen hinzufügen",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0300js.js",
+            "line": 48,
+            "description": "nicht sehbaren Input anhängen",
+            "params": [
+                {
+                    "name": "number",
+                    "description": "Anzahl der Inputs"
+                },
+                {
+                    "name": "member",
+                    "description": "Element des Inputs"
+                },
+                {
+                    "name": "value",
+                    "description": "Wert des Inputs"
+                }
+            ],
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0300js.js",
+            "line": 68,
+            "description": "Gruppe löschen",
+            "params": [
+                {
+                    "name": "n",
+                    "description": "Gruppennummer"
+                }
+            ],
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0300js.js",
+            "line": 91,
+            "description": "Gruppen für JSON konvertieren",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0300js.js",
+            "line": 99,
+            "description": "Tag der Präsentation setzen",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0900js.js",
+            "line": 1,
+            "description": "JS für G4-0900",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0900js.js",
+            "line": 5,
+            "description": "Eintrag des Datums senden",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0900js.js",
+            "line": 19,
+            "description": "Nachricht zeigen",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0900js.js",
+            "line": 28,
+            "description": "Nachricht ausblenden",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0050.js",
+            "line": 1,
+            "description": "G4-0050 / Lehrkräfte können Agenda für Module erstellen",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0050.js",
+            "line": 18,
+            "description": "JS auf ejs laden und aufrufen",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0050.js",
+            "line": 27,
+            "description": "Verbindung zur Datenbank herstellen",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0050.js",
+            "line": 43,
+            "description": "SQL-Abfragen für G4-0050",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0100.js",
+            "line": 1,
+            "description": "G4-0100 / Eine Übersicht für die Lehrkräfte in welchen Modulen ein Präsentationstermin bevorsteht",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0100.js",
+            "line": 22,
+            "description": "JS auf ejs laden und aufrufen",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0200forStudents.js",
+            "line": 2,
+            "description": "Importieren der App und MySql-Module",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0200forStudents.js",
+            "line": 12,
+            "description": "Arrays für die Speicherung der SQL-Abfragen",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0200forStudents.js",
+            "line": 28,
+            "description": "Aufruf der Seite G4-0200 für Studenten",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0200forStudents.js",
+            "line": 51,
+            "description": "Verbindungsaufbau zur DB",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0200forStudents.js",
+            "line": 56,
+            "description": "SQL-Abfragen aus DB",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0300.js",
+            "line": 1,
+            "description": "G4-0300 / Manuelle Definition der Gruppenreihenfolge, Raumbelefung und Zeiträumen für die Präsentationen und Pausenslots",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0300.js",
+            "line": 12,
+            "description": "JS auf ejs laden und aufrufen",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0300.js",
+            "line": 38,
+            "description": "Übermittlung des neuangelegten Präsentationstermins an die Datenbank\nSpeichern der Präsentationsreihenfolge in Datenbank",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0700.js",
+            "line": 1,
+            "description": "G4-0700 / Übersicht der Module mit Präsentationen für die Studierenden",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0700.js",
+            "line": 16,
+            "description": "JS auf ejs laden und aufrufen",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0700.js",
+            "line": 24,
+            "description": "Verbindung zur Datenbank herstellen",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0700.js",
+            "line": 30,
+            "description": "SQL-Abfragen für die jeweiligen Spalten",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0700.js",
+            "line": 47,
+            "description": "G4-0900 aufrufen",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0800.js",
+            "line": 2,
+            "description": "G4-0800 / Übersicht über Präsentationen in einem Modul für die Studierenden",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0800.js",
+            "line": 19,
+            "description": "JS auf ejs laden auf aufrufen",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0800.js",
+            "line": 32,
+            "description": "JS auf ejs laden und an /reihenfolge schicken",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0800.js",
+            "line": 48,
+            "description": "SQL-Abfragen für die jeweiligen Spalten",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0900.js",
+            "line": 3,
+            "description": "G4-0900 / Anfrage Dozenten für Hilfe und/oder Terminänderung",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0900.js",
+            "line": 24,
+            "description": "Werte aus dem Formular in die Relation Nachrichten einfügen",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_4_Praesentation_Statistik\\routes\\G4-0900.js",
+            "line": 44,
+            "description": "Listening auf Server",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\AddAttribute.js",
+            "line": 1,
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\AddAttribute.js",
+            "line": 8,
+            "params": [
+                {
+                    "name": "evt",
+                    "description": ""
+                }
+            ],
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js",
+            "line": 81,
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js",
+            "line": 142,
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js",
+            "line": 151,
+            "params": [
+                {
+                    "name": "tableID",
+                    "description": ""
+                }
+            ],
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js",
+            "line": 301,
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js",
+            "line": 324,
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js",
+            "line": 346,
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js",
+            "line": 374,
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js",
+            "line": 399,
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js",
+            "line": 410,
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js",
+            "line": 516,
+            "params": [
+                {
+                    "name": "tableID",
+                    "description": ""
+                }
+            ],
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js",
+            "line": 664,
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js",
+            "line": 678,
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\tablesort.js",
+            "line": 1,
+            "params": [
+                {
+                    "name": "table",
+                    "description": ""
+                },
+                {
+                    "name": "column",
+                    "description": ""
+                },
+                {
+                    "name": "asc",
+                    "description": ""
+                }
+            ],
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\tablesort.js",
+            "line": 64,
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "spec\\index.spec.js",
+            "line": 26,
+            "itemtype": "method",
+            "name": "beforeAll",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "spec\\index.spec.js",
+            "line": 49,
+            "itemtype": "method",
+            "name": "GET connection status 200 test",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "spec\\index.spec.js",
+            "line": 84,
+            "itemtype": "method",
+            "name": "POST /login test",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "spec\\index.spec.js",
+            "line": 137,
+            "itemtype": "method",
+            "name": "POST /login & /createToken test",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "spec\\index.spec.js",
+            "line": 190,
+            "itemtype": "method",
+            "name": "POST /register test",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "getConnectionDatabase.js",
+            "line": 6,
+            "description": "Version 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan",
+            "class": "Node.js server",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "getConnectionDatabase.js",
+            "line": 12,
+            "description": "Connects to Databse with givin credentials from datenbankConfig.json",
+            "return": {
+                "description": "",
+                "type": "Connection"
+            },
+            "class": "Node.js server",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "index.js",
+            "line": 28,
+            "itemtype": "method",
+            "name": "Express static imports for folders which are accessable from public",
+            "class": "Node.js server",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "index.js",
+            "line": 52,
+            "itemtype": "method",
+            "name": "Configuration of the cookie",
+            "class": "Node.js server",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "index.js",
+            "line": 68,
+            "description": "AUTHOR: Dominik Dziersan\nIf the user didnt accept the cookie redirect him to the mainpage",
+            "itemtype": "method",
+            "name": "redirectCookie",
+            "params": [
+                {
+                    "name": "request",
+                    "description": ""
+                },
+                {
+                    "name": "response",
+                    "description": ""
+                },
+                {
+                    "name": "next",
+                    "description": ""
+                }
+            ],
+            "class": "Node.js server",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "index.js",
+            "line": 86,
+            "description": "AUTHOR: Dominik Dziersan\nIf a user is not logged in, redirect him to the login",
+            "itemtype": "method",
+            "name": "redirectLogin",
+            "params": [
+                {
+                    "name": "request",
+                    "description": ""
+                },
+                {
+                    "name": "response",
+                    "description": ""
+                },
+                {
+                    "name": "next",
+                    "description": ""
+                }
+            ],
+            "class": "Node.js server",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "index.js",
+            "line": 102,
+            "description": "AUTHOR: Dominik Dziersan\nIf a user is logged in, redirect him to home",
+            "itemtype": "method",
+            "name": "redirect Home",
+            "params": [
+                {
+                    "name": "request",
+                    "description": ""
+                },
+                {
+                    "name": "response",
+                    "description": ""
+                },
+                {
+                    "name": "next",
+                    "description": ""
+                }
+            ],
+            "class": "Node.js server",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "index.js",
+            "line": 119,
+            "description": "AUTHOR: Dominik Dziersan\nFor specific reasons the double request bugs some methods. Use this to prevent it.",
+            "itemtype": "method",
+            "name": "ignoreFavicon",
+            "params": [
+                {
+                    "name": "request",
+                    "description": ""
+                },
+                {
+                    "name": "response",
+                    "description": ""
+                },
+                {
+                    "name": "next",
+                    "description": ""
+                }
+            ],
+            "class": "Node.js server",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "index.js",
+            "line": 138,
+            "description": "AUTHOR: Dominik Dziersan\nSend all informations of a session to a user.",
+            "itemtype": "method",
+            "name": "Send session every connection",
+            "params": [
+                {
+                    "name": "request",
+                    "description": ""
+                },
+                {
+                    "name": "response",
+                    "description": ""
+                },
+                {
+                    "name": "next",
+                    "description": ""
+                }
+            ],
+            "class": "Node.js server",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "index.js",
+            "line": 160,
+            "itemtype": "method",
+            "name": "GET Methods from routesGET.js",
+            "class": "Node.js server",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "index.js",
+            "line": 202,
+            "itemtype": "method",
+            "name": "POST Methods",
+            "class": "Node.js server",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " Gruppe_1_Registrierung\\public\\javascript\\homepage.js:125"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " Gruppe_1_Registrierung\\public\\javascript\\homepage.js:141"
+        },
+        {
+            "message": "unknown tag: methoc",
+            "line": " Gruppe_1_Registrierung\\public\\javascript\\homepage.js:164"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " Gruppe_1_Registrierung\\public\\javascript\\register.js:9"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " Gruppe_1_Registrierung\\public\\javascript\\register.js:144"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " Gruppe_1_Registrierung\\public\\javascript\\sql_InjectionTester.js:37"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js:14"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js:81"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " getConnectionDatabase.js:12"
+        },
+        {
+            "message": "Missing item type",
+            "line": " Gruppe_1_Registrierung\\public\\javascript\\changeProfilData.js:14"
+        },
+        {
+            "message": "Missing item type",
+            "line": " Gruppe_1_Registrierung\\public\\javascript\\homepage.js:164"
+        },
+        {
+            "message": "Missing item type\nThis method hashes an given input string and adds an salt for proper security.",
+            "line": " Gruppe_1_Registrierung\\public\\javascript\\passwortHash.js:4"
+        },
+        {
+            "message": "Missing item type\n* This method compares an given input string with an hashed + salt generated password.",
+            "line": " Gruppe_1_Registrierung\\public\\javascript\\passwortHash.js:25"
+        },
+        {
+            "message": "Missing item type\nChecks if the email ends with \"@hs-osnabrueck.de \"",
+            "line": " Gruppe_1_Registrierung\\public\\javascript\\register.js:144"
+        },
+        {
+            "message": "Missing item type\nThis method checks a given string for illegal metacharacters to prevent SQL-Injections.\nIf the input contains illegal metacharacters a window will pop up with an error message.",
+            "line": " Gruppe_1_Registrierung\\public\\javascript\\sql_InjectionTester.js:12"
+        },
+        {
+            "message": "Missing item type\nThis method splits a given String into an array of chars.",
+            "line": " Gruppe_1_Registrierung\\public\\javascript\\sql_InjectionTester.js:37"
+        },
+        {
+            "message": "Missing item type\nThis method checks a given input length to prevent SQL-Injection.\nIf a given input is to long the result ist false",
+            "line": " Gruppe_1_Registrierung\\public\\javascript\\sql_InjectionTester.js:52"
+        },
+        {
+            "message": "Missing item type",
+            "line": " Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js:109"
+        },
+        {
+            "message": "Missing item type\nThis method provides a json object with all registerd users.",
+            "line": " Gruppe_1_Registrierung\\public\\routes\\routesGET.js:28"
+        },
+        {
+            "message": "Missing item type\nThis method allows the user and admin to change their personal data.",
+            "line": " Gruppe_1_Registrierung\\public\\routes\\routesGET.js:48"
+        },
+        {
+            "message": "Missing item type\nThis method provides a json object with one registerd users.",
+            "line": " Gruppe_1_Registrierung\\public\\routes\\routesGET.js:69"
+        },
+        {
+            "message": "Missing item type\nThis get Method gives higher authorized users the HTML otherwise redirecting",
+            "line": " Gruppe_1_Registrierung\\public\\routes\\routesGET.js:93"
+        },
+        {
+            "message": "Missing item type\nsends different HTMLS to specific authorized users",
+            "line": " Gruppe_1_Registrierung\\public\\routes\\routesGET.js:105"
+        },
+        {
+            "message": "Missing item type\nVersion 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan",
+            "line": " Gruppe_1_Registrierung\\public\\routes\\routesRedirect.js:3"
+        },
+        {
+            "message": "Missing item type\nvar titel = document.getElementById(\"Titel\").value;\nvar beschreibung = document.getElementById(\"Beschreibung\").value;\nvar maxMembers = document.getElementById(\"maxMembers\").value;\nvar beginAnmeldung = document.getElementById(\"BeginAnmeldung\").value;\nvar endAnmeldung = document.getElementById(\"EndAnmeldung\").value;\n\n// Insert Data into Database",
+            "line": " Gruppe_2_Gruppendefinition\\.idea\\src\\Docents\\CreateNewTopic.js:1"
+        },
+        {
+            "message": "Missing item type\nvar ThemaTitel = Database.Module.Thema.get(Titel);\nvar currentParticipants = Database.Module.Thema.get(Mitglieder);\nvar maxParticipants = Database.Module.Thema.get(maxParticipants);",
+            "line": " Gruppe_2_Gruppendefinition\\.idea\\src\\Docents\\GroupOverview.js:1"
+        },
+        {
+            "message": "Missing item type\nvar titel = document.getElementById(\"Titel\").value;\nvar beschreibung = document.getElementById(\"Beschreibung\").value;\nvar maxMembers = document.getElementById(\"maxMembers\").value;\nvar beginAnmeldung = document.getElementById(\"BeginAnmeldung\").value;\nvar endAnmeldung = document.getElementById(\"EndAnmeldung\").value;\n\n// Insert Data into Database",
+            "line": " Gruppe_2_Gruppendefinition\\src\\Docents\\CreateNewTopic.js:1"
+        },
+        {
+            "message": "Missing item type\nvar ThemaTitel = Database.Module.Thema.get(Titel);\nvar currentParticipants = Database.Module.Thema.get(Mitglieder);\nvar maxParticipants = Database.Module.Thema.get(maxParticipants);",
+            "line": " Gruppe_2_Gruppendefinition\\src\\Docents\\GroupOverview.js:1"
+        },
+        {
+            "message": "Missing item type\nvar Beschreibung = Database.Person.Modul.Thema.get(Beschreibung);\nvar Gruppenmitglieder = Database.Person.Modul.Thema.get(currentMitglieder);\nvar Links = Database.Person.Modul.Thema.get(Links);\nvar Meilensteine = Database.Person.Modul.Thema.get(Meilensteine);\n\nvar NewMilestoneName = document.getElementById(\"milestoneName\").value;\nvar milestoneDate = document.getElementById(\"milestoneDate\").value;\nvar Linktitel = document.getElementById(\"Linktitel\").value;",
+            "line": " Gruppe_2_Gruppendefinition\\src\\Students\\GroupView.js:1"
+        },
+        {
+            "message": "Missing item type\nvar ThemaTitel = Database.Module.Thema.get(Titel);\nvar currentParticipants = Database.Module.Thema.get(Mitglieder);",
+            "line": " Gruppe_2_Gruppendefinition\\src\\Students\\ThemeOverview.js:1"
+        },
+        {
+            "message": "Missing item type\nJS für G4-0300",
+            "line": " Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0300js.js:1"
+        },
+        {
+            "message": "Missing item type\nGruppen hinzufügen",
+            "line": " Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0300js.js:7"
+        },
+        {
+            "message": "Missing item type\nnicht sehbaren Input anhängen",
+            "line": " Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0300js.js:48"
+        },
+        {
+            "message": "Missing item type\nGruppe löschen",
+            "line": " Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0300js.js:68"
+        },
+        {
+            "message": "Missing item type\nGruppen für JSON konvertieren",
+            "line": " Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0300js.js:91"
+        },
+        {
+            "message": "Missing item type\nTag der Präsentation setzen",
+            "line": " Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0300js.js:99"
+        },
+        {
+            "message": "Missing item type\nJS für G4-0900",
+            "line": " Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0900js.js:1"
+        },
+        {
+            "message": "Missing item type\nEintrag des Datums senden",
+            "line": " Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0900js.js:5"
+        },
+        {
+            "message": "Missing item type\nNachricht zeigen",
+            "line": " Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0900js.js:19"
+        },
+        {
+            "message": "Missing item type\nNachricht ausblenden",
+            "line": " Gruppe_4_Praesentation_Statistik\\public\\javascripts\\G4-0900js.js:28"
+        },
+        {
+            "message": "Missing item type\nG4-0050 / Lehrkräfte können Agenda für Module erstellen",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0050.js:1"
+        },
+        {
+            "message": "Missing item type\nJS auf ejs laden und aufrufen",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0050.js:18"
+        },
+        {
+            "message": "Missing item type\nVerbindung zur Datenbank herstellen",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0050.js:27"
+        },
+        {
+            "message": "Missing item type\nSQL-Abfragen für G4-0050",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0050.js:43"
+        },
+        {
+            "message": "Missing item type\nG4-0100 / Eine Übersicht für die Lehrkräfte in welchen Modulen ein Präsentationstermin bevorsteht",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0100.js:1"
+        },
+        {
+            "message": "Missing item type\nJS auf ejs laden und aufrufen",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0100.js:22"
+        },
+        {
+            "message": "Missing item type\nImportieren der App und MySql-Module",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0200forStudents.js:2"
+        },
+        {
+            "message": "Missing item type\nArrays für die Speicherung der SQL-Abfragen",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0200forStudents.js:12"
+        },
+        {
+            "message": "Missing item type\nAufruf der Seite G4-0200 für Studenten",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0200forStudents.js:28"
+        },
+        {
+            "message": "Missing item type\nVerbindungsaufbau zur DB",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0200forStudents.js:51"
+        },
+        {
+            "message": "Missing item type\nSQL-Abfragen aus DB",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0200forStudents.js:56"
+        },
+        {
+            "message": "Missing item type\nG4-0300 / Manuelle Definition der Gruppenreihenfolge, Raumbelefung und Zeiträumen für die Präsentationen und Pausenslots",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0300.js:1"
+        },
+        {
+            "message": "Missing item type\nJS auf ejs laden und aufrufen",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0300.js:12"
+        },
+        {
+            "message": "Missing item type\nÜbermittlung des neuangelegten Präsentationstermins an die Datenbank\nSpeichern der Präsentationsreihenfolge in Datenbank",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0300.js:38"
+        },
+        {
+            "message": "Missing item type\nG4-0700 / Übersicht der Module mit Präsentationen für die Studierenden",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0700.js:1"
+        },
+        {
+            "message": "Missing item type\nJS auf ejs laden und aufrufen",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0700.js:16"
+        },
+        {
+            "message": "Missing item type\nVerbindung zur Datenbank herstellen",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0700.js:24"
+        },
+        {
+            "message": "Missing item type\nSQL-Abfragen für die jeweiligen Spalten",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0700.js:30"
+        },
+        {
+            "message": "Missing item type\nG4-0900 aufrufen",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0700.js:47"
+        },
+        {
+            "message": "Missing item type\nG4-0800 / Übersicht über Präsentationen in einem Modul für die Studierenden",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0800.js:2"
+        },
+        {
+            "message": "Missing item type\nJS auf ejs laden auf aufrufen",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0800.js:19"
+        },
+        {
+            "message": "Missing item type\nJS auf ejs laden und an /reihenfolge schicken",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0800.js:32"
+        },
+        {
+            "message": "Missing item type\nSQL-Abfragen für die jeweiligen Spalten",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0800.js:48"
+        },
+        {
+            "message": "Missing item type\nG4-0900 / Anfrage Dozenten für Hilfe und/oder Terminänderung",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0900.js:3"
+        },
+        {
+            "message": "Missing item type\nWerte aus dem Formular in die Relation Nachrichten einfügen",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0900.js:24"
+        },
+        {
+            "message": "Missing item type\nListening auf Server",
+            "line": " Gruppe_4_Praesentation_Statistik\\routes\\G4-0900.js:44"
+        },
+        {
+            "message": "Missing item type",
+            "line": " Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\AddAttribute.js:1"
+        },
+        {
+            "message": "Missing item type",
+            "line": " Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\AddAttribute.js:8"
+        },
+        {
+            "message": "Missing item type",
+            "line": " Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js:81"
+        },
+        {
+            "message": "Missing item type",
+            "line": " Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js:142"
+        },
+        {
+            "message": "Missing item type",
+            "line": " Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js:151"
+        },
+        {
+            "message": "Missing item type",
+            "line": " Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js:301"
+        },
+        {
+            "message": "Missing item type",
+            "line": " Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js:324"
+        },
+        {
+            "message": "Missing item type",
+            "line": " Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js:346"
+        },
+        {
+            "message": "Missing item type",
+            "line": " Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js:374"
+        },
+        {
+            "message": "Missing item type",
+            "line": " Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js:399"
+        },
+        {
+            "message": "Missing item type",
+            "line": " Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js:410"
+        },
+        {
+            "message": "Missing item type",
+            "line": " Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js:516"
+        },
+        {
+            "message": "Missing item type",
+            "line": " Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js:664"
+        },
+        {
+            "message": "Missing item type",
+            "line": " Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\newReqs.js:678"
+        },
+        {
+            "message": "Missing item type",
+            "line": " Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\tablesort.js:1"
+        },
+        {
+            "message": "Missing item type",
+            "line": " Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\tablesort.js:64"
+        },
+        {
+            "message": "Missing item type\nVersion 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan",
+            "line": " getConnectionDatabase.js:6"
+        },
+        {
+            "message": "Missing item type\nConnects to Databse with givin credentials from datenbankConfig.json",
+            "line": " getConnectionDatabase.js:12"
+        }
+    ]
+}
