@@ -1,3 +1,11 @@
+
+/**
+ * Version 1.0
+ * 23.07.2020
+ * AUTHOR: Dominik Dziersan
+ * Server-Side from token
+ */
+
 const express = require('express');
 const session = require("express-session");
 const app = express();
@@ -27,31 +35,42 @@ app.use(session({
     }
 }));
 
+/**
+ * Creates token from the request of the client
+ */
 router.post("/createToken",  (request, response) => {
 
-    if (request.body.time < tokenLifeTime) {
+    if (request.session.userAuthorization == "admin"
+    || request.session.userAuthorization == "lecturer") {
+        //Checks if the tokenlife is not to long
+        if (request.body.time < tokenLifeTime) {
 
-        connection.query("INSERT INTO TOKEN(START,TIME,END,GENTOKEN, USER) VALUES("
-            + '"' + request.body.start + '",'
-            + request.body.time + ','
-            + '"' + request.body.end + '",'
-            + '"' + request.body.token + '",'
-            + '"' + request.session.userId + '")'),
-            function (err) {
-                if (err)
-                    throw err;
-                console.log("Inserted TOKEN")
-            }
+            //executes sql statement
+            connection.query("INSERT INTO TOKEN(START,TIME,END,GENTOKEN, USER) VALUES("
+                + '"' + request.body.start + '",'
+                + request.body.time + ','
+                + '"' + request.body.end + '",'
+                + '"' + request.body.token + '",'
+                + '"' + request.session.userId + '")'),
+                function (err) {
+                    if (err)
+                        throw err;
+                    console.log("Inserted TOKEN")
+                }
 
-        response.json({token: "Freischaltcode wurde erstellt."})
+            response.json({token: "Freischaltcode wurde erstellt."})
+        } else {
+            response.json({token: "Fehler: Die Dauer vom Freischaltcode ist zu lang gewählt."})
+        }
     } else {
-        response.json({token: "Fehler: Die Dauer vom Freischaltcode ist zu lang gewählt."})
+        response.json({token: "Fehler: Keine Berechtigung"})
     }
 });
 
 
-
-//Deletes token from Database
+/**
+ * Deletes token if the the user has the authorization to do so
+ */
 router.post("/deleteToken", (request, response) => {
 
     console.log(request.session);
@@ -61,9 +80,8 @@ router.post("/deleteToken", (request, response) => {
                 if (err)
                     throw err;
                 else {
-                    console.log(result.length);
-
-                    if (result.length > 0) {
+                    //Only deletes token if only one is found
+                    if (result.length == 1) {
                         connection.query("DELETE FROM token WHERE GENTOKEN = " + '"' + request.body.token + '";'),
                             function (err, result) {
                                 if (err)
@@ -80,7 +98,10 @@ router.post("/deleteToken", (request, response) => {
     }
 });
 
-
+/**
+ * Sends tokens in json format for different users. Admins get all existing tokens, lecturer
+ * what they created themselves
+ */
 router.get("/getToken", (request, response) => {
 
     console.log(request.session.userId);
@@ -91,7 +112,6 @@ router.get("/getToken", (request, response) => {
     var sqlStatementAdmin       = "SELECT start, end, gentoken, user FROM token;";
     var sqlStatementLecturer    = "SELECT start, end, gentoken, user FROM token where user = " + userId + ";";
 
-    console.log(request.session);
     if (authorization === "admin"){
         connection.query(sqlStatementAdmin,
             function (err, result) {

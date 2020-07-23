@@ -1,4 +1,17 @@
-async function register() {
+/**
+ * Version 1.0
+ * 23.07.2020
+ * AUTHOR: Dominik Dziersan
+ * Client side from register
+ */
+
+
+/**
+ * Gets information from input fields, creates Person object and validates the password and email to
+ * post the object to /register
+ * @returns {Promise<void>}
+ */
+function register() {
 
     class Person {
         constructor(token, name, surname, email, password, verified) {
@@ -39,7 +52,7 @@ async function register() {
             headers: {"Content-Type": "application/json"},
         };
 
-        await fetch("/register", options)
+        fetch("/register", options)
             .then(response => response.json())
             .then(data => {
 
@@ -54,20 +67,19 @@ async function register() {
 
                     location.reload();
                 }
-                    // alert(data.register);
-                    // location.reload();
-
             });
     } else {
         alert("Nur E-Mail Adressen mit der Endung '@hs-osnabrueck.de' sind zugelassen.")
     }
 }
 
+/**
+ * Manipulates the password progress bar for any matched constraint
+ */
 function checkPasswordRequirements() {
     let strengh = 0;
     var strenghbar = document.getElementById("strengh");
     let password = document.getElementById("password").value;
-    let password1 = document.getElementById("password1").value;
 
     if (password.match(/[!§@§%&()=?`²³{[]}\<>|]/))
     {
@@ -107,6 +119,10 @@ function checkPasswordRequirements() {
     }
 
 }
+/**
+ * Manipulates the background color of the input field if the second password doesnt match
+ *
+ */
 
 function checkPasswords() {
     let password = document.getElementById("password").value;
@@ -123,7 +139,11 @@ function checkPasswords() {
     }
 }
 
-// gibt die ein flase zurück wenn die email ungültig ist
+/**
+ * Checks if the email ends with "@hs-osnabrueck.de "
+ * @param email
+ * @returns {boolean}
+ */
 function validateEmail(email) {
     return /^\"?[\w-_\.]*\"?@hs-osnabrueck\.de$/.test(email);
 }

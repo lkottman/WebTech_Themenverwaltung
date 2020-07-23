@@ -4,11 +4,25 @@ const {sendMail, getTextConfirmationEmail, getMailOptions} = require('../nodeMai
 const connection = require("../../../../getConnectionDatabase");
 var q = require('q');
 
+/**
+ * Version 1.0
+ * 23.07.2020
+ * AUTHOR: Dominik Dziersan & Sven Petersen
+ * Server-Side from login
+ */
+
+/**
+ * Checks if the email ends with "hs-osnabrueck.de"
+ * @param email
+ * @returns {boolean}
+ */
 function validateEmail(email) {
     return /^\"?[\w-_\.]*\"?@hs-osnabrueck\.de$/.test(email);
 }
 
-
+/**
+ *
+ */
 router.post("/register",  (request, response) => {
 
     if(validateEmail(request.body.email === false)){
@@ -17,6 +31,7 @@ router.post("/register",  (request, response) => {
 
     let servertime = new Date();
     let randomtoken = Math.random().toString(36).substr(2, 6);
+
 
     var sqlToken = "SELECT * FROM TOKEN WHERE " + 'gentoken = "' + request.body.token + '"; ';
     var sqlEmail = "SELECT * FROM USER WHERE " + 'e_mail = "' + request.body.email + '";';
@@ -33,6 +48,7 @@ router.post("/register",  (request, response) => {
 
     var sqlStatement = sqlToken + sqlEmail;
 
+    // Waits to executes sql statement and returns results
     function getData(){
         var defered = q.defer();
         connection.query(sqlStatement, defered.makeNodeResolver());
@@ -46,6 +62,7 @@ router.post("/register",  (request, response) => {
 
     }
 
+
     if (request.body.tutorium === undefined) {
         if (request.body.email === undefined) {
 
@@ -56,6 +73,7 @@ router.post("/register",  (request, response) => {
                 let dbToken = result[0][0][0][0];
                 let dbUser = result[0][0][1][0];
 
+                //If there is no result finding an token in database
                 if(dbToken === undefined){
                     response.json({register: "Fehlgeschlagen: Freischaltcode existiert nicht."});
                 } else {
@@ -64,10 +82,12 @@ router.post("/register",  (request, response) => {
                     let token = dbToken.gentoken;
                     let clientToken = request.body.token;
 
+                    //checks if the found token is valid and is not expired
                     if (token === clientToken
                         && servertime >= startTime
                         && servertime <= endTime) {
 
+                        //If there is no user, a new user can be created
                         if (dbUser === undefined){
                             insertData();
                             console.log("user created");
@@ -182,6 +202,9 @@ router.post("/addUser",  (request, response) => {
 
 //DELETE FROM `user` WHERE id =62
 
+/**
+ * Deletes user
+ */
 router.post("/deleteUser",  (request, response) => {
 
     var ID = request.body.id;
@@ -220,7 +243,7 @@ module.exports = router;
 
 
 
-
+//OLD
 // connection.query(sqlStatement, function(error, result) {
 //     if (error) {
 //         throw error;

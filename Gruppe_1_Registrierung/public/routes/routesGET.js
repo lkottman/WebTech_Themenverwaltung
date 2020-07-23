@@ -1,12 +1,14 @@
+
+/**
+ * Version 1.0
+ * 23.07.2020
+ * AUTHOR: Dominik Dziersan & Sven Petersen & Louis Kottmann
+ */
+
 const express = require('express');
 const router = express.Router();
 const connection = require('../../../getConnectionDatabase.js');
-
-// const redirect = require("./routesRedirect");
-const redirect = require("../../../index");
-const app = express();
 const path = require("../../../config/pathConfig.json");
-
 
 
 
@@ -21,11 +23,6 @@ router.get("/home", (request, response) => {
 router.get("/register", (request, response) => {
         response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/register.html");
 });
-
-
-
-let url = 'https://example.com';
-
 
 /**
  *  This method provides a json object with all registerd users.

@@ -10,6 +10,12 @@ const router = express.Router()
 
 const connection = require("../../../../getConnectionDatabase");
 
+/**
+ * Version 1.0
+ * 23.07.2020
+ * AUTHOR: Dominik Dziersan
+ * Server-Side from login
+ */
 
 var lifeTime = 1000 * 60 * 60 * 24;// 24 hour
 var lifeTimeLong = 1000 * 60 * 60 * 24 * 365 * 10;  //1 Year
@@ -22,6 +28,8 @@ var {
     sessionName = "sid",
     secretSession = "test"
 } = process.env;
+
+
 
 app.use(session({
     name: sessionName,
@@ -37,9 +45,12 @@ app.use(session({
 
 
 //Takes E-Mail and password from User and check if these matches if database
-router.post("/login",  (request, response) => {
 
-    console.log(request.body);
+/**
+ * Creates an session with the user if the login succes. Else the server respond with a errormessage
+ * request: json with email and password.
+ */
+router.post("/login",  (request, response) => {
 
     connection.query("SELECT id, name,verified, token, e_mail, password, authorization from user where "
         + 'e_mail = "' + request.body.email + '"'
@@ -77,6 +88,9 @@ router.post("/login",  (request, response) => {
         });
 });
 
+/**
+ * Deletes session with the user
+ */
 router.post("/logout",  (request, respond) => {
 
     request.session.destroy(err => {
