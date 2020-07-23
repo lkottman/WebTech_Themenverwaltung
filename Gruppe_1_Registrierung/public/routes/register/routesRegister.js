@@ -8,10 +8,11 @@ var q = require('q');
  * Version 1.0
  * 23.07.2020
  * AUTHOR: Dominik Dziersan & Sven Petersen
- * Server-Side from login
+ * @class Server-Side from login
  */
 
 /**
+ * @method
  * Checks if the email ends with "hs-osnabrueck.de"
  * @param email
  * @returns {boolean}
@@ -21,7 +22,8 @@ function validateEmail(email) {
 }
 
 /**
- *
+ *@method
+ * Processing POST register
  */
 router.post("/register",  (request, response) => {
 
@@ -61,7 +63,6 @@ router.post("/register",  (request, response) => {
         });
 
     }
-
 
     if (request.body.tutorium === undefined) {
         if (request.body.email === undefined) {
@@ -105,6 +106,10 @@ router.post("/register",  (request, response) => {
 
 });
 
+/**
+ * @@method
+ * Change information from a user
+ */
 router.post("/changeUser",  (request, response) => {
 
     var ID = request.body.id;
@@ -139,6 +144,10 @@ router.post("/changeUser",  (request, response) => {
     });
 });
 
+/**
+ * @method
+ * Change information for the user who is logged in
+ */
 router.post("/changeMyUser",  (request, response) => {
 
     var ID = request.session.userId;
@@ -170,6 +179,10 @@ router.post("/changeMyUser",  (request, response) => {
 });
 
 
+/**
+ * @method
+ * Adds a user from the adminpage
+ */
 router.post("/addUser",  (request, response) => {
 
     var name ="'"+ request.body.name+"'";
@@ -203,6 +216,7 @@ router.post("/addUser",  (request, response) => {
 //DELETE FROM `user` WHERE id =62
 
 /**
+ * @method
  * Deletes user
  */
 router.post("/deleteUser",  (request, response) => {

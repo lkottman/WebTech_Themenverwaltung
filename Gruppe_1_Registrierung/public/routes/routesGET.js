@@ -3,6 +3,7 @@
  * Version 1.0
  * 23.07.2020
  * AUTHOR: Dominik Dziersan & Sven Petersen & Louis Kottmann
+ * @module This router is for processing GETs to html files and simple GETs
  */
 
 const express = require('express');
@@ -89,7 +90,9 @@ router.get("/getOneUser", (request, response) => {
 });
 
 
-
+/**
+ * This get Method gives higher authorized users the HTML otherwise redirecting
+ */
 router.get("/token", (request, response) => {
     if (request.session.userAuthorization === "lecturer"
         || request.session.userAuthorization === "admin") {
@@ -99,6 +102,9 @@ router.get("/token", (request, response) => {
     }
 });
 
+/**
+ * sends different HTMLS to specific authorized users
+ */
 router.get("/showUsers", (request, response) => {
     if (request.session.userAuthorization === "lecturer") {
         response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/lecturerView.html');

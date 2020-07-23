@@ -2,7 +2,7 @@
  * Version 1.0
  * 23.07.2020
  * AUTHOR: Dominik Dziersan
- * client side from token
+ * @class client side from token
  */
 
 const tokenMaxLife = 5256000; //10 Years
@@ -18,6 +18,7 @@ class Token {
 }
 
 /**
+ * @method
  * Creates token object from input field, brings the data in the right format and uses
  * postCreateToken
  */
@@ -49,6 +50,7 @@ function createToken() {
 }
 
 /**
+ * @method
  * Gets information from input field and send an POST delete request to /deleteToken
  */
 function deleteToken() {
@@ -76,6 +78,7 @@ function deleteToken() {
 
 
 /**
+ * @method
  * Creates token object from datetime-local fields, brings the data in the right format and
  * uses postCreateToken
  */
@@ -106,6 +109,7 @@ function createTokenCalender(){
 }
 
 /**
+ * @method
  *  POSTs givin token to /createToken
  * @param token
  */
@@ -129,6 +133,7 @@ function postCreateToken(token){
 
 
 /**
+ * @method
  * Onkeypress event to avoid any chars instead of numbers
  * @param evt
  */
@@ -154,6 +159,7 @@ window.onload = function() {
 };
 
 /**
+ * @method
  * Limit the datetime-locals to a maximum of 10 years
  */
 function setMaxDate(){
@@ -183,6 +189,7 @@ function diffMinutes(dt2, dt1)
 }
 
 /**
+ * @method
  * Gets token
  */
 function getToken(){

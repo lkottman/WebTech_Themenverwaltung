@@ -3,7 +3,7 @@
  * Version 1.0
  * 23.07.2020
  * AUTHOR: Dominik Dziersan
- * Server-Side from token
+ * @class Server-Side from token
  */
 
 const express = require('express');
@@ -36,6 +36,7 @@ app.use(session({
 }));
 
 /**
+ * @method
  * Creates token from the request of the client
  */
 router.post("/createToken",  (request, response) => {
@@ -69,6 +70,7 @@ router.post("/createToken",  (request, response) => {
 
 
 /**
+ * @method
  * Deletes token if the the user has the authorization to do so
  */
 router.post("/deleteToken", (request, response) => {
@@ -99,6 +101,7 @@ router.post("/deleteToken", (request, response) => {
 });
 
 /**
+ * @method
  * Sends tokens in json format for different users. Admins get all existing tokens, lecturer
  * what they created themselves
  */

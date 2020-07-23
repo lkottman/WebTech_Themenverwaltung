@@ -2,6 +2,7 @@
  * Version 1.0
  * 23.07.2020
  * AUTHOR: Dominik Dziersan & Sven Petersen
+ * @class Mainpage from this project
  */
 
 window.onbeforeunload = function () {
@@ -20,6 +21,7 @@ if (getCookie("cookieDismiss") == 1){
 }
 
 /**
+ * @method
  * Checks if the user already accept cookies and POST it
  */
 function cookiePopup (){
@@ -65,6 +67,7 @@ var cookieButton1 = "Ablehnen";
 var cookieName = "cookiesDismiss";
 
 /**
+ * @method
  * Fade in for the Textbox
  * @param elem
  * @param display
@@ -84,6 +87,7 @@ function pureFadeIn(elem, display){
 };
 
 /**
+ * @method
  * Fade in for the Textbox
  * @param elem
  * @param display
@@ -102,6 +106,7 @@ function pureFadeOut(elem){
 };
 
 /**
+ * @method
  * Creates cookie with given parameters
  * @param name
  * @param value
@@ -118,6 +123,7 @@ function setCookie(name,value,days) {
 }
 
 /**
+ * @method Get Cookies
  * @param name
  * @returns {string|null}
  */
@@ -132,6 +138,11 @@ function getCookie(name) {
     return null;
 }
 
+/**
+ * @method dismiss cookie
+ * @param name
+ * @returns {string|null}
+ */
 function cookieDismiss() {
     setCookie(cookieName,'1',7);
     pureFadeOut("cookieConsentContainer");
@@ -140,6 +151,7 @@ function cookieDismiss() {
 }
 
 /**
+ * @method
  * Sets cookie to an expired date, so it will be invalid
  */
 function eraseCookie() {
@@ -150,6 +162,7 @@ function eraseCookie() {
 }
 
 /**
+ * @methoc
  * HTML for the infobox with the declared informations
  */
 function cookieConsent() {

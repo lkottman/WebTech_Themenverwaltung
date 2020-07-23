@@ -7,9 +7,11 @@ const config = JSON.parse(fs.readFileSync(path.path + "/config/datenbankConfig.j
  * Version 1.0
  * 23.07.2020
  * AUTHOR: Dominik Dziersan
+ * @class Simple database connection
  */
 
 /**
+ * @method
  * Connects to Databse with givin credentials from datenbankConfig.json
  * @returns {Connection}
  */

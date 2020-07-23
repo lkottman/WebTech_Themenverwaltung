@@ -2,11 +2,12 @@
  * Version 1.0
  * 23.07.2020
  * AUTHOR: Dominik Dziersan
- * Client side from register
+ * @class Client side from register
  */
 
 
 /**
+ * @method
  * Gets information from input fields, creates Person object and validates the password and email to
  * post the object to /register
  * @returns {Promise<void>}
@@ -74,6 +75,7 @@ function register() {
 }
 
 /**
+ * @method
  * Manipulates the password progress bar for any matched constraint
  */
 function checkPasswordRequirements() {
@@ -120,8 +122,8 @@ function checkPasswordRequirements() {
 
 }
 /**
+ * @method
  * Manipulates the background color of the input field if the second password doesnt match
- *
  */
 
 function checkPasswords() {

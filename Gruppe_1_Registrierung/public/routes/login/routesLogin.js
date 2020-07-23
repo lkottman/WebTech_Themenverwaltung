@@ -15,6 +15,7 @@ const connection = require("../../../../getConnectionDatabase");
  * 23.07.2020
  * AUTHOR: Dominik Dziersan
  * Server-Side from login
+ * @class routesLogin, server site processing of the Login process
  */
 
 var lifeTime = 1000 * 60 * 60 * 24;// 24 hour
@@ -47,6 +48,7 @@ app.use(session({
 //Takes E-Mail and password from User and check if these matches if database
 
 /**
+ * @method
  * Creates an session with the user if the login succes. Else the server respond with a errormessage
  * request: json with email and password.
  */
@@ -89,6 +91,7 @@ router.post("/login",  (request, response) => {
 });
 
 /**
+ * @method
  * Deletes session with the user
  */
 router.post("/logout",  (request, respond) => {

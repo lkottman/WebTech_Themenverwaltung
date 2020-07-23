@@ -2,6 +2,7 @@
  * Version 1.0
  * 23.07.2020
  * AUTHOR: Dominik Dziersan
+ * @class Tests for login, register and simple functions
  */
 
 var Request = require("request");
@@ -22,6 +23,10 @@ describe("Register Tests: ", function() {
     });
 });
 
+/**
+ * @method
+ * beforeAll
+ */
 describe("Index Tests: ", function() {
 
     var server;
@@ -41,7 +46,10 @@ describe("Index Tests: ", function() {
         server.close;
     });
 
-
+    /**
+     * @method
+     * GET connection status 200 test
+     */
     describe("GET /", () =>{
         var data = {};
         beforeAll((done) => {
@@ -73,6 +81,10 @@ describe("Index Tests: ", function() {
         });
     });
 
+    /**
+     * @method
+     * POST /login test
+     */
     describe("POST /login", () =>{
 
         const jsonLoginBodyEmpty = { email: '', password: '', checkboxLogin: false };
@@ -122,6 +134,10 @@ describe("Index Tests: ", function() {
         });
     });
 
+    /**
+     * @method
+     * POST /login & /createToken test
+     */
     describe("POST /login & /createToken", () =>{
 
         const jsonLoginBodyUser = { email: 'dominik.dziersan@hs-osnabrueck.de', password: 'Test123E', checkboxLogin: false };
@@ -171,6 +187,10 @@ describe("Index Tests: ", function() {
         });
     });
 
+    /**
+     * @method
+     * POST /register test
+     */
     describe("POST /register", () =>{
 
         var token = "";

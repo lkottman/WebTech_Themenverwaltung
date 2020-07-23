@@ -3,6 +3,7 @@
  * Version 1.0
  * 23.07.2020
  * AUTHOR: Created, refactored by group 1
+ * @class Node.js server
  */
 
 const express = require("express");
@@ -25,6 +26,7 @@ var {
 } = process.env;
 
 /**
+ * @method
  * Express static imports for folders which are accessable from public
  */
 app.use('/css',express.static('./Gruppe_1_Registrierung/public/css'));
@@ -48,6 +50,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 /**
+ * @method
  * Configuration of the cookie
  */
 app.use(session({
@@ -65,6 +68,7 @@ app.use(session({
 /**
  * AUTHOR: Dominik Dziersan
  * If the user didnt accept the cookie redirect him to the mainpage
+ * @method redirectCookie
  * @param request
  * @param response
  * @param next
@@ -82,6 +86,7 @@ const redirectCookie = (request, response, next) => {
 /**
  * AUTHOR: Dominik Dziersan
  * If a user is not logged in, redirect him to the login
+ * @method redirectLogin
  * @param request
  * @param response
  * @param next
@@ -97,6 +102,7 @@ const redirectLogin = (request, response, next) => {
 /**
  * AUTHOR: Dominik Dziersan
  * If a user is logged in, redirect him to home
+ * @method redirect Home
  * @param request
  * @param response
  * @param next
@@ -113,6 +119,7 @@ const redirectHome = (request, response, next) => {
 /**
  * AUTHOR: Dominik Dziersan
  * For specific reasons the double request bugs some methods. Use this to prevent it.
+ * @method ignoreFavicon
  * @param request
  * @param response
  * @param next
@@ -131,6 +138,7 @@ function ignoreFavicon(req, res, next) {
 /**
  * AUTHOR: Dominik Dziersan
  * Send all informations of a session to a user.
+ * @method Send session every connection
  * @param request
  * @param response
  * @param next
@@ -150,6 +158,7 @@ app.use((request, respond, next) => {
 });
 
 /**
+ * @method
  * GET Methods from routesGET.js
  */
 router = require("./Gruppe_1_Registrierung/public/routes/routesGET.js");
@@ -191,6 +200,7 @@ app.get("/favicon.ico", (request, response) => {
     console.log('favicon requested');
 });
 /**
+ * @method
  * POST Methods
  */
 routerConfirmation = require('./Gruppe_1_Registrierung/public/routes/register/confirmMail.js');

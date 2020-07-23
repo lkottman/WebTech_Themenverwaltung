@@ -1,3 +1,9 @@
+/**
+AUTHOR Dominik Dziersan
+@class css for the cookie box
+ */
+
+
 .cookieConsentContainer {
 	z-index: 999;
 	width: 350px;
