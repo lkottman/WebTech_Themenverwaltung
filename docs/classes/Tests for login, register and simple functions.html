@@ -41,12 +41,20 @@
                                 <li><a href="../classes/Client side from login.html">Client side from login</a></li>
                                 <li><a href="../classes/Client side from register.html">Client side from register</a></li>
                                 <li><a href="../classes/client side from token.html">client side from token</a></li>
+                                <li><a href="../classes/for preventing sql-injections.html">for preventing sql-injections</a></li>
                                 <li><a href="../classes/Mainpage from this project.html">Mainpage from this project</a></li>
                                 <li><a href="../classes/Node.js server.html">Node.js server</a></li>
                                 <li><a href="../classes/routesLogin, server site processing of the Login process.html">routesLogin, server site processing of the Login process</a></li>
                                 <li><a href="../classes/Server-Side from login.html">Server-Side from login</a></li>
                                 <li><a href="../classes/Server-Side from token.html">Server-Side from token</a></li>
+                                <li><a href="../classes/Simple database connection.html">Simple database connection</a></li>
                                 <li><a href="../classes/Tests for login, register and simple functions.html">Tests for login, register and simple functions</a></li>
+                                <li><a href="../classes/to change the password of a user stores it in the database..html">to change the password of a user stores it in the database.</a></li>
+                                <li><a href="../classes/to generate a object for password changing.html">to generate a object for password changing</a></li>
+                                <li><a href="../classes/to hash a given string and compares it afterwards.html">to hash a given string and compares it afterwards</a></li>
+                                <li><a href="../classes/utility class to return parameter from url.html">utility class to return parameter from url</a></li>
+                                <li><a href="../classes/.html"></a></li>
+                                <li><a href="../classes/to receive mail for changing the user&#x27;s password.html">to receive mail for changing the user&#x27;s password</a></li>
                             </ul>
                 
                 
@@ -130,6 +138,10 @@ AUTHOR: Dominik Dziersan</p>
 
                             </li>
                             <li class="index-item method">
+                                <a href="#method_Manipulates the background color of the input field if the second password doesnt match">Manipulates the background color of the input field if the second password doesnt match</a>
+
+                            </li>
+                            <li class="index-item method">
                                 <a href="#method_POST /login &amp; /createToken test">POST /login &amp; /createToken test</a>
 
                             </li>
@@ -139,6 +151,60 @@ AUTHOR: Dominik Dziersan</p>
                             </li>
                             <li class="index-item method">
                                 <a href="#method_POST /register test">POST /register test</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_This eventlistener checks if a tablefield has been clicked and then calls a function.
+ This function writes the data of the clicked table rows into the input boxes of the user information.">This eventlistener checks if a tablefield has been clicked and then calls a function.
+ This function writes the data of the clicked table rows into the input boxes of the user information.</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_This function changes the attribute of the input fields to readonly, so that it is no longer possible to write into the fields.">This function changes the attribute of the input fields to readonly, so that it is no longer possible to write into the fields.</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_This function changes the attribute of the input fields to readonly, so that it is possible to write to the fields.">This function changes the attribute of the input fields to readonly, so that it is possible to write to the fields.</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_This function changes the status of a dropdown field to disabled or removes this status">This function changes the status of a dropdown field to disabled or removes this status</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_This function changes the status of an input field from readonly to editable or from editable to readonly">This function changes the status of an input field from readonly to editable or from editable to readonly</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_This function changes the type of a field to a normal text type or to a password type.">This function changes the type of a field to a normal text type or to a password type.</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_This function creates a new instance of the UserToUpdate class and parse the data into a JSON file.
+Then the fetch /addUser is called and the JSON file is written to the database.">This function creates a new instance of the UserToUpdate class and parse the data into a JSON file.
+Then the fetch /addUser is called and the JSON file is written to the database.</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_This function creates a new instance of the UserToUpdate class and parse the data into a JSON file.
+Then the fetch /changeMyUser is called and the JSON file is written to the database.">This function creates a new instance of the UserToUpdate class and parse the data into a JSON file.
+Then the fetch /changeMyUser is called and the JSON file is written to the database.</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_This function creates the table rows and loads the data from a JSON file.">This function creates the table rows and loads the data from a JSON file.</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_This function iterates through the tables and sorts by either ASC or DESC, of the selected heading of the table column.">This function iterates through the tables and sorts by either ASC or DESC, of the selected heading of the table column.</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_This function opens an alert window, if confirmed, an instance of the class UserToUpdate is created.
+The data is parsed into a JSON file. Afterwards the fetch /deleteUser is called and all data of the user is deleted from the database.
+If it is rejected, the window closes and the function ends.">This function opens an alert window, if confirmed, an instance of the class UserToUpdate is created.
+The data is parsed into a JSON file. Afterwards the fetch /deleteUser is called and all data of the user is deleted from the database.
+If it is rejected, the window closes and the function ends.</a>
 
                             </li>
                     </ul>
@@ -197,6 +263,36 @@ AUTHOR: Dominik Dziersan</p>
                 <p>
                 Defined in
         <a href="../files/spec_index.spec.js.html#l49"><code>spec\index.spec.js:49</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_Manipulates the background color of the input field if the second password doesnt match" class="method item">
+    <h3 class="name"><code>Manipulates the background color of the input field if the second password doesnt match</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/javascript_addUser.js.html#l51"><code>javascript\addUser.js:51</code></a>
         </p>
 
 
@@ -287,6 +383,456 @@ AUTHOR: Dominik Dziersan</p>
                 <p>
                 Defined in
         <a href="../files/spec_index.spec.js.html#l190"><code>spec\index.spec.js:190</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_This eventlistener checks if a tablefield has been clicked and then calls a function.
+ This function writes the data of the clicked table rows into the input boxes of the user information." class="method item">
+    <h3 class="name"><code>This eventlistener checks if a tablefield has been clicked and then calls a function.
+ This function writes the data of the clicked table rows into the input boxes of the user information.</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/javascript_adminView.js.html#l115"><code>javascript\adminView.js:115</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_This function changes the attribute of the input fields to readonly, so that it is no longer possible to write into the fields." class="method item">
+    <h3 class="name"><code>This function changes the attribute of the input fields to readonly, so that it is no longer possible to write into the fields.</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/javascript_userView.js.html#l51"><code>javascript\userView.js:51</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_This function changes the attribute of the input fields to readonly, so that it is possible to write to the fields." class="method item">
+    <h3 class="name"><code>This function changes the attribute of the input fields to readonly, so that it is possible to write to the fields.</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/javascript_userView.js.html#l37"><code>javascript\userView.js:37</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_This function changes the status of a dropdown field to disabled or removes this status" class="method item">
+    <h3 class="name"><code>This function changes the status of a dropdown field to disabled or removes this status</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>input</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/javascript_adminView.js.html#l178"><code>javascript\adminView.js:178</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">input</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_This function changes the status of an input field from readonly to editable or from editable to readonly" class="method item">
+    <h3 class="name"><code>This function changes the status of an input field from readonly to editable or from editable to readonly</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>input</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/javascript_adminView.js.html#l168"><code>javascript\adminView.js:168</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">input</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_This function changes the type of a field to a normal text type or to a password type." class="method item">
+    <h3 class="name"><code>This function changes the type of a field to a normal text type or to a password type.</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>input</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/javascript_adminView.js.html#l188"><code>javascript\adminView.js:188</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">input</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_This function creates a new instance of the UserToUpdate class and parse the data into a JSON file.
+Then the fetch /addUser is called and the JSON file is written to the database." class="method item">
+    <h3 class="name"><code>This function creates a new instance of the UserToUpdate class and parse the data into a JSON file.
+Then the fetch /addUser is called and the JSON file is written to the database.</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/javascript_addUser.js.html#l29"><code>javascript\addUser.js:29</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_This function creates a new instance of the UserToUpdate class and parse the data into a JSON file.
+Then the fetch /changeMyUser is called and the JSON file is written to the database." class="method item">
+    <h3 class="name"><code>This function creates a new instance of the UserToUpdate class and parse the data into a JSON file.
+Then the fetch /changeMyUser is called and the JSON file is written to the database.</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/javascript_userView.js.html#l133"><code>javascript\userView.js:133</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_This function creates the table rows and loads the data from a JSON file." class="method item">
+    <h3 class="name"><code>This function creates the table rows and loads the data from a JSON file.</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>data</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/javascript_adminView.js.html#l33"><code>javascript\adminView.js:33</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">data</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_This function iterates through the tables and sorts by either ASC or DESC, of the selected heading of the table column." class="method item">
+    <h3 class="name"><code>This function iterates through the tables and sorts by either ASC or DESC, of the selected heading of the table column.</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>n</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/javascript_adminView.js.html#l72"><code>javascript\adminView.js:72</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">n</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_This function opens an alert window, if confirmed, an instance of the class UserToUpdate is created.
+The data is parsed into a JSON file. Afterwards the fetch /deleteUser is called and all data of the user is deleted from the database.
+If it is rejected, the window closes and the function ends." class="method item">
+    <h3 class="name"><code>This function opens an alert window, if confirmed, an instance of the class UserToUpdate is created.
+The data is parsed into a JSON file. Afterwards the fetch /deleteUser is called and all data of the user is deleted from the database.
+If it is rejected, the window closes and the function ends.</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/javascript_userView.js.html#l65"><code>javascript\userView.js:65</code></a>
         </p>
 
 

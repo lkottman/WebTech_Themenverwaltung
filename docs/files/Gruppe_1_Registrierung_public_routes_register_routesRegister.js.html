@@ -41,12 +41,20 @@
                                 <li><a href="../classes/Client side from login.html">Client side from login</a></li>
                                 <li><a href="../classes/Client side from register.html">Client side from register</a></li>
                                 <li><a href="../classes/client side from token.html">client side from token</a></li>
+                                <li><a href="../classes/for preventing sql-injections.html">for preventing sql-injections</a></li>
                                 <li><a href="../classes/Mainpage from this project.html">Mainpage from this project</a></li>
                                 <li><a href="../classes/Node.js server.html">Node.js server</a></li>
                                 <li><a href="../classes/routesLogin, server site processing of the Login process.html">routesLogin, server site processing of the Login process</a></li>
                                 <li><a href="../classes/Server-Side from login.html">Server-Side from login</a></li>
                                 <li><a href="../classes/Server-Side from token.html">Server-Side from token</a></li>
+                                <li><a href="../classes/Simple database connection.html">Simple database connection</a></li>
                                 <li><a href="../classes/Tests for login, register and simple functions.html">Tests for login, register and simple functions</a></li>
+                                <li><a href="../classes/to change the password of a user stores it in the database..html">to change the password of a user stores it in the database.</a></li>
+                                <li><a href="../classes/to generate a object for password changing.html">to generate a object for password changing</a></li>
+                                <li><a href="../classes/to hash a given string and compares it afterwards.html">to hash a given string and compares it afterwards</a></li>
+                                <li><a href="../classes/utility class to return parameter from url.html">utility class to return parameter from url</a></li>
+                                <li><a href="../classes/.html"></a></li>
+                                <li><a href="../classes/to receive mail for changing the user&#x27;s password.html">to receive mail for changing the user&#x27;s password</a></li>
                             </ul>
                 
                 
@@ -89,18 +97,21 @@
 
 <div class="file">
     <pre class="code prettyprint linenums">
-const express = require(&#x27;express&#x27;)
-const router = express.Router()
-const {sendMail, getTextConfirmationEmail, getMailOptions} = require(&#x27;../nodeMailer/nodeMailer.js&#x27;);
-const connection = require(&quot;../../../../getConnectionDatabase&quot;);
-var q = require(&#x27;q&#x27;);
-
 /**
  * Version 1.0
  * 23.07.2020
  * AUTHOR: Dominik Dziersan &amp; Sven Petersen
  * @class Server-Side from login
  */
+
+
+const express = require(&#x27;express&#x27;)
+const router = express.Router()
+const {sendMail, getTextConfirmationEmail, getMailOptions} = require(&#x27;../nodeMailer/nodeMailer.js&#x27;);
+const connection = require(&quot;../../../../getConnectionDatabase&quot;);
+var q = require(&#x27;q&#x27;);
+
+
 
 /**
  * @method
@@ -155,6 +166,7 @@ router.post(&quot;/register&quot;,  (request, response) =&gt; {
 
     }
 
+
     if (request.body.tutorium === undefined) {
         if (request.body.email === undefined) {
 
@@ -198,7 +210,7 @@ router.post(&quot;/register&quot;,  (request, response) =&gt; {
 });
 
 /**
- * @@method
+ * @method
  * Change information from a user
  */
 router.post(&quot;/changeUser&quot;,  (request, response) =&gt; {
@@ -272,7 +284,7 @@ router.post(&quot;/changeMyUser&quot;,  (request, response) =&gt; {
 
 /**
  * @method
- * Adds a user from the adminpage
+ * Add a new User to the system
  */
 router.post(&quot;/addUser&quot;,  (request, response) =&gt; {
 
@@ -280,7 +292,6 @@ router.post(&quot;/addUser&quot;,  (request, response) =&gt; {
     var surname =&quot;&#x27;&quot;+ request.body.surname+&quot;&#x27;&quot;;
     var email = &quot;&#x27;&quot;+request.body.email+&quot;&#x27;&quot;;
     var password = &quot;&#x27;&quot;+request.body.password+&quot;&#x27;&quot;;
-    var verified =&quot;&#x27;&quot;+ request.body.verified+&quot;&#x27;&quot;;
     var authorization = &quot;&#x27;&quot;+request.body.authorization+&quot;&#x27;&quot;;
 
     var sqlStatement = &quot;INSERT INTO &#x60;user&#x60;(&#x60;name&#x60;, &#x60;surname&#x60;, &#x60;e_mail&#x60;, &#x60;password&#x60;, &#x60;authorization&#x60;) VALUES &quot;

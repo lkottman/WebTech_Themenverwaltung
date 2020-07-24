@@ -41,12 +41,20 @@
                                 <li><a href="../classes/Client side from login.html">Client side from login</a></li>
                                 <li><a href="../classes/Client side from register.html">Client side from register</a></li>
                                 <li><a href="../classes/client side from token.html">client side from token</a></li>
+                                <li><a href="../classes/for preventing sql-injections.html">for preventing sql-injections</a></li>
                                 <li><a href="../classes/Mainpage from this project.html">Mainpage from this project</a></li>
                                 <li><a href="../classes/Node.js server.html">Node.js server</a></li>
                                 <li><a href="../classes/routesLogin, server site processing of the Login process.html">routesLogin, server site processing of the Login process</a></li>
                                 <li><a href="../classes/Server-Side from login.html">Server-Side from login</a></li>
                                 <li><a href="../classes/Server-Side from token.html">Server-Side from token</a></li>
+                                <li><a href="../classes/Simple database connection.html">Simple database connection</a></li>
                                 <li><a href="../classes/Tests for login, register and simple functions.html">Tests for login, register and simple functions</a></li>
+                                <li><a href="../classes/to change the password of a user stores it in the database..html">to change the password of a user stores it in the database.</a></li>
+                                <li><a href="../classes/to generate a object for password changing.html">to generate a object for password changing</a></li>
+                                <li><a href="../classes/to hash a given string and compares it afterwards.html">to hash a given string and compares it afterwards</a></li>
+                                <li><a href="../classes/utility class to return parameter from url.html">utility class to return parameter from url</a></li>
+                                <li><a href="../classes/.html"></a></li>
+                                <li><a href="../classes/to receive mail for changing the user&#x27;s password.html">to receive mail for changing the user&#x27;s password</a></li>
                             </ul>
                 
                 
@@ -90,7 +98,7 @@
 
 
         <div class="foundat">
-            Defined in: <a href="../files/Gruppe_1_Registrierung_public_routes_register_routesRegister.js.html#l7"><code>Gruppe_1_Registrierung\public\routes\register\routesRegister.js:7</code></a>
+            Defined in: <a href="../files/Gruppe_1_Registrierung_public_routes_register_routesRegister.js.html#l1"><code>Gruppe_1_Registrierung\public\routes\register\routesRegister.js:1</code></a>
         </div>
 
             Module: <a href="../modules/This router is for processing GETs to html files and simple GETs.html">This router is for processing GETs to html files and simple GETs</a>
@@ -122,11 +130,15 @@ AUTHOR: Dominik Dziersan &amp; Sven Petersen</p>
 
                     <ul class="index-list methods">
                             <li class="index-item method">
-                                <a href="#method_Adds a user from the adminpage">Adds a user from the adminpage</a>
+                                <a href="#method_Add a new User to the system">Add a new User to the system</a>
 
                             </li>
                             <li class="index-item method">
                                 <a href="#method_Change information for the user who is logged in">Change information for the user who is logged in</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_Change information from a user">Change information from a user</a>
 
                             </li>
                             <li class="index-item method">
@@ -141,6 +153,28 @@ AUTHOR: Dominik Dziersan &amp; Sven Petersen</p>
                                 <a href="#method_Processing POST register">Processing POST register</a>
 
                             </li>
+                            <li class="index-item method">
+                                <a href="#method_This method changes the status of mail verified to true.">This method changes the status of mail verified to true.</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_This method creates a connection to a smtp server which will handle the transfer of the mail.
+Data for host, port and auth will be loaded form config.json for easier configuration.">This method creates a connection to a smtp server which will handle the transfer of the mail.
+Data for host, port and auth will be loaded form config.json for easier configuration.</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_This method returns the body for a confirmation mail.">This method returns the body for a confirmation mail.</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_This method returns the metadata for email. *">This method returns the metadata for email. *</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_This router handles the verification of user http request.">This router handles the verification of user http request.</a>
+
+                            </li>
                     </ul>
                 </div>
 
@@ -151,8 +185,8 @@ AUTHOR: Dominik Dziersan &amp; Sven Petersen</p>
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
 
-<div id="method_Adds a user from the adminpage" class="method item">
-    <h3 class="name"><code>Adds a user from the adminpage</code></h3>
+<div id="method_Add a new User to the system" class="method item">
+    <h3 class="name"><code>Add a new User to the system</code></h3>
 
         <span class="paren">()</span>
 
@@ -166,7 +200,7 @@ AUTHOR: Dominik Dziersan &amp; Sven Petersen</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/Gruppe_1_Registrierung_public_routes_register_routesRegister.js.html#l182"><code>Gruppe_1_Registrierung\public\routes\register\routesRegister.js:182</code></a>
+        <a href="../files/Gruppe_1_Registrierung_public_routes_register_routesRegister.js.html#l186"><code>Gruppe_1_Registrierung\public\routes\register\routesRegister.js:186</code></a>
         </p>
 
 
@@ -196,7 +230,37 @@ AUTHOR: Dominik Dziersan &amp; Sven Petersen</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/Gruppe_1_Registrierung_public_routes_register_routesRegister.js.html#l147"><code>Gruppe_1_Registrierung\public\routes\register\routesRegister.js:147</code></a>
+        <a href="../files/Gruppe_1_Registrierung_public_routes_register_routesRegister.js.html#l151"><code>Gruppe_1_Registrierung\public\routes\register\routesRegister.js:151</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_Change information from a user" class="method item">
+    <h3 class="name"><code>Change information from a user</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/Gruppe_1_Registrierung_public_routes_register_routesRegister.js.html#l113"><code>Gruppe_1_Registrierung\public\routes\register\routesRegister.js:113</code></a>
         </p>
 
 
@@ -235,7 +299,7 @@ AUTHOR: Dominik Dziersan &amp; Sven Petersen</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/Gruppe_1_Registrierung_public_routes_register_routesRegister.js.html#l14"><code>Gruppe_1_Registrierung\public\routes\register\routesRegister.js:14</code></a>
+        <a href="../files/Gruppe_1_Registrierung_public_routes_register_routesRegister.js.html#l17"><code>Gruppe_1_Registrierung\public\routes\register\routesRegister.js:17</code></a>
         </p>
 
 
@@ -288,7 +352,7 @@ AUTHOR: Dominik Dziersan &amp; Sven Petersen</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/Gruppe_1_Registrierung_public_routes_register_routesRegister.js.html#l218"><code>Gruppe_1_Registrierung\public\routes\register\routesRegister.js:218</code></a>
+        <a href="../files/Gruppe_1_Registrierung_public_routes_register_routesRegister.js.html#l221"><code>Gruppe_1_Registrierung\public\routes\register\routesRegister.js:221</code></a>
         </p>
 
 
@@ -318,7 +382,332 @@ AUTHOR: Dominik Dziersan &amp; Sven Petersen</p>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/Gruppe_1_Registrierung_public_routes_register_routesRegister.js.html#l24"><code>Gruppe_1_Registrierung\public\routes\register\routesRegister.js:24</code></a>
+        <a href="../files/Gruppe_1_Registrierung_public_routes_register_routesRegister.js.html#l27"><code>Gruppe_1_Registrierung\public\routes\register\routesRegister.js:27</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_This method changes the status of mail verified to true." class="method item">
+    <h3 class="name"><code>This method changes the status of mail verified to true.</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>e_mail</code>
+                </li>
+                <li class="arg">
+                        <code>token</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Promise<void></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/Gruppe_1_Registrierung_public_routes_register_confirmMail.js.html#l34"><code>Gruppe_1_Registrierung\public\routes\register\confirmMail.js:34</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">e_mail</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                        <p>to determine entry in database</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">token</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                        <p>to determine entry in database</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Promise<void></span>:
+            </div>
+        </div>
+
+
+</div>
+<div id="method_This method creates a connection to a smtp server which will handle the transfer of the mail.
+Data for host, port and auth will be loaded form config.json for easier configuration." class="method item">
+    <h3 class="name"><code>This method creates a connection to a smtp server which will handle the transfer of the mail.
+Data for host, port and auth will be loaded form config.json for easier configuration.</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/Gruppe_1_Registrierung_public_routes_nodeMailer_nodeMailer.js.html#l17"><code>Gruppe_1_Registrierung\public\routes\nodeMailer\nodeMailer.js:17</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+
+
+</div>
+<div id="method_This method returns the body for a confirmation mail." class="method item">
+    <h3 class="name"><code>This method returns the body for a confirmation mail.</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>randomtoken</code>
+                </li>
+                <li class="arg">
+                        <code>e_mail</code>
+                </li>
+                <li class="arg">
+                        <code>name</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/Gruppe_1_Registrierung_public_routes_nodeMailer_nodeMailer.js.html#l89"><code>Gruppe_1_Registrierung\public\routes\nodeMailer\nodeMailer.js:89</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">randomtoken</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                        <p>to determine the right entry in database later on</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">e_mail</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                        <p>to determine person to search for in database</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">name</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                        <p>to greet</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    <p>body for email</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_This method returns the metadata for email. *" class="method item">
+    <h3 class="name"><code>This method returns the metadata for email. *</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>recipient</code>
+                </li>
+                <li class="arg">
+                        <code>subject</code>
+                </li>
+                <li class="arg">
+                        <code>text</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Subject: , from: *, to: *, text: *</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/Gruppe_1_Registrierung_public_routes_nodeMailer_nodeMailer.js.html#l71"><code>Gruppe_1_Registrierung\public\routes\nodeMailer\nodeMailer.js:71</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">recipient</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                        <p>to whom</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">subject</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                        <p>is the topic of the mail</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">text</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                        <p>actual body of mail</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Subject: , from: *, to: *, text: *</span>:
+                    <p>}</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_This router handles the verification of user http request." class="method item">
+    <h3 class="name"><code>This router handles the verification of user http request.</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/Gruppe_1_Registrierung_public_routes_register_confirmMail.js.html#l15"><code>Gruppe_1_Registrierung\public\routes\register\confirmMail.js:15</code></a>
         </p>
 
 

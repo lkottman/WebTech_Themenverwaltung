@@ -41,12 +41,20 @@
                                 <li><a href="../classes/Client side from login.html">Client side from login</a></li>
                                 <li><a href="../classes/Client side from register.html">Client side from register</a></li>
                                 <li><a href="../classes/client side from token.html">client side from token</a></li>
+                                <li><a href="../classes/for preventing sql-injections.html">for preventing sql-injections</a></li>
                                 <li><a href="../classes/Mainpage from this project.html">Mainpage from this project</a></li>
                                 <li><a href="../classes/Node.js server.html">Node.js server</a></li>
                                 <li><a href="../classes/routesLogin, server site processing of the Login process.html">routesLogin, server site processing of the Login process</a></li>
                                 <li><a href="../classes/Server-Side from login.html">Server-Side from login</a></li>
                                 <li><a href="../classes/Server-Side from token.html">Server-Side from token</a></li>
+                                <li><a href="../classes/Simple database connection.html">Simple database connection</a></li>
                                 <li><a href="../classes/Tests for login, register and simple functions.html">Tests for login, register and simple functions</a></li>
+                                <li><a href="../classes/to change the password of a user stores it in the database..html">to change the password of a user stores it in the database.</a></li>
+                                <li><a href="../classes/to generate a object for password changing.html">to generate a object for password changing</a></li>
+                                <li><a href="../classes/to hash a given string and compares it afterwards.html">to hash a given string and compares it afterwards</a></li>
+                                <li><a href="../classes/utility class to return parameter from url.html">utility class to return parameter from url</a></li>
+                                <li><a href="../classes/.html"></a></li>
+                                <li><a href="../classes/to receive mail for changing the user&#x27;s password.html">to receive mail for changing the user&#x27;s password</a></li>
                             </ul>
                 
                 
@@ -89,6 +97,14 @@
 
 <div class="file">
     <pre class="code prettyprint linenums">
+/** sql_InjectionTester
+ *
+ *  Version 1
+ *  Modification date: 22.07.2020
+ *  Author: Sven Petersen
+ *  @class for preventing sql-injections
+ */
+
 const lengthToBeValid = 60;
 const metaCharactersToCheck = {
     escapeCharacterSingleQuote: &quot;\&#x27;&quot;,
@@ -98,9 +114,8 @@ const metaCharactersToCheck = {
 };
 
 
-
-
 /**
+ * @method
  * This method checks a given string for illegal metacharacters to prevent SQL-Injections.
  * If the input contains illegal metacharacters a window will pop up with an error message.
  * @param input to be checked
@@ -126,6 +141,7 @@ function checkInputForSQLInject(input)
 }
 
 /**
+ * @method
  * This method splits a given String into an array of chars.
  * @param input to be split.
  * @returns [] an array with chars from given String.
@@ -141,6 +157,7 @@ function splitInput(input) {
 ;}
 
 /**
+ * @method
  * This method checks a given input length to prevent SQL-Injection.
  * If a given input is to long the result ist false
  * @param input to check for l

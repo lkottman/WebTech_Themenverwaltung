@@ -15,10 +15,28 @@
             "fors": {},
             "namespaces": {}
         },
-        "Gruppe_1_Registrierung\\public\\javascript\\changeProfilData.js": {
-            "name": "Gruppe_1_Registrierung\\public\\javascript\\changeProfilData.js",
+        "Gruppe_1_Registrierung\\public\\javascript\\changePassword.js": {
+            "name": "Gruppe_1_Registrierung\\public\\javascript\\changePassword.js",
             "modules": {},
             "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_1_Registrierung\\public\\javascript\\confirmMail.js": {
+            "name": "Gruppe_1_Registrierung\\public\\javascript\\confirmMail.js",
+            "modules": {},
+            "classes": {
+                "to generate a object for password changing": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_1_Registrierung\\public\\javascript\\getUrlParameter.js": {
+            "name": "Gruppe_1_Registrierung\\public\\javascript\\getUrlParameter.js",
+            "modules": {},
+            "classes": {
+                "utility class to return parameter from url": 1
+            },
             "fors": {},
             "namespaces": {}
         },
@@ -43,7 +61,9 @@
         "Gruppe_1_Registrierung\\public\\javascript\\passwortHash.js": {
             "name": "Gruppe_1_Registrierung\\public\\javascript\\passwortHash.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "to hash a given string and compares it afterwards": 1
+            },
             "fors": {},
             "namespaces": {}
         },
@@ -59,7 +79,9 @@
         "Gruppe_1_Registrierung\\public\\javascript\\sql_InjectionTester.js": {
             "name": "Gruppe_1_Registrierung\\public\\javascript\\sql_InjectionTester.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "for preventing sql-injections": 1
+            },
             "fors": {},
             "namespaces": {}
         },
@@ -68,6 +90,22 @@
             "modules": {},
             "classes": {
                 "routesLogin, server site processing of the Login process": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_1_Registrierung\\public\\routes\\nodeMailer\\nodeMailer.js": {
+            "name": "Gruppe_1_Registrierung\\public\\routes\\nodeMailer\\nodeMailer.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_1_Registrierung\\public\\routes\\register\\confirmMail.js": {
+            "name": "Gruppe_1_Registrierung\\public\\routes\\register\\confirmMail.js",
+            "modules": {},
+            "classes": {
+                "": 1
             },
             "fors": {},
             "namespaces": {}
@@ -81,12 +119,44 @@
             "fors": {},
             "namespaces": {}
         },
+        "Gruppe_1_Registrierung\\public\\routes\\resetPassword\\changePassword.js": {
+            "name": "Gruppe_1_Registrierung\\public\\routes\\resetPassword\\changePassword.js",
+            "modules": {},
+            "classes": {
+                "to change the password of a user stores it in the database.": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_1_Registrierung\\public\\routes\\resetPassword\\sendMailToChangePassword.js": {
+            "name": "Gruppe_1_Registrierung\\public\\routes\\resetPassword\\sendMailToChangePassword.js",
+            "modules": {},
+            "classes": {
+                "to receive mail for changing the user's password": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_1_Registrierung\\public\\routes\\token\\Test.js": {
+            "name": "Gruppe_1_Registrierung\\public\\routes\\token\\Test.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "Gruppe_1_Registrierung\\public\\routes\\token\\routesToken.js": {
             "name": "Gruppe_1_Registrierung\\public\\routes\\token\\routesToken.js",
             "modules": {},
             "classes": {
                 "Server-Side from token": 1
             },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Gruppe_1_Registrierung\\public\\routes\\passwortHash.js": {
+            "name": "Gruppe_1_Registrierung\\public\\routes\\passwortHash.js",
+            "modules": {},
+            "classes": {},
             "fors": {},
             "namespaces": {}
         },
@@ -232,6 +302,27 @@
             "fors": {},
             "namespaces": {}
         },
+        "javascript\\addUser.js": {
+            "name": "javascript\\addUser.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "javascript\\adminView.js": {
+            "name": "javascript\\adminView.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "javascript\\userView.js": {
+            "name": "javascript\\userView.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "spec\\index.spec.js": {
             "name": "spec\\index.spec.js",
             "modules": {},
@@ -244,7 +335,9 @@
         "getConnectionDatabase.js": {
             "name": "getConnectionDatabase.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "Simple database connection": 1
+            },
             "fors": {},
             "namespaces": {}
         },
@@ -265,13 +358,21 @@
             "elements": {},
             "classes": {
                 "client side from token": 1,
+                "to generate a object for password changing": 1,
+                "utility class to return parameter from url": 1,
                 "Mainpage from this project": 1,
                 "Client side from login": 1,
+                "to hash a given string and compares it afterwards": 1,
                 "Client side from register": 1,
+                "for preventing sql-injections": 1,
                 "routesLogin, server site processing of the Login process": 1,
+                "": 1,
                 "Server-Side from login": 1,
+                "to change the password of a user stores it in the database.": 1,
+                "to receive mail for changing the user's password": 1,
                 "Server-Side from token": 1,
                 "Tests for login, register and simple functions": 1,
+                "Simple database connection": 1,
                 "Node.js server": 1
             },
             "fors": {},
@@ -295,6 +396,32 @@
             "file": "Gruppe_1_Registrierung\\privat\\javascript\\token.js",
             "line": 1,
             "description": "Version 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan"
+        },
+        "to generate a object for password changing": {
+            "name": "to generate a object for password changing",
+            "shortname": "to generate a object for password changing",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "This router is for processing GETs to html files and simple GETs",
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\confirmMail.js",
+            "line": 1,
+            "description": "Version 1\n  Modification date: 22.07.2020\n  Author: Sven Petersen"
+        },
+        "utility class to return parameter from url": {
+            "name": "utility class to return parameter from url",
+            "shortname": "utility class to return parameter from url",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "This router is for processing GETs to html files and simple GETs",
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\getUrlParameter.js",
+            "line": 1,
+            "description": "Version 1\n  Modification date: 22.07.2020\n  Author: Sven Petersen"
         },
         "Mainpage from this project": {
             "name": "Mainpage from this project",
@@ -322,6 +449,19 @@
             "line": 1,
             "description": "Version 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan"
         },
+        "to hash a given string and compares it afterwards": {
+            "name": "to hash a given string and compares it afterwards",
+            "shortname": "to hash a given string and compares it afterwards",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "This router is for processing GETs to html files and simple GETs",
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\passwortHash.js",
+            "line": 1,
+            "description": "Version 1\n  Modification date: 22.07.2020\n  Author: Sven Petersen"
+        },
         "Client side from register": {
             "name": "Client side from register",
             "shortname": "Client side from register",
@@ -335,6 +475,19 @@
             "line": 1,
             "description": "Version 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan"
         },
+        "for preventing sql-injections": {
+            "name": "for preventing sql-injections",
+            "shortname": "for preventing sql-injections",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "This router is for processing GETs to html files and simple GETs",
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\sql_InjectionTester.js",
+            "line": 1,
+            "description": "Version 1\n  Modification date: 22.07.2020\n  Author: Sven Petersen"
+        },
         "routesLogin, server site processing of the Login process": {
             "name": "routesLogin, server site processing of the Login process",
             "shortname": "routesLogin, server site processing of the Login process",
@@ -345,8 +498,14 @@
             "extension_for": [],
             "module": "This router is for processing GETs to html files and simple GETs",
             "file": "Gruppe_1_Registrierung\\public\\routes\\login\\routesLogin.js",
-            "line": 13,
+            "line": 1,
             "description": "Version 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan\nServer-Side from login"
+        },
+        "": {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\register\\confirmMail.js",
+            "line": 1,
+            "description": "Version 1\n  Modification date: 22.07.2020\n  Author: Sven Petersen",
+            "module": "This router is for processing GETs to html files and simple GETs"
         },
         "Server-Side from login": {
             "name": "Server-Side from login",
@@ -358,8 +517,34 @@
             "extension_for": [],
             "module": "This router is for processing GETs to html files and simple GETs",
             "file": "Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js",
-            "line": 7,
+            "line": 1,
             "description": "Version 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan & Sven Petersen"
+        },
+        "to change the password of a user stores it in the database.": {
+            "name": "to change the password of a user stores it in the database.",
+            "shortname": "to change the password of a user stores it in the database.",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "This router is for processing GETs to html files and simple GETs",
+            "file": "Gruppe_1_Registrierung\\public\\routes\\resetPassword\\changePassword.js",
+            "line": 1,
+            "description": "Version 1\n  Modification date: 22.07.2020\n  Author: Sven Petersen"
+        },
+        "to receive mail for changing the user's password": {
+            "name": "to receive mail for changing the user's password",
+            "shortname": "to receive mail for changing the user's password",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "This router is for processing GETs to html files and simple GETs",
+            "file": "Gruppe_1_Registrierung\\public\\routes\\resetPassword\\sendMailToChangePassword.js",
+            "line": 1,
+            "description": "Version 1\n  Modification date: 22.07.2020\n  Author: Sven Petersen"
         },
         "Server-Side from token": {
             "name": "Server-Side from token",
@@ -386,6 +571,20 @@
             "namespace": "",
             "file": "spec\\index.spec.js",
             "line": 1,
+            "description": "Version 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan"
+        },
+        "Simple database connection": {
+            "name": "Simple database connection",
+            "shortname": "Simple database connection",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "This router is for processing GETs to html files and simple GETs",
+            "namespace": "",
+            "file": "getConnectionDatabase.js",
+            "line": 6,
             "description": "Version 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan"
         },
         "Node.js server": {
@@ -467,23 +666,17 @@
             "class": "client side from token"
         },
         {
-            "file": "Gruppe_1_Registrierung\\public\\javascript\\changeProfilData.js",
-            "line": 14,
-            "params": [
-                {
-                    "name": "id",
-                    "description": "user to change data"
-                },
-                {
-                    "name": "columnName",
-                    "description": "to update"
-                },
-                {
-                    "name": "entryChange",
-                    "description": "new information"
-                }
-            ],
-            "class": "Mainpage from this project"
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\changePassword.js",
+            "line": 11,
+            "description": "This class creates an object from the user data which is entered and return its.",
+            "class": "to generate a object for password changing"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\javascript\\changePassword.js",
+            "line": 31,
+            "itemtype": "method",
+            "name": "This method send data which is entered by the user to change the password.",
+            "class": "to generate a object for password changing"
         },
         {
             "file": "Gruppe_1_Registrierung\\public\\javascript\\homepage.js",
@@ -603,20 +796,22 @@
         },
         {
             "file": "Gruppe_1_Registrierung\\public\\javascript\\passwortHash.js",
-            "line": 4,
-            "description": "This method hashes an given input string and adds an salt for proper security.",
+            "line": 13,
+            "itemtype": "method",
+            "name": "This method hashes an given input string and adds an salt for proper security.",
             "params": [
                 {
                     "name": "input",
                     "description": "to be hashed."
                 }
             ],
-            "class": "Client side from register"
+            "class": "to hash a given string and compares it afterwards"
         },
         {
             "file": "Gruppe_1_Registrierung\\public\\javascript\\passwortHash.js",
-            "line": 25,
-            "description": "* This method compares an given input string with an hashed + salt generated password.",
+            "line": 35,
+            "itemtype": "method",
+            "name": "This method compares an given input string with an hashed + salt generated password.",
             "params": [
                 {
                     "name": "input",
@@ -627,7 +822,7 @@
                     "description": "string from database to check for."
                 }
             ],
-            "class": "Client side from register"
+            "class": "to hash a given string and compares it afterwards"
         },
         {
             "file": "Gruppe_1_Registrierung\\public\\javascript\\register.js",
@@ -672,20 +867,22 @@
         },
         {
             "file": "Gruppe_1_Registrierung\\public\\javascript\\sql_InjectionTester.js",
-            "line": 12,
-            "description": "This method checks a given string for illegal metacharacters to prevent SQL-Injections.\nIf the input contains illegal metacharacters a window will pop up with an error message.",
+            "line": 18,
+            "itemtype": "method",
+            "name": "This method checks a given string for illegal metacharacters to prevent SQL-Injections.\nIf the input contains illegal metacharacters a window will pop up with an error message.",
             "params": [
                 {
                     "name": "input",
                     "description": "to be checked"
                 }
             ],
-            "class": "routesLogin, server site processing of the Login process"
+            "class": "for preventing sql-injections"
         },
         {
             "file": "Gruppe_1_Registrierung\\public\\javascript\\sql_InjectionTester.js",
-            "line": 37,
-            "description": "This method splits a given String into an array of chars.",
+            "line": 44,
+            "itemtype": "method",
+            "name": "This method splits a given String into an array of chars.",
             "params": [
                 {
                     "name": "input",
@@ -695,37 +892,155 @@
             "return": {
                 "description": "[] an array with chars from given String."
             },
-            "class": "routesLogin, server site processing of the Login process"
+            "class": "for preventing sql-injections"
         },
         {
             "file": "Gruppe_1_Registrierung\\public\\javascript\\sql_InjectionTester.js",
-            "line": 52,
-            "description": "This method checks a given input length to prevent SQL-Injection.\nIf a given input is to long the result ist false",
+            "line": 60,
+            "itemtype": "method",
+            "name": "This method checks a given input length to prevent SQL-Injection.\nIf a given input is to long the result ist false",
             "params": [
                 {
                     "name": "input",
                     "description": "to check for l"
                 }
             ],
-            "class": "routesLogin, server site processing of the Login process"
+            "class": "for preventing sql-injections"
         },
         {
             "file": "Gruppe_1_Registrierung\\public\\routes\\login\\routesLogin.js",
-            "line": 50,
+            "line": 52,
             "itemtype": "method",
             "name": "Creates an session with the user if the login succes. Else the server respond with a errormessage\nrequest: json with email and password.",
             "class": "routesLogin, server site processing of the Login process"
         },
         {
             "file": "Gruppe_1_Registrierung\\public\\routes\\login\\routesLogin.js",
-            "line": 93,
+            "line": 95,
             "itemtype": "method",
             "name": "Deletes session with the user",
             "class": "routesLogin, server site processing of the Login process"
         },
         {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\nodeMailer\\nodeMailer.js",
+            "line": 17,
+            "itemtype": "method",
+            "name": "This method creates a connection to a smtp server which will handle the transfer of the mail.\nData for host, port and auth will be loaded form config.json for easier configuration.",
+            "class": "Server-Side from login"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\nodeMailer\\nodeMailer.js",
+            "line": 34,
+            "description": "This method sends a mail via the smtp server.",
+            "params": [
+                {
+                    "name": "mailOptions",
+                    "description": "contains information about receipting, subject and body."
+                }
+            ],
+            "class": "Server-Side from login"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\nodeMailer\\nodeMailer.js",
+            "line": 51,
+            "description": "This method creates the body for reset password email.",
+            "params": [
+                {
+                    "name": "resetToken",
+                    "description": "to determine validity and identity of request"
+                },
+                {
+                    "name": "emailnto",
+                    "description": "determine validity and identity of request"
+                }
+            ],
+            "return": {
+                "description": "body for email.",
+                "type": "String"
+            },
+            "class": "Server-Side from login"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\nodeMailer\\nodeMailer.js",
+            "line": 71,
+            "itemtype": "method",
+            "name": "This method returns the metadata for email. *",
+            "params": [
+                {
+                    "name": "recipient",
+                    "description": "to whom"
+                },
+                {
+                    "name": "subject",
+                    "description": "is the topic of the mail"
+                },
+                {
+                    "name": "text",
+                    "description": "actual body of mail"
+                }
+            ],
+            "return": {
+                "description": "}",
+                "type": "Subject: *, from: *, to: *, text: *"
+            },
+            "class": "Server-Side from login"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\nodeMailer\\nodeMailer.js",
+            "line": 89,
+            "itemtype": "method",
+            "name": "This method returns the body for a confirmation mail.",
+            "params": [
+                {
+                    "name": "randomtoken",
+                    "description": "to determine the right entry in database later on"
+                },
+                {
+                    "name": "e_mail",
+                    "description": "to determine person to search for in database"
+                },
+                {
+                    "name": "name",
+                    "description": "to greet"
+                }
+            ],
+            "return": {
+                "description": "body for email",
+                "type": "String"
+            },
+            "class": "Server-Side from login"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\register\\confirmMail.js",
+            "line": 15,
+            "itemtype": "method",
+            "name": "This router handles the verification of user http request.",
+            "class": "Server-Side from login"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\register\\confirmMail.js",
+            "line": 34,
+            "itemtype": "method",
+            "name": "This method changes the status of mail verified to true.",
+            "params": [
+                {
+                    "name": "e_mail",
+                    "description": "to determine entry in database"
+                },
+                {
+                    "name": "token",
+                    "description": "to determine entry in database"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Promise<void>"
+            },
+            "class": "Server-Side from login"
+        },
+        {
             "file": "Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js",
-            "line": 14,
+            "line": 17,
             "itemtype": "method",
             "name": "Checks if the email ends with \"hs-osnabrueck.de\"",
             "params": [
@@ -742,36 +1057,71 @@
         },
         {
             "file": "Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js",
-            "line": 24,
+            "line": 27,
             "itemtype": "method",
             "name": "Processing POST register",
             "class": "Server-Side from login"
         },
         {
             "file": "Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js",
-            "line": 109,
+            "line": 113,
+            "itemtype": "method",
+            "name": "Change information from a user",
             "class": "Server-Side from login"
         },
         {
             "file": "Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js",
-            "line": 147,
+            "line": 151,
             "itemtype": "method",
             "name": "Change information for the user who is logged in",
             "class": "Server-Side from login"
         },
         {
             "file": "Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js",
-            "line": 182,
+            "line": 186,
             "itemtype": "method",
-            "name": "Adds a user from the adminpage",
+            "name": "Add a new User to the system",
             "class": "Server-Side from login"
         },
         {
             "file": "Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js",
-            "line": 218,
+            "line": 221,
             "itemtype": "method",
             "name": "Deletes user",
             "class": "Server-Side from login"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\resetPassword\\changePassword.js",
+            "line": 18,
+            "itemtype": "method",
+            "name": "This router updates the password of an user.",
+            "class": "to change the password of a user stores it in the database."
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\resetPassword\\changePassword.js",
+            "line": 52,
+            "itemtype": "method",
+            "name": "This method checks if a given token is valid or not otherwise it returns false",
+            "class": "to change the password of a user stores it in the database."
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\resetPassword\\sendMailToChangePassword.js",
+            "line": 25,
+            "itemtype": "method",
+            "name": "This router checks if a given email exits and sends a mail\n to the user otherwise it redirects the user to the login page.\n The users receives a email to continue with the process of changing the password.",
+            "class": "to receive mail for changing the user's password"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\token\\Test.js",
+            "line": 20,
+            "description": "This method hashes an given input string and adds salt for proper security.",
+            "params": [
+                {
+                    "name": "input",
+                    "description": "to be hashed."
+                }
+            ],
+            "class": "Server-Side from token"
         },
         {
             "file": "Gruppe_1_Registrierung\\public\\routes\\token\\routesToken.js",
@@ -793,6 +1143,24 @@
             "itemtype": "method",
             "name": "Sends tokens in json format for different users. Admins get all existing tokens, lecturer\nwhat they created themselves",
             "class": "Server-Side from token"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\passwortHash.js",
+            "line": 2,
+            "description": "Version 1.0\n23.07.2020\nAUTHOR: Sven Petersen\nclaas wont work because it takes to long to calculate the hash but it actually prints",
+            "class": "Tests for login, register and simple functions"
+        },
+        {
+            "file": "Gruppe_1_Registrierung\\public\\routes\\passwortHash.js",
+            "line": 38,
+            "description": "This method hashes an given input string and adds salt for proper security.",
+            "params": [
+                {
+                    "name": "input",
+                    "description": "to be hashed."
+                }
+            ],
+            "class": "Tests for login, register and simple functions"
         },
         {
             "file": "Gruppe_1_Registrierung\\public\\routes\\routesGET.js",
@@ -1283,6 +1651,146 @@
             "module": "This router is for processing GETs to html files and simple GETs"
         },
         {
+            "file": "javascript\\addUser.js",
+            "line": 29,
+            "itemtype": "method",
+            "name": "This function creates a new instance of the UserToUpdate class and parse the data into a JSON file.\nThen the fetch /addUser is called and the JSON file is written to the database.",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "javascript\\addUser.js",
+            "line": 51,
+            "itemtype": "method",
+            "name": "Manipulates the background color of the input field if the second password doesnt match",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "javascript\\adminView.js",
+            "line": 1,
+            "description": "Version 1.0\n24.07.2020\nAUTHOR: Louis Kottmann",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "javascript\\adminView.js",
+            "line": 33,
+            "itemtype": "method",
+            "name": "This function creates the table rows and loads the data from a JSON file.",
+            "params": [
+                {
+                    "name": "data",
+                    "description": ""
+                }
+            ],
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "javascript\\adminView.js",
+            "line": 72,
+            "itemtype": "method",
+            "name": "This function iterates through the tables and sorts by either ASC or DESC, of the selected heading of the table column.",
+            "params": [
+                {
+                    "name": "n",
+                    "description": ""
+                }
+            ],
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "javascript\\adminView.js",
+            "line": 115,
+            "itemtype": "method",
+            "name": "This eventlistener checks if a tablefield has been clicked and then calls a function.\n This function writes the data of the clicked table rows into the input boxes of the user information.",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "javascript\\adminView.js",
+            "line": 168,
+            "itemtype": "method",
+            "name": "This function changes the status of an input field from readonly to editable or from editable to readonly",
+            "params": [
+                {
+                    "name": "input",
+                    "description": ""
+                }
+            ],
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "javascript\\adminView.js",
+            "line": 178,
+            "itemtype": "method",
+            "name": "This function changes the status of a dropdown field to disabled or removes this status",
+            "params": [
+                {
+                    "name": "input",
+                    "description": ""
+                }
+            ],
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "javascript\\adminView.js",
+            "line": 188,
+            "itemtype": "method",
+            "name": "This function changes the type of a field to a normal text type or to a password type.",
+            "params": [
+                {
+                    "name": "input",
+                    "description": ""
+                }
+            ],
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "javascript\\userView.js",
+            "line": 1,
+            "description": "Version 1.0\n24.07.2020\nAUTHOR: Louis Kottmann",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "javascript\\userView.js",
+            "line": 37,
+            "itemtype": "method",
+            "name": "This function changes the attribute of the input fields to readonly, so that it is possible to write to the fields.",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "javascript\\userView.js",
+            "line": 51,
+            "itemtype": "method",
+            "name": "This function changes the attribute of the input fields to readonly, so that it is no longer possible to write into the fields.",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "javascript\\userView.js",
+            "line": 65,
+            "itemtype": "method",
+            "name": "This function opens an alert window, if confirmed, an instance of the class UserToUpdate is created.\nThe data is parsed into a JSON file. Afterwards the fetch /deleteUser is called and all data of the user is deleted from the database.\nIf it is rejected, the window closes and the function ends.",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
+            "file": "javascript\\userView.js",
+            "line": 133,
+            "itemtype": "method",
+            "name": "This function creates a new instance of the UserToUpdate class and parse the data into a JSON file.\nThen the fetch /changeMyUser is called and the JSON file is written to the database.",
+            "class": "Tests for login, register and simple functions",
+            "module": "This router is for processing GETs to html files and simple GETs"
+        },
+        {
             "file": "spec\\index.spec.js",
             "line": 26,
             "itemtype": "method",
@@ -1324,20 +1832,14 @@
         },
         {
             "file": "getConnectionDatabase.js",
-            "line": 6,
-            "description": "Version 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan",
-            "class": "Node.js server",
-            "module": "This router is for processing GETs to html files and simple GETs"
-        },
-        {
-            "file": "getConnectionDatabase.js",
-            "line": 12,
-            "description": "Connects to Databse with givin credentials from datenbankConfig.json",
+            "line": 13,
+            "itemtype": "method",
+            "name": "Connects to Databse with givin credentials from datenbankConfig.json",
             "return": {
                 "description": "",
                 "type": "Connection"
             },
-            "class": "Node.js server",
+            "class": "Simple database connection",
             "module": "This router is for processing GETs to html files and simple GETs"
         },
         {
@@ -1511,11 +2013,27 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " Gruppe_1_Registrierung\\public\\javascript\\sql_InjectionTester.js:37"
+            "line": " Gruppe_1_Registrierung\\public\\javascript\\sql_InjectionTester.js:44"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js:14"
+            "line": " Gruppe_1_Registrierung\\public\\routes\\nodeMailer\\nodeMailer.js:51"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " Gruppe_1_Registrierung\\public\\routes\\nodeMailer\\nodeMailer.js:71"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " Gruppe_1_Registrierung\\public\\routes\\nodeMailer\\nodeMailer.js:89"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " Gruppe_1_Registrierung\\public\\routes\\register\\confirmMail.js:34"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js:17"
         },
         {
             "message": "replacing incorrect tag: returns with return",
@@ -1523,43 +2041,39 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " getConnectionDatabase.js:12"
+            "line": " getConnectionDatabase.js:13"
         },
         {
-            "message": "Missing item type",
-            "line": " Gruppe_1_Registrierung\\public\\javascript\\changeProfilData.js:14"
+            "message": "Missing item type\nThis class creates an object from the user data which is entered and return its.",
+            "line": " Gruppe_1_Registrierung\\public\\javascript\\changePassword.js:11"
         },
         {
             "message": "Missing item type",
             "line": " Gruppe_1_Registrierung\\public\\javascript\\homepage.js:164"
         },
         {
-            "message": "Missing item type\nThis method hashes an given input string and adds an salt for proper security.",
-            "line": " Gruppe_1_Registrierung\\public\\javascript\\passwortHash.js:4"
-        },
-        {
-            "message": "Missing item type\n* This method compares an given input string with an hashed + salt generated password.",
-            "line": " Gruppe_1_Registrierung\\public\\javascript\\passwortHash.js:25"
-        },
-        {
             "message": "Missing item type\nChecks if the email ends with \"@hs-osnabrueck.de \"",
             "line": " Gruppe_1_Registrierung\\public\\javascript\\register.js:144"
         },
         {
-            "message": "Missing item type\nThis method checks a given string for illegal metacharacters to prevent SQL-Injections.\nIf the input contains illegal metacharacters a window will pop up with an error message.",
-            "line": " Gruppe_1_Registrierung\\public\\javascript\\sql_InjectionTester.js:12"
+            "message": "Missing item type\nThis method sends a mail via the smtp server.",
+            "line": " Gruppe_1_Registrierung\\public\\routes\\nodeMailer\\nodeMailer.js:34"
         },
         {
-            "message": "Missing item type\nThis method splits a given String into an array of chars.",
-            "line": " Gruppe_1_Registrierung\\public\\javascript\\sql_InjectionTester.js:37"
+            "message": "Missing item type\nThis method creates the body for reset password email.",
+            "line": " Gruppe_1_Registrierung\\public\\routes\\nodeMailer\\nodeMailer.js:51"
         },
         {
-            "message": "Missing item type\nThis method checks a given input length to prevent SQL-Injection.\nIf a given input is to long the result ist false",
-            "line": " Gruppe_1_Registrierung\\public\\javascript\\sql_InjectionTester.js:52"
+            "message": "Missing item type\nThis method hashes an given input string and adds salt for proper security.",
+            "line": " Gruppe_1_Registrierung\\public\\routes\\token\\Test.js:20"
         },
         {
-            "message": "Missing item type",
-            "line": " Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js:109"
+            "message": "Missing item type\nVersion 1.0\n23.07.2020\nAUTHOR: Sven Petersen\nclaas wont work because it takes to long to calculate the hash but it actually prints",
+            "line": " Gruppe_1_Registrierung\\public\\routes\\passwortHash.js:2"
+        },
+        {
+            "message": "Missing item type\nThis method hashes an given input string and adds salt for proper security.",
+            "line": " Gruppe_1_Registrierung\\public\\routes\\passwortHash.js:38"
         },
         {
             "message": "Missing item type\nThis method provides a json object with all registerd users.",
@@ -1818,12 +2332,12 @@
             "line": " Gruppe_5_Editor\\Web Technologies\\Projekt\\JS\\tablesort.js:64"
         },
         {
-            "message": "Missing item type\nVersion 1.0\n23.07.2020\nAUTHOR: Dominik Dziersan",
-            "line": " getConnectionDatabase.js:6"
+            "message": "Missing item type\nVersion 1.0\n24.07.2020\nAUTHOR: Louis Kottmann",
+            "line": " javascript\\adminView.js:1"
         },
         {
-            "message": "Missing item type\nConnects to Databse with givin credentials from datenbankConfig.json",
-            "line": " getConnectionDatabase.js:12"
+            "message": "Missing item type\nVersion 1.0\n24.07.2020\nAUTHOR: Louis Kottmann",
+            "line": " javascript\\userView.js:1"
         }
     ]
 }
