@@ -1,3 +1,12 @@
+/** sendMailToChangePassword
+ *
+ *  Version 1
+ *  Modification date: 22.07.2020
+ *  Author: Sven Petersen
+ *  @class to receive mail for changing the user's password
+ */
+
+
 const express = require('express');
 const {getTextForgotPassword,getMailOptions,sendMail} = require('../nodeMailer/nodeMailer.js');
 const {checkInputForSQLInject} = require('../../javascript/sql_InjectionTester.js');
@@ -13,8 +22,13 @@ function validateEmail(email) {
 }
 
 
-
-
+/**
+ * @method
+ *  This router checks if a given email exits and sends a mail
+ *  to the user otherwise it redirects the user to the login page.
+ *  The users receives a email to continue with the process of changing the password.
+ *
+ */
 router.post("/pwforgot", (request, response) => {
 
     let email = request.body.email;

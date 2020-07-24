@@ -1,7 +1,17 @@
+/** passwortHash
+ *
+ *  Version 1
+ *  Modification date: 22.07.2020
+ *  Author: Sven Petersen
+ *  @class to hash a given string and compares it afterwards
+ */
+
+
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 /**
+ * @method
  * This method hashes an given input string and adds an salt for proper security.
  * @param input to be hashed.
  */
@@ -23,7 +33,8 @@ function hashPassword(input){
 };
 
 /**
- *  * This method compares an given input string with an hashed + salt generated password.
+ * @method
+ * This method compares an given input string with an hashed + salt generated password.
  * @param input string from user to compare with hash
  * @param hash string from database to check for.
  */

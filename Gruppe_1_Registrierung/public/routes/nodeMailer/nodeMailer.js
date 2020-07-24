@@ -4,6 +4,7 @@
  *  </p>
  *  Modification date: 22.07.2020
  *  Author: Sven Petersen
+ *  @class
  */
 
 const nodemailer = require('nodemailer');
@@ -14,6 +15,7 @@ const configData = configDataMailer;
 const config = JSON.parse(fs.readFileSync(path.path + "/Gruppe_1_Registrierung/public/routes/nodeMailer/config/config.json"));
 
 /**
+ * @method
  * This method creates a connection to a smtp server which will handle the transfer of the mail.
  * Data for host, port and auth will be loaded form config.json for easier configuration.
  */
@@ -67,6 +69,7 @@ function getTextForgotPassword(resetToken, email){
 }
 
 /**
+ * @method
  * This method returns the metadata for email. *
  * @param recipient to whom
  * @param subject is the topic of the mail
@@ -84,6 +87,7 @@ function getMailOptions(recipient, subject, text ) {
 }
 
 /**
+ * @method
  * This method returns the body for a confirmation mail.
  * @param randomtoken to determine the right entry in database later on
  * @param e_mail to determine person to search for in database

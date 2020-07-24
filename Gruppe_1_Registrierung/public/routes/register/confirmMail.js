@@ -1,10 +1,9 @@
 /** confirmMailNode
  *
- *  <p>
- *      Version 1
- *  </p>
+ *  Version 1
  *  Modification date: 22.07.2020
  *  Author: Sven Petersen
+ *  @class
  */
 const express = require('express');
 const connection = require('../../../../getConnectionDatabase.js');
@@ -14,6 +13,7 @@ const router = express.Router();
 
 
 /**
+ * @method
  * This router handles the verification of user http request.
  */
 router.post("/verify", (request, response) => {
@@ -32,6 +32,7 @@ router.post("/verify", (request, response) => {
 });
 
 /**
+ * @method
  * This method changes the status of mail verified to true.
  * @param e_mail to determine entry in database
  * @param token to determine entry in database

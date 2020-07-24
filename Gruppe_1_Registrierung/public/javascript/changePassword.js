@@ -1,10 +1,9 @@
 /** changePassord
  *
- *  <p>
- *      Version 1
- *  </p>
+ *  Version 1
  *  Modification date: 22.07.2020
  *  Author: Sven Petersen
+ *  @class to generate a object for password changing
  */
 
 import {getUrlParameter} from "./getUrlParameter";
@@ -30,6 +29,7 @@ class UserToUpdate {
 }
 
 /**
+ * @method
  * This method send data which is entered by the user to change the password.
  */
 async function sendData() {

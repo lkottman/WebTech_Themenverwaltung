@@ -1,10 +1,9 @@
 /** changePassword
  *
- *  <p>
- *      Version 1
- *  </p>
+ *  Version 1
  *  Modification date: 22.07.2020
  *  Author: Sven Petersen
+ *  @class to change the password of a user stores it in the database.
  */
 
 
@@ -17,6 +16,7 @@ const redirect = require("../routesRedirect");
 
 
 /**
+ * @method
  * This router updates the password of an user.
  */
 router.post("/updatePassword", (request, response) =>{
@@ -49,6 +49,10 @@ router.post("/updatePassword", (request, response) =>{
     }
 });
 
+/**
+ * @method
+ * This method checks if a given token is valid or not otherwise it returns false
+ */
    async function checkToken(token){
     if(token === "" || token === null || token === undefined)
     {
@@ -90,7 +94,7 @@ router.post("/updatePassword", (request, response) =>{
         });
     }};
 
-
+/*
 async function checkForValid(token, e_mail) {
 
     let now = new Date();
@@ -126,6 +130,6 @@ async function checkForValid(token, e_mail) {
         }
     });
 };
-
+*/
 
 module.exports = router;

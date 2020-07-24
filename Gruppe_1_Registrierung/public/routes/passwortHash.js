@@ -1,3 +1,11 @@
+
+/**
+ * Version 1.0
+ * 23.07.2020
+ * AUTHOR: Sven Petersen
+ * claas wont work because it takes to long to calculate the hash but it actually prints
+ */
+
 const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();

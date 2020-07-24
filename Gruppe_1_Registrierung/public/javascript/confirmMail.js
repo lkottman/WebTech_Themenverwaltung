@@ -1,12 +1,12 @@
+/** changePassord
+ *
+ *  Version 1
+ *  Modification date: 22.07.2020
+ *  Author: Sven Petersen
+ *  @class to generate a object for password changing
+ */
 
-
-    function getUrlParameter(name) {
-        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-        var results = regex.exec(location.search);
-        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-    };
-
+import {getUrlParameter} from "./getUrlParameter";
 
     class UserToVerify {
 

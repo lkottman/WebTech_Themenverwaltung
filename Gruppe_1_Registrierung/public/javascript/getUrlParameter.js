@@ -1,11 +1,12 @@
 /** This script works as an utility class.
  *
- *  <p>
- *      Version 1
- *  </p>
+ *  Version 1
  *  Modification date: 22.07.2020
  *  Author: Sven Petersen
+ *  @class utility class to return parameter from url
  */
+
+
 function getUrlParameter(name) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
     var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');

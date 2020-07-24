@@ -1,10 +1,9 @@
 /** sql_InjectionTester
  *
- *  <p>
- *      Version 1
- *  </p>
+ *  Version 1
  *  Modification date: 22.07.2020
  *  Author: Sven Petersen
+ *  @class for preventing sql-injections
  */
 
 const lengthToBeValid = 60;
@@ -17,6 +16,7 @@ const metaCharactersToCheck = {
 
 
 /**
+ * @method
  * This method checks a given string for illegal metacharacters to prevent SQL-Injections.
  * If the input contains illegal metacharacters a window will pop up with an error message.
  * @param input to be checked
@@ -42,6 +42,7 @@ function checkInputForSQLInject(input)
 }
 
 /**
+ * @method
  * This method splits a given String into an array of chars.
  * @param input to be split.
  * @returns [] an array with chars from given String.
@@ -57,6 +58,7 @@ function splitInput(input) {
 ;}
 
 /**
+ * @method
  * This method checks a given input length to prevent SQL-Injection.
  * If a given input is to long the result ist false
  * @param input to check for l
