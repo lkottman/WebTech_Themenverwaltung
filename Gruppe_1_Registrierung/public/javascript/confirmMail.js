@@ -1,13 +1,19 @@
+/** confirmMail
+ *
+ *  <p>
+ *      Version 1
+ *  </p>
+ *  Modification date: 22.07.2020
+ *  Author: Sven Petersen
+ */
+
+import {getUrlParameter} from "./getUrlParameter";
 
 
-    function getUrlParameter(name) {
-        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-        var results = regex.exec(location.search);
-        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-    };
-
-
+/**
+ * This class creates an object from the given URL-Parameter which was sent to the user after the registration took place.
+ * After that it send the object with a post to router which than handles the verification.
+ */
     class UserToVerify {
 
         constructor(email, token) {
@@ -18,7 +24,7 @@
         }
     }
 
-   async function sendUserDataToConfirm() {
+    async function sendUserDataToConfirm() {
         let email = getUrlParameter('email');
         let token = getUrlParameter('opt');
 

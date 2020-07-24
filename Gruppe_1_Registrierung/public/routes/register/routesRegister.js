@@ -24,6 +24,16 @@ router.post("/register",  (request, response) => {
     let servertime = new Date();
     let randomtoken = Math.random().toString(36).substr(2, 6);
 
+
+    /* should work but node skips because method needs to long to be performed.
+    const hashedPassword = async function () {
+        console.log(bcrypt.hash(request.body.password, 10));
+        var hashPwd = await bcrypt.hash(request.body.password, 10);
+        console.log(hashPwd);
+    };
+
+     */
+
     var sqlToken = "SELECT * FROM TOKEN WHERE " + 'gentoken = "' + request.body.token + '"; ';
     var sqlEmail = "SELECT * FROM USER WHERE " + 'e_mail = "' + request.body.email + '";';
     var sqlInsert = "INSERT INTO USER(token,name,surname,"
@@ -32,7 +42,7 @@ router.post("/register",  (request, response) => {
             + '"' + request.body.name + '",'
             + '"' + request.body.surname + '",'
             + '"' + request.body.email + '",'
-            + '"' + request.body.password + '",'
+            + '"' + hashedPassword + '",'
             + '"' + randomtoken + '",'
             + '' + "false" + ','
             + '"student"' + ');';

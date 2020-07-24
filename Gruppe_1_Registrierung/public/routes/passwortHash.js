@@ -4,12 +4,8 @@ const router = express.Router();
 const Promise = require("promise");
 
 
-
-
 router.post("/hashPassword", (request, response) => {
 
-    let password = request.body.password;
-    let stored_hash = "";
 
 
     function genSalt(password) {
@@ -42,18 +38,21 @@ router.post("/hashPassword", (request, response) => {
                         password: password,
                         hash: hash
                     });
+
                 }
             });
         });
     }
 
-    genSalt(password)
+
+        genSalt(password)
         .then(function(result) {
                 return genHash(result.salt, result.password);
             })
             .then(function(result) {
                 console.log("store hash in user profile :", result);
                 stored_hash = result.hash;
+                var hashedP
             })
             .catch(function(err) {
                 console.log(err);

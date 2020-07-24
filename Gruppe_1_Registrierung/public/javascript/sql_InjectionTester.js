@@ -1,3 +1,12 @@
+/** sql_InjectionTester
+ *
+ *  <p>
+ *      Version 1
+ *  </p>
+ *  Modification date: 22.07.2020
+ *  Author: Sven Petersen
+ */
+
 const lengthToBeValid = 60;
 const metaCharactersToCheck = {
     escapeCharacterSingleQuote: "\'",
@@ -5,8 +14,6 @@ const metaCharactersToCheck = {
     escapeCharacterDoubleQuote: "\\",
     escapeCharacterHashtag: "#",
 };
-
-
 
 
 /**
