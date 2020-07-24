@@ -8,8 +8,9 @@
     <link  rel="stylesheet" type="text/css" href="../../../css/table.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css">
     <script type="text/javascript" language="JavaScript" src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script type="text/javascript" language="JavaScript" src="../../../javascript/adminAnsicht.js"></script>
+    <script type="text/javascript" language="JavaScript" src="../../../javascript/admnsicht.js"></script>
     <script type="text/javascript" language="JavaScript" src="../../../javascript/token.js"></script>
+    <script src="../../../javascript/adminView.js"></script>
 
     <title>Benutzerverwaltung</title>
 </head>
@@ -73,7 +74,6 @@
         </div>
     </div>
 </div>
-
 
 <br>
 <div class="outerBox">
@@ -245,29 +245,8 @@
     </div>
 </div>
 
-
 <script src="../../../javascript/adminView.js"></script>
-<script>
-    var close = document.getElementsByClassName("close");
-    var i;
-
-    for (i = 0; i < close.length; i++) {
-        close[i].onclick = function(){
-            var div = this.parentElement;
-            div.style.opacity = "0";
-            setTimeout(function(){ div.style.display = "none"; }, 600);
-        }
-    }
-
-    function addUserPopUp() {
-        F = window.open("/addUser", "Popup", "width=400,height=580");
-    }
-
-</script>
-<script>
-</script>
 </body>
-
 <style>
     td:nth-of-type(7) {display: none;}
     td:nth-of-type(8) {display: none;}

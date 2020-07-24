@@ -12,7 +12,7 @@ module.exports = (app, router, upload) => {
 		res.sendFile(path + "index.html");
 	});
 	
-	app.post('/api/files/upload', upload.single("uploadfile"), fileWorker.uploadFile);
+	app.post('/api/files/upload', upload.array("uploadfile"), fileWorker.uploadFile);
 	
 	app.get('/api/files/getall', fileWorker.listAllFiles);
 	

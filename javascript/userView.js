@@ -1,3 +1,9 @@
+/**
+ * Version 1.0
+ * 24.07.2020
+ * AUTHOR: Louis Kottmann
+ */
+
 let cookieID = ""
 fetch('/cookie')
     .then(response => response.json())
@@ -28,7 +34,10 @@ fetch('/cookie')
         })
         .catch(error => console.error(error))
 
-
+/**
+ * @method
+ * This function changes the attribute of the input fields to readonly, so that it is possible to write to the fields.
+ */
 function changeReadonly() {
     document.getElementById('vorname').removeAttribute('readonly');
     document.getElementById('nachname').removeAttribute('readonly');
@@ -39,6 +48,10 @@ function changeReadonly() {
     document.getElementById("studiengang").removeAttribute("disabled");
 }
 
+/**
+ * @method
+ * This function changes the attribute of the input fields to readonly, so that it is no longer possible to write into the fields.
+ */
 function addReadonly() {
     document.getElementById("vorname").setAttribute("readOnly", 'true');
     document.getElementById("nachname").setAttribute("readOnly", 'true');
@@ -49,6 +62,12 @@ function addReadonly() {
     document.getElementById("studiengang").setAttribute("disabled", "disabled");
 }
 
+/**
+ * @method
+ * This function opens an alert window, if confirmed, an instance of the class UserToUpdate is created.
+ * The data is parsed into a JSON file. Afterwards the fetch /deleteUser is called and all data of the user is deleted from the database.
+ * If it is rejected, the window closes and the function ends.
+ */
 function deleteMyUserMessage() {
     if(confirm("ACHTUNG!\nSie sind dabei Ihren Account zu löschen!")){
 
@@ -68,6 +87,7 @@ function deleteMyUserMessage() {
             .then(response => response.json())
             .then(data => {
             })
+
 
 
         fetch('/logout', options)
@@ -110,9 +130,14 @@ class UserToUpdate {
     }
 }
 
+/**
+ * @method
+ * This function creates a new instance of the UserToUpdate class and parse the data into a JSON file.
+ * Then the fetch /changeMyUser is called and the JSON file is written to the database.
+ */
 function sendMyData(){
     let user = new UserToUpdate().getSelectUser();
-
+console.log(JSON.stringify(user))
 
     const options = {
         method: "POST",

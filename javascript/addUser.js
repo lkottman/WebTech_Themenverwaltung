@@ -1,5 +1,4 @@
 class UserToAdd {
-    // id?
     constructor(name, surname,email, password, authorization, course, verified, id) {
         this.name = name;
         this.surname = surname;
@@ -27,9 +26,12 @@ class UserToAdd {
 
     }
 }
-
+/**
+ * @method
+ * This function creates a new instance of the UserToUpdate class and parse the data into a JSON file.
+ * Then the fetch /addUser is called and the JSON file is written to the database.
+ */
 function sendAddUser(){
-    console.log("TEst");
     let user = new UserToAdd().getSelectedUser();
     console.log(user);
     console.log(JSON.stringify(user))
@@ -46,6 +48,10 @@ function sendAddUser(){
 
 }
 
+/**
+ * @method
+ * Manipulates the background color of the input field if the second password doesnt match
+ */
 function checkPassword() {
     let password = document.getElementById("password").value;
     let password1 = document.getElementById("passwordConf").value;

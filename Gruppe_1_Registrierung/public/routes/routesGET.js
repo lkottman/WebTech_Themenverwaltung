@@ -166,11 +166,8 @@ router.get("/admin", (request, response) => {
 });
 
 router.get("/lecturerView", (request, response) => {
-    if (request.session.userAuthorization === "lecturer") {
-        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/lecturerView.html');
-    } else
-        response.redirect("/UserInfo");
 
+        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/lecturerView.html');
 });
 
 router.get("/addUser", (request, response) => {

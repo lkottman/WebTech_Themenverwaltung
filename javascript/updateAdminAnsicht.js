@@ -1,4 +1,3 @@
-r
 
 const connection = require('../getConnectionDatabase.js');
 

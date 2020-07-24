@@ -111,7 +111,7 @@ router.post("/register",  (request, response) => {
 });
 
 /**
- * @@method
+ * @method
  * Change information from a user
  */
 router.post("/changeUser",  (request, response) => {
@@ -183,13 +183,16 @@ router.post("/changeMyUser",  (request, response) => {
 });
 
 
+/**
+ * @method
+ * Add a new User to the system
+ */
 router.post("/addUser",  (request, response) => {
 
     var name ="'"+ request.body.name+"'";
     var surname ="'"+ request.body.surname+"'";
     var email = "'"+request.body.email+"'";
     var password = "'"+request.body.password+"'";
-    var verified ="'"+ request.body.verified+"'";
     var authorization = "'"+request.body.authorization+"'";
 
     var sqlStatement = "INSERT INTO `user`(`name`, `surname`, `e_mail`, `password`, `authorization`) VALUES "
@@ -216,6 +219,7 @@ router.post("/addUser",  (request, response) => {
 //DELETE FROM `user` WHERE id =62
 
 /**
+ * @method
  * Deletes user
  */
 router.post("/deleteUser",  (request, response) => {

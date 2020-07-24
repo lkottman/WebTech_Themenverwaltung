@@ -1,3 +1,23 @@
+/**
+ * Version 1.0
+ * 24.07.2020
+ * AUTHOR: Louis Kottmann
+ */
+
+const connection = require('../getConnectionDatabase.js');
+
+
+connection.query(sql,
+    function (err, result)
+    {
+        if (err)
+            throw err;
+
+        console.log("Row inserted:  Passwort:" + query.password + ", E-Mail: sven.petersen@hs-osnabrueck.de");
+
+    });
+
+
 function getUser() {
     fetch('/getUser')
         .then(response => {
@@ -9,6 +29,12 @@ console.log(responseData);
 };
 
 
+
+/**
+ * @method
+ * This function creates the table rows and loads the data from a JSON file.
+ * @param data
+ */
 function renderHTML(data) {
     var rowCounter = 0;
     for (i = 0; i < data.length; i++) {
@@ -43,6 +69,11 @@ function renderHTML(data) {
 }
 
 
+/**
+ * @method
+ * This function iterates through the tables and sorts by either ASC or DESC, of the selected heading of the table column.
+ * @param n
+ */
 function sortTable(n) {
     var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("userlist");
@@ -81,6 +112,11 @@ function sortTable(n) {
     }
 }
 
+/**
+ * @method
+ *  This eventlistener checks if a tablefield has been clicked and then calls a function.
+ *  This function writes the data of the clicked table rows into the input boxes of the user information.
+ */
 
 window.addEventListener('click', function () {
     var table = document.getElementById('userlist');
@@ -117,9 +153,74 @@ window.addEventListener('click', function () {
 
 
 
+function changeEntries() {
+    let sql = "UPDATE USER SET name = '', surname = '', e_mail = '', password ='', course='', authorization='' " +
+        "WHERE e_mail = ''";
+    connection.query(sql,
+        function (err, result) {
+            if (err) throw err;
+            if (result)
+                console.log("Erfolgreich")
+        })
+}
 
 
+/**
+ * @method
+ * This function changes the status of an input field from readonly to editable or from editable to readonly
+ * @param input
+ */
+function changeFieldStatus(input) {
+    let textarea = document.getElementById(input);
+    textarea.readOnly = !textarea.readOnly;
+}
+
+/**
+ * @method
+ * This function changes the status of a dropdown field to disabled or removes this status
+ * @param input
+ */
+function changeSelectStatus(input) {
+    let dropDown = document.getElementById(input);
+    dropDown.disabled = !dropDown.disabled;
+}
+
+/**
+ * @method
+ * This function changes the type of a field to a normal text type or to a password type.
+ * @param input
+ */
+function changeVisibility(input) {
+    let passwordText = document.getElementById(input);
+    if (passwordText.type === "password"){
+        passwordText.type = "text";
+    } else {
+        passwordText.type = "password";
+    }
+}
 
 
+class UserToUpdate {
+    constructor(name, surname,email, password, authorization, course, verified, id) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.authorization = authorization;
+        this.course = course;
+        this.verified = verified;
+        this.id = id;
+    }
 
-
+    getSelectedUser() {
+        let name = document.getElementById("vorname").value;
+        let surname = document.getElementById("nachname").value;
+        let e_mail = document.getElementById("e-Mail").value;
+        let role = document.getElementById("rolle").value;
+        let course = document.getElementById("studiengang").value;
+        console.log(document.getElementById("studiengang").value);
+        let password = document.getElementById("password").value;
+        let verified = document.getElementById("verified").value;
+        let userID = document.getElementById("userID").value;
+    }
+}
