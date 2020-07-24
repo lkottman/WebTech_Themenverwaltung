@@ -1,3 +1,14 @@
+/**
+ * Version 1.0
+ * 23.07.2020
+ * AUTHOR: Dominik Dziersan
+ * Client side from login
+ */
+
+
+/**
+ * Gets information from input fields, creates an object and POST it to /login
+ */
 function login() {
 
     class LoginUser {

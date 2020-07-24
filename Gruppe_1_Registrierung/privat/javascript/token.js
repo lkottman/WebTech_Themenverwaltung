@@ -1,3 +1,13 @@
+/**
+ * Version 1.0
+ * 23.07.2020
+ * AUTHOR: Dominik Dziersan
+ * client side from token
+ */
+
+const tokenMaxLife = 5256000; //10 Years
+
+
 class Token {
     constructor(start, end, token, time) {
         this.start = start;
@@ -7,8 +17,10 @@ class Token {
     }
 }
 
-const tokenMaxLife = 5256000; //10 Years
-
+/**
+ * Creates token object from input field, brings the data in the right format and uses
+ * postCreateToken
+ */
 function createToken() {
 
 
@@ -33,17 +45,12 @@ function createToken() {
 
     token = new Token(start, end, genToken, time);
 
-    document.getElementById("demo").innerHTML = start;
-    document.getElementById("demo1").innerHTML = end;
-    document.getElementById("demo2").innerHTML = genToken;
-    document.getElementById("demo3").innerHTML = JSON.stringify(token);
-
-    alert(JSON.stringify(token));
-
     postCreateToken(token);
 }
 
-
+/**
+ * Gets information from input field and send an POST delete request to /deleteToken
+ */
 function deleteToken() {
 
     let tokenDelete = document.getElementById("deleteToken").value;
@@ -68,6 +75,10 @@ function deleteToken() {
 }
 
 
+/**
+ * Creates token object from datetime-local fields, brings the data in the right format and
+ * uses postCreateToken
+ */
 function createTokenCalender(){
     startCalender = document.getElementById("startCalender").value;
     endCalender = document.getElementById("endCalender").value;
@@ -94,6 +105,10 @@ function createTokenCalender(){
 
 }
 
+/**
+ *  POSTs givin token to /createToken
+ * @param token
+ */
 function postCreateToken(token){
 
     const options = {
@@ -113,7 +128,10 @@ function postCreateToken(token){
 }
 
 
-
+/**
+ * Onkeypress event to avoid any chars instead of numbers
+ * @param evt
+ */
 function validate(evt) {
     var theEvent = evt || window.event;
 
@@ -135,6 +153,9 @@ window.onload = function() {
     setMaxDate();
 };
 
+/**
+ * Limit the datetime-locals to a maximum of 10 years
+ */
 function setMaxDate(){
     var maxDate = new Date();
     maxDate.setMinutes(maxDate.getMinutes()
@@ -159,9 +180,11 @@ function diffMinutes(dt2, dt1)
     var diff =(dt2.getTime() - dt1.getTime()) / 1000;
     diff /= 60;
     return Math.abs(Math.round(diff));
-
 }
 
+/**
+ * Gets token
+ */
 function getToken(){
 
     fetch('/getToken')

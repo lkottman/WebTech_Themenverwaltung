@@ -1,22 +1,16 @@
+
+/**
+ * Version 1.0
+ * 23.07.2020
+ * AUTHOR: Created, refactored by group 1
+ */
+
 const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const app = express();
-
-
 configDatabase = require("./config/datenbankConfig.json");
-const config = configDatabase;
 
-let mysql = require("mysql");
-
-let connection = mysql.createConnection(
-    {
-        host: config.host,
-        user: config.user,
-        password: config.password,
-        database: config.database
-    }
-);
 
 var lifeTime = 1000 * 60 * 60 * 24;// 24 hour
 var lifeTimeLong = 1000 * 60 * 60 * 24 * 365 * 10;  //1 Year
@@ -30,21 +24,9 @@ var {
     secretSession = "test"
 } = process.env;
 
-
-// var {
-//     PORT = 3000,
-//     sessionLifetime = lifeTime,
-//     sessionName = "sid",
-//     secretSession = "test"
-//     lifeTime = 1000 * 60 * 60 * 24;// 24 hour
-//     lifeTimeLong = 1000 * 60 * 60 * 24 * 365 * 10;  //1 Year
-//     tokenLifeTime = 60 * 24 * 366;// 10 + 1 day year
-// } = process.env;
-
-let staticOptions = {
-
-}
-//imports
+/**
+ * Express static imports for folders which are accessable from public
+ */
 app.use('/css',express.static('./Gruppe_1_Registrierung/public/css'));
 app.use('/css',express.static('./css'));
 app.use('/javascript',express.static('./javascript'));
@@ -59,13 +41,15 @@ app.use('/CSS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/CSS'))
 app.use('/JS',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/JS'));
 app.use('/HTML',express.static('./Gruppe_5_Editor/Web Technologies/Projekt/HTML'));
 
-
-app.use(express.json({limit: "1mb"}));
+//Limit sizes of json files of the server accepts
+app.use(express.json({limit: "10kb"}));
 app.use(bodyParser.urlencoded({
     extended: true
 }))
 
-//Configuration Cookies
+/**
+ * Configuration of the cookie
+ */
 app.use(session({
     name: sessionName,
     resave: false,
@@ -78,6 +62,13 @@ app.use(session({
     }
 }));
 
+/**
+ * AUTHOR: Dominik Dziersan
+ * If the user didnt accept the cookie redirect him to the mainpage
+ * @param request
+ * @param response
+ * @param next
+ */
 const redirectCookie = (request, response, next) => {
 
     if (request.session.enabledCookies === false
@@ -88,28 +79,44 @@ const redirectCookie = (request, response, next) => {
     }
 };
 
-// Redirect to Login if there are no cookies. No Access to the private sites
+/**
+ * AUTHOR: Dominik Dziersan
+ * If a user is not logged in, redirect him to the login
+ * @param request
+ * @param response
+ * @param next
+ */
 const redirectLogin = (request, response, next) => {
 
     if (!request.session.userId) {
-        console.log(request.session.userId + " redirectLogin");
         response.redirect("/login")
     } else {
         next();
     }
 };
-// Redirect to Home if User is logged in. There is no need to go to the login/registration Site if
-// logged in
+/**
+ * AUTHOR: Dominik Dziersan
+ * If a user is logged in, redirect him to home
+ * @param request
+ * @param response
+ * @param next
+ */
 const redirectHome = (request, response, next) => {
 
     if (request.session.userId) {
-        console.log(request.session.userId + " redirectHome");
         response.redirect("/home");
     } else {
         next()
     }
 };
 
+/**
+ * AUTHOR: Dominik Dziersan
+ * For specific reasons the double request bugs some methods. Use this to prevent it.
+ * @param request
+ * @param response
+ * @param next
+ */
 function ignoreFavicon(req, res, next) {
     if (req.originalUrl === '/favicon.ico') {
         res.status(204).json({nope: true});
@@ -121,8 +128,13 @@ function ignoreFavicon(req, res, next) {
 };
 
 
-//Every connection with Server this will be executed
-//Sends cookie
+/**
+ * AUTHOR: Dominik Dziersan
+ * Send all informations of a session to a user.
+ * @param request
+ * @param response
+ * @param next
+ */
 app.use((request, respond, next) => {
     const {userId} = request.session;
 
@@ -137,6 +149,9 @@ app.use((request, respond, next) => {
     next();
 });
 
+/**
+ * GET Methods from routesGET.js
+ */
 router = require("./Gruppe_1_Registrierung/public/routes/routesGET.js");
 
 app.get("/", router);
@@ -157,6 +172,10 @@ app.get("/adminView",redirectLogin, router);
 app.get("/impressum", router);
 app.get("/userInfo",redirectLogin, router);
 app.get("/presentation", router);
+//Get without HTML|| email
+app.get("/cookie", (request, response) => {
+    response.json(request.session);
+});
 
 
 //-------------------------------------------
@@ -171,8 +190,10 @@ app.get("/favicon.ico", (request, response) => {
     response.end();
     console.log('favicon requested');
 });
-
-routerConfirmation = require('./Gruppe_1_Registrierung/public/routes/register/confirmMailNode.js');
+/**
+ * POST Methods
+ */
+routerConfirmation = require('./Gruppe_1_Registrierung/public/routes/register/confirmMail.js');
 app.use(routerConfirmation);
 
 routerPassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/sendMailToChangePassword.js');
@@ -180,9 +201,6 @@ app.use(routerPassword);
 
 routerChangePassword = require('./Gruppe_1_Registrierung/public/routes/resetPassword/changePassword.js');
 app.use(routerChangePassword);
-
-routerHashing = require("./Gruppe_1_Registrierung/public/routes/passwortHash.js");
-app.use(routerHashing);
 
 routerLogin = require('./Gruppe_1_Registrierung/public/routes/login/routesLogin.js');
 app.use(routerLogin);
@@ -199,13 +217,6 @@ routerEdit = require("./Gruppe_5_Editor/Web Technologies/Projekt/routes/routesGe
 
 app.get("/requirements",redirectLogin, routerEdit);
 app.use(routerEdit);
-
-
-
-//Get without HTML|| email
-app.get("/cookie", (request, response) => {
-    response.json(request.session);
-});
 
 app.post("/enableCookie", (request, response) => {
     request.session.enabledCookies = true;

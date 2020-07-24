@@ -1,6 +1,11 @@
+/**
+ * Version 1.0
+ * 23.07.2020
+ * AUTHOR: Dominik Dziersan
+ */
+
 var Request = require("request");
 const serverURL = "http://localhost:3000";
-
 const Register = require("..\\Gruppe_1_Registrierung\\public\\routes\\register\\routesRegister.js");
 describe("Register Tests: ", function() {
     it("tests email if ..@hs-osnabrueck.de ", function() {

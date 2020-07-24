@@ -3,7 +3,6 @@ const session = require("express-session");
 const mysql = require('mysql');
 const path = require("../../../../config/pathConfig.json");
 const fs = require('fs');
-
 const config = JSON.parse(fs.readFileSync(path.path + "/config/datenbankConfig.json"));
 const app = express();
 const redirect = require("../routesRedirect");
@@ -11,6 +10,12 @@ const router = express.Router()
 
 const connection = require("../../../../getConnectionDatabase");
 
+/**
+ * Version 1.0
+ * 23.07.2020
+ * AUTHOR: Dominik Dziersan
+ * Server-Side from login
+ */
 
 var lifeTime = 1000 * 60 * 60 * 24;// 24 hour
 var lifeTimeLong = 1000 * 60 * 60 * 24 * 365 * 10;  //1 Year
@@ -23,6 +28,8 @@ var {
     sessionName = "sid",
     secretSession = "test"
 } = process.env;
+
+
 
 app.use(session({
     name: sessionName,
@@ -38,11 +45,14 @@ app.use(session({
 
 
 //Takes E-Mail and password from User and check if these matches if database
+
+/**
+ * Creates an session with the user if the login succes. Else the server respond with a errormessage
+ * request: json with email and password.
+ */
 router.post("/login",  (request, response) => {
 
-    console.log(request.body);
-
-    connection.query("SELECT id, name,verified, token, e_mail, password, authorization from USER where "
+    connection.query("SELECT id, name,verified, token, e_mail, password, authorization from user where "
         + 'e_mail = "' + request.body.email + '"'
         + ' AND password = "' + request.body.password + '"',
         function (err, result) {
@@ -65,7 +75,7 @@ router.post("/login",  (request, response) => {
                         if(request.body.checkboxLogin === true){
                             request.session.cookie.maxAge = lifeTimeLong;
                         }
-                        s
+
                         request.session.userId = result[0].id;
                         request.session.userName = result[0].name;
                         request.session.userAuthorization = result[0].authorization;
@@ -78,6 +88,9 @@ router.post("/login",  (request, response) => {
         });
 });
 
+/**
+ * Deletes session with the user
+ */
 router.post("/logout",  (request, respond) => {
 
     request.session.destroy(err => {

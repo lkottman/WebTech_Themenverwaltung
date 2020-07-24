@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="../css/style.css" rel="stylesheet" type="text/css">
-    <script async src="../javascript/confirmMail.js" language="JavaScript" type="text/javascript"></script>
+    <script src="../javascript/confirmMail.js" type="text/javascript" language="JavaScript"></script>
 </head>
-<body>
+<body onload="sendUserDataToConfirm()">
 <br>
 <img alt="hslogo" class="logo" src="../images/hsos-logo-neu.png">
 <br> <br><br><br>
@@ -14,13 +14,13 @@
 <br>
 
 
-<form action="/login" class="box" method="get">
+<form action="/login" class="box" method="get" onload="">
     <div class="box1">
         Bitte warten Sie, ihr E-Mail wird gerade verifiziert. Falls sie nicht automatisch weitergeleitet werden drücken
         Sie auf Weiter.
 
 
-            <input name="" type="submit" value="Weiter" onclick="sendUserDataToConfirm()">
+            <input name="" type="submit" value="Weiter">
         <br>
     </div>
 </form>

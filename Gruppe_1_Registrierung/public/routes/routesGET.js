@@ -1,12 +1,14 @@
+
+/**
+ * Version 1.0
+ * 23.07.2020
+ * AUTHOR: Dominik Dziersan & Sven Petersen & Louis Kottmann
+ */
+
 const express = require('express');
 const router = express.Router();
 const connection = require('../../../getConnectionDatabase.js');
-const {sendUserDataToConfirm} = require('../javascript/confirmMail.js');
-// const redirect = require("./routesRedirect");
-const redirect = require("../../../index");
-const app = express();
 const path = require("../../../config/pathConfig.json");
-
 
 
 
@@ -21,11 +23,6 @@ router.get("/home", (request, response) => {
 router.get("/register", (request, response) => {
         response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/register.html");
 });
-
-
-
-let url = 'https://example.com';
-
 
 /**
  *  This method provides a json object with all registerd users.
@@ -67,8 +64,6 @@ router.get("/updateUser", (request, response) => {
 });
 
 
-router.get("/getHash", (request, response) => {
-
 
 /**
  *  This method provides a json object with one registerd users.
@@ -95,18 +90,6 @@ router.get("/getOneUser", (request, response) => {
 
 
 
-    connection.query(sql,(err, result, )  => {
-        if(err) {
-            console.log(err);
-            response.end();
-        }
-        response.contentType('application/json');
-        response.json(result);
-        return result;
-    });
-
-});
-
 router.get("/token", (request, response) => {
     if (request.session.userAuthorization === "lecturer"
         || request.session.userAuthorization === "admin") {
@@ -122,7 +105,7 @@ router.get("/showUsers", (request, response) => {
     } else if(request.session.userAuthorization === "admin") {
         response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/adminView.html');
     } else {
-        response.redirect("/profil");
+        response.redirect("/userInfo");
     }
 });
 
@@ -145,6 +128,7 @@ router.get("/changepassword", (request, response) => {
 });
 
 router.get("/confirmation", (request, response) => {
+
     response.sendFile(path.path + "/Gruppe_1_Registrierung/public/html/confirmEmail.html");
 });
 
@@ -168,14 +152,18 @@ router.get("/userInfo", (request, response) => {
 });
 
 router.get("/admin", (request, response) => {
-
-    response.sendFile(path.path + "/Gruppe_1_Registrierung/privat/html/adminView.html");
-
+    if(request.session.userAuthorization === "admin") {
+        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/adminView.html');
+    } else {
+        response.redirect("/userInfo");
+    }
 });
 
 router.get("/lecturerView", (request, response) => {
-
-    response.sendFile(path.path + "/Gruppe_1_Registrierung/privat/html/lecturerView.html");
+    if (request.session.userAuthorization === "lecturer") {
+        response.sendFile(path.path + '/Gruppe_1_Registrierung/privat/html/lecturerView.html');
+    } else
+        response.redirect("/UserInfo");
 
 });
 

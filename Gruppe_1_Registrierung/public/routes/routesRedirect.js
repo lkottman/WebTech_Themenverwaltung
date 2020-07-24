@@ -1,7 +1,13 @@
+
+
+/**
+ * Version 1.0
+ * 23.07.2020
+ * AUTHOR: Dominik Dziersan
+ */
+
 const express = require('express')
 const router = express.Router()
-
-// Redirect to Login if there are no cookies. No Access to the private sites
 const redirectLogin = (request, response, next) => {
 
     if (!request.session.userId) {
@@ -12,8 +18,6 @@ const redirectLogin = (request, response, next) => {
     }
 };
 
-// Redirect to Home if User is logged in. There is no need to go to the login/registration Site if
-// logged in
 const redirectHome = (request, response, next) => {
 
     if (request.session.userId) {
@@ -23,7 +27,6 @@ const redirectHome = (request, response, next) => {
         next()
     }
 };
-
 
 module.exports = {
     redirectHome: redirectHome,

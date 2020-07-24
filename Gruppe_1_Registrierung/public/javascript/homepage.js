@@ -1,3 +1,9 @@
+/**
+ * Version 1.0
+ * 23.07.2020
+ * AUTHOR: Dominik Dziersan & Sven Petersen
+ */
+
 window.onbeforeunload = function () {
     window.scrollTo(0, 0);
 }
@@ -13,18 +19,22 @@ if (getCookie("cookieDismiss") == 1){
     cookiePopup();
 }
 
+/**
+ * Checks if the user already accept cookies and POST it
+ */
 function cookiePopup (){
     fetch('/cookie')
         .then(response => response.json())
         .then(data => {
 
-            if (data.enabledCookies === false
-                || data.enabledCookies === undefined){
+            if (data.enabledCookies === undefined
+                || data.enabledCookies === false){
 
                 if (confirmCookie === true
                     || getCookie('cookieDismiss') == 1) {
 
                     var enableCookie = {cookie: true};
+
                     const options = {
                         method: "POST",
                         headers: {"Content-Type": "application/json"},
@@ -39,7 +49,6 @@ function cookiePopup (){
 
                 } else {
                     alert("Sie müssen Cookies akzeptieren, damit diese Seite funktioiert!")
-                    // window.location.replace("/");
                 }
             }
         })
@@ -55,6 +64,11 @@ var cookieButton = "Verstanden";
 var cookieButton1 = "Ablehnen";
 var cookieName = "cookiesDismiss";
 
+/**
+ * Fade in for the Textbox
+ * @param elem
+ * @param display
+ */
 function pureFadeIn(elem, display){
     var el = document.getElementById(elem);
     el.style.opacity = 0;
@@ -69,7 +83,11 @@ function pureFadeIn(elem, display){
     })();
 };
 
-
+/**
+ * Fade in for the Textbox
+ * @param elem
+ * @param display
+ */
 function pureFadeOut(elem){
     var el = document.getElementById(elem);
     el.style.opacity = 1;
@@ -83,6 +101,12 @@ function pureFadeOut(elem){
     })();
 };
 
+/**
+ * Creates cookie with given parameters
+ * @param name
+ * @param value
+ * @param days
+ */
 function setCookie(name,value,days) {
     var expires = "";
     if (days) {
@@ -93,6 +117,10 @@ function setCookie(name,value,days) {
     document.cookie = name + "=" + (value || "")  + expires + "; path=/";
 }
 
+/**
+ * @param name
+ * @returns {string|null}
+ */
 function getCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
@@ -105,21 +133,27 @@ function getCookie(name) {
 }
 
 function cookieDismiss() {
-    setCookie('cookieDismiss','1',7);
+    setCookie(cookieName,'1',7);
     pureFadeOut("cookieConsentContainer");
     confirmCookie = true;
     cookiePopup();
 }
 
+/**
+ * Sets cookie to an expired date, so it will be invalid
+ */
 function eraseCookie() {
     cookieDismiss();
-    document.cookie = 'cookieDismiss =; expires=Thu, 01-Jan-70 00:00:01 GMT;';
+    document.cookie = cookieName + ' =; expires=Thu, 01-Jan-70 00:00:01 GMT;';
     confirmCookie = false;
     // cookiePopup();
 }
 
+/**
+ * HTML for the infobox with the declared informations
+ */
 function cookieConsent() {
-    if (!getCookie('cookieDismiss')) {
+    if (!getCookie(cookieName)) {
         document.body.innerHTML += '<div class="cookieConsentContainer" id="cookieConsentContainer">' +
             '<div class="cookieTitle"><a>' + cookieTitle + '</a>' + '</div>' +
             '<div class="cookieDesc"><p>' + cookieDesc + ' ' + cookieLink + '</p></div>' +
