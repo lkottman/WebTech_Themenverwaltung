@@ -1,15 +1,18 @@
-const express = require('express')
-const router = express.Router()
-const {sendMail, getTextConfirmationEmail, getMailOptions} = require('../nodeMailer/nodeMailer.js');
-const connection = require("../../../../getConnectionDatabase");
-var q = require('q');
-
 /**
  * Version 1.0
  * 23.07.2020
  * AUTHOR: Dominik Dziersan & Sven Petersen
  * @class Server-Side from login
  */
+
+
+const express = require('express')
+const router = express.Router()
+const {sendMail, getTextConfirmationEmail, getMailOptions} = require('../nodeMailer/nodeMailer.js');
+const connection = require("../../../../getConnectionDatabase");
+var q = require('q');
+
+
 
 /**
  * @method

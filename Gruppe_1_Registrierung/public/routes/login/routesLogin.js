@@ -1,3 +1,11 @@
+/**
+ * Version 1.0
+ * 23.07.2020
+ * AUTHOR: Dominik Dziersan
+ * Server-Side from login
+ * @class routesLogin, server site processing of the Login process
+ */
+
 const express = require('express');
 const session = require("express-session");
 const mysql = require('mysql');
@@ -10,13 +18,7 @@ const router = express.Router()
 
 const connection = require("../../../../getConnectionDatabase");
 
-/**
- * Version 1.0
- * 23.07.2020
- * AUTHOR: Dominik Dziersan
- * Server-Side from login
- * @class routesLogin, server site processing of the Login process
- */
+
 
 var lifeTime = 1000 * 60 * 60 * 24;// 24 hour
 var lifeTimeLong = 1000 * 60 * 60 * 24 * 365 * 10;  //1 Year
