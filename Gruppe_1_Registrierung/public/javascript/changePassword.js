@@ -1,11 +1,17 @@
-function getUrlParameter(name) {
-    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-    var results = regex.exec(location.search);
-    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-};
+/** changePassord
+ *
+ *  <p>
+ *      Version 1
+ *  </p>
+ *  Modification date: 22.07.2020
+ *  Author: Sven Petersen
+ */
 
+import {getUrlParameter} from "./getUrlParameter";
 
+/**
+ * This class creates an object from the user data which is entered and return its.
+ */
 class UserToUpdate {
 
     constructor(email, token, password) {
@@ -23,9 +29,9 @@ class UserToUpdate {
     }
 }
 
-
-
-
+/**
+ * This method send data which is entered by the user to change the password.
+ */
 async function sendData() {
     var user = new UserToUpdate().getUserToUpdate();
     const options = {

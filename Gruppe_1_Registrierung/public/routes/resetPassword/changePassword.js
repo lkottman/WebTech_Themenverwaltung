@@ -1,3 +1,13 @@
+/** changePassword
+ *
+ *  <p>
+ *      Version 1
+ *  </p>
+ *  Modification date: 22.07.2020
+ *  Author: Sven Petersen
+ */
+
+
 const express = require('express');
 const {getTextForgotPassword,getMailOptions,sendMail} = require('../nodeMailer/nodeMailer.js');
 const {checkInputForSQLInject} = require('../../javascript/sql_InjectionTester.js');
@@ -6,14 +16,16 @@ const redirect = require("../routesRedirect");
 
 
 
-
+/**
+ * This router updates the password of an user.
+ */
 router.post("/updatePassword", (request, response) =>{
 
     let email = request.body.email;
     let tokenReset = request.body.token;
     let password = request.body.password;
 
-    if (email === null || email === undefined ||
+    if ( email === undefined  || email === null ||
         tokenReset === null || tokenReset === undefined)
     {
         console.log("Error");

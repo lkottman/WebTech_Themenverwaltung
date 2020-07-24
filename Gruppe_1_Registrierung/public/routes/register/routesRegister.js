@@ -67,6 +67,7 @@ router.post("/register",  (request, response) => {
 
     }
 
+
     if (request.body.tutorium === undefined) {
         if (request.body.email === undefined) {
 
@@ -182,10 +183,6 @@ router.post("/changeMyUser",  (request, response) => {
 });
 
 
-/**
- * @method
- * Adds a user from the adminpage
- */
 router.post("/addUser",  (request, response) => {
 
     var name ="'"+ request.body.name+"'";
@@ -219,7 +216,6 @@ router.post("/addUser",  (request, response) => {
 //DELETE FROM `user` WHERE id =62
 
 /**
- * @method
  * Deletes user
  */
 router.post("/deleteUser",  (request, response) => {
