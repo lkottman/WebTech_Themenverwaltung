@@ -32,5 +32,5 @@ folgende dependencies:
     "q": "^1.5.1",
     "request": "^2.88.2",
     "session": "^0.1.0"
-    über npm i "MODULENAME" --save installieren. <- Wichtig das --save
+    über npm i MODULENAME --save installieren. <- Wichtig das --save
     
