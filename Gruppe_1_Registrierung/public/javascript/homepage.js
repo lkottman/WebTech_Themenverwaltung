@@ -13,9 +13,9 @@ window.onbeforeunload = function () {
 var confirmCookie = false;
 
 window.onload = function() { cookieConsent(); };
-console.log(getCookie("cookieDismiss") + " Test1");
+console.log(getCookie("cookiesDismiss") + " Test1");
 
-if (getCookie("cookieDismiss") == 1){
+if (getCookie("cookiesDismiss") == 1){
     console.log("test2");
     cookiePopup();
 }
@@ -28,12 +28,8 @@ function cookiePopup (){
     fetch('/cookie')
         .then(response => response.json())
         .then(data => {
-
-            if (data.enabledCookies === undefined
-                || data.enabledCookies === false){
-
                 if (confirmCookie === true
-                    || getCookie('cookieDismiss') == 1) {
+                    || getCookie('cookiesDismiss') == 1) {
 
                     var enableCookie = {cookie: true};
 
@@ -50,9 +46,9 @@ function cookiePopup (){
                         .catch(error => console.error(error))
 
                 } else {
-                    alert("Sie müssen Cookies akzeptieren, damit diese Seite funktioiert!")
+                    // alert("Sie müssen Cookies akzeptieren, damit diese Seite funktioiert!")
+                    cookieConsent()
                 }
-            }
         })
         .catch(error => console.error(error))
 
