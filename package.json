@@ -15,7 +15,7 @@
     "express-session": "^1.17.1",
     "fs": "0.0.1-security",
     "jasmine": "^3.5.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "nodemailer": "latest",
